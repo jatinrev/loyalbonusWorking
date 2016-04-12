@@ -7,7 +7,7 @@
                 <h1 class="rttitleEmail">{{ userDetails.Email }}</h1>
             </ion-item>
             <ion-list>
-                <ion-item menu-toggle>My Loyal Bonus</ion-item>
+                <ion-item menu-toggle>My Loyal Bonus {{ output }}</ion-item>
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list>
@@ -25,7 +25,7 @@
                 <ion-item menu-toggle >About Loyal Bonus</ion-item>
             </ion-list>
             <ion-list>
-                <ion-item class="new-color-loyal" ng-click="signOut()">Sign Out</ion-item>
+                <ion-item class="new-color-loyal" on-tap="signOut()">Sign Out</ion-item>
                 <!-- ui-sref="signin" -->
             </ion-list>
         </ion-content>
