@@ -90,17 +90,13 @@ angular.module('LoyalBonus')
                         // console.log(data);
                         return data;
                     });
-
-
-
-
             }
         };
     })
 
     .controller('RestaurantController', function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
         get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller) {
+        active_controller, loading) {
 
 
 
@@ -133,9 +129,11 @@ angular.module('LoyalBonus')
         /**/
 
         $scope.restaurants.search = function(keyword) {
+        	loading.start();
             get_business_data
                 .search(keyword)
                 .then(function(response) {
+                	loading.stop();
                     $scope.data = response;
                     console.log(response);
                 });
@@ -148,11 +146,13 @@ angular.module('LoyalBonus')
             get_user_location
                 .get
                 .then(function(position) {
-                    $scope.testing = position;
 
+                    $scope.testing = position;
+                    loading.start();
                     get_business_data
                         .get(position.lat, position.long)
                         .then(function(ajax_response) {
+                        	loading.stop();
                             $scope.data = ajax_response;
                             setTimeout(function () {
 				    			$scope.$apply(function () {

@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -23,6 +23,7 @@ angular.module('LoyalBonus')
 	// console.log( window.localStorage['userId'] );
 
 	function login() {
+		loading.start();
 		$scope.signIn.response 				   = 'in login';
 		$scope.signIn.signIn_button_visibility = false;
 		$scope.signIn.response_visibility      = true; // comment this
@@ -33,6 +34,7 @@ angular.module('LoyalBonus')
 			headers: { 'Content-Type': 'application/json' },
 			data: JSON.stringify({ Email : $scope.signIn.username, Password : $scope.signIn.password })
 		}).then(function(response) {
+			loading.stop();
 			if( response.data.StatusCode == 0 ) {
 				//success
 				window.localStorage['userId'] = response.data.Data.UserID;
@@ -49,6 +51,7 @@ angular.module('LoyalBonus')
 				}
 			}
 		}, function errorCallback(response) {
+			loading.stop();
 			$scope.signIn.response_visibility      = true; // comment this
 			$scope.signIn.response = response;
 		});

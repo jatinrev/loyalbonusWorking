@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details) {
+.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details, loading) {
 	var vm         = this;
 	$scope.signUp  = {};
 	$scope.tabName = $state.params.id;
@@ -12,6 +12,7 @@ angular.module('LoyalBonus')
 	$scope.signUp.signUp_button_visibility = true;
 	
 	$scope.signUp.submit = function() {
+		loading.start();
 		$scope.signUp.response = 'hello';
 		$scope.signUp.signUp_button_visibility = false;
 		ajaxCall.post('webapi/AppLogin/Register',
@@ -23,6 +24,7 @@ angular.module('LoyalBonus')
 			"CurrentPassword": $scope.frmsignup.password.$modelValue,
 			"UserType": 1 
 		}).then(function(response){
+			loading.stop();
 			if(response.data.StatusMessage == null) {
 				//success
 				window.localStorage['userId'] = response.data.Data.UserID;
@@ -36,6 +38,7 @@ angular.module('LoyalBonus')
 				$scope.signUp.response = response.data.StatusMessage;
 			}
 	    }, function errorCallback(response) {
+	    	loading.stop();
 			$scope.signUp.signUp_button_visibility = true; // comment this
 			$scope.signUp.response = response;
 		});

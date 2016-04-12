@@ -184,6 +184,22 @@ factory('saveData', function () {
 		set : set(),
 		get : get()
 	};
+})
+.factory('loading', function ($ionicLoading) {
+	return {
+		start : function () {
+			$ionicLoading.show({
+			    content: 'Loading',
+			    animation: 'fade-in',
+			    showBackdrop: true,
+			    maxWidth: 200,
+			    showDelay: 0
+			});
+		},
+		stop  : function () {
+			$ionicLoading.hide();
+		}
+	};
 });
 
 
