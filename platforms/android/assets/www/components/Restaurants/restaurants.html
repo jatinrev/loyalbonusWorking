@@ -1,6 +1,6 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-        <ul rn-carousel class="tabs">
+        <ul class="tabs"> <!-- rn-carousel -->
             <li ng-repeat="(key, value) in data" class="tab-item" ui-sref="home.restaurants({vertical: key})">{{ key }}</li>
         </ul>
     </div>
@@ -13,9 +13,9 @@
                 </label>
             </div>-->
 
-            <!-- <span>-{{ testing }}-</span> -->
+            <span>-{{ testing }}-</span><br>
 
-            <div ng-repeat="d in print_data()">
+            <div ng-repeat="d in print_data">
 
                 <div id="logo">
                     <img ng-src="{{ d.Image }}" on-tap="open_detail_page(d.BusinessID)">

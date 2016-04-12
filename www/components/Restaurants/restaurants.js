@@ -27,12 +27,15 @@ angular.module('LoyalBonus')
 	    		}
 	    	}
 
+	    	console.log('in get_business_data array.');
+
 	    	//putting data in global variable.
 	    	globaldata.businesses = data;
 
 	    	if ( typeof($state.params.vertical) != 'undefined' && $state.params.vertical == '' ) {
+
 	    		for(i in data) {
-	    			// console.log('in here');
+	    			console.log('redirecting to first tab.');
 	    			$state.go("home.restaurants", {vertical: i});
 	    			break;
 	    		}
@@ -44,6 +47,7 @@ angular.module('LoyalBonus')
 
 	return {
 		get : function (latitude, longitude) { 
+			console.log( typeof(globaldata.businesses) );
 			if( typeof(globaldata.businesses) != 'undefined' && Object.keys(globaldata.businesses).length > 0 ) {
 				console.log('data comming from globaldata variable.');
 				var p2 = new Promise(function(resolve, reject) {
@@ -90,7 +94,7 @@ angular.module('LoyalBonus')
 		}
 	}, true);*/
 
-	$scope.print_data = {};
+	$scope.print_data = [];
 	$scope.data       = {};
 	$scope.positions  = {};
 	$scope.heading 	  = [];
@@ -116,7 +120,14 @@ angular.module('LoyalBonus')
     		get_business_data
     		.get(position.lat, position.long)
     		.then(function (ajax_response) {
+    			console.log('getting ajax response.');
     			$scope.data = ajax_response;
+	    		setTimeout(function () {
+	    			$scope.$apply(function () {
+	    				$scope.print_data = $scope.data[$state.params.vertical];
+	    			});
+	    		});
+	    		console.log($scope.print_data);
     		});
 
 			$scope.positions.lat  = position.lat;
@@ -130,10 +141,6 @@ angular.module('LoyalBonus')
 	$scope.tab_name = function () {
 		return $state.params.vertical;
 	}
-
-	$scope.print_data = function () {
-		return $scope.data[$state.params.vertical];
-	};
 
 });
 

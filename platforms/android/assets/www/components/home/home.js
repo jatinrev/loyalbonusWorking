@@ -12,7 +12,7 @@ angular.module('LoyalBonus')
   };
 
   $scope.signOut = function() {
-    console.log('helllooooo');
+    // console.log('helllooooo');
   	$rootScope.userDeatils = {};
     window.localStorage.removeItem('userId');
     $state.go("signin");

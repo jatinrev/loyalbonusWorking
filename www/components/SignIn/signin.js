@@ -12,7 +12,7 @@ angular.module('LoyalBonus')
 	$scope.signIn.signIn_button_visibility = true;
 
 	$rootScope.$watch('userDetails', function() {
-		console.log('in watch userDetails.');
+		// console.log('in watch userDetails.');
 		/*if( typeof($rootScope.userDetails.userId) != 'undefined' && !isNaN($rootScope.userDetails.userId) ) {
 			$state.go("home.restaurants");
 		} else {
@@ -20,7 +20,7 @@ angular.module('LoyalBonus')
 		}*/
 	}, true);
 
-	console.log( window.localStorage['userId'] );
+	// console.log( window.localStorage['userId'] );
 
 	function login() {
 		$scope.signIn.response 				   = 'in login';
