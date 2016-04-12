@@ -11,11 +11,11 @@
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list>
-                <ion-item menu-toggle on-tap="redirect_urls.my_membership()">my Membership</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.my_membership()">my Membership</ion-item>
                 <!-- ui-sref="home.membership" -->
             </ion-list>
             <ion-list>
-                <ion-item menu-toggle on-tap="redirect_urls.account_settings()">Account Setting</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.account_settings()">Account Setting</ion-item>
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list>
@@ -25,7 +25,7 @@
                 <ion-item menu-toggle >About Loyal Bonus</ion-item>
             </ion-list>
             <ion-list>
-                <ion-item class="new-color-loyal" on-tap="signOut()">Sign Out</ion-item>
+                <ion-item class="new-color-loyal" ng-click="signOut()">Sign Out</ion-item>
                 <!-- ui-sref="signin" -->
             </ion-list>
         </ion-content>
