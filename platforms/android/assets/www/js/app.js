@@ -128,13 +128,13 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
         }
       })
       .state("home.account", {
-        url: "/account/",
+        url: "account/",
         views: {
-        "body": {
-           templateUrl: "components/Account/account.html",
+          "body": {
+            templateUrl: "components/Account/account.html",
             controller: "AccountController",
-           controllerAs: "ac"
-         }
+            controllerAs: "acc"
+          }
         }
       })
       .state("home.membership", {
@@ -153,7 +153,7 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
           "body": {
            templateUrl: "components/Map/map.html",
             controller: "MapController",
-          controllerAs: "mc"
+          controllerAs: "mpc"
          }
         }
       })
