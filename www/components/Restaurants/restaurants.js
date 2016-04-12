@@ -90,10 +90,6 @@ angular.module('LoyalBonus')
                         // console.log(data);
                         return data;
                     });
-
-
-
-
             }
         };
     })
