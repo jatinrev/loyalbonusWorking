@@ -30,10 +30,12 @@ angular.module('LoyalBonus')
 
   $scope.redirect_urls = {
     my_membership : function() {
+      console.log('my_membership');
       $scope.output = 'my_membership';
       $state.go("home.membership");
     },
     account_settings : function() {
+      console.log('account_settings');
       $scope.output = 'accout_settings';
       $state.go("home.account");
     }
