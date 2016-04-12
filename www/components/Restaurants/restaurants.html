@@ -7,11 +7,12 @@
     <ion-view>
 
         <ion-content>
-            <!--<div class="pane list-inset">
-                <label class="item item-input new_margin">
-                    <input type="text" placeholder="Search for restaurants">
+           <!--  <div class="pane list-inset"> -->
+                <label ng-show="showMe" class="item item-input new_margin">
+                    <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
+                    <span class="ion-search" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
                 </label>
-            </div>-->
+            <!-- </div> -->
 
             <span>-{{ testing }}-</span><br>
             <!-- <span>-{{ print_data }}-</span> -->
@@ -28,7 +29,9 @@
                         </p>
                     </div>
                     <div class="col-50">
-                        <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars>
+                        <!-- <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars> -->
+                        <img class="rat-star" src="../img/star.png">
+                        
                     </div>
                 </div>
                 <div class="row">

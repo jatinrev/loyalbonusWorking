@@ -1,143 +1,181 @@
 angular.module('LoyalBonus')
+    .factory('get_business_data', function(ajaxCall, $state, get_unique_elements) {
+        function get_data(latitude, longitude) {
+            var heading = [],
+                data = {};
 
-.factory('get_business_data', function (ajaxCall, $state, get_unique_elements) {
-	function get_data(latitude, longitude) {
-		var heading = [], 
-		data        = {};
+            return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessDataNearByKMFromCurrentLocation?currlocationlatlong=' + latitude + ',' + longitude + '&kms=50', {})
+                .then(function(response) {
+                    console.log(response);
+                    // $scope.testing = response;
 
-		return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessDataNearByKMFromCurrentLocation?currlocationlatlong='+latitude+','+longitude+'&kms=50', {})
-	    .then(function(response) {
-	    	// $scope.testing = response;
+                    for (i in response.data.Data) {
+                        heading.push(response.data.Data[i].CategoryName);
+                    }
+                    // Start : getting unique element of array
+                    heading = get_unique_elements.get_unique_arr(heading);
 
-	    	for ( i in response.data.Data ) {
-	    		heading.push( response.data.Data[i].CategoryName );
-	    	}
-	    	// Start : getting unique element of array
-	    	heading  = get_unique_elements.get_unique_arr(heading);                
+                    for (i in heading) {
+                        data[heading[i]] = [];
+                    }
 
-	    	for (i in heading) {
-	    		data[ heading[i] ] = [];
-	    	}
+                    for (i in response.data.Data) {
+                        for (heading_obj in heading) {
+                            if (heading[heading_obj] == response.data.Data[i].CategoryName) {
+                                data[heading[heading_obj]].push(response.data.Data[i]);
+                            }
+                        }
+                    }
+                    //putting data in global variable.
+                    globaldata.businesses = data;
 
-	    	for ( i in response.data.Data ) {
-	    		for ( heading_obj in heading ) {
-	    			if( heading[heading_obj] == response.data.Data[i].CategoryName ) {
-	    				data[ heading[heading_obj] ].push( response.data.Data[i] );
-	    			}
-	    		}
-	    	}
+                    if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
+                        for (i in data) {
+                            // console.log('in here');
+                            $state.go("home.restaurants", { vertical: i });
+                            break;
+                        }
+                    }
+                    // console.log(data);
+                    return data;
+                });
+        }
+        return {
+            get: function(latitude, longitude) {
+                if (typeof (globaldata.businesses) != 'undefined' && Object.keys(globaldata.businesses).length > 0) {
+                    console.log('data comming from globaldata variable.');
+                    var p2 = new Promise(function(resolve, reject) {
+                        resolve(globaldata.businesses);
+                    });
+                    return p2;
+                } else {
+                    return get_data(latitude, longitude);
+                }
+            },
 
-	    	console.log('in get_business_data array.');
 
-	    	//putting data in global variable.
-	    	globaldata.businesses = data;
+            search: function(keyword) {
+                var heading = [],
+                    data = {};
+               	return ajaxCall.get('webapi/BusinessMaster/GetBusinessbySearchKeyword?keyword=' + keyword, {})
+                    .then(function(response) {
+                        console.log(response);
+                        for (i in response.data.Data) {
+                            heading.push(response.data.Data[i].CategoryName);
+                        }
+                        // Start : getting unique element of array
+                        heading = get_unique_elements.get_unique_arr(heading);
 
-	    	if ( typeof($state.params.vertical) != 'undefined' && $state.params.vertical == '' ) {
+                        for (i in heading) {
+                            data[heading[i]] = [];
+                        }
 
-	    		for(i in data) {
-	    			console.log('redirecting to first tab.');
-	    			$state.go("home.restaurants", {vertical: i});
-	    			break;
-	    		}
-	    	}
-	    	console.log(data);
-	    	return data;
-	    });
-	}
+                        for (i in response.data.Data) {
+                            for (heading_obj in heading) {
+                                if (heading[heading_obj] == response.data.Data[i].CategoryName) {
+                                    data[heading[heading_obj]].push(response.data.Data[i]);
+                                }
+                            }
+                        }
+                        //putting data in global variable.
+                        globaldata.businesses = data;
 
-	return {
-		get : function (latitude, longitude) { 
-			console.log( typeof(globaldata.businesses) );
-			if( typeof(globaldata.businesses) != 'undefined' && Object.keys(globaldata.businesses).length > 0 ) {
-				console.log('data comming from globaldata variable.');
-				var p2 = new Promise(function(resolve, reject) {
-				  resolve( globaldata.businesses );
-				});
-				return p2;
-			} else {
-				return get_data(latitude, longitude);
-			}
-		},
-		search : function (keyword) {
-			return ajaxCall.get('webapi/BusinessMaster/GetBusinessbySearchKeyword?keyword='+keyword, {})
-	    	.then(function(response) {
-	    		return response;
-	    	});
-		}
-	};
-})
+                        if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
+                            for (i in data_search) {
+                                // console.log('in here');
+                                $state.go("home.restaurants", { vertical: i });
+                                break;
+                            }
+                        }
+                        // console.log(data);
+                        return data;
+                    });
 
-.controller('RestaurantController', function ( $scope, $rootScope, $state, ajaxCall, $ionicPlatform,
-											   get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-											   active_controller ) {
 
-	
 
-	var vm = this;
-	// vm.openDetailPage = openDetailPage;
 
-	active_controller.set('RestaurantController');
+            }
+        };
+    })
 
-	$scope.restaurants = {};
+    .controller('RestaurantController', function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
+        get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
+        active_controller) {
 
-	$scope.open_detail_page = function (id) {
-		$state.go("home.kaseydiner", {id: id});
-	};
 
-	$scope.testing = 'in RestaurantController...';
 
-	/*$rootScope.$watch('userDetails', function() {
-		if( typeof($rootScope.userDetails.userId) != 'undefined' && !isNaN($rootScope.userDetails.userId) ) {
-			$state.go("home.restaurants");
-		} else {
-			$state.go("signin");
-		}
-	}, true);*/
+        var vm = this;
+        // vm.openDetailPage = openDetailPage;
 
-	$scope.print_data = [];
-	$scope.data       = {};
-	$scope.positions  = {};
-	$scope.heading 	  = [];
-/**/
+        active_controller.set('RestaurantController');
 
-	$scope.restaurants.search = function (keyword) {
-		get_business_data
-		.search(keyword)
-		.then(function (response) {
-			console.log(response);
-		});
-	};
+        $scope.restaurants = {};
 
-    $ionicPlatform.ready(function() {
-    	$scope.testing = 'in RestaurantController ionic ready.';
-    	// console.log($rootScope.userDetails);
-    	
-    	get_user_location
-    	.get
-    	.then(function (position) {
-    		$scope.testing = position;
+        $scope.open_detail_page = function(id) {
+            $state.go("home.kaseydiner", { id: id });
+        };
 
-    		get_business_data
-    		.get(position.lat, position.long)
-    		.then(function (ajax_response) {
-    			// console.log('getting ajax response.');
-    			$scope.data = ajax_response;
-	    		$scope.print_data = $scope.data[$state.params.vertical];
-    		});
+        $scope.testing = 'in RestaurantController...';
 
-			$scope.positions.lat  = position.lat;
-			$scope.positions.long = position.long;
-    	});
+        /*$rootScope.$watch('userDetails', function() {
+            if( typeof($rootScope.userDetails.userId) != 'undefined' && !isNaN($rootScope.userDetails.userId) ) {
+                $state.go("home.restaurants");
+            } else {
+                $state.go("signin");
+            }
+        }, true);*/
 
-	});
 
-	$scope.tabName = $state.params.vertical;
+        $scope.print_data = [];
+        $scope.data 	  = {};
+        $scope.positions  = {};
+        $scope.heading    = [];
+        /**/
 
-	$scope.tab_name = function () {
-		return $state.params.vertical;
-	}
+        $scope.restaurants.search = function(keyword) {
+            get_business_data
+                .search(keyword)
+                .then(function(response) {
+                    $scope.data = response;
+                    console.log(response);
+                });
+        };
 
-});
+        $ionicPlatform.ready(function() {
+            $scope.testing = 'in RestaurantController ionic ready.';
+            // console.log($rootScope.userDetails);
+
+            get_user_location
+                .get
+                .then(function(position) {
+                    $scope.testing = position;
+
+                    get_business_data
+                        .get(position.lat, position.long)
+                        .then(function(ajax_response) {
+                            $scope.data = ajax_response;
+                            setTimeout(function () {
+				    			$scope.$apply(function () {
+				    				$scope.print_data = $scope.data[$state.params.vertical];
+				    			});
+				    		});
+                        });
+
+                    $scope.positions.lat = position.lat;
+                    $scope.positions.long = position.long;
+                });
+
+
+        });
+
+        $scope.tabName = $state.params.vertical;
+
+        $scope.tab_name = function() {
+            return $state.params.vertical;
+        }
+
+
+    });
 
 
 

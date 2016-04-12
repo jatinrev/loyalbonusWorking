@@ -10,6 +10,10 @@ angular.module('LoyalBonus')
   $scope.goBackHandler = function() {
     $ionicHistory.goBack();
   };
+  $rootScope.goSearchHandler = function() {
+    //console.log('heloooooooooo');
+        $rootScope.showMe = !$rootScope.showMe;
+    }
 
   $scope.signOut = function() {
     // console.log('helllooooo');
