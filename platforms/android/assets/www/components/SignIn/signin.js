@@ -1,10 +1,9 @@
 angular.module('LoyalBonus')
+.controller('SignInController', function ($scope, $rootScope, $state, $cordovaOauth,$http, update_user_details, loading) {
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
-
 	$scope.tabName = $state.params.id;
 	$state.params.id == 'Signin'
 	$scope.datasignin = [{
@@ -55,15 +54,17 @@ angular.module('LoyalBonus')
 			$scope.signIn.response_visibility      = true; // comment this
 			$scope.signIn.response = response;
 		});
-		
-		
+
+
 
 		/*$http('POST', 'http://beta2.loyalbonus.com/webapi/AppLogin/Login', { Email : $scope.signIn.username, Password : $scope.signIn.password }, function(status, response){
-			
+
 		}, function(status, response){
 			// error
 		});*/
 	}
+
+
 
 });
 

@@ -55,11 +55,11 @@ angular.module('LoyalBonus')
 			$scope.signIn.response_visibility      = true; // comment this
 			$scope.signIn.response = response;
 		});
-		
-		
+
+
 
 		/*$http('POST', 'http://beta2.loyalbonus.com/webapi/AppLogin/Login', { Email : $scope.signIn.username, Password : $scope.signIn.password }, function(status, response){
-			
+
 		}, function(status, response){
 			// error
 		});*/
