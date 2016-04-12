@@ -24,14 +24,14 @@ angular.module('LoyalBonus')
 .controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory) {
 	$scope.tabName = $state.params.id;
 	// $state.params.id == 'Account'
- 	// $scope.custom = true;
+ 	$scope.custom = true;
  	
- 	/*$scope.toggleCustom = function() {
+ 	$scope.toggleCustom = function() {
     	$scope.custom = $scope.custom === false ? true: false;
 
-	};*/
+	};
 
-	
+
 	$scope.enable_email = function() {
     	$scope.custom_email = $scope.custom_email === false ? true: false;
 	};
