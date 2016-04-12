@@ -1,0 +1,59 @@
+<div id="restaurants">
+    <div class="tabs-top tabs-background-positive tabs-color-light">
+        <ul rn-carousel class="tabs">
+            <li ng-repeat="(key, value) in data" class="tab-item" ui-sref="home.restaurants({vertical: key})">{{ key }}</li>
+        </ul>
+    </div>
+    <ion-view>
+        <ion-content>
+<<<<<<< HEAD
+            <label class="item item-input new_margin">
+                <input type="text" placeholder="Search for restaurants">
+            </label>
+=======
+            <!--<div class="pane list-inset">
+                <label class="item item-input new_margin">
+                    <input type="text" placeholder="Search for restaurants">
+                </label>
+            </div>-->
+
+>>>>>>> 1b3dc29e268882f51cd6c6c97f6c8de4d58e1e27
+            <!-- <span>-{{ testing }}-</span> -->
+            <div ng-repeat="d in print_data()">
+                <div id="logo">
+                    <img ng-src="{{ d.Image }}" on-tap="open_detail_page(d.BusinessID)">
+                </div>
+                <div class="row stake-house">
+                    <div class="col-50">
+                        <p class="stake-house">
+                            {{ d.Name }}
+                        </p>
+                    </div>
+                    <div class="col-50">
+                        <!-- <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars> -->
+                        <!-- <img ng-src="{{ d.Image }}"> -->
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-50">
+                        <ion-list>
+                            <ion-item class="wth-border">{{ d.add1 }}</ion-item>
+                            <ion-item class="wth-border">{{ d.add2 }}</ion-item>
+                            <ion-item class="wth-border">{{ d.ContactPhone }}</ion-item>
+                            <ion-item class="wth-border Change-color" ui-sref="home.map">Get Directions</ion-item>
+                        </ion-list>
+                    </div>
+                    <div class="col-50">
+                        <ion-list>
+                            <ion-item class="wth-border border-bottom">
+                                <i class="ion-load-d"></i> Loyal Discount:{{ BonusDiscountToCust }}</ion-item>
+                            <ion-item class="wth-border border-bottom"><i class="icon-gift"></i>Bonus Discount:{{ BonusDiscount }} OFF</ion-item>
+                            <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
+                            <ion-list>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</div>

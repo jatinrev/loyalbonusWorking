@@ -1,0 +1,51 @@
+<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu side="left" id="restaurants">
+
+        <ion-content>
+            <ion-item class="rtblock">
+                <h1 class="rttitle">{{ userDetails.FullName }}</h1>
+                <h1 class="rttitle">{{ userDetails.Email }}</h1>
+            </ion-item>
+            <ion-list>
+                <ion-item>My Loyal Bonus{{ output }}</ion-item>
+                <!-- ui-sref="home.restaurants" -->
+            </ion-list>
+            <ion-list>
+                <ion-item on-tap="redirect_urls.my_membership()">my Membership</ion-item>
+                <!-- ui-sref="home.membership" -->
+            </ion-list>
+            <ion-list>
+                <ion-item on-tap="redirect_urls.account_settings()">Account Setting</ion-item>
+                <!-- ui-sref="home.account" -->
+            </ion-list>
+            <ion-list>
+                <ion-item>Invite a Friend</ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item>About Loyal Bonus</ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item class="new-color-loyal" on-tap="signOut()">Sign Out</ion-item>
+                <!-- ui-sref="signin" -->
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+    <ion-side-menu-content>
+        <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
+            <div class="buttons">
+                <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
+                <h1 class="title">{{Restaurants}}</h1>
+                <button class="button button-icon {{ home_var.magnifyOrBack() == 'RestaurantController' ? 'ion-search' : 'ion-arrow-left-c' }}"
+                ng-click="goBackHandler()"></button>
+            </div>
+        </ion-header-bar>
+        <div ui-view="body"></div>
+    </ion-side-menu-content>
+    <!--
+  <div class="col">
+  <p class="text-right float-right">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+  </p>
+</div>
+-->
+</ion-side-menus>

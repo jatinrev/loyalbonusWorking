@@ -1,0 +1,38 @@
+<div id="Review">
+    <ion-view>
+        <ion-content>
+            <div ng-repeat="R in dataReview">
+                <div id="logo">
+                    <img src="img/businesslisting.jpg">
+                    <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars>
+                </div>
+                <div class="bar-balanced newloyalcheckbox">
+                    <p class="h1 title">{{ R.name }}</p>
+                </div>
+                <div class="row border-review">
+                    <div class="col50">
+                        <img src="img/star.png">
+
+                    </div>
+                    <div class="col50">
+                        <strong>4.5/ 5</strong>
+                        <span class="color-review">from 2 reviews</span>
+                        <a class="color-reviewblue" href="#">Write a review</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="img/star.png">
+                    <p class="color-reviewgrey col">By Kody Bui on Feb 12, 2016</p>
+					<span class="h1 title">Pros</span>
+                    <p class="color-reviewgrey col">This place is awesome. I would recommend this to all my freinds. Staff are super nice</p>
+                    <span class="h1 title">Cons</span>
+                    <p class="color-reviewgrey col">Nothing bad really!</p>
+                </div>
+
+                <div class="bar bar-footer bar-positive">
+                    <div class="title">SCAN NOW</div>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</div>
