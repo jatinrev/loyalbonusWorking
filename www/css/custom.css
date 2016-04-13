@@ -1,0 +1,19 @@
+/**** custom css ****/
+/**
+ * all padding come here
+ */
+.paddingLR10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/**
+ * all margins come here
+ */
+
+
+
+
+.text_shadow_black {
+	text-shadow: 1px 1px #000;
+}

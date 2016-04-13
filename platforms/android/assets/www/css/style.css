@@ -261,8 +261,8 @@ p.stake-house
 {
     color:#ffb06b;
     position: absolute;
-        top: 21%;
-   right:0px;
+    /*top: 21%;*/
+    right:0px;
             
 }
 #kaseydiner .rat-star
@@ -277,8 +277,9 @@ p.stake-house
 {
     color:#ffb06b;
     position: absolute;
-            top: -39px;
-   right:0px;
+    /*top: -39px;*/
+    bottom : 18px;
+    right:0px;
 }
 #kaseydiner #logo img {
     width: 100%;
@@ -1084,17 +1085,17 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
 }
 #restaurants .item-input
 {
-    
     background-color: #fff;
     position: absolute;
     height: 34px;
     padding: 14px;
     margin: 27px 0px 0px 17px;
     width: 90%;
-    
 }
 
-
+.white_background_color {
+    background-color: #fff;
+}
 
 
 

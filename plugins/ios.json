@@ -13,22 +13,7 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },

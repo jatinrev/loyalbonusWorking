@@ -1,9 +1,10 @@
 angular.module('LoyalBonus')
-.controller('SignInController', function ($scope, $rootScope, $state, $cordovaOauth,$http, update_user_details, loading) {
 
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
+
 	$scope.tabName = $state.params.id;
 	$state.params.id == 'Signin'
 	$scope.datasignin = [{
@@ -63,8 +64,6 @@ angular.module('LoyalBonus')
 			// error
 		});*/
 	}
-
-
 
 });
 

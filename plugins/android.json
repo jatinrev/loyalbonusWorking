@@ -16,6 +16,9 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.loyalbonus.loyal"
+        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
@@ -29,9 +32,6 @@
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
         "phonegap-plugin-barcodescanner": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },

@@ -1088,7 +1088,10 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
     background-color: #fff;
     position: absolute;
     height: 34px;
-    padding: 14px;
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 0px;
     margin: 27px 0px 0px 17px;
     width: 90%;
 }
