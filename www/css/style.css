@@ -15,8 +15,9 @@ img{
 {
     width:100%;
     text-align: center;
+        position: relative;
 }
-#logo img{
+#logo > img{
     width:70%;
 }
 .bar .title
@@ -181,13 +182,27 @@ map {
 
 #restaurants .scroll-content
 {
-    top:93px;
+    /* top:93px; */
+    top:-3px;
 }
 .rttitle
 {
   font-size: 25px;
   color:#f5f5f5;
   
+  }
+  .rttitleEmail
+  {
+    color:#f5f5f5;
+    font-size: 20px;
+  }
+  .padding_5
+  {
+    padding: 5px;
+  }
+  .row_1
+  {
+    float:left;
   }
 #restaurants .rtblock
 {
@@ -265,14 +280,15 @@ p.stake-house
     right:0px;
             
 }
-#kaseydiner .rat-star
+#kaseydiner .reviews-star
 {
     color:#ffb06b;
     position: absolute;
-        top: 18%;
+        bottom: 11px;
    right:0px;
             
 }
+
 #restaurants .rat-star
 {
     color:#ffb06b;
@@ -281,7 +297,7 @@ p.stake-house
     bottom : 18px;
     right:0px;
 }
-#kaseydiner #logo img {
+#kaseydiner #logo > img {
     width: 100%;
 }
 #kaseydiner .scroll-content
@@ -380,6 +396,7 @@ p.stake-house
     line-height: 29px;
     margin-bottom: 50px;
     font-size: 21px;
+        text-align: justify;
 }
 .bar-footer .title {
     height: auto;
@@ -1099,6 +1116,7 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
 .white_background_color {
     background-color: #fff;
 }
+
 
 
 
