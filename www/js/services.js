@@ -141,16 +141,16 @@ angular.module('LoyalBonus.services',[])
 	    	       });
 		}
 	}
-/**/
+
 	return {
 		get : getLocation()  //{ this : function (lalla) { return "yoyoy"; } }
 	};
 })
 .filter('spaceless', function () {
-  console.log('in filter spaceless');
-  return function (input) {
-      return input.replace(' ', '').replace(' ', '');
-  };
+	console.log('in filter spaceless');
+	return function (input) {
+	  	return input.replace(' ', '').replace(' ', '');
+	};
 })
 .factory('active_controller', function () {
     var activeController;
@@ -194,6 +194,26 @@ angular.module('LoyalBonus.services',[])
 			$ionicLoading.hide();
 		}
 	};
+})
+.factory('backFunctionality', function ($rootScope) {
+	var previous_page = ''
+	/*
+	console.log( $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+  		/*console.log(toState);
+    	console.log(toParams);
+    	console.log(fromState);
+    	console.log(fromParams);****
+    }) );
+
+	return {
+		get_previous_state : function () {
+			return {
+				state : fromState.name,
+				param : fromParams
+			};
+		}
+	};*/
+	return 0;
 });
 
 
