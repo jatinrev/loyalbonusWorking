@@ -52,6 +52,11 @@ angular.module('LoyalBonus')
       console.log('account_settings');
       $scope.output = 'accout_settings';
       $state.go("home.account");
+    },
+    home : function() {
+      console.log('account_settings');
+      $scope.output = 'home';
+      $state.go("home.restaurants");
     }
   };
 

@@ -11,11 +11,17 @@ body
 img{
     max-width:100%;
 }
-#logo
+#kaseydiner #logo
 {
     width:100%;
     text-align: center;
         position: relative;
+}
+#restaurants #logo
+{
+    width:100%;
+    text-align: center;
+       
 }
 #logo > img{
     width:70%;
@@ -182,8 +188,8 @@ map {
 
 #restaurants .scroll-content
 {
-    /* top:93px; */
-    top:-3px;
+     top:93px; 
+   /*  top:-3px; */
 }
 .rttitle
 {
@@ -214,7 +220,7 @@ map {
     text-align:center;
 }
 
-#restaurants #logo img{
+#restaurants #logo > img{
     width:100%;
    /*  position: relative;
    top: -35px; */
@@ -284,7 +290,7 @@ p.stake-house
 {
     color:#ffb06b;
     position: absolute;
-        bottom: 11px;
+   bottom: 11px;
    right:0px;
             
 }
@@ -293,7 +299,6 @@ p.stake-house
 {
     color:#ffb06b;
     position: absolute;
-    /*top: -39px;*/
     bottom : 18px;
     right:0px;
 }
