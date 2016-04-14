@@ -1,6 +1,7 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory) {
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,
+                                        backFunctionality) {
     var previousState       = '';
     var previousStateParams = '';
     $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
@@ -19,7 +20,8 @@ angular.module('LoyalBonus')
 
 
   $scope.goBackHandler = function() {
-    $state.go(previousState, previousStateParams);
+    backFunctionality.one_step_back();
+    // $state.go(previousState, previousStateParams);
   };
 
   $rootScope.goSearchHandler = function() {

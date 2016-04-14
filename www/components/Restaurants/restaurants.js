@@ -162,7 +162,7 @@ angular.module('LoyalBonus')
 				    		});
                         });
 
-                    $scope.positions.lat = position.lat;
+                    $scope.positions.lat  = position.lat;
                     $scope.positions.long = position.long;
                 });
 
@@ -179,7 +179,6 @@ angular.module('LoyalBonus')
                 str += '<img class="emptyStart" src="../../img/emptyStart.png"/>';
             }
             return str;
-            
         }
 
         $scope.tabName = $state.params.vertical;
