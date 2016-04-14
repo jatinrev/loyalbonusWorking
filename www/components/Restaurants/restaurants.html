@@ -29,9 +29,7 @@
                         </p>
                     </div>
                     <div class="col-50">
-                        <!-- <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars> -->
-                        <img class="rat-star" src="../img/star.png">
-                        
+                        <div class="rat-star" ng-bind-html=restaurants.print_image(d.reviews)></div>
                     </div>
                 </div>
                 <div class="row">
