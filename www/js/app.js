@@ -27,12 +27,6 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
     }
   });
 
-
-  /** State change **
-  $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) { 
-    
-  });*/
-
 })
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {

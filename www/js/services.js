@@ -195,25 +195,41 @@ angular.module('LoyalBonus.services',[])
 		}
 	};
 })
-.factory('backFunctionality', function ($rootScope) {
-	var previous_page = ''
-	/*
-	console.log( $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
-  		/*console.log(toState);
-    	console.log(toParams);
-    	console.log(fromState);
-    	console.log(fromParams);****
-    }) );
+.factory('backFunctionality', function ($rootScope, $state) {
+	var previous_page = [];
+	var array_key	  = '';
+	$rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+		if( typeof(fromState.name) != 'undefined' && typeof(toState.name) != 'undefined' && fromState.name == toState.name ) {
+			/*console.log('from and to are same.');
+			console.log(fromParams);
+			console.log(toParams);
+			if(Object.is(fromParams, toParams)) {
+				console.log('object is same');
+			}
+			console.log('from and to are same.');*/
+		} else if( typeof(fromState.name) != 'undefined' && fromState.name != '' ) {
+			previous_page.push({
+				fromState  : fromState.name,
+				fromParams : fromParams
+			});
+			/*console.log(previous_page);
+			console.log(toState);
+	    	console.log(fromState);*/
+	    }
+	    /*console.log(previous_page);*/
+    });
 
 	return {
-		get_previous_state : function () {
-			return {
-				state : fromState.name,
-				param : fromParams
-			};
+		one_step_back : function () {
+			/*console.log('enter the dragon.');*/
+			var back = previous_page.slice(-1)[0];
+			/*console.log(previous_page);*/
+			previous_page.pop();
+			previous_page.pop();
+			/*console.log(previous_page);*/
+			$state.go( back.fromState, back.fromParams );
 		}
-	};*/
-	return 0;
+	};
 });
 
 
