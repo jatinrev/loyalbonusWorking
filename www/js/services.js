@@ -154,26 +154,20 @@ angular.module('LoyalBonus.services',[])
 })
 .factory('active_controller', function () {
     var activeController;
-    var menu = {
-        home: '<button>A</button><button>B</button>',
-        list: '<button>C</button><button>D</button>',
-        settings: '<button>E</button><button>F</button>',
-    }
-
+    
     function set(name) {
-      activeController = name;
+		activeController = name;
     }
     function get() {
-     return activeController;
-     return menu[activeController];    
+		return activeController;
     }
 
     return {
       set : set,
       get : get
     };
-}).
-factory('saveData', function () {
+})
+.factory('saveData', function () {
 	var saveHere;	
 
 	function set() {

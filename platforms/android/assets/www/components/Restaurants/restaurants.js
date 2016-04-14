@@ -6,7 +6,6 @@ angular.module('LoyalBonus')
 
             return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessDataNearByKMFromCurrentLocation?currlocationlatlong=' + latitude + ',' + longitude + '&kms=50', {})
                 .then(function(response) {
-                    console.log(response);
                     // $scope.testing = response;
 
                     for (i in response.data.Data) {
@@ -36,7 +35,7 @@ angular.module('LoyalBonus')
                             break;
                         }
                     }
-                    // console.log(data);
+                    console.log(data);
                     return data;
                 });
         }
@@ -52,7 +51,6 @@ angular.module('LoyalBonus')
                     return get_data(latitude, longitude);
                 }
             },
-
 
             search: function(keyword) {
                 var heading = [],
@@ -98,18 +96,16 @@ angular.module('LoyalBonus')
         get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
         active_controller, loading) {
 
-
-
-        var vm = this;
-        // vm.openDetailPage = openDetailPage;
-
         active_controller.set('RestaurantController');
 
         $scope.restaurants = {};
 
         $scope.open_detail_page = function(id) {
+            console.log('open_detail_page');
             $state.go("home.kaseydiner", { id: id });
         };
+
+        // console.log($ionicHistory.viewHistory());
 
         $scope.testing = 'in RestaurantController...';
 
@@ -129,14 +125,19 @@ angular.module('LoyalBonus')
         /**/
 
         $scope.restaurants.search = function(keyword) {
-        	loading.start();
-            get_business_data
-                .search(keyword)
-                .then(function(response) {
-                	loading.stop();
-                    $scope.data = response;
-                    console.log(response);
-                });
+            if( typeof(keyword) != "undefined" && keyword.length > 0 ) {
+                loading.start();
+                $rootScope.showMe = false;
+                get_business_data
+                    .search(keyword)
+                    .then(function(response) {
+                    	loading.stop();
+                        $scope.data = response;
+                        console.log(response);
+                    });
+            } else {
+                console.log('keyword empty');
+            }
         };
 
         $ionicPlatform.ready(function() {

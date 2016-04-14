@@ -105,6 +105,8 @@ angular.module('LoyalBonus')
             $state.go("home.kaseydiner", { id: id });
         };
 
+        // console.log($ionicHistory.viewHistory());
+
         $scope.testing = 'in RestaurantController...';
 
         /*$rootScope.$watch('userDetails', function() {

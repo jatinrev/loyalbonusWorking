@@ -1,8 +1,10 @@
 angular.module('LoyalBonus')
 
-.controller('MemberController', function ($scope, $state) {
+.controller('MemberController', function ($scope, $state, active_controller) {
 	$scope.tabName = $state.params.id;
 	//$state.params.id == 'Membership'
+
+    active_controller.set('MemberController');
 	$scope.countries = [ 
     {name: 'Afghanistan', code: 'AF'},
     {name: 'Åland Islands', code: 'AX'},

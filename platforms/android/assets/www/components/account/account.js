@@ -21,10 +21,11 @@ angular.module('LoyalBonus')
 	};
 })
 
-.controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory) {
+.controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory, active_controller) {
 	$scope.tabName = $state.params.id;
 	// $state.params.id == 'Account'
  	$scope.custom = true;
+    active_controller.set('AccountController');
  	
  	$scope.toggleCustom = function() {
     	$scope.custom = $scope.custom === false ? true: false;

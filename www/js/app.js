@@ -141,9 +141,9 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
         url: "membership/",
         views: {
           "body": {
-           templateUrl: "components/Membership/membership.html",
+            templateUrl: "components/Membership/membership.html",
             controller: "MemberController",
-           controllerAs: "mc"
+            controllerAs: "mc"
           }
         }
       })

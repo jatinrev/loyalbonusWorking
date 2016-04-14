@@ -10,7 +10,7 @@
            <!--  <div class="pane list-inset"> -->
                 <label ng-show="showMe" class="item item-input new_margin">
                     <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
-                    <span class="ion-search" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
+                    <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
                 </label>
             <!-- </div> -->
 
@@ -20,11 +20,11 @@
             <div ng-repeat="d in print_data">
 
                 <div id="logo">
-                    <img ng-src="{{ d.Image }}" on-tap="open_detail_page(d.BusinessID)">
+                    <img ng-src="{{ d.Image }}" ng-click="open_detail_page(d.BusinessID)">
                 </div>
                 <div class="row stake-house">
                     <div class="col-50">
-                        <p class="stake-house">
+                        <p class="stake-house text_shadow_black">
                             {{ d.Name }}
                         </p>
                     </div>

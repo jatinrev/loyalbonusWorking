@@ -20,7 +20,7 @@ angular.module('LoyalBonus')
 })
 
 .controller('KaseyDinerController', function( $scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner, 
-                                              active_controller, $ionicPlatform, businessVisit) {
+                                              active_controller, $ionicPlatform, businessVisit, $ionicHistory) {
     $scope.tabName = $state.params.id;
     $scope.state_on = function () {
         return $state.params.id;
@@ -142,9 +142,6 @@ angular.module('LoyalBonus')
 
     });
 
-        /*** Start : rating service ***/
-        console.log(MathService.multiply(5, 3));
-        // console.log( give_rating.square(5) );
         /**** End : rating service ****/
 
         /*** Start : scanBarcode ***/

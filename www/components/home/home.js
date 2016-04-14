@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller) {
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory) {
   $scope.toggleLeft = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -8,6 +8,7 @@ angular.module('LoyalBonus')
     $ionicSideMenuDelegate.toggleRight();
   };
   $scope.goBackHandler = function() {
+    console.log('goback');
     $ionicHistory.goBack();
   };
   $rootScope.goSearchHandler = function() {
