@@ -64,7 +64,7 @@ angular.module('LoyalBonus.services',[])
 			return ajaxCall.get('webapi/user/GetUserByID',
 				{
 					"userID": userID
-				}).then(function(response){
+				}).then(function(response) {
 					if( response.data.StatusMessage == 'Success' ) {
 						$rootScope.userDetails.userId  	 = userID;
 						$rootScope.userDetails.Email     = response.data.Data.Email;
