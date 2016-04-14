@@ -169,6 +169,19 @@ angular.module('LoyalBonus')
 
         });
 
+        $scope.restaurants.print_image = function (number) {
+            var str = '';
+            for (var i = 1; i <= number; i++) {
+                str += '<img class="filledStart" src="../../img/filledStar.png"/>';
+            }
+            var emptyStars = 5 - +number;
+            for (var j=1; j<= emptyStars; j++ ) {
+                str += '<img class="emptyStart" src="../../img/emptyStart.png"/>';
+            }
+            return str;
+            
+        }
+
         $scope.tabName = $state.params.vertical;
 
         $scope.tab_name = function() {
