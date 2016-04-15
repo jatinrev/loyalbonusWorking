@@ -1140,7 +1140,18 @@ span.icon_kasy_newsec
 {
 
 }
+#restaurants .current{
+  color:white;
+}
 
-
+#Signin .button
+{
+            min-height: 35px;
+    line-height: 24px;
+}
+#Signin .bar
+{
+        height: 29px;
+}
 
 
