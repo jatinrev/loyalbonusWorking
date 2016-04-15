@@ -1,4 +1,11 @@
 angular.module('LoyalBonus')
+/*.constant('facebookConfigSettings', {
+    'appID' : '951800951605507',
+    'routingEnabled' : true
+  })*/
+   
+
+
 
 .controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
 	var vm                 = this;
@@ -21,6 +28,22 @@ angular.module('LoyalBonus')
 	}, true);
 
 	// console.log( window.localStorage['userId'] );
+
+
+
+/*$rootScope.$on('fbLoginSuccess', function(name, response) {
+  facebookUser.then(function(user) {
+    user.api('/me').then(function(response) {
+      $rootScope.loggedInUser = response;
+    });
+  });
+});
+
+$rootScope.$on('fbLogoutSuccess', function() {
+  $scope.$apply(function() {
+    $rootScope.loggedInUser = {};
+  });
+});*/
 
 	function login() {
 		loading.start();
