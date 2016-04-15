@@ -20,12 +20,13 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
   });
 })
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $rootScope, backFunctionality) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
+
 })
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {

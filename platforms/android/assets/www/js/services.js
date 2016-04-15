@@ -64,7 +64,7 @@ angular.module('LoyalBonus.services',[])
 			return ajaxCall.get('webapi/user/GetUserByID',
 				{
 					"userID": userID
-				}).then(function(response){
+				}).then(function(response) {
 					if( response.data.StatusMessage == 'Success' ) {
 						$rootScope.userDetails.userId  	 = userID;
 						$rootScope.userDetails.Email     = response.data.Data.Email;
@@ -141,16 +141,16 @@ angular.module('LoyalBonus.services',[])
 	    	       });
 		}
 	}
-/**/
+
 	return {
 		get : getLocation()  //{ this : function (lalla) { return "yoyoy"; } }
 	};
 })
 .filter('spaceless', function () {
-  console.log('in filter spaceless');
-  return function (input) {
-      return input.replace(' ', '').replace(' ', '');
-  };
+	console.log('in filter spaceless');
+	return function (input) {
+	  	return input.replace(' ', '').replace(' ', '');
+	};
 })
 .factory('active_controller', function () {
     var activeController;
@@ -192,6 +192,42 @@ angular.module('LoyalBonus.services',[])
 		},
 		stop  : function () {
 			$ionicLoading.hide();
+		}
+	};
+})
+.factory('backFunctionality', function ($rootScope, $state) {
+	var previous_page = [];
+	var array_key	  = '';
+	$rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+		if( typeof(fromState.name) != 'undefined' && typeof(toState.name) != 'undefined' && fromState.name == toState.name ) {
+			/*console.log('from and to are same.');
+			console.log(fromParams);
+			console.log(toParams);
+			if(Object.is(fromParams, toParams)) {
+				console.log('object is same');
+			}
+			console.log('from and to are same.');*/
+		} else if( typeof(fromState.name) != 'undefined' && fromState.name != '' ) {
+			previous_page.push({
+				fromState  : fromState.name,
+				fromParams : fromParams
+			});
+			/*console.log(previous_page);
+			console.log(toState);
+	    	console.log(fromState);*/
+	    }
+	    /*console.log(previous_page);*/
+    });
+
+	return {
+		one_step_back : function () {
+			/*console.log('enter the dragon.');*/
+			var back = previous_page.slice(-1)[0];
+			/*console.log(previous_page);*/
+			previous_page.pop();
+			previous_page.pop();
+			/*console.log(previous_page);*/
+			$state.go( back.fromState, back.fromParams );
 		}
 	};
 });
