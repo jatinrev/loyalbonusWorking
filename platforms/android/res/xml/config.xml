@@ -56,14 +56,14 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>myApp</name>
+    <name>loyalbonus</name>
     <description>
-        An Ionic Framework and Cordova project.
+        loyalbonus project.
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
+    <author email="navdeep@revinfotech.com" href="http://www.revinfotech.com/">
       Your Name Here
     </author>
-    <content original-src="index.html" src="http://192.168.3.9:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />

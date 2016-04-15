@@ -1,16 +1,29 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory) {
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,
+                                        backFunctionality) {
+    var previousState       = '';
+    var previousStateParams = '';
+    $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+      previousState       = fromState.name;
+      previousStateParams = fromParams;
+      // $state.go(fromState.name, fromParams);
+    });
+
   $scope.toggleLeft = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };
   $scope.toggleRight = function () {
     $ionicSideMenuDelegate.toggleRight();
   };
+
+
+
   $scope.goBackHandler = function() {
-    console.log('goback');
-    $ionicHistory.goBack();
+    backFunctionality.one_step_back();
+    // $state.go(previousState, previousStateParams);
   };
+
   $rootScope.goSearchHandler = function() {
     $rootScope.showMe = !$rootScope.showMe;
   }
@@ -39,6 +52,11 @@ angular.module('LoyalBonus')
       console.log('account_settings');
       $scope.output = 'accout_settings';
       $state.go("home.account");
+    },
+    home : function() {
+      console.log('account_settings');
+      $scope.output = 'home';
+      $state.go("home.restaurants");
     }
   };
 

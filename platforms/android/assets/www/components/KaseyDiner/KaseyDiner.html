@@ -2,31 +2,39 @@
     <ion-view>
         <ion-content>
             <div>
+
                 <div id="logo">
-                    {{temp()}}
+
                     <a ui-sref="home.map" class="already-loyalbonus button buttonListView" href="#/home/map/">MapView</a>
                     <img ng-src="{{ datadeal.Image }}">
-                    <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars>
-
+                    <!-- <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars> -->
+                        <!-- (({{ datadeal.reviews }})) -->
+                        <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
                 </div>
                 <div class="bar-balanced newloyalcheckbox">
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox">
+                        <!-- <input type="checkbox"> -->
+                        <img src="../../img/tick.png">
                     </label>
                     <label class="round">
                         <span class="round-span">10%</span>
@@ -76,7 +84,7 @@
                 <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
                 <!-- <button class="title" ng-click="scanBarcode()">SCAN NOW</button> -->
             </div>
-            
+
         </ion-content>
 
 

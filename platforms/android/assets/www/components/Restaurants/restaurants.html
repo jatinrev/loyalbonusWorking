@@ -14,11 +14,8 @@
                 </label>
             <!-- </div> -->
 
-            <!-- <span>-{{ testing }}-</span><br> -->
-            <!-- <span>-{{ print_data }}-</span> -->
-
             <div ng-repeat="d in print_data">
-
+             
                 <div id="logo">
                     <img ng-src="{{ d.Image }}" ng-click="open_detail_page(d.BusinessID)">
                 </div>
@@ -29,16 +26,14 @@
                         </p>
                     </div>
                     <div class="col-50">
-                        <!-- <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars> -->
-                        <img class="rat-star" src="../img/star.png">
-                        
+                        <div class="rat-star" ng-bind-html=restaurants.print_image(d.reviews)></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-50">
                         <ion-list>
-                            <ion-item class="wth-border">{{ d.add1 }}</ion-item>
-                            <ion-item class="wth-border">{{ d.add2 }}</ion-item>
+                            <ion-item class="wth-border">{{ d.add1 == null ? 'Null' : d.add1 }}</ion-item>
+                            <ion-item class="wth-border">{{ d.add2 == null ? 'Null' : d.add2 }}</ion-item>
                             <ion-item class="wth-border">{{ d.ContactPhone }}</ion-item>
                             <ion-item class="wth-border Change-color" ui-sref="home.map">Get Directions</ion-item>
                         </ion-list>
@@ -46,8 +41,8 @@
                     <div class="col-50">
                         <ion-list>
                             <ion-item class="wth-border border-bottom">
-                                <i class="ion-load-d"></i> Loyal Discount:{{ BonusDiscountToCust }}</ion-item>
-                            <ion-item class="wth-border border-bottom"><i class="icon-gift"></i>Bonus Discount:{{ BonusDiscount }} OFF</ion-item>
+                                <i class="ion-load-d"></i> Loyal Discount:{{ d.BonusDiscountToCust }}</ion-item>
+                            <ion-item class="wth-border border-bottom"><i class="icon-gift"></i>Bonus Discount:{{ d.BonusDiscount }}% OFF</ion-item>
                             <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
                             <ion-list>
                     </div>
