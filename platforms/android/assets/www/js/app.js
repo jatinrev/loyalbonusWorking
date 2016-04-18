@@ -1,6 +1,6 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonus.services', 'ngCordova', 'angular-carousel'])
+angular.module('LoyalBonus', ['ionic','facebookUtils','ngRoute','ionic-rating-stars', 'ngMap', 'LoyalBonus.services', 'ngCordova', 'angular-carousel'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
@@ -19,7 +19,6 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
     }
   });
 })
-
 .run(function ($ionicPlatform, $rootScope, backFunctionality) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
@@ -28,6 +27,11 @@ angular.module('LoyalBonus', ['ionic', 'ionic-rating-stars', 'ngMap', 'LoyalBonu
   });
 
 })
+
+
+
+
+
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
 

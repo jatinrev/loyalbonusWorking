@@ -22,14 +22,16 @@
                     </div>
                     <div class="padding">
                         <label class="item item-input new_margin">
-                            <input type="password" class="password" name="password" ng-required="true" ng-minlength="3" ng-maxlength="30" ng-model="signIn.password" placeholder="Password">
+                            <input type="password" class="password" name="password" ng-required="true" ng-minlength="3" ng-maxlength="30" ng-model="signIn.password"
+                            placeholder="Password">
                         </label>
                         <div role="alert">
                             <span class="error" ng-show="frm.password.$dirty && frm.password.$error.required">Password Is Required!</span>
                             <span class="error" ng-show="frm.password.$dirty && frm.password.$error.minlength">Password Is Too Short!</span>
                             <span class="error" ng-show="frm.password.$dirty && frm.password.$error.maxlength">Password Is Too Long!</span>
                             <span class="error" ng-show="frm.password.$dirty && frm.password.$error.pattern">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol)</span>
-                            <span class="error" ng-show="frm.password.$error.required && (frm.password.$error.minlength || frm.password.$error.maxlength) && userForm.password.$dirty" class="help-block">Passwords must be between 8 and 20 characters.</span>
+                            <span class="error" ng-show="frm.password.$error.required && (frm.password.$error.minlength || frm.password.$error.maxlength) && userForm.password.$dirty"
+                                class="help-block">Passwords must be between 8 and 20 characters.</span>
                         </div>
                     </div>
                     <div class="padding">
@@ -50,13 +52,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="padding" >
+                    <div class="padding">
                         <fieldset>
                             <p class="text-center loyalhouse_border">
                                 <a class="sign-loyalbonus" href="#">or sign in with</a>
                             </p>
                         </fieldset>
                         <div class="text-center">
+                            <!-- <facebook-login-button></facebook-login-button> -->
+                            <!-- <div class='margin-left' ng-show='loggedInUser.name'>
+                                <div>Hello, {{loggedInUser.name}}!</div>
+                            </div> -->
+
+                            <!-- <div class='margin-left' ng-hide='loggedInUser.name'>
+                                <div>Hello, Stranger!</div>
+                            </div> -->
                             <a class="loyalbonus_img" onclick="login()" href="#">
                                 <img class="loyalbonus_i" src="img/f.jpg">
                             </a>

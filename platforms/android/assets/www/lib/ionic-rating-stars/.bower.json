@@ -37,8 +37,7 @@
     "tag": "0.0.5",
     "commit": "82023101fb1cd7e5ec9532f44f9477fc92547870"
   },
-  "_source": "git://github.com/mapeveri/ionic-rating-stars.git",
+  "_source": "https://github.com/mapeveri/ionic-rating-stars.git",
   "_target": "^0.0.5",
-  "_originalSource": "ionic-rating-stars",
-  "_direct": true
+  "_originalSource": "ionic-rating-stars"
 }

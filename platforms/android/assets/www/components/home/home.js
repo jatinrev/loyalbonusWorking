@@ -10,6 +10,9 @@ angular.module('LoyalBonus')
       // $state.go(fromState.name, fromParams);
     });
 
+
+  
+
   $scope.toggleLeft = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };

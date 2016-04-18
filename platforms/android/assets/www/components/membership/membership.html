@@ -56,11 +56,11 @@
                             <span class="input-label">Phone</span>
                             <div class="row">
                                 <div class="col-20 marg-right">
-                                    <input type="phone" class="phonecode" ng-model="bill.phonecode" name="phonecode" ng-required="true" placeholder="Ph Code" minlength="0" ng-maxlength="1000">
+                                    <input type="number" class="phonecode" ng-model="bill.phonecode" name="phonecode" ng-required="true" placeholder="Ph Code" minlength="0" ng-maxlength="1000">
                                 </div>
 
                                 <div class="col-80">
-                                    <input type="phone" class="phone" ng-model="bill.phone" pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/;" name="phone" placeholder="Phone">
+                                    <input type="number" class="phone" ng-model="bill.phone" pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/;" name="phone" placeholder="Phone">
                                 </div>
                             </div>
                         </label>
@@ -70,6 +70,7 @@
                         </div> 
                         <label class="item item-input item-floating-label">
                             <select ng-model="country" name ="new-select" class="new-select row" ng-model="bill.new-select"ng-required="true" >
+                             <option value="">Select Country</option>
                                 <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
                             </select>
                         </label>
@@ -88,7 +89,7 @@
                         </label>
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Postcode</span>
-                            <input type="text" class="postcode" name="postcode" placeholder="Postcode">
+                            <input type="number" class="postcode" name="postcode" placeholder="Postcode">
                         </label>
                         <p class="h1 title">Payment Method</p>
                         <div class="item border-nd">
