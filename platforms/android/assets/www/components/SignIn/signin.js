@@ -22,6 +22,7 @@ angular.module('LoyalBonus')
 
 	// console.log( window.localStorage['userId'] );
 
+
 	function login() {
 		loading.start();
 		$scope.signIn.response 				   = 'in login';
@@ -33,12 +34,14 @@ angular.module('LoyalBonus')
 			url: 'http://beta2.loyalbonus.com/webapi/AppLogin/Login',
 			headers: { 'Content-Type': 'application/json' },
 			data: JSON.stringify({ Email : $scope.signIn.username, Password : $scope.signIn.password })
-		}).then(function(response) {
+			}).then(function(response) {
+				//console.log(response);
 			loading.stop();
 			if( response.data.StatusCode == 0 ) {
+				//console.log(response.data);
 				//success
 				window.localStorage['userId'] = response.data.Data.UserID;
-				$scope.signIn.response        = response.data.Message;
+				//$scope.signIn.response        = response.data.Message;
 				update_user_details.get( response.data.Data.UserID );
 				console.log(response);
 				$state.go("home.restaurants");

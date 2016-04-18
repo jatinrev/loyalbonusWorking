@@ -657,6 +657,7 @@ p.stake-house
 {
        /*  margin-bottom: 130px; */
        margin-bottom: 70px;
+       text-align: center;
 }
 #Signin .item
 {
@@ -712,6 +713,7 @@ p.stake-house
 #Signup #logo
 {
         margin-bottom: 67px;
+        text-align: center;
 }
 #Signup .item {
     background-color: #a8a8a8;
@@ -1010,7 +1012,8 @@ font-size: 20px;
 }
 #kaseydiner .bar-footer
 {
-        bottom: -90px;
+       position: relative;
+
 }
 #ResetPassword .loyal-kaseydiner {
     color: #fff;
@@ -1036,6 +1039,7 @@ font-size: 20px;
 #ResetPassword #logo
 {
         margin-bottom: 35px;
+        text-align: center;
 }
 #ResetPassword .button-clear.button-clear {
     z-index: 99999;
@@ -1121,9 +1125,33 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
 .white_background_color {
     background-color: #fff;
 }
+.icon_kasy {
+    padding: 5px 0 0px 8px;
+    margin: 5px 0 0 0;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+span.icon_kasy_new {
+    position: relative;
+    top: -12px;
+    margin: 5px;
+}
+span.icon_kasy_newsec
+{
 
+}
+#restaurants .current{
+  color:white;
+}
 
-
-
+#Signin .button
+{
+            min-height: 35px;
+    line-height: 24px;
+}
+#Signin .bar
+{
+        height: 29px;
+}
 
 
