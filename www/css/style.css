@@ -234,8 +234,12 @@ p.stake-house
     color: #fff;
     font-size: 18px;
     left: 8px;
-    
-
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    max-width:110px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 .platform-android {
   p.stake-house {
@@ -1079,8 +1083,12 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
 #restaurants .tab-item
 {
          font-weight: 200;
-         max-width: 118px;
+         /* max-width: 118px; */
              font-size: 15px;
+             overflow: hidden;
+    max-width:123px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #restaurants ul[rn-carousel] li:first-child
 {
