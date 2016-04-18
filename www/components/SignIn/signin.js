@@ -1,11 +1,4 @@
 angular.module('LoyalBonus')
-/*.constant('facebookConfigSettings', {
-    'appID' : '951800951605507',
-    'routingEnabled' : true
-  })*/
-   
-
-
 
 .controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
 	var vm                 = this;
@@ -30,21 +23,6 @@ angular.module('LoyalBonus')
 	// console.log( window.localStorage['userId'] );
 
 
-
-/*$rootScope.$on('fbLoginSuccess', function(name, response) {
-  facebookUser.then(function(user) {
-    user.api('/me').then(function(response) {
-      $rootScope.loggedInUser = response;
-    });
-  });
-});
-
-$rootScope.$on('fbLogoutSuccess', function() {
-  $scope.$apply(function() {
-    $rootScope.loggedInUser = {};
-  });
-});*/
-
 	function login() {
 		loading.start();
 		$scope.signIn.response 				   = 'in login';
@@ -56,12 +34,14 @@ $rootScope.$on('fbLogoutSuccess', function() {
 			url: 'http://beta2.loyalbonus.com/webapi/AppLogin/Login',
 			headers: { 'Content-Type': 'application/json' },
 			data: JSON.stringify({ Email : $scope.signIn.username, Password : $scope.signIn.password })
-		}).then(function(response) {
+			}).then(function(response) {
+				//console.log(response);
 			loading.stop();
 			if( response.data.StatusCode == 0 ) {
+				//console.log(response.data);
 				//success
 				window.localStorage['userId'] = response.data.Data.UserID;
-				$scope.signIn.response        = response.data.Message;
+				//$scope.signIn.response        = response.data.Message;
 				update_user_details.get( response.data.Data.UserID );
 				console.log(response);
 				$state.go("home.restaurants");
