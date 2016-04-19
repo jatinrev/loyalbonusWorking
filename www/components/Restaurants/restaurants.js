@@ -80,7 +80,7 @@ angular.module('LoyalBonus')
 
                         if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
                             for (i in data_search) {
-                                // console.log('in here');
+                                console.log('in here');
                                 $state.go("home.restaurants", { vertical: i });
                                 break;
                             }

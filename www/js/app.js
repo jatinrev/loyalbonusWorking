@@ -1,6 +1,6 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'ngMap', 'LoyalBonus.services', 'ngCordova', 'angular-carousel'])
+angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services', 'ngCordova', 'angular-carousel'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
