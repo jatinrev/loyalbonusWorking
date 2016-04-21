@@ -13,27 +13,27 @@
             <div class="bar-balanced newloyalcheckbox">
                 <label class="checkbox">
                     <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <img src="img/tick.png">
                 </label>
                 <label class="checkbox">
                     <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <img src="img/tick.png">
                 </label>
                 <label class="checkbox">
                     <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <img src="img/tick.png">
                 </label>
                 <label class="checkbox">
                     <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <img src="img/tick.png">
                 </label>
                 <label class="checkbox">
                     <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <img src="img/tick.png">
                 </label>
                 <label class="checkbox">
-                    <!-- <input type="checkbox"> -->
-                    <img src="../../img/tick.png">
+                    <input type="checkbox">
+                    <img src="img/tick.png">
                 </label>
                 <label class="round">
                     <span class="round-span">10%</span>
@@ -79,13 +79,13 @@
 
             <div id='map-canvas'></div>
             <div class="icon_kasy">
-                <img class="icon_kasy" src="../img/iconnumber.png">
-                <span class="icon_kasy_new">icon : {{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
+                <img class="icon_kasy" src="img/iconnumber.png">
+                <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
             </div>
-            <div class="icon_kasy">
+            <!-- <div class="icon_kasy">
                 <img class="icon_kasy" src="../img/iconnumbersec.png">
-                <span class="icon_kasy_new">icon : {{ datadeal.Address2 == null ? 'Null' : datadeal.Address2 }}</span>
-            </div>
+                <span class="icon_kasy_new">{{ datadeal.Address2 == null ? 'Null' : datadeal.Address2 }}</span>
+            </div> -->
 
             <footer class="bar bar-footer bar-positive">
                 <div class="title" on-tap="scanBarcode()">SCAN NOW</div>

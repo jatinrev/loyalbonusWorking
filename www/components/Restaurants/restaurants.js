@@ -101,6 +101,7 @@ angular.module('LoyalBonus')
         $scope.restaurants = {};
 
         $scope.open_detail_page = function(id) {
+            $scope.restaurants.demo = { id: id, tension : 'nhi'};
             console.log('open_detail_page');
             $state.go("home.kaseydiner", { id: id });
         };
@@ -170,13 +171,14 @@ angular.module('LoyalBonus')
         });
 
         $scope.restaurants.print_image = function (number) {
+            var array = [];
             var str = '';
             for (var i = 1; i <= number; i++) {
-                str += '<img class="filledStart" src="../../img/filledStar.png"/>';
+                str += '<img src="img/filledStar.png" class="filledStart">';
             }
             var emptyStars = 5 - +number;
             for (var j=1; j<= emptyStars; j++ ) {
-                str += '<img class="emptyStart" src="../../img/emptyStart.png"/>';
+                str += '<img src="img/emptyStart.png" class="emptyStart">';
             }
             return str;
         }

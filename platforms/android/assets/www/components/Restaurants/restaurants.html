@@ -15,7 +15,7 @@
             <!-- </div> -->
 
             <div ng-repeat="d in print_data">
-             
+                {{ restaurants.demo }}
                 <div id="logo">
                     <img ng-src="{{ d.Image }}" ng-click="open_detail_page(d.BusinessID)">
                 </div>
@@ -26,7 +26,9 @@
                         </p>
                     </div>
                     <div class="col-50">
-                        <div class="rat-star" ng-bind-html=restaurants.print_image(d.reviews)></div>
+                        <div class="rat-star" ng-bind-html="restaurants.print_image(d.reviews)">
+                            <!-- <img ng-repeat="(key, imageData) in restaurants.print_image(d.reviews)" class="{{ imageData.className }}" ng-src="{{ imageData.src }}" alt="filled start"> -->
+                        </div>
                     </div>
                 </div>
                 <div class="row">

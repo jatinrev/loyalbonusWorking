@@ -96,7 +96,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
         url: "kaseydiner/:id",
         views: {
           "body": {
-            templateUrl: "components/KaseyDiner/kaseydiner.html",
+            templateUrl: "components/KaseyDiner/KaseyDiner.html",
             controller: "KaseyDinerController",
             controllerAs: "kdc"
           }
