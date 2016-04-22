@@ -16,6 +16,9 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.loyalbonus.loyal"
+        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
@@ -30,18 +33,7 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "plugin.google.maps": {
-            "API_KEY_FOR_IOS": "AIzaSyAS9OqpYy7G0aECg6fDLziWOFL8-bMCnQc",
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },
-    "dependent_plugins": {
-        "com.googlemaps.ios": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        }
-    }
+    "dependent_plugins": {}
 }
