@@ -1,8 +1,8 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services', 'ngCordova', 'angular-carousel'])
+angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, ngFB) {
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,6 +17,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+    ngFB.init({appId: '1151061421612372'});
   });
 })
 .run(function ($ionicPlatform, $rootScope, backFunctionality) {

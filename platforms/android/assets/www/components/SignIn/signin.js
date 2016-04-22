@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -67,6 +67,33 @@ angular.module('LoyalBonus')
 			// error
 		});*/
 	}
+
+
+	$scope.fbLogin = function () {
+	    ngFB
+	    .login({scope: 'email,read_stream,publish_actions'})
+	    .then(
+	        function (response) {
+	            if (response.status === 'connected') {
+	                console.log('Facebook login succeeded');
+	                // $scope.closeLogin();
+	            } else {
+	                alert('Facebook login failed');
+	            }
+	    })
+	    .then(function () {
+	    	ngFB.api({
+		        path: '/me',
+		        params: {fields: 'id,name'}
+		    }).then(function (user) {
+		            console.log(user);
+		        },
+		        function (error) {
+		        	console.log(error);
+		        }
+		    );
+	    });
+	};
 
 });
 
