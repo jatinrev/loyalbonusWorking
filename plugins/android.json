@@ -33,10 +33,14 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
+        },
+        "plugin.google.maps": {
+            "API_KEY_FOR_ANDROID": "AIzaSyC3ZHXhg6U6Pgp9F9kMTJGaR3vpWhdsBg4",
+            "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-googlemaps": {
+        "com.googlemaps.ios": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     }
