@@ -15,9 +15,6 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },
     "dependent_plugins": {}

@@ -70,22 +70,24 @@ angular.module('LoyalBonus')
 
 
 	$scope.fbLogin = function () {
+		$scope.signIn.facebookResponse = 'fblogin';
 	    ngFB
 	    .login({scope: 'email,read_stream,publish_actions'})
-	    .then(
-	        function (response) {
-	            if (response.status === 'connected') {
-	                console.log('Facebook login succeeded');
-	                // $scope.closeLogin();
-	            } else {
-	                alert('Facebook login failed');
-	            }
+	    .then(function (response) {
+            if (response.status === 'connected') {
+            	$scope.signIn.facebookResponse = response;
+                console.log('Facebook login succeeded');
+                // $scope.closeLogin();
+            } else {
+                alert('Facebook login failed');
+            }
 	    })
 	    .then(function () {
 	    	ngFB.api({
 		        path: '/me',
 		        params: {fields: 'id,name'}
 		    }).then(function (user) {
+		    		$scope.signIn.facebookData = user;
 		            console.log(user);
 		        },
 		        function (error) {

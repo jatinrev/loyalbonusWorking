@@ -6,7 +6,7 @@
     </description>
   <author email="navdeep@revinfotech.com" href="http://www.revinfotech.com/">
       Your Name Here
-    </author>
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
