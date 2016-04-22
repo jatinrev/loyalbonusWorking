@@ -71,15 +71,5 @@
         },
         "is_top_level": true,
         "variables": {}
-    },
-    "com.googlemaps.ios": {
-        "source": {
-            "type": "git",
-            "url": "https://bitbucket.org/nightstomp/cordova-plugin-googlemaps-sdk.git",
-            "subdir": ".",
-            "ref": "master"
-        },
-        "is_top_level": false,
-        "variables": {}
     }
 }
