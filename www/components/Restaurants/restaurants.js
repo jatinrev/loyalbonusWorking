@@ -1,5 +1,7 @@
 angular.module('LoyalBonus')
     .factory('get_business_data', function(ajaxCall, $state, get_unique_elements) {
+        var heading_data = []
+        ,restaurantData = []; //data is stored here categorywise
         function get_data(latitude, longitude) {
             var heading = [],
                 data = {};
@@ -88,6 +90,20 @@ angular.module('LoyalBonus')
                         // console.log(data);
                         return data;
                     });
+            },
+            setheading : function () {
+                return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
+                .then(function (res) {
+                    var heading_data_temp = [];
+                    for (variable in res.data.Data) {
+                        heading_data_temp.push({ CategoryID : res.data.Data[variable].CategoryID, CategoryName : res.data.Data[variable].CategoryName });
+                    }
+                    heading_data = heading_data_temp;
+                    return heading_data;
+                });
+            },
+            getheading : function () {
+                return heading_data;
             }
         };
     })
@@ -106,23 +122,14 @@ angular.module('LoyalBonus')
             $state.go("home.kaseydiner", { id: id });
         };
 
-        // console.log($ionicHistory.viewHistory());
-
         $scope.testing = 'in RestaurantController...';
-
-        /*$rootScope.$watch('userDetails', function() {
-            if( typeof($rootScope.userDetails.userId) != 'undefined' && !isNaN($rootScope.userDetails.userId) ) {
-                $state.go("home.restaurants");
-            } else {
-                $state.go("signin");
-            }
-        }, true);*/
 
 
         $scope.print_data = [];
         $scope.data 	  = {};
         $scope.positions  = {};
         $scope.heading    = [];
+
         /**/
 
         $scope.restaurants.search = function(keyword) {
@@ -146,26 +153,24 @@ angular.module('LoyalBonus')
             // console.log($rootScope.userDetails);
 
             get_user_location
-                .get
-                .then(function(position) {
+            .get
+            .then(function(position) {
+                /*position.lat, position.long
+                loading.start();
+                loading.stop();*/
 
-                    $scope.testing = position;
-                    loading.start();
-                    get_business_data
-                        .get(position.lat, position.long)
-                        .then(function(ajax_response) {
-                        	loading.stop();
-                            $scope.data = ajax_response;
-                            setTimeout(function () {
-				    			$scope.$apply(function () {
-				    				$scope.print_data = $scope.data[$state.params.vertical];
-				    			});
-				    		});
-                        });
-
-                    $scope.positions.lat  = position.lat;
-                    $scope.positions.long = position.long;
+                $scope.testing = position;
+                
+                get_business_data
+                .setheading()
+                .then(function (res) {
+                    $scope.heading = get_business_data.getheading();
+                })
+                .then(function (res) {
+                    console.log( $scope.heading[0].CategoryID );
                 });
+                
+            });
 
 
         });
