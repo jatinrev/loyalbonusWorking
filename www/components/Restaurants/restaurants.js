@@ -1,10 +1,11 @@
 angular.module('LoyalBonus')
     .factory('get_business_data', function(ajaxCall, $state, get_unique_elements) {
         var heading_data = []
-        ,restaurantData = []; //data is stored here categorywise
+        ,restaurantData  = []
+        ,pageIndex       = []; //data is stored here categorywise
         function get_data(latitude, longitude) {
             var heading = [],
-                data = {};
+            data        = {};
 
             return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessDataNearByKMFromCurrentLocation?currlocationlatlong=' + latitude + ',' + longitude + '&kms=50', {})
                 .then(function(response) {
@@ -40,9 +41,10 @@ angular.module('LoyalBonus')
                 });
         }
 
-        function getBusinessRecord(businessId, pageIndex, lat, long) {
-            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong='+lat+','+long+'&pageIndex='+pageIndex+'&pageSize=5', {})
+        function getBusinessRecord(businessId, lat, long) {
+            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong='+lat+','+long+'&pageIndex='+pageIndex[businessId]+'&pageSize=5', {})
                 .then(function(response) {
+                    pageIndex[businessId]+= 1;
                     for (i in response.data.Data) {
                         restaurantData[businessId].push(response.data.Data[i]);
                     }
@@ -97,7 +99,6 @@ angular.module('LoyalBonus')
                     });
             },
             getheading : function () {
-                console.log('in heading');
                 if( heading_data.length > 0 ) {
                     var p2 = new Promise(function(resolve, reject) {
                         resolve(heading_data);
@@ -115,7 +116,10 @@ angular.module('LoyalBonus')
                         /**for restaurant page**/
                         for (i in heading_data) {
                             restaurantData[heading_data[i].CategoryID] = [];
+                            /**for indexing of each page**/
+                            pageIndex[heading_data[i].CategoryID]      = 1;
                         }
+
                         $state.go("home.restaurants", { vertical: heading_data[0].CategoryID});
                         return heading_data;
                     });
@@ -182,7 +186,7 @@ angular.module('LoyalBonus')
                 })
                 .then(function () {
                     get_business_data               //getting records
-                    .getBusinessRecord(+$state.params.vertical, 1, position.lat, position.long)
+                    .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                     .then(function (res) {
                         restaurantData = res[+$state.params.vertical];
                     });
