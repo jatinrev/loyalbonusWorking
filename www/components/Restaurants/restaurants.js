@@ -48,6 +48,7 @@ angular.module('LoyalBonus')
                     for (i in response.data.Data) {
                         restaurantData[businessId].push(response.data.Data[i]);
                     }
+                    console.log(pageIndex);
                     return restaurantData;
                 });
         }
