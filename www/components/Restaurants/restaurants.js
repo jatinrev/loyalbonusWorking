@@ -42,10 +42,14 @@ angular.module('LoyalBonus')
                 });
         }
 
-        function getBusinessRecord(businessId) {
-            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong=0&pageIndex=1&pageSize=5', {})
+        function getBusinessRecord(businessId, pageIndex) {
+            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong=0&pageIndex='+pageIndex+'&pageSize=5', {})
                 .then(function(response) {
-                    return response.Data.data;
+                    for (i in response.data.Data) {
+                        restaurantData[businessId].push(response.data.Data[i]);
+                    }
+                    console.log(restaurantData);
+                    return restaurantData;
                 });
         }
 
@@ -99,19 +103,29 @@ angular.module('LoyalBonus')
                         return data;
                     });
             },
-            setheading : function () {
-                return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
-                .then(function (res) {
-                    var heading_data_temp = [];
-                    for (variable in res.data.Data) {
-                        heading_data_temp.push({ CategoryID : res.data.Data[variable].CategoryID, CategoryName : res.data.Data[variable].CategoryName });
-                    }
-                    heading_data = heading_data_temp;
-                    return heading_data;
-                });
-            },
             getheading : function () {
-                return heading_data;
+                if( heading_data.length > 0 ) {
+                    var p2 = new Promise(function(resolve, reject) {
+                        resolve(heading_data);
+                    });
+                    return p2;
+                } else {
+                    return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
+                    .then(function (res) {
+                        var heading_data_temp = [];
+                        for (variable in res.data.Data) {
+                            heading_data_temp.push({ CategoryID : res.data.Data[variable].CategoryID, CategoryName : res.data.Data[variable].CategoryName });
+                        }
+                        heading_data = heading_data_temp;
+
+                        /**for restaurant page**/
+                        for (i in heading_data) {
+                            restaurantData[heading_data[i].CategoryID] = [];
+                        }
+
+                        return heading_data;
+                    });
+                }
             },
             getBusinessRecord : getBusinessRecord
         };
@@ -170,17 +184,18 @@ angular.module('LoyalBonus')
 
                 $scope.testing = position;
                 
-                get_business_data
-                .setheading()
+                get_business_data   //setting heading
+                .getheading()
                 .then(function (res) {
-                    $scope.heading = get_business_data.getheading();
+                    $scope.heading = res;
                 })
                 .then(function () {
-                    console.log( $scope.heading[0].CategoryID );
-                    get_business_data
-                    .getBusinessRecord($scope.heading[0].CategoryID)
+                    $state.go("home.restaurants", { vertical: $scope.heading[0].CategoryID });
+                    get_business_data               //getting records
+                    .getBusinessRecord($scope.heading[0].CategoryID, 1)
                     .then(function (res) {
-                        
+                        $scope.print_data = res[+$state.params.vertical];
+                        // console.log( $state.params.vertical );
                     });
                 });
                 
