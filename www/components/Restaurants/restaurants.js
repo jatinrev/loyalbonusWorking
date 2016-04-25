@@ -41,6 +41,14 @@ angular.module('LoyalBonus')
                     return data;
                 });
         }
+
+        function getBusinessRecord(businessId) {
+            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong=0&pageIndex=1&pageSize=5', {})
+                .then(function(response) {
+                    return response.Data.data;
+                });
+        }
+
         return {
             get: function(latitude, longitude) {
                 if (typeof (globaldata.businesses) != 'undefined' && Object.keys(globaldata.businesses).length > 0) {
@@ -104,7 +112,8 @@ angular.module('LoyalBonus')
             },
             getheading : function () {
                 return heading_data;
-            }
+            },
+            getBusinessRecord : getBusinessRecord
         };
     })
 
@@ -166,8 +175,13 @@ angular.module('LoyalBonus')
                 .then(function (res) {
                     $scope.heading = get_business_data.getheading();
                 })
-                .then(function (res) {
+                .then(function () {
                     console.log( $scope.heading[0].CategoryID );
+                    get_business_data
+                    .getBusinessRecord($scope.heading[0].CategoryID)
+                    .then(function (res) {
+                        
+                    });
                 });
                 
             });
