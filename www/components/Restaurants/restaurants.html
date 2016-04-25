@@ -14,7 +14,7 @@
                 </label>
             <!-- </div> -->
 
-            <div ng-repeat="d in print_data">
+            <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
                 <div id="logo">
                     <img ng-src="{{ d.Image }}" ng-click="open_detail_page(d.BusinessID)">
