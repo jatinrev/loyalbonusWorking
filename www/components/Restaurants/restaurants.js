@@ -2,44 +2,12 @@ angular.module('LoyalBonus', '')
     .factory('get_business_data', function(ajaxCall, $state, get_unique_elements, loading) {
         var heading_data = []
         ,restaurantData  = []
-        ,pageIndex       = []; //data is stored here categorywise
-        function get_data(latitude, longitude) {
-            var heading = [],
-            data        = {};
+        ,pageIndex       = []
+        ,searchKeyword   = ''
+        ,searchPageIndex = []
+        ,searchData      = []; //data is stored here categorywise
 
-            return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessDataNearByKMFromCurrentLocation?currlocationlatlong=' + latitude + ',' + longitude + '&kms=50', {})
-                .then(function(response) {
-                    // $scope.testing = response;
-
-                    for (i in response.data.Data) {
-                        heading.push(response.data.Data[i].CategoryName);
-                    }
-                    // Start : getting unique element of array
-                    heading = get_unique_elements.get_unique_arr(heading);
-
-                    for (i in heading) {
-                        data[heading[i]] = [];
-                    }
-
-                    for (i in response.data.Data) {
-                        for (heading_obj in heading) {
-                            if (heading[heading_obj] == response.data.Data[i].CategoryName) {
-                                data[heading[heading_obj]].push(response.data.Data[i]);
-                            }
-                        }
-                    }
-                    //putting data in global variable.
-                    globaldata.businesses = data;
-
-                    if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
-                        for (i in data) {
-                            $state.go("home.restaurants", { vertical: i });
-                            break;
-                        }
-                    }
-                    return data;
-                });
-        }
+        
 
         function getBusinessRecord(businessId, lat, long) {
             loading.start();
@@ -60,49 +28,19 @@ angular.module('LoyalBonus', '')
         }
 
         return {
-            get: function(latitude, longitude) {
-                if (typeof (globaldata.businesses) != 'undefined' && Object.keys(globaldata.businesses).length > 0) {
-                    var p2 = new Promise(function(resolve, reject) {
-                        resolve(globaldata.businesses);
-                    });
-                    return p2;
-                } else {
-                    return get_data(latitude, longitude);
-                }
-            },
-
-            search: function(keyword) {
-                var heading = [],
-                    data = {};
-               	return ajaxCall.get('webapi/BusinessMaster/GetBusinessbySearchKeyword?keyword=' + keyword, {})
+            search: function(keyword, lat, long, catId) {
+                var heading = []
+                ,data = {};
+               	return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex='+searchPageIndex[catId]+'&pageSize=5&CatId='+catId+'&SubCatId=&locId=&Keyword='+keyword+'&currlocationlatlong='+lat+','+long, {})
                     .then(function(response) {
+                        searchKeyword = keyword;
+                        if(response.data.Data.length > 0) {
+                            searchPageIndex[catId] += 1;
+                        }
                         for (i in response.data.Data) {
-                            heading.push(response.data.Data[i].CategoryName);
+                            searchData[catId].push(response.data.Data[i]);
                         }
-                        // Start : getting unique element of array
-                        heading = get_unique_elements.get_unique_arr(heading);
-
-                        for (i in heading) {
-                            data[heading[i]] = [];
-                        }
-
-                        for (i in response.data.Data) {
-                            for (heading_obj in heading) {
-                                if (heading[heading_obj] == response.data.Data[i].CategoryName) {
-                                    data[heading[heading_obj]].push(response.data.Data[i]);
-                                }
-                            }
-                        }
-                        //putting data in global variable.
-                        globaldata.businesses = data;
-
-                        if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
-                            for (i in data_search) {
-                                $state.go("home.restaurants", { vertical: i });
-                                break;
-                            }
-                        }
-                        return data;
+                        return searchData;
                     });
             },
             getheading : function () {
@@ -122,9 +60,11 @@ angular.module('LoyalBonus', '')
 
                         /**for restaurant page**/
                         for (i in heading_data) {
-                            restaurantData[heading_data[i].CategoryID] = [];
+                            restaurantData[heading_data[i].CategoryID]  = [];
                             /**for indexing of each page**/
-                            pageIndex[heading_data[i].CategoryID]      = 1;
+                            pageIndex[heading_data[i].CategoryID]       = 1;
+                            searchPageIndex[heading_data[i].CategoryID] = 1;
+                            searchData[heading_data[i].CategoryID]      = [];
                         }
 
                         $state.go("home.restaurants", { vertical: heading_data[0].CategoryID});
@@ -132,7 +72,9 @@ angular.module('LoyalBonus', '')
                     });
                 }
             },
-            getBusinessRecord : getBusinessRecord
+            getBusinessRecord   : getBusinessRecord,
+            getSearchKeyword    : function () { return searchKeyword; },
+            removeSearchKeyword : function () { searchKeyword = ''; }
         };
     })
 
@@ -145,7 +87,6 @@ angular.module('LoyalBonus', '')
         $scope.restaurants = {};
 
         $scope.open_detail_page = function(id) {
-            $scope.restaurants.demo = { id: id, tension : 'nhi'};
             $state.go("home.kaseydiner", { id: id });
         };
 
@@ -159,25 +100,6 @@ angular.module('LoyalBonus', '')
         $scope.loadmoreNgShow = false;
 
         /**/
-
-        $scope.restaurants.search = function(keyword) {
-            /*loading.start();
-            loading.stop();*/
-
-            if( typeof(keyword) != "undefined" && keyword.length > 0 ) {
-                $rootScope.showMe = false;
-                
-
-                get_business_data
-                .search(keyword)
-                .then(function(response) {
-                	console.log(response);
-                    // $scope.data = response;
-                });
-            } else {
-                console.log('keyword empty');
-            }
-        };
 
         $ionicPlatform.ready(function() {
             $scope.testing = 'in RestaurantController ionic ready.';
@@ -197,13 +119,24 @@ angular.module('LoyalBonus', '')
                     $scope.heading = res;
                 })
                 .then(function () {
-                    get_business_data               //getting records
-                    .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
-                    .then(function (result) {
-                        restaurantData = result[+$state.params.vertical];
-                    });
+                    // this if else is here when user changes navigation of business.
+                    if( get_business_data.getSearchKeyword() != '' ) {
+                        // search results
+                        return get_business_data
+                        .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
+                        .then(function(response) {
+                            restaurantData = response[+$state.params.vertical];
+                        });
+                    } else {
+                        return get_business_data               //getting records
+                        .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
+                        .then(function (result) {
+                            restaurantData = result[+$state.params.vertical];
+                        });
+                    }
                 })
                 .then(function () {
+                    // pagination starts here
                     $scope.loadmoreNgShow = true;
                     var reachLast         = false;
                     $scope.listData = function() {
@@ -211,23 +144,54 @@ angular.module('LoyalBonus', '')
                             return false;
                         }
 
-                        get_business_data               //appending records
-                        .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
-                        .then(function (res) { // this is appending records getting from ajax.
-                            if( res[+$state.params.vertical].length == restaurantData.length ) {
-                                reachLast = true;
-                                $scope.loadmoreNgShow = false;
-                            } else {
-                                restaurantData = res[+$state.params.vertical];
-                            }
-                        });
+                        if( get_business_data.getSearchKeyword() != '' ) {
+                            return get_business_data
+                            .search( get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
+                            .then(function(response) {
+                                if( response[+$state.params.vertical].length == restaurantData.length ) {
+                                    reachLast = true;
+                                    $scope.loadmoreNgShow = false;
+                                } else {
+                                    console.log('search result');
+                                    restaurantData = response[+$state.params.vertical];
+                                }
+                            });
+                        } else {
+                            return get_business_data               //appending records
+                            .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
+                            .then(function (res) { // this is appending records getting from ajax.
+                                if( res[+$state.params.vertical].length == restaurantData.length ) {
+                                    reachLast = true;
+                                    $scope.loadmoreNgShow = false;
+                                } else {
+                                    restaurantData = res[+$state.params.vertical];
+                                }
+                            });
+                        }
                         
                     };
                 });
-                
+
+
+                /*******Search functionality******/
+                $scope.restaurants.search = function(keyword) {
+                    /*loading.start();
+                    loading.stop();*/
+
+                    if( typeof(keyword) != "undefined" && keyword.length > 0 ) {
+                        $rootScope.showMe = false;
+
+                        get_business_data
+                        .search(keyword, position.lat, position.long, +$state.params.vertical)
+                        .then(function(response) {
+                            restaurantData = response[+$state.params.vertical];
+                        });
+                    } else {
+                        console.log('keyword empty');
+                    }
+                };
+
             });
-
-
         });
 
         $scope.print_data = function () {

@@ -1,15 +1,16 @@
 angular.module('LoyalBonus')
 
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,
-                                        backFunctionality) {
-    var previousState       = '';
-    var previousStateParams = '';
-    $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
-      previousState       = fromState.name;
-      previousStateParams = fromParams;
-      // $state.go(fromState.name, fromParams);
-    });
+                                        backFunctionality, get_business_data) {
+  var previousState       = '';
+  var previousStateParams = '';
+  $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+    previousState       = fromState.name;
+    previousStateParams = fromParams;
+    // $state.go(fromState.name, fromParams);
+  });
 
+  $scope.home_var = {};
 
   
 
@@ -38,11 +39,30 @@ angular.module('LoyalBonus')
     $state.go("signin");
   };
 
-  $scope.home_var = {};
-
   $scope.home_var.magnifyOrBack = function () {
     return active_controller.get();
   };
+
+  /*****Start : Home Heading Setting*****/
+  $scope.home_var.homeheading = {};
+  $scope.home_var.homeheading.text = function () {
+    // remember to string length here
+    if( get_business_data.getSearchKeyword() != '' ) {
+      return get_business_data.getSearchKeyword();
+    }
+    return '';
+  };
+  $scope.home_var.homeheading.Visibility = function () {
+    if( get_business_data.getSearchKeyword() != '' ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  $scope.home_var.homeheading.deleteSearch = function () {
+    get_business_data.removeSearchKeyword();
+  }
+  /******End : Home Heading Setting*******/
 
   $scope.redirect_urls = {
     my_membership : function() {
