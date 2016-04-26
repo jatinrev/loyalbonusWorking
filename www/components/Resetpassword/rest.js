@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('RestPasswordController', function ($scope, $state, $ionicHistory, ajaxCall, validation) {
+.controller('RestPasswordController', function ($scope, $state, $ionicHistory, ajaxCall, validation, loading) {
 	
 
 	$scope.tabName = $state.params.id;
@@ -10,24 +10,29 @@ angular.module('LoyalBonus')
 
 	$scope.resetPass = {};
 
+
+
+	/**
+	 *	returns true when email is valid
+	 */
 	$scope.resetPass.emailValidation = function () {
-		validation.email()
+		return validation.email(frmrest.email.value)
 	};
 
-	function rest() {
+	$scope.resetPass.rest = function () {
+		loading.start();
 		ajaxCall.post('webapi/AppLogin/ForgotPassword',
-					  {Email : 'yoyo@gmail.com' }
+					  {Email : frmrest.email.value }
 					  )
 		.then(function (res) {
-
+			$scope.resetPass.msg = res.data.StatusMessage;
 		})
+		.then(function () {
+			loading.stop();
+		});
 	}
 
-	$scope.resetPass.rest = function () {
-		console.log('reset ho gya.');
-		// $state.go("signin");
-	}
 	$scope.myGoBack = function() {
-     $state.go("signin");
+     	$state.go("signin");
 	}
 });

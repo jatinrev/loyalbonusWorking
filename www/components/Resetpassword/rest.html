@@ -7,8 +7,8 @@
                 </div>
                 <ion-list>
                     <h5 class="loyal-kaseydiner">Forgot Your Password</h5>
-                    <p class="restpassowrdtext">Please enter the email address for your account. A verification code will be sent to you. Once you have
-                        received the verification code. You will be able to choose a new password for your account.</p>
+                    <p class="restpassowrdtext">Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code. You will be able to choose a new password for your account.</p>
+                    <p class="restpassowrdtext">{{ resetPass.msg }}</p>
                 </ion-list>
                 <div class="list list-inset">
                     <div class="padding">
@@ -19,10 +19,7 @@
                         </div>
                     </div>
                     <div class="padding">
-                        <code class="prettyprint">
-                        {{ frmrest }}
-                        </code>
-                        <button type="submit" ng-disabled="frmrest.$invalid" class="button button-block bar bar-header bar-balanced">
+                        <button type="submit" ng-disabled="!resetPass.emailValidation()" class="button button-block bar bar-header bar-balanced">
                             <span class="loyalbonus_cap">Reset</span>
                             <i ng-show="loading" class="ion-loading-b"></i>
                         </button>

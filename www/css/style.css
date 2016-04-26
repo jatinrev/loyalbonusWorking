@@ -948,11 +948,11 @@ color:#EE1D25;
     font-size: 20px;
     opacity: .9;
 }
-.button.disabled, .button[disabled]
+/*.button.disabled, .button[disabled]
 {
-    opacity: .8
+    opacity: 0.
 
-}
+}*/
 #Signin .username
 {
 font-size: 20px;

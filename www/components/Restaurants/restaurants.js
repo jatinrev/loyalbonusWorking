@@ -195,8 +195,8 @@ angular.module('LoyalBonus', '')
                 .then(function () {
                     get_business_data               //getting records
                     .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
-                    .then(function (res) {
-                        restaurantData = res[+$state.params.vertical];
+                    .then(function (result) {
+                        restaurantData = result[+$state.params.vertical];
                     });
                 })
                 .then(function () {

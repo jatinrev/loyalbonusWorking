@@ -232,12 +232,16 @@ angular.module('LoyalBonus.services',[])
 	};
 })
 .factory('validation', function () {
+
+	/**
+	 *	returns true when email is valid
+	 */
 	function email(emailAddress) {
 		if(emailAddress!='') {
-		var emailPattern =   /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},*[\W]*)+$/;
+			var emailPattern =   /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},*[\W]*)+$/;
 			if(!emailPattern.test(emailAddress)){
 				return false;
-			} else {		 
+			} else {
 			  return true;
 		  	}
 		}	
