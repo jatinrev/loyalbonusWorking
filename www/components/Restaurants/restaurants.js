@@ -20,7 +20,6 @@ angular.module('LoyalBonus', '')
                     restaurantData[businessId].push(response.data.Data[i]);
                 }
                 loading.stop();
-                // console.log(pageIndex);
                 return restaurantData;
             }, function errorCallback(response){
                 console.log(response);
@@ -117,17 +116,19 @@ angular.module('LoyalBonus', '')
                 .getheading()
                 .then(function (res) {
                     $scope.heading = res;
+                    console.log(+$state.params.vertical);
+                    return res;
                 })
                 .then(function () {
                     // this if else is here when user changes navigation of business.
-                    if( get_business_data.getSearchKeyword() != '' ) {
+                    if( get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0 ) {
                         // search results
                         return get_business_data
                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                         .then(function(response) {
                             restaurantData = response[+$state.params.vertical];
                         });
-                    } else {
+                    } else if( +$state.params.vertical != 0 ) {
                         return get_business_data               //getting records
                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                         .then(function (result) {
@@ -144,7 +145,7 @@ angular.module('LoyalBonus', '')
                             return false;
                         }
 
-                        if( get_business_data.getSearchKeyword() != '' ) {
+                        if( get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0 ) {
                             return get_business_data
                             .search( get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                             .then(function(response) {
@@ -156,7 +157,7 @@ angular.module('LoyalBonus', '')
                                     restaurantData = response[+$state.params.vertical];
                                 }
                             });
-                        } else {
+                        } else if( +$state.params.vertical != 0 ) {
                             return get_business_data               //appending records
                             .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                             .then(function (res) { // this is appending records getting from ajax.
@@ -168,7 +169,7 @@ angular.module('LoyalBonus', '')
                                 }
                             });
                         }
-                        
+
                     };
                 });
 
