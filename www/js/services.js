@@ -230,6 +230,22 @@ angular.module('LoyalBonus.services',[])
 			$state.go( back.fromState, back.fromParams );
 		}
 	};
+})
+.factory('validation', function () {
+	function email(emailAddress) {
+		if(emailAddress!='') {
+		var emailPattern =   /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},*[\W]*)+$/;
+			if(!emailPattern.test(emailAddress)){
+				return false;
+			} else {		 
+			  return true;
+		  	}
+		}	
+	}
+
+	return {
+		email : email
+	};
 });
 
 
