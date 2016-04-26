@@ -1,5 +1,5 @@
-angular.module('LoyalBonus')
-    .factory('get_business_data', function(ajaxCall, $state, get_unique_elements) {
+angular.module('LoyalBonus', '')
+    .factory('get_business_data', function(ajaxCall, $state, get_unique_elements, loading) {
         var heading_data = []
         ,restaurantData  = []
         ,pageIndex       = []; //data is stored here categorywise
@@ -42,15 +42,21 @@ angular.module('LoyalBonus')
         }
 
         function getBusinessRecord(businessId, lat, long) {
+            loading.start();
             return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong='+lat+','+long+'&pageIndex='+pageIndex[businessId]+'&pageSize=5', {})
-                .then(function(response) {
+            .then(function(response) {
+                if( response.data.Data.length > 0 ) { //records are present so add pageIndex.
                     pageIndex[businessId]+= 1;
-                    for (i in response.data.Data) {
-                        restaurantData[businessId].push(response.data.Data[i]);
-                    }
-                    console.log(pageIndex);
-                    return restaurantData;
-                });
+                }
+                for (i in response.data.Data) {
+                    restaurantData[businessId].push(response.data.Data[i]);
+                }
+                loading.stop();
+                // console.log(pageIndex);
+                return restaurantData;
+            }, function errorCallback(response){
+                console.log(response);
+            });
         }
 
         return {
@@ -130,9 +136,9 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('RestaurantController', function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
-        get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading) {
+    .controller('RestaurantController',function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
+                                                get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
+                                                active_controller, loading) {
         var restaurantData = [];
         active_controller.set('RestaurantController');
 
@@ -146,10 +152,11 @@ angular.module('LoyalBonus')
         $scope.testing = 'in RestaurantController...';
 
 
-        $scope.print_data = [];
-        $scope.data 	  = {};
-        $scope.positions  = {};
-        $scope.heading    = [];
+        $scope.print_data     = [];
+        $scope.data           = {};
+        $scope.positions      = {};
+        $scope.heading        = [];
+        $scope.loadmoreNgShow = false;
 
         /**/
 
@@ -191,6 +198,27 @@ angular.module('LoyalBonus')
                     .then(function (res) {
                         restaurantData = res[+$state.params.vertical];
                     });
+                })
+                .then(function () {
+                    $scope.loadmoreNgShow = true;
+                    var reachLast         = false;
+                    $scope.listData = function() {
+                        if(reachLast){
+                            return false;
+                        }
+
+                        get_business_data               //appending records
+                        .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
+                        .then(function (res) { // this is appending records getting from ajax.
+                            if( res[+$state.params.vertical].length == restaurantData.length ) {
+                                reachLast = true;
+                                $scope.loadmoreNgShow = false;
+                            } else {
+                                restaurantData = res[+$state.params.vertical];
+                            }
+                        });
+                        
+                    };
                 });
                 
             });
@@ -220,7 +248,6 @@ angular.module('LoyalBonus')
         $scope.tab_name = function() {
             return $state.params.vertical;
         }
-
 
     });
 
