@@ -161,15 +161,19 @@ angular.module('LoyalBonus', '')
         /**/
 
         $scope.restaurants.search = function(keyword) {
+            /*loading.start();
+            loading.stop();*/
+
             if( typeof(keyword) != "undefined" && keyword.length > 0 ) {
-                loading.start();
                 $rootScope.showMe = false;
+                
+
                 get_business_data
-                    .search(keyword)
-                    .then(function(response) {
-                    	loading.stop();
-                        $scope.data = response;
-                    });
+                .search(keyword)
+                .then(function(response) {
+                	console.log(response);
+                    // $scope.data = response;
+                });
             } else {
                 console.log('keyword empty');
             }

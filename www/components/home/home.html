@@ -38,7 +38,7 @@
         <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
             <div class="buttons">
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
-                <h1 class="title">{{Restaurants}}</h1>
+                <h1 class="title">{{ Restaurants }}</h1>
                 <button class="button button-icon {{ home_var.magnifyOrBack() == 'RestaurantController' ? 'ion-search' : 'ion-arrow-left-c' }}"
                 ng-click="home_var.magnifyOrBack() == 'RestaurantController' ? goSearchHandler() : goBackHandler()"></button>
             </div>
