@@ -163,27 +163,27 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
          }
         }
       })
-      // .state("home.deal", {
-      //   url: "deal/",
-      //   views: {
-      //     "body": {
-      //       templateUrl: "components/deal/deal.html",
-      //       controller: "DealController",
-      //       controllerAs: "dc"
-      //     }
-      //   }
-      // })
+      .state("home.aboutus", {
+        url: "aboutus/",
+        views: {
+          "body": {
+            templateUrl: "components/Aboutus/aboutus.html",
+            controller: "AboutusController",
+            controllerAs: "ac"
+          }
+        }
+      })
 
-    // .state("home.deal.list", {
-    //     url: "list/",
-    //     views: {
-    //       "body": {
-    //         templateUrl: "components/list/list.html",
-    //         controller: "ListController",
-    //         controllerAs: "lc"
-    //       }
-    //     }
-    //   })
+    .state("home.businessmap", {
+        url: "businessmap/",
+        views: {
+          "body": {
+            templateUrl: "components/Businessmap/businessmap.html",
+            controller: "BusinessController",
+            controllerAs: "bc"
+          }
+        }
+      })
       // .state("home.deal.map", {
       //   url: "map/",
       //   views: {
