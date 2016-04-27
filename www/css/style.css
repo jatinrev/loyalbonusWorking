@@ -1165,3 +1165,17 @@ span.icon_kasy_newsec
 }
 
 
+#Aboutus #logo
+{
+    margin-bottom: 170px;
+    text-align: center;
+    margin-top: 95px;
+}
+#Aboutus .new_top
+{
+    top:4px;
+    position: relative;
+}
+#Businessmap .scroll-content {
+    top: 44px;
+    }
