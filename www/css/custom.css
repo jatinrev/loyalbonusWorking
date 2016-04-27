@@ -43,3 +43,10 @@
     padding-top: 15px;
     text-align: center;
 }
+
+
+
+/*****restaurant detail page****/
+.checkbox > img {
+    width: 25px;
+}

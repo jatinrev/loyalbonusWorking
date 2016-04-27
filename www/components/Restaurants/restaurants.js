@@ -11,7 +11,7 @@ angular.module('LoyalBonus', '')
 
         function getBusinessRecord(businessId, lat, long) {
             loading.start();
-            return ajaxCall.get('webapi/BusinessMaster/GetBusinessByCategoryIDNearByKMFromCurrentLocation?catid='+businessId+'&currlocationlatlong='+lat+','+long+'&pageIndex='+pageIndex[businessId]+'&pageSize=5', {})
+            return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex='+pageIndex[businessId]+'&pageSize=5&CatId='+businessId+'&SubCatId=&locId=&Keyword=&currlocationlatlong='+lat+','+long, {})
             .then(function(response) {
                 if( response.data.Data.length > 0 ) { //records are present so add pageIndex.
                     pageIndex[businessId]+= 1;
