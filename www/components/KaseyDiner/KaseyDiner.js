@@ -34,11 +34,9 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
-        // 259 = jatin@yahoo.com
-        // $scope.state_on()
-        // .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId='+ $scope.state_on() +'&UserId=259', {})
+        // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
-        .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + $scope.state_on() +'&UserId=259', {})
+        .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
         .then(function(res) {
             console.log(res);
             $scope.datadeal = res.data.Data[0];

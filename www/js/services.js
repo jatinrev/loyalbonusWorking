@@ -58,7 +58,9 @@ angular.module('LoyalBonus.services',[])
 })
 .factory('update_user_details', function($rootScope, ajaxCall, $state) {
 	// update userDetails array which is global.
-	$rootScope.userDetails = {};
+	$rootScope.userDetails          = {};
+	$rootScope.userDetails.Email    = '';
+	$rootScope.userDetails.FullName = '';
 	return {
 		get : function (userID) {
 			return ajaxCall.get('webapi/user/GetUserByID',

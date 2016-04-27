@@ -70,7 +70,6 @@ angular.module('LoyalBonus')
 
 
 	$scope.fbLogin = function () {
-
 	    facebookFactory
 	    .facebookLogin()
 	    .then(function (res) {

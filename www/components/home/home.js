@@ -79,7 +79,7 @@ angular.module('LoyalBonus')
     home : function() {
       console.log('account_settings');
       $scope.output = 'home';
-      $state.go("home.restaurants", { vertical: i });
+      $state.go("home.restaurants");
     },
     aboutus : function() {
       console.log('aboutus');
@@ -90,8 +90,10 @@ angular.module('LoyalBonus')
       console.log('businessmap');
       $scope.output = 'businessmap';
       $state.go("home.businessmap");
+    },
+    myloyalbonus : function () {
+      $state.go("home.milestones");
     }
   };
-
 
 });

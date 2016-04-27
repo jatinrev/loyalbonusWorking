@@ -173,7 +173,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
           }
         }
       })
-
     .state("home.businessmap", {
         url: "businessmap/",
         views: {
