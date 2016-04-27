@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, ajaxCall) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, facebookFactory) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -55,7 +55,7 @@ angular.module('LoyalBonus')
 			}
 		}, function errorCallback(response) {
 			loading.stop();
-			$scope.signIn.response_visibility      = true; // comment this
+			// $scope.signIn.response_visibility      = true; // comment this
 			$scope.signIn.response = response;
 		});
 
@@ -70,47 +70,20 @@ angular.module('LoyalBonus')
 
 
 	$scope.fbLogin = function () {
-	    ngFB
-	    .login({scope: 'email,read_stream,publish_actions'})
-	    .then(function (response) {
-	    	console.log(response);
-            if (response.status === 'connected') {
-            	$scope.signIn.facebookResponse = response;
-            	return response.authResponse.accessToken;
-            } else {
-                alert('Facebook login failed');
-            }
-            return 0;
-	    })
-	    .then(function (response) {
-	    	if(response == 0) {
-	    		return false;
-	    	} else {
-		    	ngFB.api({
-			        path: '/me',
-			        params: {fields: 'id,name,email'}
-			    })
-			    .then(function (fbResponse) {
-			    		console.log(fbResponse);
-			    		$scope.signIn.facebookData = fbResponse;
 
-			    		ajaxCall
-			    		.post('webapi/AppLogin/RegisterWithFB',
-			    			  {
-			    			   userName:fbResponse.user,
-							   accessToken:response,     //access token from login
-							   email:fbResponse.email
-							   }
-			    		)
-			    		.then(function (res) {
-			    			console.log(res);
-			    		});
-			    	},
-			    	function (error) {
-			    	  	console.log(error);
-			    	}
-			    );
-			}
+	    facebookFactory
+	    .facebookLogin()
+	    .then(function (res) {
+	    	if(res == 0) {
+				$scope.signIn.response_visibility = true;
+				$scope.signIn.response            = 'Facebook login successfull';
+	    		//show error
+	    	} else {
+	    		console.log(res);
+	    		window.localStorage['userId'] = res.data.Data.UserID;
+				update_user_details.get( res.data.Data.UserID );
+				$state.go("home.restaurants");
+	    	}
 	    });
 	};
 
