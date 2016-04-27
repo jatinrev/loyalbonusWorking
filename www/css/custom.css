@@ -50,3 +50,31 @@
 .checkbox > img {
     width: 25px;
 }
+
+
+
+
+/******SignIn page******/
+.loyalbonus_img {
+	color: #fff;
+	background-color: #617AAC;
+	padding: 12px 25px;
+}
+.loyalbonus_img .icon		{
+	font-size: 21px;
+    position: relative;
+    top: 2px; 
+}
+.loyalbonus_img.activated 	{
+	background-color: #3B5998;
+}
+
+
+
+
+
+
+
+
+
+
