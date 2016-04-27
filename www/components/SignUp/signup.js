@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details, loading) {
+.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details, loading, facebookFactory) {
 	var vm         = this;
 	$scope.signUp  = {};
 	$scope.tabName = $state.params.id;
@@ -42,6 +42,25 @@ angular.module('LoyalBonus')
 			$scope.signUp.signUp_button_visibility = true; // comment this
 			$scope.signUp.response = response;
 		});
+	};
+
+
+	$scope.fbLogin = function () {
+
+	    facebookFactory
+	    .facebookLogin()
+	    .then(function (res) {
+	    	if(res == 0) {
+				$scope.signIn.response_visibility = true;
+				$scope.signIn.response            = 'Facebook login successfull';
+	    		//show error
+	    	} else {
+	    		console.log(res);
+	    		window.localStorage['userId'] = res.data.Data.UserID;
+				update_user_details.get( res.data.Data.UserID );
+				$state.go("home.restaurants");
+	    	}
+	    });
 	};
 });
 

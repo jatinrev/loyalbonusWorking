@@ -278,7 +278,7 @@ angular.module('LoyalBonus.services',[])
 			    		return ajaxCall
 			    		  .post('webapi/AppLogin/RegisterWithFB',
 			    		  	  {
-			    		  	   userName:fbResponse.user,
+			    		  	   userName:fbResponse.name,
 						  	   accessToken:response,     //access token from login
 						  	   email:fbResponse.email
 						  	   }
