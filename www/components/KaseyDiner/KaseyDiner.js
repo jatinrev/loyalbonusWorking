@@ -34,56 +34,52 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
+        // 259 = jatin@yahoo.com
+        // $scope.state_on()
+        // .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId='+ $scope.state_on() +'&UserId=259', {})
         ajaxCall
-            .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + $scope.state_on(), {})
-            .then(function(res) {
-                $scope.datadeal = res.data.Data[0];
-                //console.log($scope.datadeal);
-                //console.log($scope.datadeal.Lat);
-                //console.log($scope.datadeal.Lng);
-                //console.log($scope.datadeal.reviews);
-            }).then(function(res) {
-                
-                function initialize() {
-                    var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
-                    var mapOptions = {
-                        center: myLatlng,
-                        zoom: 20
-                        
-                    };
-                    $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-                        var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: $scope.map,
-                    });
-
-                }
-
-                initialize();
-
-                $scope.centerOnMe = function() {
-                    if (!$scope.map) {
-                        return;
-                    }
-                    $scope.loading = $ionicLoading.show({
-                        content: 'Getting current location...',
-                        showBackdrop: false
-                    });
-
-                    navigator.geolocation.getCurrentPosition(function(pos) {
-
-                        $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                        //console.log($scope.new_location);
-                        $scope.loading.hide();
-                    }, function(error) {
-                        alert('Unable to get location: ' + error.message);
-                    });
+        .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + $scope.state_on() +'&UserId=259', {})
+        .then(function(res) {
+            console.log(res);
+            $scope.datadeal = res.data.Data[0];
+        }).then(function(res) {
+            function initialize() {
+                var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
+                var mapOptions = {
+                    center: myLatlng,
+                    zoom: 20
+                    
                 };
+                $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+                    var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: $scope.map,
+                });
+            }
 
-               
+            initialize();
+
+            $scope.centerOnMe = function() {
+                if (!$scope.map) {
+                    return;
+                }
+                $scope.loading = $ionicLoading.show({
+                    content: 'Getting current location...',
+                    showBackdrop: false
+                });
+
+                navigator.geolocation.getCurrentPosition(function(pos) {
+
+                    $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                    //console.log($scope.new_location);
+                    $scope.loading.hide();
+                }, function(error) {
+                    alert('Unable to get location: ' + error.message);
+                });
+            };
+        });
 
 
-            });
         $scope.helperFunction.reviews = function(number) {
             //console.log(typeof(number));
             var str = '';

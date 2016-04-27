@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, facebookFactory) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -55,7 +55,7 @@ angular.module('LoyalBonus')
 			}
 		}, function errorCallback(response) {
 			loading.stop();
-			$scope.signIn.response_visibility      = true; // comment this
+			// $scope.signIn.response_visibility      = true; // comment this
 			$scope.signIn.response = response;
 		});
 
@@ -70,30 +70,20 @@ angular.module('LoyalBonus')
 
 
 	$scope.fbLogin = function () {
-		$scope.signIn.facebookResponse = 'fblogin';
-	    ngFB
-	    .login({scope: 'email,read_stream,publish_actions'})
-	    .then(function (response) {
-            if (response.status === 'connected') {
-            	$scope.signIn.facebookResponse = response;
-                console.log('Facebook login succeeded');
-                // $scope.closeLogin();
-            } else {
-                alert('Facebook login failed');
-            }
-	    })
-	    .then(function () {
-	    	ngFB.api({
-		        path: '/me',
-		        params: {fields: 'id,name'}
-		    }).then(function (user) {
-		    		$scope.signIn.facebookData = user;
-		            console.log(user);
-		        },
-		        function (error) {
-		        	console.log(error);
-		        }
-		    );
+
+	    facebookFactory
+	    .facebookLogin()
+	    .then(function (res) {
+	    	if(res == 0) {
+				$scope.signIn.response_visibility = true;
+				$scope.signIn.response            = 'Facebook login successfull';
+	    		//show error
+	    	} else {
+	    		console.log(res);
+	    		window.localStorage['userId'] = res.data.Data.UserID;
+				update_user_details.get( res.data.Data.UserID );
+				$state.go("home.restaurants");
+	    	}
 	    });
 	};
 
