@@ -250,6 +250,13 @@ angular.module('LoyalBonus.services',[])
 	return {
 		email : email
 	};
+})
+.factory('name', function () {
+	
+
+	return {
+
+	};
 });
 
 

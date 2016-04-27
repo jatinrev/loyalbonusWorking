@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, ajaxCall) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -70,30 +70,47 @@ angular.module('LoyalBonus')
 
 
 	$scope.fbLogin = function () {
-		$scope.signIn.facebookResponse = 'fblogin';
 	    ngFB
 	    .login({scope: 'email,read_stream,publish_actions'})
 	    .then(function (response) {
+	    	console.log(response);
             if (response.status === 'connected') {
             	$scope.signIn.facebookResponse = response;
-                console.log('Facebook login succeeded');
-                // $scope.closeLogin();
+            	return response.authResponse.accessToken;
             } else {
                 alert('Facebook login failed');
             }
+            return 0;
 	    })
-	    .then(function () {
-	    	ngFB.api({
-		        path: '/me',
-		        params: {fields: 'id,name'}
-		    }).then(function (user) {
-		    		$scope.signIn.facebookData = user;
-		            console.log(user);
-		        },
-		        function (error) {
-		        	console.log(error);
-		        }
-		    );
+	    .then(function (response) {
+	    	if(response == 0) {
+	    		return false;
+	    	} else {
+		    	ngFB.api({
+			        path: '/me',
+			        params: {fields: 'id,name,email'}
+			    })
+			    .then(function (fbResponse) {
+			    		console.log(fbResponse);
+			    		$scope.signIn.facebookData = fbResponse;
+
+			    		ajaxCall
+			    		.post('webapi/AppLogin/RegisterWithFB',
+			    			  {
+			    			   userName:fbResponse.user,
+							   accessToken:response,     //access token from login
+							   email:fbResponse.email
+							   }
+			    		)
+			    		.then(function (res) {
+			    			console.log(res);
+			    		});
+			    	},
+			    	function (error) {
+			    	  	console.log(error);
+			    	}
+			    );
+			}
 	    });
 	};
 
