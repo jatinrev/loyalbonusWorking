@@ -20,11 +20,43 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData) {
         $scope.tabName = $state.params.id;
         $scope.state_on = function() {
             return $state.params.id;
         };
+
+
+        $scope.goToMap = function (businessDetailId) {
+            saveData.set('businessDetailId', businessDetailId);
+            $state.go("home.map", { businessDetailId: businessDetailId });
+        }
+
+
+        function mydummyJson (input) {
+            var output = [];
+            for (var i = 0; i < input; i++) {
+                output.push(i)
+            }
+            return output;
+        }
+        $scope.myloyalbonus = {};
+
+        $scope.myloyalbonus.printTick = function (input) {
+            return mydummyJson(input);
+        }
+
+        $scope.myloyalbonus.printNonTick = function (input) {
+            return mydummyJson(9 - +input);
+        }
+
+        $scope.myloyalbonus.printGift = function (input) {
+            if(+input == 10) {
+                return mydummyJson(0);
+            } else {
+                return mydummyJson(1);
+            }
+        }
 
 
 

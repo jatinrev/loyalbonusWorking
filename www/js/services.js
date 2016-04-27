@@ -170,15 +170,19 @@ angular.module('LoyalBonus.services',[])
     };
 })
 .factory('saveData', function () {
-	var saveHere;	
+	var saveHere = {};
 
-	function set() {
+	function set(key, value) {
+		saveHere[key] = value;
+	}
 
+	function get(key) {
+		return saveHere[key];
 	}
 
 	return {
-		set : set(),
-		get : get()
+		set : set,
+		get : get
 	};
 })
 .factory('loading', function ($ionicLoading) {

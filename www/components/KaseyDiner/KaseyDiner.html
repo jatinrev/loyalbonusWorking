@@ -4,42 +4,19 @@
 
             <div id="logo">
 
-                <a ui-sref="home.map" class="already-loyalbonus button buttonListView" href="#/home/map/">MapView</a>
+                <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a>
                 <img ng-src="{{ datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
             <div class="bar-balanced newloyalcheckbox">
-                <label class="checkbox">
+                <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits)">
                     <img src="img/tick.png">
                 </label>
-                <label class="checkbox">
-                    <img src="img/tick.png">
-                </label>
-                <label class="checkbox">
-                    <img src="img/tick.png">
-                </label>
-                <label class="checkbox">
-                    <img src="img/tick.png">
-                </label>
-                <label class="checkbox">
-                    <img src="img/tick.png">
-                </label>
-                <label class="checkbox">
-                    <img src="img/tick.png">
-                </label>
-                <label class="round">
+                <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.uservisits)">
                     <span class="round-span">10%</span>
                     <p>off</p>
                 </label>
-                <label class="round">
-                    <span class="round-span">10%</span>
-                    <p>off</p>
-                </label>
-                <label class="round">
-                    <span class="round-span">10%</span>
-                    <p>off</p>
-                </label>
-                <label class="checkbox">
+                <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.uservisits)">
                     <img src="img/icon.png">
                 </label>
             </div>
