@@ -114,7 +114,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
         }
       })
       .state("home.review", {
-        url: "review/",
+        url: "review/:id",
         views: {
           "body": {
             templateUrl: "components/Review/review.html",

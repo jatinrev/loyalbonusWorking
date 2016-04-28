@@ -66,12 +66,14 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
+
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
         .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
         .then(function(res) {
             console.log(res);
             $scope.datadeal = res.data.Data[0];
+            console.log($scope.datadeal);
         }).then(function(res) {
             function initialize() {
                 var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
@@ -89,7 +91,7 @@ angular.module('LoyalBonus')
 
             initialize();
 
-            $scope.centerOnMe = function() {
+           /* $scope.centerOnMe = function() {
                 if (!$scope.map) {
                     return;
                 }
@@ -106,7 +108,7 @@ angular.module('LoyalBonus')
                 }, function(error) {
                     alert('Unable to get location: ' + error.message);
                 });
-            };
+            };*/
         });
 
 
