@@ -58,7 +58,9 @@ angular.module('LoyalBonus.services',[])
 })
 .factory('update_user_details', function($rootScope, ajaxCall, $state) {
 	// update userDetails array which is global.
-	$rootScope.userDetails = {};
+	$rootScope.userDetails          = {};
+	$rootScope.userDetails.Email    = '';
+	$rootScope.userDetails.FullName = '';
 	return {
 		get : function (userID) {
 			return ajaxCall.get('webapi/user/GetUserByID',
@@ -168,15 +170,19 @@ angular.module('LoyalBonus.services',[])
     };
 })
 .factory('saveData', function () {
-	var saveHere;	
+	var saveHere = {};
 
-	function set() {
+	function set(key, value) {
+		saveHere[key] = value;
+	}
 
+	function get(key) {
+		return saveHere[key];
 	}
 
 	return {
-		set : set(),
-		get : get()
+		set : set,
+		get : get
 	};
 })
 .factory('loading', function ($ionicLoading) {

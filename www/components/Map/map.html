@@ -1,10 +1,10 @@
 <div id="Map">
     <ion-view>
         <ion-content>
-
+            
             <div class="list list-inset">
                 <!--  <button class="button buttonListView"> -->
-                <a ui-sref="home.kaseydiner" class="already-loyalbonus button buttonListView" href="#/home/kaseydiner/">ListView</a>
+                <a ng-click="goToKaseyDinner()" class="already-loyalbonus button buttonListView {{ businessDetailId() }} ">ListView</a>
                 <!-- </button> -->
                 <!--<label class="item item-input">
                     <i class="icon ion-search placeholder-icon color-change"></i>

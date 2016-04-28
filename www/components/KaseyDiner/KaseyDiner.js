@@ -20,11 +20,43 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData) {
         $scope.tabName = $state.params.id;
         $scope.state_on = function() {
             return $state.params.id;
         };
+
+
+        $scope.goToMap = function (businessDetailId) {
+            saveData.set('businessDetailId', businessDetailId);
+            $state.go("home.map", { businessDetailId: businessDetailId });
+        }
+
+
+        function mydummyJson (input) {
+            var output = [];
+            for (var i = 0; i < input; i++) {
+                output.push(i)
+            }
+            return output;
+        }
+        $scope.myloyalbonus = {};
+
+        $scope.myloyalbonus.printTick = function (input) {
+            return mydummyJson(input);
+        }
+
+        $scope.myloyalbonus.printNonTick = function (input) {
+            return mydummyJson(9 - +input);
+        }
+
+        $scope.myloyalbonus.printGift = function (input) {
+            if(+input == 10) {
+                return mydummyJson(0);
+            } else {
+                return mydummyJson(1);
+            }
+        }
 
 
 
@@ -34,11 +66,9 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
-        // 259 = jatin@yahoo.com
-        // $scope.state_on()
-        // .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId='+ $scope.state_on() +'&UserId=259', {})
+        // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
-        .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + $scope.state_on() +'&UserId=259', {})
+        .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
         .then(function(res) {
             console.log(res);
             $scope.datadeal = res.data.Data[0];
