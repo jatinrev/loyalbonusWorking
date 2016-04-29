@@ -1078,37 +1078,15 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
     border-bottom: 1px solid #fff;
 } */
 
-#restaurants ul[rn-carousel]
-{
-    overflow-x: scroll;
-}
-#restaurants .tab-item
-{
-         font-weight: 200;
-         /* max-width: 118px; */
-             font-size: 15px;
-             overflow: hidden;
-    max-width:123px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-#restaurants ul[rn-carousel] li:first-child
-{
-    margin-left: -6px;
-}
-#restaurants ul[rn-carousel] li:nth-child(2)
-{
-    margin-left: -15px;
-}
- #map-canvas
-    {
-        width : 100%;  /* map width */
-        height: 600px;  /* map height */
-    }
-#restaurants .item-complex .item-content, .item-radio .item-content
-    {
-            padding: 16px 49px 16px 0px;
-    }
+#restaurants ul[rn-carousel] {     overflow-x: scroll; } #restaurants .tab-
+item {          font-weight: 200;          /* max-width: 118px; */
+font-size: 15px;              overflow: hidden;     max-width:123px;     text-
+overflow: ellipsis;     white-space: nowrap; } #restaurants ul[rn-carousel] li
+:first-child {     margin-left: -6px; } #restaurants ul[rn-carousel] li:nth-
+child(2) {     margin-left: -15px; }  #map-canvas     {         width : 100%;
+/* map width */         height: 420px;  /* map height */     } #restaurants
+.item-complex .item-content, .item-radio .item-content     {
+padding: 16px 49px 16px 0px;     }
 
 #kaseydiner #map-canvas
     {
@@ -1179,3 +1157,20 @@ span.icon_kasy_newsec
 #Businessmap .scroll-content {
     top: 44px;
     }
+    #Businessmap .item-input {
+    background-color: #fff;
+    position: absolute;
+    height: 34px;
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 0px;
+    margin: 27px 0px 0px 17px;
+    width: 90%;
+}
+#Businessmap .item {
+    /* background: transparent; */
+    color: #63615a;
+    font-size: 20px;
+    border: 1px solid #cdcdcd;
+}

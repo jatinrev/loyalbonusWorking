@@ -2,6 +2,10 @@
     <ion-view>
         <ion-content>
 
+            <label ng-show="showMe" class="item item-input new_margin">
+                <input type="text" ng-model="businessmap.searchKeyword" placeholder="Search">
+                <span class="ion-search paddingLR10" on-tap="businessmap.search(businessmap.searchKeyword)"></span>
+            </label>
             <!-- <div class="list list-inset">
                 <button class="button buttonListView">
                 <a ui-sref="home.kaseydiner" class="already-loyalbonus button buttonListView" href="#/home/kaseydiner/">ListView</a>
@@ -16,6 +20,12 @@
             <!--  <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
                      <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
                 </div> -->
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+            <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
 
         </ion-content>
     </ion-view>
