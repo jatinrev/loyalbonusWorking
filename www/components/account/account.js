@@ -24,17 +24,24 @@ angular.module('LoyalBonus')
 .controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory, active_controller) {
 	$scope.tabName = $state.params.id;
 	// $state.params.id == 'Account'
+	var savePreviosDetails = {
+		FullName  : $rootScope.userDetails.FullName,
+		Email 	  : $rootScope.userDetails.Email
+	};
+
  	$scope.custom = true;
     active_controller.set('AccountController');
  	
  	$scope.toggleCustom = function() {
     	$scope.custom = $scope.custom === false ? true: false;
-
 	};
 
+	$scope.accountVar = {
+		EmailEnable : true
+	};
 
 	$scope.enable_email = function() {
-    	$scope.custom_email = $scope.custom_email === false ? true: false;
+		$scope.accountVar.EmailEnable = $scope.accountVar.EmailEnable == true ? false : true;
 	};
 
 	$scope.chnage_pass = {
@@ -70,30 +77,31 @@ angular.module('LoyalBonus')
 	}*/
 
 	$scope.change_password = function(form_field_obj) {
+
 		if( typeof($scope.form_error(form_field_obj)) != 'undefined' ) {
 			$scope.response = $scope.form_error(form_field_obj);
 			return 0;
 		}
 
+		/* console.log(savePreviosDetails);
+		console.log( $rootScope.userDetails.FullName );
+		console.log( $rootScope.userDetails.Email );
+		console.log( form_field_obj.fullName.$viewValue);
+		console.log( form_field_obj.Email.$viewValue); */
+
 		//factory is made to change different part of user settings.
-		if( $rootScope.userDetails.FullName != form_field_obj.fullName ) {
+		if( savePreviosDetails.FullName != form_field_obj.fullName.$viewValue || savePreviosDetails.Email != form_field_obj.Email.$viewValue ) {
 			// call change_accout_settings_factory.change_name_email factory.
-		}
-		if( typeof($scope.form_error(form_field_obj)) != 'undefined' ) {
-			$scope.response = $scope.form_error(form_field_obj);
-			return 0;
-		}
-		if ($scope.enable_email != $rootScope.userDetails.Email)
-		{
 			change_accout_settings_factory
-			.change_name_email($scope.enable_email)
+			.change_name_email($rootScope.userDetails.userId, form_field_obj.Email.$viewValue, form_field_obj.fullName.$viewValue)
 			.then(function(response_email)
 			{
 				$scope.response_email = response_email.data.StatusMessage;	
 			})
+			
 		}
 
-		if( $scope.chnage_pass.old_pass.length > 0 ) {
+		if( $scope.chnage_pass.old_pass.length > 0 && $scope.chnage_pass.new_pass.length > 0 ) {
 
 			//factory to change password
 			change_accout_settings_factory
