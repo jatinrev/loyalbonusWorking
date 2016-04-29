@@ -79,7 +79,7 @@ angular.module('LoyalBonus', '')
 
     .controller('RestaurantController',function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
                                                 get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-                                                active_controller, loading) {
+                                                active_controller, loading, saveData) {
         var restaurantData = [];
         active_controller.set('RestaurantController');
 
@@ -100,6 +100,11 @@ angular.module('LoyalBonus', '')
 
         /**/
 
+        $scope.goToMap = function (businessDetailId) {
+            saveData.set('businessDetailId', businessDetailId);
+            $state.go("home.map", { businessDetailId: businessDetailId });
+        }
+
         $ionicPlatform.ready(function() {
             $scope.testing = 'in RestaurantController ionic ready.';
 
@@ -116,7 +121,6 @@ angular.module('LoyalBonus', '')
                 .getheading()
                 .then(function (res) {
                     $scope.heading = res;
-                    console.log(+$state.params.vertical);
                     return res;
                 })
                 .then(function () {
@@ -153,7 +157,6 @@ angular.module('LoyalBonus', '')
                                     reachLast = true;
                                     $scope.loadmoreNgShow = false;
                                 } else {
-                                    console.log('search result');
                                     restaurantData = response[+$state.params.vertical];
                                 }
                             });
@@ -210,6 +213,15 @@ angular.module('LoyalBonus', '')
                 str += '<img src="img/emptyStart.png" class="emptyStart">';
             }
             return str;
+        }
+
+        $scope.restaurants.print_BonusDiscount = function(input) {
+            if(input == null) {
+                input = 0;
+            }
+            input = input.trim();
+            input = input.replace('%', '');
+            return input;
         }
 
         $scope.tabName = $state.params.vertical;

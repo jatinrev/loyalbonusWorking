@@ -21,7 +21,6 @@ angular.module('LoyalBonus')
 
     .controller('KaseyDinerController', function($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData) {
-        $scope.tabName = $state.params.id;
         $scope.state_on = function() {
             return $state.params.id;
         };
@@ -123,6 +122,10 @@ angular.module('LoyalBonus')
             return str;
         }
 
+        $scope.helperFunction.write_review = function(businessId, businessImage, BusinessStars) {
+            // BusinessStars can be null also(when user have not given any rating)
+            $state.go("home.review", { businessId: businessId, businessImg : businessImage, businessRating : BusinessStars });
+        };
 
         /**** End : rating service ****/
 

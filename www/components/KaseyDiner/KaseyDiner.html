@@ -5,7 +5,7 @@
             <div id="logo">
 
                 <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a>
-                <img ng-src="{{ datadeal.Image }}">
+                <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
             <div class="bar-balanced newloyalcheckbox">
@@ -31,10 +31,11 @@
                 <div class="col-50">
                     <ion-list>
                         <ion-item class="wth-border border-bottom">
-                            <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.BonusDiscountToCust }}</ion-item>
+                            <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.BonusDiscountToCust }}
+                        </ion-item>
                         <ion-item class="wth-border border-bottom"><i class="icon-gift"></i>Bonus Discount:{{ datadeal.BonusDiscount }} OFF</ion-item>
-                        <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
-                        <ion-list>
+                        <ion-item class="wth-border">Visit 10 times to receive Bonus.</ion-item>
+                    <ion-list>
                 </div>
             </div>
 
@@ -45,16 +46,16 @@
                 <p class="loyal-kaseydinerpara">{{ datadeal.Description }}</p>
             </div>
 
+            <div class="row ">
+                <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
+            </div>
 
-            <div id='map-canvas'></div>
+
+            <div id='map-canvas' class="row"></div>
             <div class="icon_kasy">
                 <img class="icon_kasy" src="img/iconnumber.png">
                 <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
             </div>
-            <!-- <div class="icon_kasy">
-                <img class="icon_kasy" src="../img/iconnumbersec.png">
-                <span class="icon_kasy_new">{{ datadeal.Address2 == null ? 'Null' : datadeal.Address2 }}</span>
-            </div> -->
 
             <footer class="bar bar-footer bar-positive">
                 <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
