@@ -26,11 +26,11 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
       StatusBar.styleDefault();
     }
 
-    /**Temp Data**
+    /**Temp Data**/
     $rootScope.userDetails = {
-      userId    : 251,
-      Email     : 'jatin@yahoo.com',
-      FullName  : 'Jatin Verma'
+      userId    : 263,
+      Email     : 'jatinverma@gmail.com',
+      FullName  : 'Jatin'
     }
     /**Temp Data**/
 
