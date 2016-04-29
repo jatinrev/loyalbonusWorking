@@ -12,6 +12,10 @@
 .padding-bottom-10 {
 	padding-bottom: 10px;
 }
+.padding-TB-5 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
 
 /**
  * all margins come here
@@ -78,7 +82,9 @@
 }
 
 
-
+.already-loyalbonus.activated {
+	
+}
 
 
 

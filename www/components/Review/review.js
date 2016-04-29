@@ -1,7 +1,6 @@
 angular.module('LoyalBonus')
 
 .controller('ReviewController', function ($scope, $state) {
-	$scope.tabName = $state.params.id;
 
 	$state.params.id == 'Review'
 		$scope.dataReview = [{
@@ -11,8 +10,8 @@ angular.module('LoyalBonus')
   			max : 5
 		}];
 
-		
+	console.log($state);	
 
-	});
+});
 
 

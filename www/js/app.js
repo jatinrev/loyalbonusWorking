@@ -25,6 +25,15 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    /**Temp Data**/
+    $rootScope.userDetails = {
+      userId    : 251,
+      Email     : 'jatin@yahoo.com',
+      FullName  : 'Jatin Verma'
+    }
+    /**Temp Data**/
+
   });
 
 })
@@ -114,7 +123,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
         }
       })
       .state("home.review", {
-        url: "review/:id",
+        url: "review/:businessId/:businessImg/:businessRating",
         views: {
           "body": {
             templateUrl: "components/Review/review.html",
