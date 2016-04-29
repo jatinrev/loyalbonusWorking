@@ -19,9 +19,9 @@
                     <div class="padding">
                         <label class="item item-input item-floating-label white_background_color">
                             <span class="input-label">Email</span>
-                            <input type="text" class="email" placeholder="Email" ng-model="userDetails.Email" {{ change }} name="Email"
+                            <input type="text" ng-disabled="accountVar.EmailEnable" class="email" placeholder="Email" ng-model="userDetails.Email" name="Email"
                             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
-                            <span on-tap ="enable_email()" class="color-reviewblue">Change</span>
+                            <a on-tap ="enable_email()" class="color-reviewblue">Change</a>
 
                         </label>
                       
@@ -47,7 +47,7 @@
                     <div class="padding">
                         <label class="col item item-input item-floating-label white_background_color" ng-hide="custom">
                             <span class="input-label">New Password</span>
-                            <input type="password" class="password" placeholder="New Password" ng-model="chnage_pass.new_pass" name="newPassword">
+                            <input type="password" class="password" placeholder="Enter New Password And Click Save Changes" ng-model="chnage_pass.new_pass" name="newPassword">
                         </label>
                     </div>
                 </div>
