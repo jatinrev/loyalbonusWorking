@@ -20,10 +20,22 @@
 /**
  * all margins come here
  */
+.margin-top-minus1 {
+	margin-top: -1px !important;
+}
 
 
 
+/**Border**/
+.border-TB-1 {
+	border: 1px solid #ccc;
+}
 
+
+
+.width-100 {
+	width: 100%;
+}
 
 
 /**
@@ -36,6 +48,11 @@
 .font-color-white 	{ color: #fff; }
 
 .text_shadow_black { text-shadow: 1px 1px #000; }
+
+
+.highlightThis.activated {
+	font-weight: bold;
+}
 
 
 /**restaurants.html**/
@@ -91,5 +108,18 @@
 	color:#387EF5;
 	font-weight: bold;
 }
+
+
+/****Review page***/
+#Review #logo { position: relative; }
+#Review #logo .reviews-star {
+	bottom: 2px;
+    position: absolute;
+    right: 0;
+}
+#Review .highlightThis.activated .title {
+	font-weight: bold;
+}
+
 
 

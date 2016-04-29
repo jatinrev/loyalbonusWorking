@@ -72,6 +72,7 @@ angular.module('LoyalBonus')
         ajaxCall
         .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
         .then(function(res) {
+            console.log(res);
             //console.log(res);
             $scope.datadeal = res.data.Data[0];
             //console.log($scope.datadeal);

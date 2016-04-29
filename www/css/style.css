@@ -525,7 +525,7 @@ p.stake-house
 .bar-footer {
     bottom: -45px;
     }
-#Review #logo img {
+#Review #logo .logoImage {
     width: 100%;
 }
 #Review .scroll-content {
@@ -554,15 +554,15 @@ p.stake-house
 }
 #Review .color-reviewblue
 {
-        color: #3290ed;
+    color: #3290ed;
     font-size: 16px;
     float: right;
-    margin-top: 3px;
+    margin-top: 0px;
     text-decoration: none;
 }
 #Review .border-review
 {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #ccc;
     margin: 0px;
 }
 #Review .item

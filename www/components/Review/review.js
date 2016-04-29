@@ -1,28 +1,68 @@
 angular.module('LoyalBonus')
 
-.controller('ReviewController', function ($scope, $state) {
+.factory('reviewFactory', function (ajaxCall) {
+	function printReview(businessId, pageNumber) {
+		return ajaxCall
+		.get('webapi/BusinessMaster/GetReviewsDetailByBusinessIdwithUsername?BusinessId='+businessId+'&pageIndex='+pageNumber+'&pageSize=3', {})
+		.then(function (res) {
+			return res.data.Data;
+		});
+	}	
 
-	$state.params.id == 'Review'
-		$scope.dataReview = [{
-			name: 'Customer Reviews',
-			rating : {},
-			rate : 3,
-  			max : 5
-		}];
+	return {
+		printReview : printReview
+	};
+})
 
+.controller('ReviewController', function ($scope, $state, showRating, reviewFactory, showRating) {
+	var allReviews = [];
+	var reviewPage = 0;
+	$scope.reviewVar = {
+		businessImg : function() {
+			return $state.params.businessImg;
+		},
+		businessRating : function() {
+			return +$state.params.businessRating;
+		}
+	};
 
+	$scope.reviewVar.reviews = function(number) {
+        return showRating.showRatingImages(number);
+    };
 
-	$scope.reviewVar = {};
+    $scope.reviewVar.writeReveiwShow = false;
+    $scope.reviewVar.enableReveiw = function() {
+    	$scope.reviewVar.writeReveiwShow = $scope.reviewVar.writeReveiwShow == false ? true : false;
+    };
 
-	$state.params.businessId;
-	$state.params.businessImg;
-	$state.params.businessRating;
+    $scope.stopLoading = true;
+    $scope.reviewVar.loadMore = function() {
+    	if($scope.stopLoading) {
+		    reviewFactory
+		    .printReview($state.params.businessId, reviewPage)
+		    .then(function(res) {
+		    	if(res.length > 0) {
+		    		reviewPage += 1;
+			    	for (i in res) {
+			    		allReviews.push(res[i]);
+			    	}
+			    	console.log(allReviews)
+			    } else {
+			    	$scope.stopLoading = false;
+			    }
+		    });
+		}
+	}
+	$scope.reviewVar.loadMore();
+
+    $scope.reviewVar.allReview = function() {
+    	return allReviews;
+    }
+
+	// console.log(giveRating.ratingImages(2));
+   
 
 	
-
-	console.log($state);	
-
-
 });
 
 

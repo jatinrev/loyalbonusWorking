@@ -1,38 +1,53 @@
 <div id="Review">
     <ion-view>
         <ion-content>
-            <div ng-repeat="R in dataReview">
+            <div>
                 <div id="logo">
-                    <img src="img/businesslisting.jpg">
-                    <rating-stars ng-model="rating" max="5" class="rat-star"></rating-stars>
+                    <img class="logoImage" ng-src="{{reviewVar.businessImg()}}">
+                    <div class="reviews-star" ng-bind-html=reviewVar.reviews(2)></div>
                 </div>
                 <div class="bar-balanced newloyalcheckbox">
-                    <p class="h1 title">{{ R.name }}</p>
+                    <p class="h1 title">Customer Review</p>
                 </div>
                 <div class="row border-review">
                     <div class="col50">
-                    
                         <img src="img/filledStar.png">
-                    
-
                     </div>
                     <div class="col50">
-                        <strong>4.5/ 5</strong>
-                        <span class="color-review">from 2 reviews</span>
-                        <a class="color-reviewblue" href="#">Write a review</a>
+                        <strong>{{ reviewVar.businessRating() }}/ 5</strong>
+                        <!-- <span class="color-review">from 2 reviews</span> -->
+                    </div>
+                    <div class="col"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">Write a review</a></div>
+                </div>
+                
+                <div class="row border-TB-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow">
+                    <div class="list width-100">
+                      <label class="item item-input item-stacked-label">
+                        <span class="input-label">First Name</span>
+                        <p>stars</p>
+                      </label>
+                      <label class="item item-input item-stacked-label">
+                        <span class="input-label">Pros</span>
+                        <input type="text" placeholder="Pros">
+                      </label>
+                      <label class="item item-input item-stacked-label">
+                        <span class="input-label">Cons</span>
+                        <input type="text" placeholder="Cons">
+                      </label>
                     </div>
                 </div>
-                <div class="item">
+
+                <div class="item" ng-repeat="(key, value) in reviewVar.allReview()">
                     <img src="img/star.png">
-                    <p class="color-reviewgrey col">By Kody Bui on Feb 12, 2016</p>
+                    <p class="color-reviewgrey col">By {{ value.FullName }} on Feb 12, 2016</p>
 					<span class="h1 title">Pros</span>
-                    <p class="color-reviewgrey col">This place is awesome. I would recommend this to all my freinds. Staff are super nice</p>
+                    <p class="color-reviewgrey col">{{ value.Pros }}</p>
                     <span class="h1 title">Cons</span>
-                    <p class="color-reviewgrey col">Nothing bad really!</p>
+                    <p class="color-reviewgrey col">{{ value.Cons }}</p>
                 </div>
 
-                <div class="bar bar-footer bar-positive">
-                    <div class="title">SCAN NOW</div>
+                <div class="bar bar-footer bar-light highlightThis" ng-click="reviewVar.loadMore()">
+                    <div class="title">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
                 </div>
             </div>
         </ion-content>
