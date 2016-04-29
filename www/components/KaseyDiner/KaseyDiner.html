@@ -50,8 +50,8 @@
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
 
-
-            <div id='map-canvas' class="row"></div>
+            
+            <div id='map-canvas' class="row ">{{ newScope.Lat == undefined ? 'Null' : newScope.Lat }}</div>
             <div class="icon_kasy">
                 <img class="icon_kasy" src="img/iconnumber.png">
                 <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
