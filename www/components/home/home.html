@@ -44,8 +44,17 @@
                 <h1 class="title">
                     <span ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white"></i></span>
                 </h1>
-                <button class="button button-icon {{ home_var.magnifyOrBack() == 'RestaurantController' ? 'ion-search' : 'ion-arrow-left-c' }}"
-                ng-click="home_var.magnifyOrBack() == 'RestaurantController' ? goSearchHandler() : goBackHandler()"></button>
+                <button class="button button-icon 
+                    {{ home_var.magnifyOrBack() == 'RestaurantController' || 
+                       home_var.magnifyOrBack() == 'BusinessController' ? 
+                       'ion-search' : 'ion-arrow-left-c' 
+                    }}"
+                    ng-click="
+                    home_var.magnifyOrBack() == 'RestaurantController' ||
+                    home_var.magnifyOrBack() == 'BusinessController' ? 
+                    goSearchHandler() : goBackHandler()
+                    ">
+                </button>
             </div>
         </ion-header-bar>
         <div ui-view="body"></div>
