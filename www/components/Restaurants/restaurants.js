@@ -13,6 +13,7 @@ angular.module('LoyalBonus', '')
             loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex='+pageIndex[businessId]+'&pageSize=5&CatId='+businessId+'&SubCatId=&locId=&Keyword=&currlocationlatlong='+lat+','+long, {})
             .then(function(response) {
+                console.log(response);
                 if( response.data.Data.length > 0 ) { //records are present so add pageIndex.
                     pageIndex[businessId]+= 1;
                 }
