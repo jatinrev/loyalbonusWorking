@@ -63,6 +63,8 @@ angular.module('LoyalBonus')
 
         $scope.datadeal = {};
 
+        $scope.newScope = {};
+
         $scope.helperFunction = {};
 
 
@@ -70,9 +72,9 @@ angular.module('LoyalBonus')
         ajaxCall
         .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
         .then(function(res) {
-            console.log(res);
+            //console.log(res);
             $scope.datadeal = res.data.Data[0];
-            console.log($scope.datadeal);
+            //console.log($scope.datadeal);
         }).then(function(res) {
             function initialize() {
                 var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
@@ -84,8 +86,14 @@ angular.module('LoyalBonus')
                 $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
                     var marker = new google.maps.Marker({
                     position: myLatlng,
-                    map: $scope.map,
+                    map: $scope.map
                 });
+                    if (typeof($scope.datadeal.Lat =='undefined') || typeof($scope.datadeal.Lng == 'undefined'))
+                    {
+
+                        newScope = (($scope.datadeal.Lat),($scope.datadeal.Lng));
+                        //console.log(newScope); 
+                    }
             }
 
             initialize();

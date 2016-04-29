@@ -538,31 +538,32 @@ p.stake-house
 #Review strong
 {
        color: #000;
-    font-size: 37px;
-    margin-top: 17px;
+    font-size: 23px;
+    margin-left: 3px;
     float: left;
+    margin-top: 2px;
 }
 #Review .color-review
 {
-    color: #868686;
-    font-size: 22px;
+   color: #868686;
+    font-size: 18px;
     padding-right: 11px;
-    padding-left: 15px;
+    padding-left: 8px;
     float: left;
-    margin-top: 22px;
+    margin-top: 2px;
 }
 #Review .color-reviewblue
 {
-    color: #3290ed;
-    font-size: 24px;
-    float: left;
-    margin-top: 21px;
+        color: #3290ed;
+    font-size: 16px;
+    float: right;
+    margin-top: 3px;
     text-decoration: none;
 }
 #Review .border-review
 {
     border-bottom: 1px solid #000000;
-    margin: 10px;
+    margin: 0px;
 }
 #Review .item
 {
@@ -574,10 +575,10 @@ p.stake-house
 }
 #Review .color-reviewgrey
 {
-        color: #868686;
+       color: #868686;
     text-decoration: none;
-    font-size: 21px;
-    padding-left: 13px;
+    font-size: 16px;
+    padding-left: 0px;
     padding-bottom: 15px;
 }
 .padding-Milestones
@@ -1173,4 +1174,16 @@ span.icon_kasy_newsec
     color: #63615a;
     font-size: 20px;
     border: 1px solid #cdcdcd;
+}
+/* #Review .rat-star {
+    color: #ffb06b;
+    position: absolute;
+    bottom: 18px;
+    right: 0px;
+} */
+#Review .rat-star {
+    color: #ffb06b;
+    position: absolute;
+    top: 26%;
+    right: 0px;
 }
