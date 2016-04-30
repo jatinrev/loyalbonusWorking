@@ -332,10 +332,29 @@ angular.module('LoyalBonus.services',[])
             str += '<img class="emptyStart" src="img/emptyStart.png"/>';
         }
         return str;
-	}	
+	}
+
+	function showRatingJson(number) {
+		var starsArr = [];
+		for( var i = 1; i < 6; i++ ) {
+			if( i > 0 && i <= number) {
+				starsArr.push({ 
+					class : 'filledStart',
+					src   : 'img/filledStar.png'
+				});
+			} else {
+				starsArr.push({ 
+					class : 'emptyStart',
+					src   : 'img/emptyStart.png'
+				});
+			}
+		}
+		return starsArr;
+	}
 
 	return {
-		showRatingImages : showRatingImages
+		showRatingImages : showRatingImages,
+		showRatingJson   : showRatingJson
 	};
 });
 
