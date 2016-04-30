@@ -218,10 +218,12 @@ angular.module('LoyalBonus.services',[])
 	var previous_page = [];
 	var array_key	  = '';
 	$rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
+		console.log('from and to are same.');
+		console.log(fromParams);
+		console.log(toParams);
+		console.log(previous_page);
 		if( typeof(fromState.name) != 'undefined' && typeof(toState.name) != 'undefined' && fromState.name == toState.name ) {
-			/*console.log('from and to are same.');
-			console.log(fromParams);
-			console.log(toParams);
+			/*
 			if(Object.is(fromParams, toParams)) {
 				console.log('object is same');
 			}
