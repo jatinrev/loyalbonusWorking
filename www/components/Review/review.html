@@ -20,24 +20,32 @@
                     <div class="col"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">Write a review</a></div>
                 </div>
                 
-                <div class="row border-TB-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow">
+                <div class="row border-bottom-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow">
                     <div class="list width-100">
+                      <label class="item item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
+                        <p></p>
+                      </label>
                       <label class="item item-input item-stacked-label">
-                        <span class="input-label">First Name</span>
-                        <p>stars</p>
+                        <span class="input-label">Rating</span>
+                        <p>
+                            <img ng-repeat="(key, value) in reviewVar.starsArr" class="{{ value.class }}" on-tap="reviewVar.giveRating(+key + 1)" ng-src="{{ value.src }}"/>
+                        </p>
                       </label>
                       <label class="item item-input item-stacked-label">
                         <span class="input-label">Pros</span>
-                        <input type="text" placeholder="Pros">
+                        <input type="text" placeholder="Pros" ng-model="reviewVar.pros">
                       </label>
                       <label class="item item-input item-stacked-label">
                         <span class="input-label">Cons</span>
-                        <input type="text" placeholder="Cons">
+                        <input type="text" placeholder="Cons" ng-model="reviewVar.cons">
+                      </label>
+                      <label class="item item-input item-stacked-label padding-top-8">
+                        <button class="button button-positive" ng-click="reviewVar.giveFeedback()">Submit</button>
                       </label>
                     </div>
                 </div>
 
-                <div class="item" ng-repeat="(key, value) in reviewVar.allReview()">
+                <div class="item border-bottom-1" ng-repeat="(key, value) in reviewVar.allReview()">
                     <img src="img/star.png">
                     <p class="color-reviewgrey col">By {{ value.FullName }} on Feb 12, 2016</p>
 					<span class="h1 title">Pros</span>
@@ -46,7 +54,7 @@
                     <p class="color-reviewgrey col">{{ value.Cons }}</p>
                 </div>
 
-                <div class="bar bar-footer bar-light highlightThis" ng-click="reviewVar.loadMore()">
+                <div class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
                     <div class="title">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
                 </div>
             </div>
