@@ -70,6 +70,17 @@ angular.module('LoyalBonus')
             });
         };
 
+         $scope.toggleItem= function(item) {
+    if ($scope.isItemShown(item)) {
+      $scope.shownItem = null;
+    } else {
+      $scope.shownItem = item;
+    }
+  };
+  $scope.isItemShown = function(item) {
+    return $scope.shownItem === item;
+  };
+
 
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
