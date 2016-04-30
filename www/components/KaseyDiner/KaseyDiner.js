@@ -31,8 +31,9 @@ angular.module('LoyalBonus')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
+                /*template:'',*/
+                title: '<i class="icon-gift"></i>Bonus',
 
-                title: 'Bonus',
                 subTitle: 'Gift Box',
                 scope: $scope,
                 buttons: [
@@ -63,7 +64,7 @@ angular.module('LoyalBonus')
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({
 
-                template: 'Visit 10 times to receive Bonus.'
+                title: 'Visit 10 times to receive Bonus.'
             });
             alertPopup.then(function (res) {
                 console.log('Thank you for not eating my delicious ice cream cone');

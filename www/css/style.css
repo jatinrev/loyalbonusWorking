@@ -312,9 +312,18 @@ p.stake-house
 #kaseydiner .scroll-content
 {
     top:44px;
+
 }
 #kaseydiner .title {
     top: 0px;
+    text-align: center;
+
+}
+#kaseydiner .popup-body > span
+{
+    text-align: center;
+    width: 100%;
+    display: inline-block;
 }
 .button.button-clear.icon.ion-navicon-round:before 
 {
@@ -1019,13 +1028,45 @@ font-size: 20px;
 }
 #kaseydiner .bar-footer
 {
-       /* position: relative; */
-       position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+    display: flex;
+       /* position: relative; */  
+
+      /*  position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0; */
 
 }
+
+.footer-bar-custom {
+    /* background: #455D87; */
+    color: #F6F7F0;
+    height: 44px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 5
+}
+
+    .footer-bar-custom .item-left,
+    .footer-bar-custom .item-center,
+    .footer-bar-custom .item-right {
+        position: absolute;
+        width: 30px
+    }
+
+    .footer-bar-custom .item-left { left: 10px }
+
+    .footer-bar-custom .item-center {
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%)
+    }
+
+    .footer-bar-custom .item-right { right: 10px }
 #ResetPassword .loyal-kaseydiner {
     color: #fff;
     font-size: 30px;

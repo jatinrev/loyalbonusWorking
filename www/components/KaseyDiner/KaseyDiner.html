@@ -1,7 +1,7 @@
 <div id="kaseydiner">
     <ion-view>
-        <ion-content scroll="false">
-        <ion-scroll scroll-height>
+        <ion-content>
+        
 
             <div id="logo">
 
@@ -36,7 +36,7 @@
                         </ion-item>
                         <ion-item class="wth-border border-bottom" ng-click="showPopup()"><i class="icon-gift"></i>Bonus Discount:{{ datadeal.BonusDiscount }} OFF</ion-item>
                         <ion-item class="wth-border" ng-click="showAlert()">Visit 10 times to receive Bonus.</ion-item>
-                        <ion-list>
+                    </ion-list>
                 </div>
             </div>
 
@@ -62,12 +62,15 @@
                 <img class="icon_kasy" src="img/iconnumber.png">
                 <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
             </div>
-            </ion-scroll>
 
-            <footer class="bar bar-footer bar-positive">
-                <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
+            
+            <!-- <footer class="bar bar-footer bar-positive"> -->
+                <!-- <div class="title" on-tap="scanBarcode()">SCAN NOW</div> -->
                 <!-- <button class="title" ng-click="scanBarcode()">SCAN NOW</button> -->
-            </footer>
+            <!-- </footer> -->
         </ion-content>
+            <ion-footer-bar class="footer-bar-custom bar-positive">
+                 <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
+            </ion-footer-bar>   
     </ion-view>
 </div>
