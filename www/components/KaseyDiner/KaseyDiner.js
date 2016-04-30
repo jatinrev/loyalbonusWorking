@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-    .factory('businessVisit', function (ajaxCall) {
+    .factory('businessVisit', function(ajaxCall) {
 
         /**
          *  businessUid is qrCode
@@ -10,7 +10,7 @@ angular.module('LoyalBonus')
                 .post('webapi/BusinessMaster/CreateBusinessQR',
                 { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
                 )
-                .then(function (response) {
+                .then(function(response) {
                     console.log(reponse);
                 });
         }
@@ -19,14 +19,14 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData, $rootScope, $ionicPopup, $timeout) {
-        $scope.state_on = function () {
+    .controller('KaseyDinerController', function($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData, $ionicPopup, $timeout) {
+        $scope.state_on = function() {
             return $state.params.id;
         };
 
 
-        $scope.showPopup = function () {
+         $scope.showPopup = function () {
             $scope.data = {}
 
             // An elaborate, custom popup
@@ -71,16 +71,13 @@ angular.module('LoyalBonus')
         };
 
 
-
-
-
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
             $state.go("home.map", { businessDetailId: businessDetailId });
         }
 
 
-        function mydummyJson(input) {
+        function mydummyJson (input) {
             var output = [];
             for (var i = 0; i < input; i++) {
                 output.push(i)
@@ -98,7 +95,7 @@ angular.module('LoyalBonus')
         }
 
         $scope.myloyalbonus.printGift = function (input) {
-            if (+input == 10) {
+            if(+input == 10) {
                 return mydummyJson(0);
             } else {
                 return mydummyJson(1);
@@ -118,75 +115,57 @@ angular.module('LoyalBonus')
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
-            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=259', {})
-            .then(function (res) {
-                //console.log(res);
-                $scope.datadeal = res.data.Data[0];
-                //console.log($scope.datadeal);
-            }).then(function (res) {
-                function initialize() {
-                    var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
-                    var mapOptions = {
-                        center: myLatlng,
-                        zoom: 20
-
-                    };
-                    $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
+        .then(function(res) {
+            console.log(res);
+            //console.log(res);
+            $scope.datadeal = res.data.Data[0];
+            //console.log($scope.datadeal);
+        }).then(function(res) {
+            function initialize() {
+                var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
+                var mapOptions = {
+                    center: myLatlng,
+                    zoom: 20
+                    
+                };
+                $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
                     var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: $scope.map
-                    });
+                    position: myLatlng,
+                    map: $scope.map
+                });
+                    if (typeof($scope.datadeal.Lat =='undefined') || typeof($scope.datadeal.Lng == 'undefined'))
+                    {
 
-                    if (typeof ($scope.datadeal.Lat == 'undefined') || typeof ($scope.datadeal.Lng == 'undefined')) {
-                        newScope = (($scope.datadeal.Lat), ($scope.datadeal.Lng));
-                        $rootScope.showMe = false;
-
+                        newScope = (($scope.datadeal.Lat),($scope.datadeal.Lng));
                         //console.log(newScope); 
                     }
+            }
+
+            initialize();
+
+           /* $scope.centerOnMe = function() {
+                if (!$scope.map) {
+                    return;
                 }
+                $scope.loading = $ionicLoading.show({
+                    content: 'Getting current location...',
+                    showBackdrop: false
+                });
 
-                initialize();
+                navigator.geolocation.getCurrentPosition(function(pos) {
 
-                /* $scope.centerOnMe = function() {
-                     if (!$scope.map) {
-                         return;
-                     }
-                     $scope.loading = $ionicLoading.show({
-                         content: 'Getting current location...',
-                         showBackdrop: false
-                     });
-     
-                     navigator.geolocation.getCurrentPosition(function(pos) {
-     
-                         $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                         //console.log($scope.new_location);
-                         $scope.loading.hide();
-                     }, function(error) {
-                         alert('Unable to get location: ' + error.message);
-                     });
-                 };*/
+                    $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                    //console.log($scope.new_location);
+                    $scope.loading.hide();
+                }, function(error) {
+                    alert('Unable to get location: ' + error.message);
+                });
+            };*/
+        });
 
 
-                $scope.toggleItem = function (item) {
-                    console.log(item);
-                    if ($scope.isItemShown(item)) {
-
-                        $scope.shownItem = null;
-                    } else {
-                        $scope.shownItem = item;
-                    }
-                };
-                $scope.isItemShown = function (item) {
-                    return $scope.shownItem === item;
-                };
-
-            });
-
-
-
-
-
-        $scope.helperFunction.reviews = function (number) {
+        $scope.helperFunction.reviews = function(number) {
             //console.log(typeof(number));
             var str = '';
             for (var i = 1; i <= number; i++) {
@@ -199,42 +178,26 @@ angular.module('LoyalBonus')
             return str;
         }
 
-        $scope.helperFunction.write_review = function (businessId, businessImage, BusinessStars) {
+        $scope.helperFunction.write_review = function(businessId, businessImage, BusinessStars) {
             // BusinessStars can be null also(when user have not given any rating)
-            $state.go("home.review", { businessId: businessId, businessImg: businessImage, businessRating: BusinessStars });
+            $state.go("home.review", { businessId: businessId, businessImg : businessImage, businessRating : BusinessStars });
         };
 
         /**** End : rating service ****/
 
-        $scope.openFromLeft = function () {
-            $mdDialog.show(
-                $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Opening from the left')
-                    .textContent('Closing to the right!')
-                    .ariaLabel('Left to right demo')
-                    .ok('Nice!')
-                    // You can specify either sting with query selector
-                    .openFrom('#left')
-                    // or an element
-                    .closeTo(angular.element(document.querySelector('#right')))
-            );
-        };
-
-
         /*** Start : scanBarcode ***/
-        $ionicPlatform.ready(function () {
-            $scope.scanBarcode = function () {
+        $ionicPlatform.ready(function() {
+            $scope.scanBarcode = function() {
                 $cordovaBarcodeScanner
                     .scan()
-                    .then(function (imageData) {
+                    .then(function(imageData) {
                         return imageData.text;
                         console.log("Barcode Format -> " + imageData.format);
                         console.log("Cancelled -> " + imageData.cancelled);
-                    }, function (error) {
+                    }, function(error) {
                         console.log("An error happened -> " + error);
                     })
-                    .then(function (qrCode) {
+                    .then(function(qrCode) {
 
                         businessVisit.give_visit('215', qrCode, $scope.datadeal.BusinessID);
                         return 0;
