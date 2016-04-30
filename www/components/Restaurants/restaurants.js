@@ -29,6 +29,7 @@ angular.module('LoyalBonus', '')
 
         return {
             search: function(keyword, lat, long, catId) {
+                loading.start();
                 var heading = []
                 ,data = {};
                	return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex='+searchPageIndex[catId]+'&pageSize=5&CatId='+catId+'&SubCatId=&locId=&Keyword='+keyword+'&currlocationlatlong='+lat+','+long, {})
@@ -40,6 +41,7 @@ angular.module('LoyalBonus', '')
                         for (i in response.data.Data) {
                             searchData[catId].push(response.data.Data[i]);
                         }
+                        loading.stop();
                         return searchData;
                     });
             },
@@ -98,10 +100,7 @@ angular.module('LoyalBonus', '')
         $scope.positions      = {};
         $scope.heading        = [];
         $scope.loadmoreNgShow = false;
-
         /**/
-
-        
 
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);

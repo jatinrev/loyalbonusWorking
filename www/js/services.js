@@ -247,7 +247,7 @@ angular.module('LoyalBonus.services',[])
 			var back = previous_page.slice(-1)[0];
 			/*console.log(previous_page);*/
 			previous_page.pop();
-			previous_page.pop();
+			// previous_page.pop();
 			/*console.log(previous_page);*/
 			$state.go( back.fromState, back.fromParams );
 		}
