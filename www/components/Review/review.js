@@ -20,8 +20,9 @@ angular.module('LoyalBonus')
 			   }
 		)
 		.then(function(prosConsResult) {
+			//http://beta2.loyalbonus.com/webapi/BusinessMaster/BusinessGiveStar
 			return ajaxCall
-			.post('webapi/BusinessMaster/BusinessGiveHeartStar',
+			.post('webapi/BusinessMaster/BusinessGiveStar',
 				  {
 				  	UserId 		: userId, 
 				  	BusinessId  : businessId,
@@ -123,6 +124,7 @@ angular.module('LoyalBonus')
 					 ,$rootScope.userDetails.userId
 		)
 		.then(function(res) {
+			
 			$scope.reviewVar.ratingMsg = true;
 			$scope.stopLoading = true;
 			$scope.reviewVar.loadMore();

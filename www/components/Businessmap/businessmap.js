@@ -22,8 +22,6 @@ var app = angular.module('LoyalBonus')
 
 
         return {
-
-
             search: function (keyword) {
                 var heading = [],
                     data = {};
@@ -60,10 +58,6 @@ var app = angular.module('LoyalBonus')
                         // console.log(data);
                         return data;
                     });
-
-
-
-
             }
         };
     })
@@ -75,21 +69,7 @@ var app = angular.module('LoyalBonus')
         $scope.fetchData = [];
         var data;
         var infoWindow = new google.maps.InfoWindow();
-        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {}).
-            success(function (fetch) {
-                console.log(fetch);
-                $scope.fetchData = fetch.Data;
-                console.log($scope.fetchData);
-                
-                
-        var mapOptions = {
-            center: new google.maps.LatLng(9.0820, 8.6753),
-            zoom: 4,
-            disableDefaultUI: true
-        }
-        $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-                createMarker($scope.fetchData);
-            });
+
 
         var createMarker = function (data) {
             for (var h = 0; h < data.length; h++) {
@@ -129,6 +109,23 @@ var app = angular.module('LoyalBonus')
             };
             
         };
+
+
+        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
+        .then(function (fetch) {
+            console.log(fetch);
+            $scope.fetchData = fetch.Data;
+                    
+            var mapOptions = {
+                center: new google.maps.LatLng(9.0820, 8.6753),
+                zoom: 4,
+                disableDefaultUI: true
+            }
+            $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+            createMarker($scope.fetchData);
+        });
+
+        /*
         function getBusinessPaging($scope, businessId) {
             $scope.businessId = 0;
             $scope.pageSize = 10;
@@ -148,7 +145,7 @@ var app = angular.module('LoyalBonus')
                 start = +start; //parse to int
                 return input.slice(start);
             }
-        });
+        });*/
 
 
 
