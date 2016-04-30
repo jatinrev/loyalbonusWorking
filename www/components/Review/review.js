@@ -70,12 +70,12 @@ angular.module('LoyalBonus')
 		    reviewFactory
 		    .printReview($state.params.businessId, reviewPage)
 		    .then(function(res) {
+		    	console.log(res);
 		    	if(res.length > 0) {
 		    		reviewPage += 1;
 			    	for (i in res) {
 			    		allReviews.push(res[i]);
 			    	}
-			    	console.log(allReviews)
 			    } else {
 			    	$scope.stopLoading = false;
 			    }
@@ -129,6 +129,18 @@ angular.module('LoyalBonus')
 		});
 	}
 	
+	$scope.reviewVar.giveDataFormat = function (date) {
+		if( typeof(data) == 'undefined' ) {
+			return '';
+		}
+		var monthNames = new Array("January", "February", "March", 
+								   "April", "May", "June", "July", "August", "September", 
+								   "October", "November", "December");
+
+		var data = new Date(date);
+		return monthNames[data.getMonth()] +' '+ data.getDate() +', '+ data.getFullYear() +' '+ data.getHours() +':'+ data.getMinutes() +':'+ data.getSeconds();
+	};
+
 });
 
 

@@ -217,18 +217,16 @@ angular.module('LoyalBonus.services',[])
 .factory('backFunctionality', function ($rootScope, $state) {
 	var previous_page = [];
 	var array_key	  = '';
+	var setDontSave   = 0;  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
 	$rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
-		console.log('from and to are same.');
-		console.log(fromParams);
-		console.log(toParams);
-		console.log(previous_page);
-		/**/
 		if( typeof(fromState.name) != 'undefined' && typeof(toState.name) != 'undefined' && fromState.name == toState.name ) {
 			/*
 			if(Object.is(fromParams, toParams)) {
 				console.log('object is same');
 			}
 			console.log('from and to are same.');*/
+		} else if( setDontSave == 1 ) {
+			setDontSave = 0;
 		} else if( typeof(fromState.name) != 'undefined' && fromState.name != '' ) {
 			previous_page.push({
 				fromState  : fromState.name,
@@ -243,12 +241,9 @@ angular.module('LoyalBonus.services',[])
 
 	return {
 		one_step_back : function () {
-			/*console.log('enter the dragon.');*/
+			setDontSave = 1
 			var back = previous_page.slice(-1)[0];
-			/*console.log(previous_page);*/
 			previous_page.pop();
-			// previous_page.pop();
-			/*console.log(previous_page);*/
 			$state.go( back.fromState, back.fromParams );
 		}
 	};
