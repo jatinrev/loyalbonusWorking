@@ -1,6 +1,6 @@
 angular.module('LoyalBonus.directives',[])
 
-.directive('map', function() {
+/*.directive('map', function() {
   return {
     restrict: 'E',
     scope: {
@@ -31,4 +31,23 @@ angular.module('LoyalBonus.directives',[])
       }
     }
   }
-});
+});*/
+.directive('scrollHeight', function($window) {
+  return {
+    link: function(scope, element, attrs) {
+      scope.onResize = function() {
+        var winHeight = $window.innerHeight;
+        var form = angular.element(document.querySelector('.bar-footer'))[0];
+        var formHeight = form.scrollHeight;
+        var scrollHeight = winHeight - formHeight;
+
+        element.css("height", scrollHeight + "px");
+      }
+      scope.onResize();
+
+      angular.element($window).bind('resize', function() {
+        scope.onResize();
+      })
+    }
+  }
+})

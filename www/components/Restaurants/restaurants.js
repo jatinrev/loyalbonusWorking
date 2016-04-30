@@ -101,6 +101,8 @@ angular.module('LoyalBonus', '')
 
         /**/
 
+        
+
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
             $state.go("home.map", { businessDetailId: businessDetailId });

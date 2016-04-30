@@ -27,7 +27,7 @@ var app = angular.module('LoyalBonus')
             search: function (keyword) {
                 var heading = [],
                     data = {};
-                return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=' + keyword, {})
+                return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=' + pageIndex[businessId] + '&pageSize=10&keyword=' + keyword, {})
                     .then(function (response) {
                         console.log(response);
                         for (i in response.data.Data) {
@@ -71,47 +71,32 @@ var app = angular.module('LoyalBonus')
     .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map) {
         $scope.businessmap = {};
         active_controller.set('BusinessController');
-
-        var mapOptions = {
-            zoom: 4,
-            center: new google.maps.LatLng(9.0820, 8.6753),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
         $scope.markers = [];
         $scope.fetchData = [];
         var data;
         var infoWindow = new google.maps.InfoWindow();
         ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {}).
             success(function (fetch) {
-                //console.log(fetch);
+                console.log(fetch);
                 $scope.fetchData = fetch.Data;
-                //console.log($scope.fetchData);
-
-                /* console.log($scope.fetchData.length);
-                 for(var i=0; i< $scope.fetchData.length; i++) {
-                     data = $scope.fetchData[i];
-                 }*/
+                console.log($scope.fetchData);
+                
+                
+        var mapOptions = {
+            center: new google.maps.LatLng(9.0820, 8.6753),
+            zoom: 4,
+            disableDefaultUI: true
+        }
+        $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
                 createMarker($scope.fetchData);
-
-
             });
 
         var createMarker = function (data) {
-
-            //console.log('data');
-            //console.log(data);
             for (var h = 0; h < data.length; h++) {
-                //$scope.newScope = ([data[h].ID, data[h].Lat, data[h].Lng, data[h].Name]);
-                // if($scope.newScope != data[h].Lat && data[h].Lng)
-                // {
-                //   console.log($scope.newScope);
-                // }
                 var marker = new google.maps.Marker({
                     map: $scope.map,
                     position: new google.maps.LatLng(data[h].Lat, data[h].Lng),
                     title: data[h].Name
-
                 });
                 marker.content = '<div class="infoWindowContent">' + data[h].Name + '</div>';
                 console.log(marker.content);
@@ -127,8 +112,7 @@ var app = angular.module('LoyalBonus')
 
 
             $scope.businessmap.search = function (keyword) {
-                /*loading.start();
-                loading.stop();*/
+               
 
                 if (typeof (keyword) != "undefined" && keyword.length > 0) {
                     $rootScope.showMe = false;
@@ -143,7 +127,7 @@ var app = angular.module('LoyalBonus')
                 }
 
             };
-            //$scope.businessmap.search(keyword);
+            
         };
         function getBusinessPaging($scope, businessId) {
             $scope.businessId = 0;
@@ -152,8 +136,8 @@ var app = angular.module('LoyalBonus')
             $scope.numberOfPages = function () {
                 return Math.ceil($scope.data.length / $scope.pageSize);
             }
-            for (var i = 0; i < 45; i++) {
-                $scope.data.push("Item " + i);
+            for (var ii = 0; ii < 45; ii++) {
+                $scope.data.push("Item " + ii);
             }
         }
 

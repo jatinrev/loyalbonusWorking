@@ -1,8 +1,20 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-        <ul rn-carousel class="tabs">
+        <ul rn-carousel class="tabs ">
+       <!--  <a href="#" class="control_next">></a>
+              <a href="#" class="control_prev"><</a> -->
+        
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+        <!-- <div class="slider">
+        
+        </div> -->
+
         </ul>
+            <div class="rn-carousel-controls ng-scope">
+  <!-- ngIf: carouselIndex > 0 || false --><span class="rn-carousel-control rn-carousel-control-prev ng-scope" ng-click="prevSlide()" ng-if="carouselIndex > 0 || false"></span><!-- end ngIf: carouselIndex > 0 || false -->
+  <!-- ngIf: carouselIndex < slides.length - 1 || false --><span class="rn-carousel-control rn-carousel-control-next ng-scope" ng-click="nextSlide()" ng-if="carouselIndex < slides.length - 1 || false"></span><!-- end ngIf: carouselIndex < slides.length - 1 || false -->
+</div>
+
     </div>
     <ion-view>
 
@@ -35,7 +47,7 @@
                         <ion-list>
                             <ion-item class="wth-border">{{ d.add1 == null ? 'Data not available' : d.add1 }}</ion-item>
                             <ion-item class="wth-border">{{ d.add2 == null ? 'Data not available' : d.add2 }}</ion-item>
-                            <ion-item class="wth-border">{{ d.ContactPhone }}</ion-item>
+                            <ion-item class="wth-border"><i class ="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
                             <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item>
                         </ion-list>
                     </div>

@@ -403,7 +403,7 @@ p.stake-house
     padding-top: 2px;
     color: #4e4e4e;
     line-height: 29px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     font-size: 21px;
         text-align: justify;
 }
@@ -1019,7 +1019,11 @@ font-size: 20px;
 }
 #kaseydiner .bar-footer
 {
-       position: relative;
+       /* position: relative; */
+       position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
 }
 #ResetPassword .loyal-kaseydiner {
@@ -1079,7 +1083,7 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
     border-bottom: 1px solid #fff;
 } */
 
-#restaurants ul[rn-carousel] {     overflow-x: scroll; } #restaurants .tab-
+#restaurants ul[rn-carousel] {     overflow: scroll; } #restaurants .tab-
 item {          font-weight: 200;          /* max-width: 118px; */
 font-size: 15px;              overflow: hidden;     max-width:123px;     text-
 overflow: ellipsis;     white-space: nowrap; } #restaurants ul[rn-carousel] li
@@ -1186,4 +1190,108 @@ span.icon_kasy_newsec
     position: absolute;
     top: 26%;
     right: 0px;
+}
+.newrow
+{
+    font-size: 20px;
+    margin: 10px 15px;
+}
+#kaseydiner .loyal-kaseydiner {
+    color: #63615a;
+    font-size: 17px;
+    padding: 5px;
+    margin-top: 15px;
+
+    float: left;
+}
+
+a.control_prev  {
+    position: absolute;
+    left: 2%;
+        top: -3%;
+    padding: 0px 0%;
+    width: 23px;
+    height: 27px;
+    /* background: #2a2a2a; */
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 27px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+a.control_next
+{
+    position: absolute;
+    right: 7%;
+        top: -3%;
+    padding: 0px 0%;
+    width: 23px;
+    height: 27px;
+    /* background: #2a2a2a; */
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 27px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.slider {
+    
+        visibility: visible;
+    
+}
+.ion-ios-telephone
+{
+        font-size: 20px;
+    position: relative;
+    top: 4px;
+    left: -1px;
+}
+
+.item-expand {
+  position: relative;
+  width: 100%;
+  max-height: 60px;
+  transition: max-height 0.1s ease-out;
+  overflow: hidden;
+}
+
+.item-expand.inactive:after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 15px;
+  width: 100%;
+  display: block;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, rgba(255, 255, 255, 0)),
+    color-stop(1, rgba(255, 255, 255, 1))
+  );
+  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.item-expand.active {
+  max-height: 200px;
+  transition: max-height 0.3s ease-out;
+}
+
+
+/* DEMO */
+.item-expand-footer {
+  color: red;
+  margin-top: 10px;
+      padding-left: 8px;
+}
+
+.item-expand-footer i {
+  margin-right: 10px;
 }
