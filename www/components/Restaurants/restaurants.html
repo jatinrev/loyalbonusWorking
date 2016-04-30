@@ -1,19 +1,19 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
         <ul rn-carousel class="tabs ">
+        
+    
        <!--  <a href="#" class="control_next">></a>
               <a href="#" class="control_prev"><</a> -->
-        
-            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+            
+            <li ng-repeat="(key, value) in heading" animation="slide-left-right" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+            
         <!-- <div class="slider">
         
         </div> -->
 
+        
         </ul>
-            <div class="rn-carousel-controls ng-scope">
-  <!-- ngIf: carouselIndex > 0 || false --><span class="rn-carousel-control rn-carousel-control-prev ng-scope" ng-click="prevSlide()" ng-if="carouselIndex > 0 || false"></span><!-- end ngIf: carouselIndex > 0 || false -->
-  <!-- ngIf: carouselIndex < slides.length - 1 || false --><span class="rn-carousel-control rn-carousel-control-next ng-scope" ng-click="nextSlide()" ng-if="carouselIndex < slides.length - 1 || false"></span><!-- end ngIf: carouselIndex < slides.length - 1 || false -->
-</div>
 
     </div>
     <ion-view>
