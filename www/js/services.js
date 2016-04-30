@@ -222,6 +222,7 @@ angular.module('LoyalBonus.services',[])
 		console.log(fromParams);
 		console.log(toParams);
 		console.log(previous_page);
+		/**/
 		if( typeof(fromState.name) != 'undefined' && typeof(toState.name) != 'undefined' && fromState.name == toState.name ) {
 			/*
 			if(Object.is(fromParams, toParams)) {
