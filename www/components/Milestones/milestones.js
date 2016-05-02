@@ -1,13 +1,13 @@
 angular.module('LoyalBonus')
 
-.controller('MileStoneController', function ($scope, $state, ajaxCall) {
+.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope) {
 	
 	$scope.myloyalbonus = {};
 
 	$scope.myloyalbonus.print = [];
 
 	ajaxCall
-	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId=12', {})
+	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
 		$scope.myloyalbonus.print = res.data.Data;
 		console.log($scope.myloyalbonus.print);

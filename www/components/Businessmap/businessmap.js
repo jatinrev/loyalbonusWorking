@@ -62,68 +62,50 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map) {
-        $scope.businessmap = {};
+    .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval) {
         active_controller.set('BusinessController');
-        $scope.markers = [];
-        $scope.fetchData = [];
-        var data;
-        var infoWindow = new google.maps.InfoWindow();
 
-
-        var createMarker = function (data) {
-            for (var h = 0; h < data.length; h++) {
-                var marker = new google.maps.Marker({
-                    map: $scope.map,
-                    position: new google.maps.LatLng(data[h].Lat, data[h].Lng),
-                    title: data[h].Name
-                });
-                marker.content = '<div class="infoWindowContent">' + data[h].Name + '</div>';
-                console.log(marker.content);
-
-                google.maps.event.addListener(marker, 'click', function () {
-                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
-                    infoWindow.open($scope.map, marker);
-                });
-
-                $scope.markers.push(marker);
-
-            }
-
-
-            $scope.businessmap.search = function (keyword) {
-               
-
-                if (typeof (keyword) != "undefined" && keyword.length > 0) {
-                    $rootScope.showMe = false;
-
-                    get_business_data_map
-                        .search(keyword)
-                        .then(function (response) {
-                            restaurantData = response[+$state.params.vertical];
-                        });
-                } else {
-                    console.log('keyword empty');
-                }
-
+        
+        var bc = this;
+        bc.positions = [
+            [54.779951, 9.334164], [47.209613, 15.991539],
+            [51.975343, 7.596731], [51.97539, 7.596962], 
+            [47.414847, 8.23485], [47.658028, 9.159596],
+            [47.525927, 7.68761], [50.85558, 9.704403],
+            [54.320664, 10.285977], [49.214374, 6.97506],
+            [52.975556, 7.596811], [52.975556, 7.596811],
+            [52.975556, 7.596811], [52.975556, 7.596811], 
+            [52.975556, 7.596811], [52.975556, 7.596811],
+            [52.975556, 7.596811], [52.975556, 7.596811],
+            [52.975556, 7.596811], [52.975556, 7.596811]
+        ];
+            
+        bc.dynMarkers = [];
+        NgMap
+        .getMap()
+        .then(function(map) {
+            console.log(map);
+            var bounds = new google.maps.LatLngBounds();
+            for (var k in map.customMarkers) {
+              var cm = map.customMarkers[k];
+              bc.dynMarkers.push(cm);
+              bounds.extend(cm.getPosition());
             };
             
-        };
+            bc.markerClusterer = new MarkerClusterer(map, bc.dynMarkers, {});
+            map.setCenter(bounds.getCenter());
+            map.fitBounds(bounds);  
+        });
 
-
+            /*
         ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
         .then(function (fetch) {
             console.log(fetch);
-            $scope.fetchData = fetch.Data;
-                    
-            var mapOptions = {
-                center: new google.maps.LatLng(9.0820, 8.6753),
-                zoom: 4,
-                disableDefaultUI: true
-            }
-            $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-            createMarker($scope.fetchData);
-        });
+            
+            
+
+
+        });*/
 
         /*
         function getBusinessPaging($scope, businessId) {

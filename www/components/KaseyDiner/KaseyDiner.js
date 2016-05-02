@@ -20,7 +20,7 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData, $ionicPopup, $timeout) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, saveData, $ionicPopup, $timeout, $rootScope) {
         $scope.state_on = function() {
             return $state.params.id;
         };
@@ -127,7 +127,7 @@ angular.module('LoyalBonus')
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
-        .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId=259', {})
+        .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() +'&UserId='+$rootScope.userDetails.userId , {})
         .then(function(res) {
             console.log(res);
             //console.log(res);

@@ -6,20 +6,17 @@
                 <input type="text" ng-model="businessmap.searchKeyword" placeholder="Search">
                 <span class="ion-search paddingLR10" on-tap="businessmap.search(businessmap.searchKeyword)"></span>
             </label>
-            <!-- <div class="list list-inset">
-                <button class="button buttonListView">
-                <a ui-sref="home.kaseydiner" class="already-loyalbonus button buttonListView" href="#/home/kaseydiner/">ListView</a>
-                </button>
-                <label class="item item-input">
-                    <i class="icon ion-search placeholder-icon color-change"></i>
-                    <input type="text" placeholder="Search">
-                </label>
             
-            </div> -->
-            <div id='map-canvas' ></div>
-            <!--  <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-                     <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-                </div> -->
+            <ng-map zoom="8" center="[40.74, -74.18]">
+                <custom-marker position="[{{p[0]}}, {{p[1]}}]" ng-repeat="p in bc.positions">
+                  <div class="cm">
+                    position:<br>
+                    {{p[0]}}<br>
+                    {{p[1]}}
+                  </div>
+                </custom-marker>
+            </ng-map>
+
             <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
         Previous
     </button>
