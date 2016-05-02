@@ -97,41 +97,11 @@ var app = angular.module('LoyalBonus')
             map.fitBounds(bounds);  
         });
 
-            /*
-        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
+
+        /*ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
         .then(function (fetch) {
             console.log(fetch);
-            
-            
-
-
         });*/
-
-        /*
-        function getBusinessPaging($scope, businessId) {
-            $scope.businessId = 0;
-            $scope.pageSize = 10;
-            $scope.data = [];
-            $scope.numberOfPages = function () {
-                return Math.ceil($scope.data.length / $scope.pageSize);
-            }
-            for (var ii = 0; ii < 45; ii++) {
-                $scope.data.push("Item " + ii);
-            }
-        }
-
-        //We already have a limitTo filter built-in to angular,
-        //let's make a startFrom filter
-        app.filter('startFrom', function () {
-            return function (input, start) {
-                start = +start; //parse to int
-                return input.slice(start);
-            }
-        });*/
-
-
-
-
 
 
 
