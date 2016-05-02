@@ -11,6 +11,7 @@ angular.module('LoyalBonus')
                 { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
                 )
                 .then(function (response) {
+                    console.log(response);
                     //console.log(reponse);
                 });
         }
@@ -25,11 +26,11 @@ angular.module('LoyalBonus')
                     UserId: userId,
                     isLove: isLove
 
-                }
-                ).then(function (result) {
-                    //console.log(result);
-                    return result.data.Data;
                 })
+                .then(function (result) {
+                    console.log(result);
+                    return result;
+                });
 
         }
 
@@ -43,18 +44,13 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope) {
 
         $scope.Lovedpage = [];
         //var IsLovedPage = 0;
         $scope.lovecount = 0;
 
         $scope.Lovedpage.giveLovedShow = true;
-        $scope.Lovedpage.enableLoved = function () {
-
-            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
-
-        };
 
 
 
@@ -94,7 +90,7 @@ angular.module('LoyalBonus')
         };
 
 
-        $scope.showPopup = function () {
+        $scope.showPopup = function (msg) {
             $scope.data = {}
 
             // An elaborate, custom popup
@@ -102,7 +98,7 @@ angular.module('LoyalBonus')
                 /*template:'',*/
                 title: '<i class="icon-gift"></i>Bonus',
 
-                subTitle: 'Gift Box',
+                subTitle: msg,
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
@@ -195,11 +191,12 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
-
+        console.log($rootScope.userDetails.userId);
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         ajaxCall
-            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=259', {})
+            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
+                console.log(res);
                 //console.log(res);
                 //console.log(res);
                 $scope.datadeal = res.data.Data[0];
@@ -268,6 +265,19 @@ angular.module('LoyalBonus')
 
         /**** End : rating service ****/
 
+        $scope.Lovedpage.enableLoved = function () {
+            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
+            businessVisit
+            .giveLove($state.params.id, $rootScope.userDetails.userId, 'true')
+            .then(function (res) {
+
+                if(res.data.StatusMessage == 'Success') {
+                    //done here
+                }
+            });
+        };
+
+
         /*** Start : scanBarcode ***/
         $ionicPlatform.ready(function () {
             $scope.scanBarcode = function () {
@@ -282,7 +292,7 @@ angular.module('LoyalBonus')
                     })
                     .then(function (qrCode) {
 
-                        businessVisit.give_visit('215', qrCode, $scope.datadeal.BusinessID);
+                        businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID);
                         return 0;
 
 

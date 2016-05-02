@@ -113,8 +113,7 @@ angular.module('LoyalBonus', '')
             get_user_location
             .get
             .then(function(position) {
-                $rootScope.userDetails.userLocation = '6.461573,3.479404';
-                console.log(position);
+                $rootScope.userDetails.userLocation = position.lat+','+position.long;
                 /*position.lat, position.long
                 loading.start();
                 loading.stop();*/
@@ -140,6 +139,7 @@ angular.module('LoyalBonus', '')
                         return get_business_data               //getting records
                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                         .then(function (result) {
+                            console.log(result);
                             restaurantData = result[+$state.params.vertical];
                         });
                     }
