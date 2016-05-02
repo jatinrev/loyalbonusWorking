@@ -222,7 +222,7 @@ angular.module('LoyalBonus', '')
             if(input == null) {
                 input = 0;
             }
-            input = input.trim();
+            // input = input.trim();
             input = input.replace('%', '');
             return input;
         }
