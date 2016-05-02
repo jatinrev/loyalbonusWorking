@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                <div class="item border-bottom-1" ng-repeat="(key, value) in reviewVar.allReview()">
+                <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                     <img src="img/star.png">
                     <p class="color-reviewgrey col">By {{ value.FullName }} on {{ reviewVar.giveDataFormat(value.CreatedOn) }}</p>
 					<span class="h1 title">Pros</span>

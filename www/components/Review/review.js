@@ -5,6 +5,7 @@ angular.module('LoyalBonus')
 		return ajaxCall
 		.get('webapi/BusinessMaster/GetReviewsDetailByBusinessIdwithUsername?BusinessId='+businessId+'&pageIndex='+pageNumber+'&pageSize=3', {})
 		.then(function (res) {
+			//console.log(res);
 			return res.data.Data;
 		});
 	}
@@ -20,6 +21,8 @@ angular.module('LoyalBonus')
 			   }
 		)
 		.then(function(prosConsResult) {
+			//console.log('prosConsResult');
+			//console.log(prosConsResult);
 			//http://beta2.loyalbonus.com/webapi/BusinessMaster/BusinessGiveStar
 			return ajaxCall
 			.post('webapi/BusinessMaster/BusinessGiveStar',
@@ -34,7 +37,9 @@ angular.module('LoyalBonus')
 				console.log(ratingResult);
 				return prosConsResult;
 			});
-			
+
+
+		
 		});
 	}
 
@@ -62,8 +67,12 @@ angular.module('LoyalBonus')
 
     $scope.reviewVar.writeReveiwShow = false;
     $scope.reviewVar.enableReveiw = function() {
+    	
     	$scope.reviewVar.writeReveiwShow = $scope.reviewVar.writeReveiwShow == false ? true : false;
     };
+
+
+
 
     $scope.stopLoading = true;
     $scope.reviewVar.loadMore = function() {
