@@ -1,0 +1,62 @@
+<div id="restaurants">
+    <div class="tabs-top tabs-background-positive tabs-color-light">
+        <ul rn-carousel class="tabs ">
+     
+            
+            <li ng-repeat="(key, value) in heading" animation="slide-left-right" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+            
+       
+        
+        </ul>
+
+    </div>
+    <ion-view>
+
+        <ion-content>
+            <label ng-show="showMe" class="item item-input new_margin">
+                <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
+                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
+            </label>
+
+            <div ng-repeat="d in print_data()">
+                {{ restaurants.demo }}
+                <div id="logo">
+
+                    <img ng-src="{{ d.Image == null ? 'img/placeholder.jpg' : d.Image }}" ng-click="open_detail_page(d.BusinessID)">
+                </div>
+                <div class="row stake-house">
+                    <div class="col-50">
+                        <p class="stake-house text_shadow_black">
+                            {{ d.Name }}
+                        </p>
+                    </div>
+                    <div class="col-50">
+                        <div class="rat-star" ng-bind-html="restaurants.print_image(d.Reviews)">
+                            <!-- <img ng-repeat="(key, imageData) in restaurants.print_image(d.reviews)" class="{{ imageData.className }}" ng-src="{{ imageData.src }}" alt="filled start"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-50">
+                        <ion-list>
+                            <ion-item class="wth-border">{{ d.add1 == null ? 'Data not available' : d.add1 }}</ion-item>
+                            <ion-item class="wth-border">{{ d.add2 == null ? 'Data not available' : d.add2 }}</ion-item>
+                            <ion-item class="wth-border"><i class ="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
+                            <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item>
+                        </ion-list>
+                    </div>
+                    <div class="col-50">
+                        <ion-list>
+                            <ion-item class="wth-border border-bottom">
+                                <i class="ion-load-d"></i> Loyal Discount:{{ d.BonusDiscountToCust }}%</ion-item>
+                            <ion-item class="wth-border border-bottom"><i class="icon-gift"></i>Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}% OFF</ion-item>
+                            <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
+                        <ion-list>
+                    </div>
+                </div>
+            </div>
+            <div class="loadingButton" ng-click="listData()" ng-show="loadmoreNgShow">loadmore..</div>
+            <div class="noMoreRecordMsg text-align-center padding-top-10 padding-bottom-10" ng-hide="loadmoreNgShow">No records..</div>
+        </ion-content>
+    </ion-view>
+</div>
