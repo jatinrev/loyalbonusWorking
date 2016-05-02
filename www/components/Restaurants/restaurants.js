@@ -113,6 +113,8 @@ angular.module('LoyalBonus', '')
             get_user_location
             .get
             .then(function(position) {
+                $rootScope.userDetails.userLocation = '6.461573,3.479404';
+                console.log(position);
                 /*position.lat, position.long
                 loading.start();
                 loading.stop();*/

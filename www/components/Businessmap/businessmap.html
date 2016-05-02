@@ -3,27 +3,13 @@
         <ion-content>
 
             <label ng-show="showMe" class="item item-input new_margin">
-                <input type="text" ng-model="businessmap.searchKeyword" placeholder="Search">
-                <span class="ion-search paddingLR10" on-tap="businessmap.search(businessmap.searchKeyword)"></span>
+                <input type="text" ng-model="searchKeyword" placeholder="Search">
+                <span class="ion-search paddingLR10" on-tap="bc.search(searchKeyword)"></span>
             </label>
             
-            <ng-map zoom="8" center="[40.74, -74.18]">
-                <custom-marker position="[{{p[0]}}, {{p[1]}}]" ng-repeat="p in bc.positions">
-                  <div class="cm">
-                    position:<br>
-                    {{p[0]}}<br>
-                    {{p[1]}}
-                  </div>
-                </custom-marker>
+            <ng-map zoom="8" center="{{bc.center}}">
+                <marker ng-repeat="value in bc.positions track by value" position="{{value}}" on-click="vm.showCustomMarker()"></marker>
             </ng-map>
-
-            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-        Previous
-    </button>
-            <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-        Next
-    </button>
-
         </ion-content>
     </ion-view>
 </div>

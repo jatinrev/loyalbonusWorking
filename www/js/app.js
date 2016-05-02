@@ -28,9 +28,10 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
 
     /**Temp Data**/
     $rootScope.userDetails = {
-      userId    : 263,
-      Email     : 'jatinverma@gmail.com',
-      FullName  : 'Jatin'
+      userId        : 263,
+      Email         : 'jatinverma@gmail.com',
+      FullName      : 'Jatin',
+      userLocation  : '6.461573,3.479404'
     }
     /**Temp Data**/
 

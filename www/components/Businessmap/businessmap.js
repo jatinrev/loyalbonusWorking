@@ -67,42 +67,62 @@ var app = angular.module('LoyalBonus')
 
         
         var bc = this;
-        bc.positions = [
-            [54.779951, 9.334164], [47.209613, 15.991539],
-            [51.975343, 7.596731], [51.97539, 7.596962], 
-            [47.414847, 8.23485], [47.658028, 9.159596],
-            [47.525927, 7.68761], [50.85558, 9.704403],
-            [54.320664, 10.285977], [49.214374, 6.97506],
-            [52.975556, 7.596811], [52.975556, 7.596811],
-            [52.975556, 7.596811], [52.975556, 7.596811], 
-            [52.975556, 7.596811], [52.975556, 7.596811],
-            [52.975556, 7.596811], [52.975556, 7.596811],
-            [52.975556, 7.596811], [52.975556, 7.596811]
-        ];
-            
-        bc.dynMarkers = [];
+        bc.positions = [];
+
+        bc.center = null;
+
         NgMap
         .getMap()
         .then(function(map) {
-            console.log(map);
-            var bounds = new google.maps.LatLngBounds();
-            for (var k in map.customMarkers) {
-              var cm = map.customMarkers[k];
-              bc.dynMarkers.push(cm);
-              bounds.extend(cm.getPosition());
-            };
-            
-            bc.markerClusterer = new MarkerClusterer(map, bc.dynMarkers, {});
-            map.setCenter(bounds.getCenter());
-            map.fitBounds(bounds);  
+          bc.showCustomMarker= function(evt) {
+            map.customMarkers.foo.setVisible(true);
+            map.customMarkers.foo.setPosition(this.getPosition());
+          };
+          bc.closeCustomMarker= function(evt) {
+            this.style.display = 'none';
+          };
+
+          bc.test = function () {
+            ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong'+$rootScope.userDetails.userLocation+'=&pageIndex=0&pageSize=10&keyword=', {})
+            .then(function (fetch) {
+                var positions = [];
+                for (i in fetch.data.Data) {
+                    positions.push(fetch.data.Data[i].Lat+', '+fetch.data.Data[i].Lng); 
+                }
+                var arrayUnique = function(a) {
+                    return a.reduce(function(p, c) {
+                        if (p.indexOf(c) < 0) p.push(c);
+                        return p;
+                    }, []);
+                };
+                bc.center = positions[0];
+                bc.positions = arrayUnique(positions);
+            });
+          }
+          bc.test();
+
+
+          bc.search = function (input) {
+            console.log(input);
+            return 0;
+            ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong'+$rootScope.userDetails.userLocation+'=&pageIndex=0&pageSize=10&keyword='+input, {})
+            .then(function (fetch) {
+                var positions = [];
+                bc.positions = [];
+                for (i in fetch.data.Data) {
+                    positions.push(fetch.data.Data[i].Lat+', '+fetch.data.Data[i].Lng); 
+                }
+                var arrayUnique = function(a) {
+                    return a.reduce(function(p, c) {
+                        if (p.indexOf(c) < 0) p.push(c);
+                        return p;
+                    }, []);
+                };
+                bc.positions = arrayUnique(positions);
+            });
+          }
+
         });
-
-
-        /*ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
-        .then(function (fetch) {
-            console.log(fetch);
-        });*/
-
 
 
     });
