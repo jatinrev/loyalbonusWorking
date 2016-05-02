@@ -100,8 +100,8 @@ angular.module('LoyalBonus')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-                /*template:'',*/
-                title: '<i class="icon-gift"></i>Bonus',
+              /* template:'<i class="icon-gift"></i>',*/
+                title: '<img src="../img/bonus.png"> Bonus',
 
                 subTitle: msg,
                 scope: $scope,
@@ -126,7 +126,7 @@ angular.module('LoyalBonus')
             });
             $timeout(function () {
                 myPopup.close(); //close the popup after 3 seconds for some reason
-            }, 2000);
+            }, 20000);
         };
 
 
