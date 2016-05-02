@@ -89,6 +89,7 @@ angular.module('LoyalBonus')
 
 
         $scope.state_on = function () {
+
             return $state.params.id;
         };
 
@@ -212,6 +213,7 @@ angular.module('LoyalBonus')
 
                     };
                     $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
                     var marker = new google.maps.Marker({
                         position: myLatlng,
                         map: $scope.map

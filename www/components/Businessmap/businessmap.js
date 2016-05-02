@@ -62,95 +62,67 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map) {
-        $scope.businessmap = {};
+    .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval) {
         active_controller.set('BusinessController');
-        $scope.markers = [];
-        $scope.fetchData = [];
-        var data;
-        var infoWindow = new google.maps.InfoWindow();
 
+        
+        var bc = this;
+        bc.positions = [];
 
-        var createMarker = function (data) {
-            for (var h = 0; h < data.length; h++) {
-                var marker = new google.maps.Marker({
-                    map: $scope.map,
-                    position: new google.maps.LatLng(data[h].Lat, data[h].Lng),
-                    title: data[h].Name
-                });
-                marker.content = '<div class="infoWindowContent">' + data[h].Name + '</div>';
-                console.log(marker.content);
+        bc.center = null;
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
-                    infoWindow.open($scope.map, marker);
-                });
+        NgMap
+        .getMap()
+        .then(function(map) {
+          bc.showCustomMarker= function(evt) {
+            map.customMarkers.foo.setVisible(true);
+            map.customMarkers.foo.setPosition(this.getPosition());
+          };
+          bc.closeCustomMarker= function(evt) {
+            this.style.display = 'none';
+          };
 
-                $scope.markers.push(marker);
-
-            }
-
-
-            $scope.businessmap.search = function (keyword) {
-               
-
-                if (typeof (keyword) != "undefined" && keyword.length > 0) {
-                    $rootScope.showMe = false;
-
-                    get_business_data_map
-                        .search(keyword)
-                        .then(function (response) {
-                            restaurantData = response[+$state.params.vertical];
-                        });
-                } else {
-                    console.log('keyword empty');
+          bc.test = function () {
+            ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong'+$rootScope.userDetails.userLocation+'=&pageIndex=0&pageSize=10&keyword=', {})
+            .then(function (fetch) {
+                var positions = [];
+                for (i in fetch.data.Data) {
+                    positions.push(fetch.data.Data[i].Lat+', '+fetch.data.Data[i].Lng); 
                 }
+                var arrayUnique = function(a) {
+                    return a.reduce(function(p, c) {
+                        if (p.indexOf(c) < 0) p.push(c);
+                        return p;
+                    }, []);
+                };
+                bc.center = positions[0];
+                bc.positions = arrayUnique(positions);
+            });
+          }
+          bc.test();
 
-            };
-            
-        };
 
+          bc.search = function (input) {
+            console.log(input);
+            return 0;
+            ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong'+$rootScope.userDetails.userLocation+'=&pageIndex=0&pageSize=10&keyword='+input, {})
+            .then(function (fetch) {
+                var positions = [];
+                bc.positions = [];
+                for (i in fetch.data.Data) {
+                    positions.push(fetch.data.Data[i].Lat+', '+fetch.data.Data[i].Lng); 
+                }
+                var arrayUnique = function(a) {
+                    return a.reduce(function(p, c) {
+                        if (p.indexOf(c) < 0) p.push(c);
+                        return p;
+                    }, []);
+                };
+                bc.positions = arrayUnique(positions);
+            });
+          }
 
-        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test', {})
-        .then(function (fetch) {
-            console.log(fetch);
-            $scope.fetchData = fetch.Data;
-                    
-            var mapOptions = {
-                center: new google.maps.LatLng(9.0820, 8.6753),
-                zoom: 4,
-                disableDefaultUI: true
-            }
-            $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-            createMarker($scope.fetchData);
         });
-
-        /*
-        function getBusinessPaging($scope, businessId) {
-            $scope.businessId = 0;
-            $scope.pageSize = 10;
-            $scope.data = [];
-            $scope.numberOfPages = function () {
-                return Math.ceil($scope.data.length / $scope.pageSize);
-            }
-            for (var ii = 0; ii < 45; ii++) {
-                $scope.data.push("Item " + ii);
-            }
-        }
-
-        //We already have a limitTo filter built-in to angular,
-        //let's make a startFrom filter
-        app.filter('startFrom', function () {
-            return function (input, start) {
-                start = +start; //parse to int
-                return input.slice(start);
-            }
-        });*/
-
-
-
-
-
 
 
     });
