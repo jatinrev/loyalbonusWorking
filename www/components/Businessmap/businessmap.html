@@ -7,7 +7,7 @@
                 <span class="ion-search paddingLR10" on-tap="bc.search(searchKeyword)"></span>
             </label>
             
-            <ng-map zoom="8" center="{{bc.center}}">
+            <ng-map zoom="8" center="{{bc.center}}" style="width:100%;height:590px">
                 <marker ng-repeat="value in bc.positions track by value" position="{{value}}" on-click="vm.showCustomMarker()"></marker>
             </ng-map>
         </ion-content>
