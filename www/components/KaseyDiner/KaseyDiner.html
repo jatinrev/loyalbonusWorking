@@ -1,11 +1,13 @@
 <div id="kaseydiner">
     <ion-view>
         <ion-content>
-        
+
 
             <div id="logo">
 
                 <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a>
+                <a ng-click="Lovedpage.enableLoved();lovecount = lovecount + 1" ng-show="Lovedpage.giveLovedShow" class="already-giveHeart button buttonListViewLove">Give Heart</a>
+                <a ng-hide="Lovedpage.giveLovedShow" ng-click="Lovedpage.enableLoved(); lovecount = lovecount - 1" class="already-giveHeart button buttonListViewLove">Remove Heart</a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
@@ -24,7 +26,7 @@
             <div class="row">
                 <div class="col-50">
                     <ion-list>
-                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
+                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ lovecount }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
                         <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from reviews</span></ion-item>
                     </ion-list>
@@ -46,10 +48,10 @@
             <div class="row" ng-class="isItemShown(item) ? 'item-expand active' : 'item-expand inactive'">
                 <p class="loyal-kaseydinerpara">{{datadeal.Description }}</p>
             </div>
-                <div ng-click="toggleItem(item)" class="item-expand-footer">
-                    <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(item)
-                    ? 'Less' : 'More' }}
-                </div>
+            <div ng-click="toggleItem(item)" class="item-expand-footer">
+                <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(item)
+                ? 'Less' : 'More' }}
+            </div>
 
             <div class="row ">
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
@@ -63,14 +65,14 @@
                 <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
             </div>
 
-            
+
             <!-- <footer class="bar bar-footer bar-positive"> -->
-                <!-- <div class="title" on-tap="scanBarcode()">SCAN NOW</div> -->
-                <!-- <button class="title" ng-click="scanBarcode()">SCAN NOW</button> -->
+            <!-- <div class="title" on-tap="scanBarcode()">SCAN NOW</div> -->
+            <!-- <button class="title" ng-click="scanBarcode()">SCAN NOW</button> -->
             <!-- </footer> -->
         </ion-content>
-            <ion-footer-bar class="footer-bar-custom bar-positive">
-                 <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
-            </ion-footer-bar>   
+        <ion-footer-bar class="footer-bar-custom bar-positive">
+            <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
+        </ion-footer-bar>
     </ion-view>
 </div>
