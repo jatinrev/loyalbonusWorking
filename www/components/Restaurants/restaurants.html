@@ -1,20 +1,8 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
         <ul rn-carousel class="tabs ">
-        
-    
-       <!--  <a href="#" class="control_next">></a>
-              <a href="#" class="control_prev"><</a> -->
-            
             <li ng-repeat="(key, value) in heading" animation="slide-left-right" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
-            
-        <!-- <div class="slider">
-        
-        </div> -->
-
-        
         </ul>
-
     </div>
     <ion-view>
 
@@ -23,7 +11,7 @@
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
             </label>
-            {{ $scope.testing }}
+            
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
                 <div id="logo">
@@ -55,9 +43,9 @@
                         <ion-list>
                             <ion-item class="wth-border border-bottom">
                                 <i class="ion-load-d"></i> Loyal Discount:{{ d.BonusDiscountToCust }}%</ion-item>
-                            <ion-item class="wth-border border-bottom"><img src="img/bonus.png">Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}% OFF</ion-item>
+                            <ion-item class="wth-border border-bottom"><!-- <i class="icon-gift"></i> --><img src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}% OFF</ion-item>
                             <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
-                        <ion-list>
+                        </ion-list>
                     </div>
                 </div>
             </div>
