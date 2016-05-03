@@ -53,16 +53,23 @@
                 ? 'Less' : 'More' }}
             </div>
 
-            <div class="row ">
+            <div class="row paddingLeftRight-0">
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
             <div class="padding">
-                <div class="newrow" ng-hide="showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div>
+                <!-- <div class="newrow" ng-hide="newScope.showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div> -->
             </div>
-            <div id='map-canvas' ng-show="showMe" class="row "></div>
-            <div class="icon_kasy">
-                <img class="icon_kasy" src="img/iconnumber.png">
-                <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Address not available' : datadeal.Address1 }}</span>
+            <div class="row paddingLeftRight-0"><!-- ng-show="showMe" -->
+                <ng-map zoom="8" center="{{newScope.center}}" style="width:100%">
+                    <marker ng-repeat="value in newScope.positions track by value" position="{{value}}"></marker>
+                </ng-map>
+            </div>
+            <div class="icon_kasy" ng-repeat="value in newScope.address">
+                <img class="icon_kasy" src="img/121.png">
+                <span class="icon_kasy_new">{{ value }}</span>
+            </div>
+            <div ng-show="newScope.center ? false : true" class="padding">
+                <div class="newrow">Address not available</div>
             </div>
 
 

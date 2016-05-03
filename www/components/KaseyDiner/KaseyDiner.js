@@ -187,7 +187,7 @@ angular.module('LoyalBonus')
 
         $scope.datadeal = {};
 
-        $scope.newScope = {};
+        $scope.newScope = {}; // helper variable
 
         $scope.helperFunction = {};
 
@@ -198,52 +198,27 @@ angular.module('LoyalBonus')
         ajaxCall
             .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
-                console.log(res);
                 //console.log(res);
                 //console.log(res);
                 $scope.datadeal = res.data.Data[0];
                 //console.log($scope.datadeal);
+                return $scope.datadeal;
             }).then(function (res) {
-                function initialize() {
-                    var myLatlng = new google.maps.LatLng($scope.datadeal.Lat, $scope.datadeal.Lng);
-                    var mapOptions = {
-                        center: myLatlng,
-                        zoom: 20
-
-                    };
-                    $scope.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-                    var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: $scope.map
-                    });
-                    if (typeof ($scope.datadeal.Lat == 'undefined') || typeof ($scope.datadeal.Lng == 'undefined')) {
-
-                        newScope = (($scope.datadeal.Lat), ($scope.datadeal.Lng));
-                        //console.log(newScope); 
+                console.log(res);
+                var centerDefined         = 0;
+                $scope.newScope.positions = [];
+                $scope.newScope.address   = [];
+                for (i in res.businesslocationsList) {
+                    if(centerDefined == 0) {
+                        $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
+                        centerDefined          = 1;
                     }
+                    $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
+                    /**Start : for address printing**/
+                    $scope.newScope.address.push(res.businesslocationsList[i].Address1);
+                    /***End : for address printing***/
                 }
-
-                initialize();
-
-                /* $scope.centerOnMe = function() {
-                     if (!$scope.map) {
-                         return;
-                     }
-                     $scope.loading = $ionicLoading.show({
-                         content: 'Getting current location...',
-                         showBackdrop: false
-                     });
-     
-                     navigator.geolocation.getCurrentPosition(function(pos) {
-     
-                         $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-                         //console.log($scope.new_location);
-                         $scope.loading.hide();
-                     }, function(error) {
-                         alert('Unable to get location: ' + error.message);
-                     });
-                 };*/
+                // console.log(res);
             });
 
 
