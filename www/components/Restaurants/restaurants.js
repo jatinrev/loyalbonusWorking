@@ -54,8 +54,11 @@ angular.module('LoyalBonus', '')
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                     .then(function (res) {
+                       // console.log('result');
+                        //console.log(res);
                         var heading_data_temp = [];
                         for (variable in res.data.Data) {
+                           // console.log(res.data.Data[variable].CategoryID);
                             heading_data_temp.push({ CategoryID : res.data.Data[variable].CategoryID, CategoryName : res.data.Data[variable].CategoryName });
                         }
                         heading_data = heading_data_temp;
@@ -73,16 +76,21 @@ angular.module('LoyalBonus', '')
                         return heading_data;
                     });
                 }
+                
             },
             getBusinessRecord   : getBusinessRecord,
             getSearchKeyword    : function () { return searchKeyword; },
             removeSearchKeyword : function () { searchKeyword = ''; }
         };
+        
     })
 
     .controller('RestaurantController',function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
                                                 get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
                                                 active_controller, loading, saveData) {
+
+        
+
         var restaurantData = [];
         active_controller.set('RestaurantController');
 
