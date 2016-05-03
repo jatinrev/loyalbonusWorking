@@ -113,10 +113,11 @@ angular.module('LoyalBonus.services',[])
 		return uniqueNames;
 	};
 })
-.factory('get_user_location', function ( $cordovaGeolocation, $rootScope ) {
+.factory('get_user_location', function ( $cordovaGeolocation, $rootScope, loading ) {
 
 	function getLocation() {
-		if( typeof($rootScope.userDetails.userLocation) != 'undefined' && Object.keys($rootScope.userDetails.userLocation).length > 0 ) {
+		loading.start();
+		/*if( typeof($rootScope.userDetails.userLocation) != 'undefined' && Object.keys($rootScope.userDetails.userLocation).length > 0 ) {
 
 			var p2 = new Promise(function(resolve, reject) {
 			  resolve( $rootScope.userDetails.userLocation );
@@ -135,26 +136,29 @@ angular.module('LoyalBonus.services',[])
 			});
 
 			console.log('Hellllooo');
-			return $rootScope.userDetails.userLocation;*/
-		} else {
+			return $rootScope.userDetails.userLocation;*****
+		} else {*/
 			var posOptions = {timeout: 100000, enableHighAccuracy: false};
 			return $cordovaGeolocation
 	    	       .getCurrentPosition(posOptions)
 	    	       .then(function (position) {
-		    	   	   	$rootScope.userDetails.userLocation = {
+
+                		//$rootScope.userDetails.userLocation = position.lat+','+position.long;
+		    	   	   	$rootScope.userDetails.userLocation = position.coords.latitude+','+position.coords.longitude; 
+		    	   	   	/*{
 		    	   	   		lat  : position.coords.latitude,
 					   		long : position.coords.longitude
-		    	   	   	};
-		    	   	   	return {
-			       			lat  : '6.461573',
-							long : '3.479404'
-			       		};
+		    	   	   	};*/
+		    	   	   	loading.stop();
 					   	return {
 		    	   	   		lat  : position.coords.latitude,
 					   		long : position.coords.longitude
 		    	   	   	};
-	    	       });
-		}
+	    	       }, function(err) {
+	    	       		loading.stop();
+				      	console.log(err);
+				   });
+		/*}*/
 	}
 
 	return {
