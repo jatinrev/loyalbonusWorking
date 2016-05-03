@@ -1,5 +1,5 @@
 angular.module('LoyalBonus', '')
-    .factory('get_business_data', function(ajaxCall, $state, get_unique_elements, loading) {
+    .factory('get_business_data', function(ajaxCall, $state, get_unique_elements, loading, $q) {
         var heading_data = []
         ,restaurantData  = []
         ,pageIndex       = []
@@ -47,10 +47,13 @@ angular.module('LoyalBonus', '')
             },
             getheading : function () {
                 if( heading_data.length > 0 ) {
-                    var p2 = new Promise(function(resolve, reject) {
-                        resolve(heading_data);
-                    });
-                    return p2;
+                    var promise = $q.defer();
+                    // var p2 = new Promise(function(resolve, reject) {
+                    promise.resolve(heading_data);
+                    // });
+                    console.log('coming ');
+                    console.log(promise);
+                    return promise.promise;
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                     .then(function (res) {
@@ -121,7 +124,6 @@ angular.module('LoyalBonus', '')
             get_user_location
             .get
             .then(function(position) {
-                $rootScope.userDetails.userLocation = position.lat+','+position.long;
                 /*position.lat, position.long
                 loading.start();
                 loading.stop();*/
