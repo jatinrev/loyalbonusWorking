@@ -534,6 +534,12 @@ p.stake-house
 .bar-footer {
     bottom: -45px;
     }
+#Review .bar-footer {
+    bottom: 0px;
+    }  
+    #Review .bar .title.title-left {
+    text-align: center;
+}  
 #Review #logo .logoImage {
     width: 100%;
 }

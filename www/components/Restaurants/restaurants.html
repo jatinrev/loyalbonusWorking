@@ -12,7 +12,7 @@
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
             </label>
-            
+
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
                 <div id="logo">
@@ -36,7 +36,7 @@
                         <ion-list>
                             <ion-item class="wth-border">{{ d.add1 == null ? 'Address not available' : d.add1 }}</ion-item>
                             <ion-item class="wth-border">{{ d.add2 == null ? 'Address not available' : d.add2 }}</ion-item>
-                            <ion-item class="wth-border"><i class ="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
+                            <ion-item class="wth-border"><i class="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
                             <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item>
                         </ion-list>
                     </div>
@@ -44,7 +44,9 @@
                         <ion-list>
                             <ion-item class="wth-border border-bottom">
                                 <i class="ion-load-d"></i> Loyal Discount:{{ d.BonusDiscountToCust }}%</ion-item>
-                            <ion-item class="wth-border border-bottom"><!-- <i class="icon-gift"></i> --><img src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}% OFF</ion-item>
+                            <ion-item class="wth-border border-bottom">
+                                <!-- <i class="icon-gift"></i> --><img src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount)
+                                }}% OFF</ion-item>
                             <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
                         </ion-list>
                     </div>

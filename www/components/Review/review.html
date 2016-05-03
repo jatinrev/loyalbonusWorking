@@ -19,27 +19,27 @@
                     </div>
                     <div class="col"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">Write a review</a></div>
                 </div>
-                
+
                 <div class="row border-bottom-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow">
                     <div class="list width-100">
-                      <label class="item item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
+                        <label class="item item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
                         <p></p>
                       </label>
-                      <label class="item item-input item-stacked-label">
+                        <label class="item item-input item-stacked-label">
                         <span class="input-label">Rating</span>
                         <p>
                             <img ng-repeat="(key, value) in reviewVar.starsArr" class="{{ value.class }}" on-tap="reviewVar.giveRating(+key + 1)" ng-src="{{ value.src }}"/>
                         </p>
                       </label>
-                      <label class="item item-input item-stacked-label">
+                        <label class="item item-input item-stacked-label">
                         <span class="input-label">Pros</span>
                         <input type="text" placeholder="Pros" ng-model="reviewVar.pros">
                       </label>
-                      <label class="item item-input item-stacked-label">
+                        <label class="item item-input item-stacked-label">
                         <span class="input-label">Cons</span>
                         <input type="text" placeholder="Cons" ng-model="reviewVar.cons">
                       </label>
-                      <label class="item item-input item-stacked-label padding-top-8">
+                        <label class="item item-input item-stacked-label padding-top-8">
                         <button class="button button-positive" ng-click="reviewVar.giveFeedback()">Submit</button>
                       </label>
                     </div>
@@ -48,16 +48,19 @@
                 <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                     <img src="img/star.png">
                     <p class="color-reviewgrey col">By {{ value.FullName }} on {{ reviewVar.giveDataFormat(value.CreatedOn) }}</p>
-					<span class="h1 title">Pros</span>
+                    <span class="h1 title">Pros</span>
                     <p class="color-reviewgrey col">{{ value.Pros }}</p>
                     <span class="h1 title">Cons</span>
                     <p class="color-reviewgrey col">{{ value.Cons }}</p>
                 </div>
 
-                <div class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
-                    <div class="title">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
-                </div>
             </div>
         </ion-content>
+        <ion-footer-bar class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
+            <div class="title title-center">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
+        </ion-footer-bar>
+        <!-- <div class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
+                    <div class="title">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
+                </div> -->
     </ion-view>
 </div>
