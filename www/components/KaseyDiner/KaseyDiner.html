@@ -36,7 +36,7 @@
                         <ion-item class="wth-border border-bottom">
                             <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.BonusDiscountToCust }}
                         </ion-item>
-                        <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img src="../img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount }} OFF</ion-item>
+                        <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img src="img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount }} OFF</ion-item>
                         <ion-item class="wth-border" ng-click="showAlert()">Visit 10 times to receive Bonus.</ion-item>
                     </ion-list>
                 </div>
@@ -57,7 +57,7 @@
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
             <div class="padding">
-                <div class="newrow" ng-hide="showMe">{{newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div>
+                <div class="newrow" ng-hide="showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div>
             </div>
             <div id='map-canvas' ng-show="showMe" class="row "></div>
             <div class="icon_kasy">
