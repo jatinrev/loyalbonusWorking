@@ -1,8 +1,9 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-        <ul rn-carousel class="tabs ">
+        <ul rn-carousel rn-carousel-controls class="tabs ">
             <li ng-repeat="(key, value) in heading" animation="slide-left-right" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
         </ul>
+
     </div>
     <ion-view>
 

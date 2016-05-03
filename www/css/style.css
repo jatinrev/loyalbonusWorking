@@ -1259,9 +1259,9 @@ span.icon_kasy_newsec
 }
 
 a.control_prev  {
-    position: absolute;
+        position: absolute;
     left: 2%;
-        top: -3%;
+    top: 9%;
     padding: 0px 0%;
     width: 23px;
     height: 27px;
@@ -1272,12 +1272,14 @@ a.control_prev  {
     font-size: 27px;
     opacity: 0.8;
     cursor: pointer;
+    display: block;
+    z-index: 99;
 }
 a.control_next
 {
-    position: absolute;
+       position: absolute;
     right: 7%;
-        top: -3%;
+    top: 9%;
     padding: 0px 0%;
     width: 23px;
     height: 27px;
@@ -1288,6 +1290,7 @@ a.control_next
     font-size: 27px;
     opacity: 0.8;
     cursor: pointer;
+    z-index: 999;
 }
 .slider {
     
@@ -1347,4 +1350,11 @@ a.control_next
 
 .item-expand-footer i {
   margin-right: 10px;
+}
+
+#restaurants .rn-carousel-control
+{
+    color: #fff;
+    z-index: 999;
+    top: 6%;
 }
