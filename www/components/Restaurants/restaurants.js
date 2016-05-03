@@ -223,7 +223,7 @@ angular.module('LoyalBonus', '')
                 input = 0;
             }
             // input = input.trim();
-            input = input.replace('%', '');
+            // input = input.replace('%', '');
             return input;
         }
 

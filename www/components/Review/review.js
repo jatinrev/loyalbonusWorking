@@ -49,7 +49,7 @@ angular.module('LoyalBonus')
 	};
 })
 
-.controller('ReviewController', function ($scope, $state, showRating, reviewFactory, showRating, $rootScope) {
+.controller('ReviewController', function ($scope, $state, showRating, reviewFactory, showRating, $rootScope, backFunctionality) {
 	var allReviews = [];
 	var reviewPage = 0;
 	$scope.reviewVar = {
@@ -136,6 +136,7 @@ angular.module('LoyalBonus')
 			
 			$scope.reviewVar.ratingMsg = true;
 			$scope.stopLoading = true;
+			backFunctionality.one_step_back();
 			$scope.reviewVar.loadMore();
 		});
 	}
