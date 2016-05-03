@@ -588,6 +588,10 @@ p.stake-house
     border-right:none;
     background: unset;
 }
+#Review .border-bottom-2
+{
+   
+}
 #Review .color-reviewgrey
 {
        color: #868686;

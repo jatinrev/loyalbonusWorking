@@ -102,18 +102,7 @@ angular.module('LoyalBonus')
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
-                    /*{
-                      text: '<b>Save</b>',
-                      type: 'button-positive',
-                      onTap: function(e) {
-                        if (!$scope.data.wifi) {
-                          //don't allow the user to close unless he enters wifi password
-                          e.preventDefault();
-                        } else {
-                          return $scope.data.wifi;
-                        }
-                      }
-                    },*/
+                    
                 ]
             });
             myPopup.then(function (res) {
@@ -121,7 +110,7 @@ angular.module('LoyalBonus')
             });
             $timeout(function () {
                 myPopup.close(); //close the popup after 3 seconds for some reason
-            }, 20000);
+            }, 3000);
         };
 
 
