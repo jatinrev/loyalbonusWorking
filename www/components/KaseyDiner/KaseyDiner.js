@@ -269,8 +269,9 @@ angular.module('LoyalBonus')
 
         $scope.Lovedpage.enableLoved = function () {
             $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
+
             businessVisit
-            .giveLove($state.params.id, $rootScope.userDetails.userId, 'true')
+            .giveLove($state.params.id, $rootScope.userDetails.userId, true)
             .then(function (res) {
 
                 if(res.data.StatusMessage == 'Success') {
