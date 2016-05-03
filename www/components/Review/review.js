@@ -33,8 +33,8 @@ angular.module('LoyalBonus')
 				   }
 			)
 			.then(function(ratingResult) {
-				console.log(prosConsResult);
-				console.log(ratingResult);
+				//console.log(prosConsResult);
+				//console.log(ratingResult);
 				return prosConsResult;
 			});
 
@@ -80,7 +80,7 @@ angular.module('LoyalBonus')
 		    reviewFactory
 		    .printReview($state.params.businessId, reviewPage)
 		    .then(function(res) {
-		    	console.log(res);
+		    	//console.log(res);
 		    	if(res.length > 0) {
 		    		reviewPage += 1;
 			    	for (i in res) {
