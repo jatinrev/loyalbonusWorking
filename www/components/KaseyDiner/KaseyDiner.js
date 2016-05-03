@@ -96,7 +96,7 @@ angular.module('LoyalBonus')
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
               /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="../img/bonus.png"> Bonus',
+                title: '<img src="img/bonus.png"> Bonus',
 
                 subTitle: msg,
                 scope: $scope,

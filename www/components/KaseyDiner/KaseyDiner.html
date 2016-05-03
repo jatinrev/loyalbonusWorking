@@ -57,12 +57,12 @@
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
             <div class="padding">
-                <div class="newrow" ng-hide="showMe">{{newScope.Lat == null ? 'Null' : newScope.Lat }}</div>
+                <div class="newrow" ng-hide="showMe">{{newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div>
             </div>
             <div id='map-canvas' ng-show="showMe" class="row "></div>
             <div class="icon_kasy">
                 <img class="icon_kasy" src="img/iconnumber.png">
-                <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Null' : datadeal.Address1 }}</span>
+                <span class="icon_kasy_new">{{ datadeal.Address1 == null ? 'Address not available' : datadeal.Address1 }}</span>
             </div>
 
 
