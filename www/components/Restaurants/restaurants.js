@@ -70,8 +70,8 @@ angular.module('LoyalBonus', '')
                         for (i in heading_data) {
                             restaurantData[heading_data[i].CategoryID]  = [];
                             /**for indexing of each page**/
-                            pageIndex[heading_data[i].CategoryID]       = 1;
-                            searchPageIndex[heading_data[i].CategoryID] = 1;
+                            pageIndex[heading_data[i].CategoryID]       = 0;
+                            searchPageIndex[heading_data[i].CategoryID] = 0;
                             searchData[heading_data[i].CategoryID]      = [];
                         }
 
