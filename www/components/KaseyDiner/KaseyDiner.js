@@ -184,31 +184,35 @@ angular.module('LoyalBonus')
         console.log($rootScope.userDetails.userId);
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
-        ajaxCall
-            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
-            .then(function (res) {
-                //console.log(res);
-                //console.log(res);
-                $scope.datadeal = res.data.Data[0];
-                //console.log($scope.datadeal);
-                return $scope.datadeal;
-            }).then(function (res) {
-                console.log(res);
-                var centerDefined         = 0;
-                $scope.newScope.positions = [];
-                $scope.newScope.address   = [];
-                for (i in res.businesslocationsList) {
-                    if(centerDefined == 0) {
-                        $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
-                        centerDefined          = 1;
+        function test() {
+            ajaxCall
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
+                .then(function (res) {
+                    //console.log(res);
+                    //console.log(res);
+                    $scope.datadeal = res.data.Data[0];
+                    //console.log($scope.datadeal);
+                    return $scope.datadeal;
+                }).then(function (res) {
+                    console.log(res);
+                    var centerDefined         = 0;
+                    $scope.newScope.positions = [];
+                    $scope.newScope.address   = [];
+                    for (i in res.businesslocationsList) {
+                        if(centerDefined == 0) {
+                            $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
+                            centerDefined          = 1;
+                        }
+                        $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
+                        /**Start : for address printing**/
+                        $scope.newScope.address.push(res.businesslocationsList[i].Address1);
+                        /***End : for address printing***/
                     }
-                    $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
-                    /**Start : for address printing**/
-                    $scope.newScope.address.push(res.businesslocationsList[i].Address1);
-                    /***End : for address printing***/
-                }
-                // console.log(res);
-            });
+                    // console.log(res);
+                });
+        }
+        test();
+
 
 
         $scope.helperFunction.reviews = function (number) {
@@ -260,6 +264,7 @@ angular.module('LoyalBonus')
                     .then(function (qrCode) {
 
                         businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID);
+                        test();
                         return 0;
 
 
