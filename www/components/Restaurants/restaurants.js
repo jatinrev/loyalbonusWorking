@@ -90,9 +90,9 @@ angular.module('LoyalBonus', '')
 
     .controller('RestaurantController',function($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
                                                 get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-                                                active_controller, loading, saveData) {
+                                                active_controller, loading, $ionicPopup, $timeout,saveData) {
 
-        
+        console.log('hello');
 
         var restaurantData = [];
         active_controller.set('RestaurantController');
@@ -189,6 +189,30 @@ angular.module('LoyalBonus', '')
 
                     };
                 });
+
+
+                $scope.showPopup = function (msg) {
+            $scope.data = {}
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+              /* template:'<i class="icon-gift"></i>',*/
+                title: '<img src="img/bonus.png"> Bonus',
+
+                subTitle: msg,
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel', type: 'button-positive' }
+                    
+                ]
+            });
+            myPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000);
+        };
 
 
                 /*******Search functionality******/
