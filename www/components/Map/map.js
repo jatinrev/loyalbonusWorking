@@ -14,7 +14,7 @@ angular.module('LoyalBonus')
         console.log(saveData.get('businessDetailId'));
         $scope.goToKaseyDinner = function () {
             console.log(saveData.get('businessDetailId'));
-            $state.go("home.kaseydiner", { id: saveData.get('businessDetailId')});
+            $state.go("home.businessmap", { id: saveData.get('businessDetailId')});
         }
         // console.log($ionicHistory.viewHistory());
         active_controller.set('MapController');

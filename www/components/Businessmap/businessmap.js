@@ -62,7 +62,7 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval) {
+    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval) {
         active_controller.set('BusinessController');
 
         
@@ -123,6 +123,10 @@ var app = angular.module('LoyalBonus')
           }
 
         });
+        $scope.goToMap = function (businessDetailId) {
+            saveData.set('businessDetailId', businessDetailId);
+            $state.go("home.map", { businessDetailId: businessDetailId });
+        }
 
 
     });
