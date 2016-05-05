@@ -1041,9 +1041,9 @@ font-size: 20px;
     position: absolute;
     top: 7px;
     right: 7px;
-    background-color: #DDDDDD;
+    /* background-color: #DDDDDD; */
     color: #ffffff;
-    background: url('../img/giveheatimg.png') no-repeat 10px 14px;
+    background: url('../img/giveheatimg.png') no-repeat 10px 14px #DDDDDD;
     border: 1px solid #ffffff;
     padding: 0px;
     width: 46%;
@@ -1152,7 +1152,7 @@ font-size: 15px;              overflow: hidden;     max-width:123px;     text-
 overflow: ellipsis;     white-space: nowrap; } #restaurants ul[rn-carousel] li
 :first-child {     margin-left: -6px; } #restaurants ul[rn-carousel] li:nth-
 child(2) {     margin-left: -15px; }  #map-canvas     {         width : 100%;
-/* map width */         height: 420px;  /* map height */     } #restaurants
+/* map width */         height: 590px;  /* map height */     } #restaurants
 .item-complex .item-content, .item-radio .item-content     {
 padding: 16px 49px 16px 0px;     }
 
@@ -1197,7 +1197,11 @@ span.icon_kasy_newsec
 
 }
 #restaurants .current{
-  color:white;
+   color:white;
+}
+ul[rn-carousel] > li.current
+{
+   color:white; 
 }
 
 #Signin .button
@@ -1233,7 +1237,8 @@ span.icon_kasy_newsec
     padding-top: 14px;
     padding-bottom: 14px;
     padding-right: 0px;
-    margin: 27px 0px 0px 17px;
+    /* margin: 27px 0px 0px 17px; */
+    margin: 63px 0px 0px 17px;
     width: 90%;
 }
 #Businessmap .item {

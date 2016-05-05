@@ -44,7 +44,7 @@
                         <ion-list>
                             <ion-item class="wth-border border-bottom">
                                 <i class="ion-load-d"></i> Loyal Discount:{{ d.BonusDiscountToCust }}%</ion-item>
-                            <ion-item class="wth-border border-bottom">
+                            <ion-item class="wth-border border-bottom" ng-click="showPopup()">
                                 <!-- <i class="icon-gift"></i> --><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount)
                                 }} OFF</ion-item>
                             <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
