@@ -26,10 +26,6 @@ angular.module('LoyalBonus')
                     UserId: userId,
                     isLove: isLove
 
-                })
-                .then(function (result) {
-                    console.log(result);
-                    return result;
                 });
 
         }
@@ -47,39 +43,6 @@ angular.module('LoyalBonus')
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope) {
 
         $scope.Lovedpage = [];
-        //var IsLovedPage = 0;
-        $scope.lovecount = 0;
-
-        $scope.Lovedpage.giveLovedShow = true;
-
-
-
-        /* $scope.StopLoad = true;
-         $scope.Lovedpage.loadKaro = function () {
- 
-             if ($scope.StopLoad) {
-                 businessVisit
-                     .giveLove($state.params.businessId, lovecount)
-                     .then(function (result) {
-                         console.log(result);
-                         if (result.StatusMessage != "Success") {
-                             console.log(result);
-                             lovecount += 1;
-                             for (dv in result) {
-                                 console.log($scope.Lovedpage.push(result[dv]));
-                             }
-                             console.log(lovecount);
-                         }else{
-                             $scope.StopLoad = false;
-                         }
-                     });
-             }
-         }
-         $scope.Lovedpage.loadKaro();
- 
-         $scope.Lovedpage.IsLovedPage = function() {
-         return IsLovedPage;
-     }*/
 
 
 
@@ -180,36 +143,36 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction = {};
 
-
-        console.log($rootScope.userDetails.userId);
+        // $scope.checkGlobal = function () {
+            console.log($rootScope.userDetails.userId);
+        // }
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         function test() {
             ajaxCall
-                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
-                .then(function (res) {
-                    //console.log(res);
-                    //console.log(res);
-                    $scope.datadeal = res.data.Data[0];
-                    //console.log($scope.datadeal);
-                    return $scope.datadeal;
-                }).then(function (res) {
-                    console.log(res);
-                    var centerDefined         = 0;
-                    $scope.newScope.positions = [];
-                    $scope.newScope.address   = [];
-                    for (i in res.businesslocationsList) {
-                        if(centerDefined == 0) {
-                            $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
-                            centerDefined          = 1;
-                        }
-                        $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
-                        /**Start : for address printing**/
-                        $scope.newScope.address.push(res.businesslocationsList[i].Address1);
-                        /***End : for address printing***/
+            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
+            .then(function (res) {
+                //console.log(res);
+                //console.log(res);
+                $scope.datadeal = res.data.Data[0];
+                //console.log($scope.datadeal);
+                return $scope.datadeal;
+            }).then(function (res) {
+                var centerDefined         = 0;
+                $scope.newScope.positions = [];
+                $scope.newScope.address   = [];
+                for (i in res.businesslocationsList) {
+                    if(centerDefined == 0) {
+                        $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
+                        centerDefined          = 1;
                     }
-                    // console.log(res);
-                });
+                    $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
+                    /**Start : for address printing**/
+                    $scope.newScope.address.push(res.businesslocationsList[i].Address1);
+                    /***End : for address printing***/
+                }
+                // console.log(res);
+            });
         }
         test();
 
@@ -236,14 +199,12 @@ angular.module('LoyalBonus')
         /**** End : rating service ****/
 
         $scope.Lovedpage.enableLoved = function () {
-            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
-
             businessVisit
             .giveLove($state.params.id, $rootScope.userDetails.userId, true)
             .then(function (res) {
-
+                console.log(res);
                 if(res.data.StatusMessage == 'Success') {
-                    //done here
+                    
                 }
             });
         };

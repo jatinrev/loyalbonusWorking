@@ -2,12 +2,10 @@
     <ion-view>
         <ion-content>
 
-
             <div id="logo">
 
                 <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a>
-                <a ng-click="Lovedpage.enableLoved();lovecount = lovecount + 1" ng-show="Lovedpage.giveLovedShow" class="already-giveHeart button buttonListViewLove">Give Heart</a>
-                <a ng-hide="Lovedpage.giveLovedShow" ng-click="Lovedpage.enableLoved(); lovecount = lovecount - 1" class="already-giveHeart button buttonListViewLove">Remove Heart</a>
+                <a ng-click="Lovedpage.enableLoved();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
@@ -26,7 +24,7 @@
             <div class="row">
                 <div class="col-50">
                     <ion-list>
-                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ lovecount }}</strong><span class="color-chnage">people love it</span>
+                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
                         <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from reviews</span></ion-item>
                     </ion-list>
@@ -68,7 +66,7 @@
                 <img class="icon_kasy" src="img/121.png">
                 <span class="icon_kasy_new">{{ value }}</span>
             </div>
-            <div ng-show="newScope.center ? false : true" class="padding">
+            <div ng-show="newScope.center ? false : true" class="row">
                 <div class="newrow">Address not available</div>
             </div>
 

@@ -2,7 +2,15 @@ var globaldata = {};
 
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
 
-.run(function ($ionicPlatform, ngFB) {
+.run(function ($ionicPlatform, ngFB, $rootScope) {
+  /**Temp Data**/
+    $rootScope.userDetails = {
+      userId        : 263,
+      Email         : 'jatinverma@gmail.com',
+      FullName      : 'Jatin',
+      userLocation  : '6.461573,3.479404'
+    }
+  /**Temp Data**/
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -25,16 +33,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-
-    /**Temp Data**/
-    $rootScope.userDetails = {
-      userId        : 263,
-      Email         : 'jatinverma@gmail.com',
-      FullName      : 'Jatin',
-      userLocation  : '6.461573,3.479404'
-    }
-    /**Temp Data**/
-
   });
 
 })
@@ -261,13 +259,4 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services
       //   }
       // });
     }
-])
-// my custom function
-.run (function (update_user_details, $state, $rootScope) {
-  /*if( typeof($rootScope.userDetails.userId) == 'undefined' ) {
-    $state.go("signin");
-  } else if( typeof(window.localStorage['userId']) != 'undefined' && !isNaN(window.localStorage['userId']) ) {
-    // updating user data.
-    update_user_details.get(window.localStorage['userId']);
-  }*/
-});
+]);

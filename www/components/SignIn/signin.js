@@ -43,7 +43,6 @@ angular.module('LoyalBonus')
 				window.localStorage['userId'] = response.data.Data.UserID;
 				//$scope.signIn.response        = response.data.Message;
 				update_user_details.get( response.data.Data.UserID );
-				console.log(response);
 				$state.go("home.restaurants");
 			} else {
 				$scope.signIn.signIn_button_visibility = true;
@@ -78,7 +77,6 @@ angular.module('LoyalBonus')
 				$scope.signIn.response            = 'Facebook login successfull';
 	    		//show error
 	    	} else {
-	    		console.log(res);
 	    		window.localStorage['userId'] = res.data.Data.UserID;
 				update_user_details.get( res.data.Data.UserID );
 				$state.go("home.restaurants");

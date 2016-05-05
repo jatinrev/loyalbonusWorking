@@ -13,7 +13,6 @@ angular.module('LoyalBonus', '')
             loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex='+pageIndex[businessId]+'&pageSize=5&CatId='+businessId+'&SubCatId=&locId=&Keyword=&currlocationlatlong='+lat+','+long, {})
             .then(function(response) {
-                console.log(response);
                 if( response.data.Data.length > 0 ) { //records are present so add pageIndex.
                     pageIndex[businessId]+= 1;
                 }
@@ -51,17 +50,12 @@ angular.module('LoyalBonus', '')
                     // var p2 = new Promise(function(resolve, reject) {
                     promise.resolve(heading_data);
                     // });
-                    console.log('coming ');
-                    console.log(promise);
                     return promise.promise;
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                     .then(function (res) {
-                       // console.log('result');
-                        //console.log(res);
                         var heading_data_temp = [];
                         for (variable in res.data.Data) {
-                           // console.log(res.data.Data[variable].CategoryID);
                             heading_data_temp.push({ CategoryID : res.data.Data[variable].CategoryID, CategoryName : res.data.Data[variable].CategoryName });
                         }
                         heading_data = heading_data_temp;
@@ -149,7 +143,6 @@ angular.module('LoyalBonus', '')
                         return get_business_data               //getting records
                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                         .then(function (result) {
-                            console.log(result);
                             restaurantData = result[+$state.params.vertical];
                         });
                     }
