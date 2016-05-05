@@ -9,8 +9,8 @@
 
         <ion-content>
             <label ng-show="showMe" class="item item-input new_margin">
-                <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
-                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)"></span>
+                <input type="text" cache-view="false" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
+                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
             </label>
 
             <div ng-repeat="d in print_data()">

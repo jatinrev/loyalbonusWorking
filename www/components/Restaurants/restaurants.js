@@ -42,7 +42,9 @@ angular.module('LoyalBonus', '')
                         }
                         loading.stop();
                         return searchData;
+
                     });
+                    
             },
             getheading : function () {
                 if( heading_data.length > 0 ) {

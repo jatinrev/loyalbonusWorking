@@ -30,7 +30,9 @@ angular.module('LoyalBonus')
 
   $rootScope.goSearchHandler = function() {
     $rootScope.showMe = !$rootScope.showMe;
+    //$rootScope.doRefresh();
   }
+  
 
   $scope.signOut = function() {
     // console.log('helllooooo');
