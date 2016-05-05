@@ -1,17 +1,18 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-        <ul rn-carousel rn-carousel-controls class="tabs ">
-            <li ng-repeat="(key, value) in heading" animation="slide-left-right" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+        <ul rn-carousel class="tabs ">
+            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
         </ul>
+        <!--animation="slide-left-right"  -->
 
     </div>
     <ion-view>
-
-        <ion-content>
-            <label ng-show="showMe" class="item item-input new_margin">
+        <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" cache-view="false" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
-                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
+                <span class="ion-search paddingLR10 " on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
             </label>
+        <ion-content>
+
 
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
@@ -37,7 +38,7 @@
                             <ion-item class="wth-border"><i class="ion-home"></i> {{ d.add1 == null ? 'Address not available' : d.add1 }}</ion-item>
                             <ion-item class="wth-border"><i class="ion-home"></i> {{ d.add2 == null ? 'Address not available' : d.add2 }}</ion-item>
                             <ion-item class="wth-border"><i class="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
-                            <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item>
+                            <!-- <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item> -->
                         </ion-list>
                     </div>
                     <div class="col-50">
@@ -47,13 +48,18 @@
                             <ion-item class="wth-border border-bottom" ng-click="showPopup()">
                                 <!-- <i class="icon-gift"></i> --><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount)
                                 }} OFF</ion-item>
-                            <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item>
+                            <!-- <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item> -->
                         </ion-list>
                     </div>
                 </div>
             </div>
-            <div class="loadingButton" ng-click="listData()" ng-show="loadmoreNgShow">loadmore..</div>
-            <div class="noMoreRecordMsg text-align-center padding-top-10 padding-bottom-10" ng-hide="loadmoreNgShow">No records..</div>
+            <!-- <div class="loadingButton" ng-click="listData()" ng-show="loadmoreNgShow">loadmore..</div>
+            <div class="noMoreRecordMsg text-align-center padding-top-10 padding-bottom-10" ng-hide="loadmoreNgShow">No records..</div> -->
+            <!-- <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" icon="ion-loading-c" on-infinite="loadMore(); listData() " distance="1%">No records..</ion-infinite-scroll> -->
+            <!-- <ion-infinite-scroll="addMoreItem" on-infinite="listData()"></ion-infinite-scroll> -->
+            <!--  <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore() ; listData()" distance="1%"></ion-infinite-scroll> -->
+            <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore();listData() " distance="1%"></ion-infinite-scroll>
+
         </ion-content>
     </ion-view>
 </div>

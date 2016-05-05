@@ -4,7 +4,7 @@
 
             <div id="logo">
 
-                <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a>
+                <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
                 <a ng-click="Lovedpage.enableLoved();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
@@ -54,9 +54,9 @@
             <div class="row paddingLeftRight-0">
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
-            <div class="padding">
+            <!-- <div class="padding"> -->
                 <!-- <div class="newrow" ng-hide="newScope.showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div> -->
-            </div>
+            <!-- </div> -->
             <div class="row paddingLeftRight-0"><!-- ng-show="showMe" -->
                 <ng-map zoom="8" center="{{newScope.center}}" style="width:100%">
                     <marker ng-repeat="value in newScope.positions track by value" position="{{value}}"></marker>
@@ -69,15 +69,13 @@
             <div ng-show="newScope.center ? false : true" class="row">
                 <div class="newrow">Address not available</div>
             </div>
-
-
             <!-- <footer class="bar bar-footer bar-positive"> -->
             <!-- <div class="title" on-tap="scanBarcode()">SCAN NOW</div> -->
             <!-- <button class="title" ng-click="scanBarcode()">SCAN NOW</button> -->
             <!-- </footer> -->
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title" on-tap="scanBarcode()">SCAN NOW</div>
+            <div class="title" on-tap="scanBarcode(); showAlert()">SCAN NOW</div>
         </ion-footer-bar>
     </ion-view>
 </div>

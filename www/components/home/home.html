@@ -11,7 +11,7 @@
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list>
-                <ion-item menu-toggle ng-click="redirect_urls.businessmap()">Business Map</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.map()">Map View</ion-item>
             </ion-list>
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()">My Loyal Bonus</ion-item>
@@ -40,10 +40,6 @@
     <ion-side-menu-content>
         <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
             <div class="buttons">
-                <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
-                <h1 class="title">
-                    <span ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white"></i></span>
-                </h1>
                 <button class="button button-icon 
                     {{ home_var.magnifyOrBack() == 'RestaurantController' || 
                        home_var.magnifyOrBack() == 'BusinessController' ? 
@@ -55,6 +51,10 @@
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
+                <h1 class="title">
+                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i></span>
+                </h1>
+                <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
             </div>
         </ion-header-bar>
         <div ui-view="body"></div>

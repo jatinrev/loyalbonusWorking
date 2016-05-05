@@ -88,9 +88,9 @@ angular.module('LoyalBonus')
       $scope.output = 'aboutus';
       $state.go("home.aboutus");
     },
-    businessmap : function() {
-      console.log('businessmap');
-      $scope.output = 'businessmap';
+    map : function() {
+      console.log('Map View');
+      $scope.output = 'map_view';
       $state.go("home.businessmap");
     },
     myloyalbonus : function () {

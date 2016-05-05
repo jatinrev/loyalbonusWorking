@@ -80,7 +80,7 @@ angular.module('LoyalBonus')
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({
 
-                title: 'Visit 10 times to receive Bonus.'
+                title: 'Scanned Complete'
             });
             alertPopup.then(function (res) {
                 console.log('Thank you for not eating my delicious ice cream cone');

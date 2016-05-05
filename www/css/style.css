@@ -70,7 +70,7 @@ img{
 {
     top: 100px;
    
-    z-index: 99;
+    z-index: 98;
 }
 .card, .list-inset
 {
@@ -188,7 +188,7 @@ map {
 
 #restaurants .scroll-content
 {
-     top:93px; 
+     top:72px; 
    /*  top:-3px; */
 }
 .rttitle
@@ -215,6 +215,11 @@ map {
     background-color:#000;
     
 }
+#restaurants .tabs
+{
+       height: 28px;
+    line-height: 28px;
+}
 #restaurants .new-color-loyal{
     color:#4fbb4f;
     text-align:center;
@@ -228,7 +233,7 @@ map {
 }
 p.stake-house
 {
-    float: left;
+   /*  float: left;
     position: absolute;
     top: -30px;
     color: #fff;
@@ -239,7 +244,20 @@ p.stake-house
     overflow: hidden;
     max-width:110px;
     text-overflow: ellipsis;
-    white-space: nowrap; 
+    white-space: nowrap; */ 
+    float: left;
+    position: absolute;
+    top: -30px;
+    color: #fff;
+    font-size: 16px;
+    left: 8px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    max-width: 156px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 }
 .platform-android {
   p.stake-house {
@@ -370,7 +388,7 @@ p.stake-house
 .color-chnage
 {
     color:#a0a0a0;
-    font-size: 18px;
+    font-size: 14px;
 }
 .ion-ios-star-outline
 {
@@ -413,7 +431,7 @@ p.stake-house
     color: #4e4e4e;
     line-height: 29px;
     margin-bottom: 0px;
-    font-size: 21px;
+    font-size: 14px;
         text-align: justify;
 }
 .bar-footer .title {
@@ -1040,7 +1058,7 @@ font-size: 20px;
 {
     position: absolute;
     top: 7px;
-    right: 7px;
+    left: 7px;
     /* background-color: #DDDDDD; */
     color: #ffffff;
     background: url('../img/giveheatimg.png') no-repeat 10px 14px #DDDDDD;
@@ -1146,7 +1164,7 @@ font-weight: normal;padding-bottom: 10px;padding-top: 10px;text-align: center;wi
     border-bottom: 1px solid #fff;
 } */
 
-#restaurants ul[rn-carousel] {     overflow: scroll; } #restaurants .tab-
+#restaurants ul[rn-carousel] {     /* overflow: scroll;  */} #restaurants .tab-
 item {          font-weight: 200;          /* max-width: 118px; */
 font-size: 15px;              overflow: hidden;     max-width:123px;     text-
 overflow: ellipsis;     white-space: nowrap; } #restaurants ul[rn-carousel] li
@@ -1165,9 +1183,14 @@ padding: 16px 49px 16px 0px;     }
     
     height: 500px;
 }
+.search-vertical
+{
+    text-align: center;
+    width: 100%;
+}
 #restaurants .item-input
 {
-    background-color: #fff;
+    /* background-color: #fff;
     position: absolute;
     height: 34px;
     padding-left: 14px;
@@ -1175,7 +1198,17 @@ padding: 16px 49px 16px 0px;     }
     padding-bottom: 14px;
     padding-right: 0px;
     margin: 27px 0px 0px 17px;
+    width: 90%; */
+    background-color: #fff;
+    position: absolute;
+    height: 34px;
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 0px;
+    margin: 87px 0px 0px 17px;
     width: 90%;
+    z-index: 99
 }
 
 .white_background_color {
@@ -1183,7 +1216,7 @@ padding: 16px 49px 16px 0px;     }
 }
 .icon_kasy {
     padding: 5px 0 0px 8px;
-    margin: 5px 0 0 0;
+    margin: 0px 0 0 0;
     font-size: 18px;
     text-transform: capitalize;
 }
@@ -1191,13 +1224,14 @@ span.icon_kasy_new {
     position: relative;
     top: -12px;
     margin: 5px;
+    font-size: 16px;
 }
 span.icon_kasy_newsec
 {
 
 }
 #restaurants .current{
-   color:white;
+   color:white;font-size: 16px;
 }
 ul[rn-carousel] > li.current
 {
@@ -1265,12 +1299,19 @@ ul[rn-carousel] > li.current
     margin: 10px 15px;
 }
 #kaseydiner .loyal-kaseydiner {
-    color: #63615a;
+    /* color: #63615a;
     font-size: 17px;
     padding: 5px;
     margin-top: 15px;
-
+    
+    float: left; */
+    color: #63615a;
+    font-size: 17px;
+    padding: 5px;
+    margin-top: 25px;
     float: left;
+    text-align: center;
+    width: 100%;
 }
 
 a.control_prev  {
