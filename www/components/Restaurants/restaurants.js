@@ -224,15 +224,8 @@ angular.module('LoyalBonus', '')
 
                             get_business_data
                                 .search(keyword, position.lat, position.long, +$state.params.vertical)
-                                .then(function (response,keyopen) {
+                                .then(function (response) {
                                     restaurantData = response[+$state.params.vertical];
-                                    keyopen = response[+$state.keyword];
-                                    console.log(keyopen);
-                                    
-                                    //console.log('restaurantData');
-                                    //console.log(restaurantData.keyword={});
-
-
                                 });
                         } else {
                             console.log('keyword empty');
