@@ -115,7 +115,7 @@ angular.module('LoyalBonus', '')
 
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
-            $state.go("home.map", { businessDetailId: businessDetailId });
+            $state.go("home.businessmap", { businessDetailId: businessDetailId });
         }
 
         $ionicPlatform.ready(function () {
@@ -224,12 +224,20 @@ angular.module('LoyalBonus', '')
 
                             get_business_data
                                 .search(keyword, position.lat, position.long, +$state.params.vertical)
-                                .then(function (response) {
+                                .then(function (response,keyopen) {
                                     restaurantData = response[+$state.params.vertical];
+                                    keyopen = response[+$state.keyword];
+                                    console.log(keyopen);
+                                    
+                                    //console.log('restaurantData');
+                                    //console.log(restaurantData.keyword={});
+
+
                                 });
                         } else {
                             console.log('keyword empty');
                         }
+
                     };
 
                 });
@@ -253,6 +261,9 @@ angular.module('LoyalBonus', '')
 
 
         /* ion-infinite-scroll end*/
+
+
+        
 
 
 

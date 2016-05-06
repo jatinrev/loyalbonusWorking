@@ -8,11 +8,14 @@
     </div>
     <ion-view>
         <label ng-show="showMe" class="item item-input new_margin">
-                <input type="text" cache-view="false" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants">
+                <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
                 <span class="ion-search paddingLR10 " on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
-            </label>
-        <ion-content>
 
+
+            </label>
+
+        <ion-content>
+            <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
@@ -63,3 +66,5 @@
         </ion-content>
     </ion-view>
 </div>
+
+

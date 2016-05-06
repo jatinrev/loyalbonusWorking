@@ -50,4 +50,4 @@ angular.module('LoyalBonus.directives',[])
       })
     }
   }
-})
+});

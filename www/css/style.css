@@ -21,6 +21,8 @@ img{
 {
     width:100%;
     text-align: center;
+        margin-top: 15px;
+        margin-bottom: 5px;
        
 }
 #logo > img{
@@ -448,11 +450,12 @@ p.stake-house
     border-color: #33CD5F;
 }
 .newloyalcheckbox{
-    background-color: #ddd;
-    float: left;
+        background-color: #ddd;
+    display: inline-block;
     width: 100%;
-        position: relative;
+    position: relative;
     top: -5px;
+    text-align: center;
 }
 #kaseydiner .gift-round
 {
@@ -464,26 +467,26 @@ p.stake-house
     border: 1px solid #999999;
     border-radius: 50%;
     float: left;
-    height: 25px;
-    margin: 10px 2px 10px 5px;
+    height: 29px;
+    margin: 10px 1px 10px 5px;
     position: relative;
-    width: 25px;
+    width: 29px;
 }
 .round-span
 {
-    color: #333333;
-    font-size: 8px;
-    left: 4px;
+        color: #333333;
+    font-size: 12px;
+    left: 1px;
     line-height: normal;
     position: relative;
-    top: -3px;
+    top: 0px;
 }
 .round p {
-    color: #333333;
-    font-size: 9px;
-    left: 6px;
+        color: #333333;
+    font-size: 11px;
+    left: 0px;
     position: relative;
-    top: -9px;
+    top: -6px;
 }
 .checkbox input, .checkbox-icon
 {
@@ -1041,6 +1044,15 @@ font-size: 20px;
     padding: 0 7px;
 
 }
+#restaurants .buttonListView
+{
+     background-color: #fff;
+        margin: 7px 0px 0 0;
+    color: #a5a7a9;
+    border: 1px solid #a5a7a9;
+    display: inline-block;
+
+}
 
 #Map .gm-style-mtc
 {
@@ -1199,7 +1211,17 @@ padding: 16px 49px 16px 0px;     }
     padding-right: 0px;
     margin: 27px 0px 0px 17px;
     width: 90%; */
-    background-color: #fff;
+        background-color: #fff;
+    position: absolute;
+    height: 34px;
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 0px;
+    margin: 137px 0px 0px 7px;
+    width: 96%;
+    z-index: 99;
+    /* background-color: #fff;
     position: absolute;
     height: 34px;
     padding-left: 14px;
@@ -1208,7 +1230,7 @@ padding: 16px 49px 16px 0px;     }
     padding-right: 0px;
     margin: 87px 0px 0px 17px;
     width: 90%;
-    z-index: 99
+    z-index: 99 */
 }
 
 .white_background_color {
