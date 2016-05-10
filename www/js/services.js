@@ -1,7 +1,7 @@
 angular.module('LoyalBonus.services',[])
 .factory('MathService', function() {
     var factory = {};
-    
+
     factory.multiply = function(a, b) {
        return a * b
     }
@@ -103,7 +103,7 @@ angular.module('LoyalBonus.services',[])
         }
         return str;
 	}
-	
+
 	return {
 		ratingImages : ratingImages
 	}
@@ -111,13 +111,13 @@ angular.module('LoyalBonus.services',[])
 .service('get_unique_elements', function () {
 	this.get_unique_arr = function (arr) {
 		var uniqueNames = [];
-		for(i = 0; i< arr.length; i++){    
+		for(i = 0; i< arr.length; i++){
 		    if(uniqueNames.indexOf(arr[i]) === -1){
-		        uniqueNames.push(arr[i]);        
-		    }        
+		        uniqueNames.push(arr[i]);
+		    }
 		}
-		/*for(i = 0; i< uniqueNames.length; i++){    
-		    uniqueNames[i];      
+		/*for(i = 0; i< uniqueNames.length; i++){
+		    uniqueNames[i];
 		}*/
 		return uniqueNames;
 	};
@@ -126,53 +126,14 @@ angular.module('LoyalBonus.services',[])
 
 	function getLocation() {
 		loading.start();
-		/*if( typeof($rootScope.userDetails.userLocation) != 'undefined' && Object.keys($rootScope.userDetails.userLocation).length > 0 ) {
-
-			var p2 = new Promise(function(resolve, reject) {
-			  resolve( $rootScope.userDetails.userLocation );
-			});
-			return p2;
-			/*
-			p2.then(function(value) {
-			  console.log(value); // 1
-			  return value + 1;
-			}).then(function(value) {
-			  console.log(value); // 2
-			});
-
-			p2.then(function(value) {
-			  console.log(value); // 1
-			});
-
-			console.log('Hellllooo');
-			return $rootScope.userDetails.userLocation;*****
-		} else {*/
-			var posOptions = {timeout: 100000, enableHighAccuracy: false};
-			return $cordovaGeolocation
-	    	       .getCurrentPosition(posOptions)
-	    	       .then(function (position) {
-
-                		//$rootScope.userDetails.userLocation = position.lat+','+position.long;
-		    	   	   	$rootScope.userDetails.userLocation = position.coords.latitude+','+position.coords.longitude; 
-		    	   	   	/*{
-		    	   	   		lat  : position.coords.latitude,
-					   		long : position.coords.longitude
-		    	   	   	};*/
-		    	   	   	loading.stop();
-					   	return {
-		    	   	   		lat  : position.coords.latitude,
-					   		long : position.coords.longitude
-		    	   	   	};
-	    	       }, function(err) {
-	    	       		loading.stop();
-				      	console.log(err);
-				   });
-		/*}*/
+	  	var posOptions = {timeout: 10000, enableHighAccuracy: false};
+	  	return $cordovaGeolocation
+	    .getCurrentPosition(posOptions);
 	}
-
-	return {
-		get : getLocation()  //{ this : function (lalla) { return "yoyoy"; } }
-	};
+	
+	//watch.clearwatch();
+	return { get : getLocation() };
+	loading.stop();
 })
 .filter('spaceless', function () {
 	console.log('in filter spaceless');
@@ -182,10 +143,10 @@ angular.module('LoyalBonus.services',[])
 })
 .factory('active_controller', function () {
     var activeController;
-    
+
     function set(name) {
 		activeController = name;
-		
+
     }
     function get() {
 		return activeController;
@@ -275,7 +236,7 @@ angular.module('LoyalBonus.services',[])
 			} else {
 			  return true;
 		  	}
-		}	
+		}
 	}
 
 	return {
@@ -350,12 +311,12 @@ angular.module('LoyalBonus.services',[])
 		var starsArr = [];
 		for( var i = 1; i < 6; i++ ) {
 			if( i > 0 && i <= number) {
-				starsArr.push({ 
+				starsArr.push({
 					class : 'filledStart',
 					src   : 'img/filledStar.png'
 				});
 			} else {
-				starsArr.push({ 
+				starsArr.push({
 					class : 'emptyStart',
 					src   : 'img/emptyStart.png'
 				});

@@ -13,6 +13,7 @@ angular.module('LoyalBonus', '')
             loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + pageIndex[businessId] + '&pageSize=5&CatId=' + businessId + '&SubCatId=&locId=&Keyword=&currlocationlatlong=' + lat + ',' + long, {})
                 .then(function (response) {
+                    console.log(response);
                     if (response.data.Data.length > 0) { //records are present so add pageIndex.
                         pageIndex[businessId] += 1;
                     }
@@ -123,7 +124,13 @@ angular.module('LoyalBonus', '')
 
             get_user_location
                 .get
-                .then(function (position) {
+                .then(function (positionfulljson) {
+                    var position = {
+                        lat: positionfulljson.coords.latitude,
+                        long: positionfulljson.coords.longitude
+                    };
+                    
+
                     /*position.lat, position.long
                     loading.start();
                     loading.stop();*/
@@ -143,9 +150,14 @@ angular.module('LoyalBonus', '')
                                 return get_business_data
                                     .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                                     .then(function (response) {
+                                        //console.log(response);
                                         restaurantData = response[+$state.params.vertical];
+                                        //console.log(restaurantData);
                                     });
                             } else if (+$state.params.vertical != 0) {
+                                console.log(position.lat);
+                                console.log(position.long);
+
                                 return get_business_data               //getting records
                                     .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                     .then(function (result) {
