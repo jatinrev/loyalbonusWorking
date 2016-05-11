@@ -38,6 +38,7 @@ angular.module('LoyalBonus', '')
                         if (response.data.Data.length > 0) {
                             searchPageIndex[catId] += 1;
                         }
+                        console.log(response);
                         for (i in response.data.Data) {
                             searchData[catId].push(response.data.Data[i]);
                         }
