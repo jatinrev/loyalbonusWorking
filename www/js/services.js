@@ -141,7 +141,7 @@ angular.module('LoyalBonus.services',[])
 	    });
 	    console.log('console');
 	    console.log(output);
-	    	return output;
+	    return output;
 	}
 
 		
