@@ -192,7 +192,7 @@ angular.module('LoyalBonus', '')
                                         .then(function (res) { // this is appending records getting from ajax.
                                             if (res[+$state.params.vertical].length == restaurantData.length) {
                                                 reachLast = true;
-                                                $scope.loadmoreNgShow = false;
+                                                $scope.loadmoreNgShow = true;
                                             } else {
                                                 restaurantData = res[+$state.params.vertical];
                                             }
