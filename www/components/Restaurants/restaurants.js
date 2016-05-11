@@ -121,10 +121,11 @@ angular.module('LoyalBonus', '')
 
         $ionicPlatform.ready(function () {
             $scope.testing = 'in RestaurantController ionic ready.';
-
+            console.log('yoyoyooy');
             get_user_location
                 .get
                 .then(function (positionfulljson) {
+                    console.log(positionfulljson);
                     var position = {
                         lat: positionfulljson.coords.latitude,
                         long: positionfulljson.coords.longitude

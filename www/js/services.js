@@ -125,15 +125,30 @@ angular.module('LoyalBonus.services',[])
 .factory('get_user_location', function ( $cordovaGeolocation, $rootScope, loading ) {
 
 	function getLocation() {
-		loading.start();
-	  	var posOptions = {timeout: 10000, enableHighAccuracy: false};
-	  	return $cordovaGeolocation
-	    .getCurrentPosition(posOptions);
+		console.log('kuchbhi');
+	  	var posOptions = {maximumAge: 30000,	timeout: 15000, enableHighAccuracy: false};
+	
+	  	var output = $cordovaGeolocation
+	    .getCurrentPosition(posOptions)
+	    .then(function (result) {
+	    	// console.log('Success');
+	    	//console.log(res);
+	    	return result;
+	    }, function(error)
+	    {
+	    	return error;
+	    	// console.log('chiku');
+	    });
+	    console.log('console');
+	    console.log(output);
+	    	return output;
 	}
+
+		
 	
 	//watch.clearwatch();
 	return { get : getLocation() };
-	loading.stop();
+	
 })
 .filter('spaceless', function () {
 	console.log('in filter spaceless');
@@ -228,7 +243,7 @@ angular.module('LoyalBonus.services',[])
 	/**
 	 *	returns true when email is valid
 	 */
-	function email(emailAddress) {
+	function email(emailAddposOptionss) {
 		if(emailAddress!='') {
 			var emailPattern =   /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},*[\W]*)+$/;
 			if(!emailPattern.test(emailAddress)){
