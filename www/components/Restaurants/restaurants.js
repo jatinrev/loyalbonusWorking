@@ -60,8 +60,12 @@ angular.module('LoyalBonus', '')
                         .then(function (res) {
                             var heading_data_temp = [];
                             for (variable in res.data.Data) {
-                                heading_data_temp.push({ CategoryID: res.data.Data[variable].CategoryID, CategoryName: res.data.Data[variable].CategoryName });
+                                heading_data_temp.push({
+                                    CategoryID: res.data.Data[variable].CategoryID,
+                                    CategoryName: res.data.Data[variable].CategoryName
+                                });
                             }
+
                             heading_data = heading_data_temp;
 
                             /**for restaurant page**/
@@ -90,11 +94,11 @@ angular.module('LoyalBonus', '')
 
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
         get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicScrollDelegate) {
+        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate) {
 
         //console.log('hello');
 
-
+        
 
         var restaurantData = [];
         active_controller.set('RestaurantController');
@@ -118,9 +122,11 @@ angular.module('LoyalBonus', '')
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
             $state.go("home.businessmap", { businessDetailId: businessDetailId });
+            $ionicHistory.clearHistory();
         }
 
         $ionicPlatform.ready(function () {
+            
             $scope.testing = 'in RestaurantController ionic ready.';
             console.log('yoyoyooy');
             get_user_location
@@ -131,7 +137,7 @@ angular.module('LoyalBonus', '')
                         lat: positionfulljson.coords.latitude,
                         long: positionfulljson.coords.longitude
                     };
-                    
+
 
                     /*position.lat, position.long
                     loading.start();
@@ -182,7 +188,7 @@ angular.module('LoyalBonus', '')
                                         .then(function (response) {
                                             if (response[+$state.params.vertical].length == restaurantData.length) {
                                                 reachLast = true;
-                                                $scope.loadmoreNgShow = false;
+                                                //$scope.loadmoreNgShow = false;
                                             } else {
                                                 restaurantData = response[+$state.params.vertical];
                                             }
@@ -202,6 +208,8 @@ angular.module('LoyalBonus', '')
 
                             };
                         });
+
+
 
 
                     $scope.showPopup = function (msg) {
@@ -270,7 +278,7 @@ angular.module('LoyalBonus', '')
         /* ion-infinite-scroll end*/
 
 
-        
+
 
 
 

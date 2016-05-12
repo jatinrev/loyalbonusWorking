@@ -1,11 +1,13 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
+
         <ul rn-carousel class="tabs ">
-            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
+            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
         </ul>
         <!--animation="slide-left-right"  -->
 
     </div>
+
     <ion-view>
         <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
@@ -14,7 +16,7 @@
 
             </label>
 
-        <ion-content>
+        <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" >
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
             <div ng-repeat="d in print_data()">
@@ -56,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            </ion-nav>
             <!-- <div class="loadingButton" ng-click="listData()" ng-show="loadmoreNgShow">loadmore..</div>
             <div class="noMoreRecordMsg text-align-center padding-top-10 padding-bottom-10" ng-hide="loadmoreNgShow">No records..</div> -->
             <!-- <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" icon="ion-loading-c" on-infinite="loadMore(); listData() " distance="1%">No records..</ion-infinite-scroll> -->
@@ -66,5 +69,3 @@
         </ion-content>
     </ion-view>
 </div>
-
-
