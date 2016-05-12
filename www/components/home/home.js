@@ -81,7 +81,7 @@ angular.module('LoyalBonus')
       $state.go("home.account");
     },
     home : function() {
-      console.log('account_settings');
+      console.log('home');
       $scope.output = 'home';
       $state.go("home.restaurants");
     },

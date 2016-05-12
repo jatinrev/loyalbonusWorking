@@ -98,7 +98,7 @@ angular.module('LoyalBonus', '')
 
         //console.log('hello');
 
-        
+
 
         var restaurantData = [];
         active_controller.set('RestaurantController');
@@ -126,7 +126,7 @@ angular.module('LoyalBonus', '')
         }
 
         $ionicPlatform.ready(function () {
-            
+
             $scope.testing = 'in RestaurantController ionic ready.';
             console.log('yoyoyooy');
             get_user_location
@@ -312,6 +312,17 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
+
+        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+
+            console.log("State changed: ", toState);
+            var url;
+            if (url.path() == "restaurants/:vertical") {
+                //$scope.refreshItems();
+                
+            }
+
+        });
 
     });
 
