@@ -9,9 +9,14 @@ angular.module('LoyalBonus')
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
+		console.log(res);
 		$scope.myloyalbonus.print = res.data.Data;
 		console.log($scope.myloyalbonus.print);
 	});
+
+	$scope.open_detail_page = function (id) {
+            $state.go("home.kaseydiner", { id: id });
+        };
 
 	function mydummyJson (input) {
 		var output = [];

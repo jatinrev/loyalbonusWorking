@@ -440,10 +440,27 @@ p.stake-house
     height: auto;
     top: 3px;
 }
-#kaseydiner .checkbox, #Milestones .checkbox
+
+#kaseydiner .checkbox
 {
-    float: Left;
-    padding:10px 2px 10px 5px 
+    font-size: 14px;
+    left: 4px;
+    line-height: normal;
+    position: relative;
+    top: 1px;
+}
+#Milestones .checkbox
+{
+    border-radius: 50%;
+    float: left;
+    height: 34px;
+    margin: 10px 1px 10px 5px;
+    position: relative;
+    width: 34px;
+    padding: 0px;
+}
+#Milestones .checkbox > img {
+    width: 34px;
 }
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
     background: #33CD5F;
@@ -471,6 +488,32 @@ p.stake-house
     margin: 10px 1px 10px 5px;
     position: relative;
     width: 29px;
+}
+
+#Milestones .round
+{
+    border: 1px solid #999999;
+    border-radius: 50%;
+    float: left;
+    height: 34px;
+    margin: 10px 1px 10px 5px;
+    position: relative;
+    width: 34px;
+}
+#Milestones .round-span {
+    color: #333333;
+    font-size: 13px;
+    left: 4px;
+    line-height: normal;
+    position: relative;
+    top: 1px;
+}
+#Milestones .round p {
+        color: #333333;
+    font-size: 13px;
+    left: 8px;
+    position: relative;
+    top: -4px;
 }
 .round-span
 {
