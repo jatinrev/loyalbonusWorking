@@ -91,26 +91,24 @@ angular.module('LoyalBonus', '')
     })
 
 
-    .factory('fortabs',['$q', '$http', '$rootScope', '$location', '$window', '$timeout',
-    function ($q, $http, $rootScope, $location, $window, $timeout,$ionicPlatform, $rootScope, backFunctionality) {
+    //.factory('fortabs',['$q', '$http', '$rootScope', '$location', '$window', '$timeout',
+    //function ($q, $http, $rootScope, $location, $window, $timeout,$ionicPlatform, $rootScope, backFunctionality) {
+    // $rootScope.$on("$locationChangeStart", function(event, next, current){
+      //        $rootScope.error = null;
+        //      console.log("Route change!!!", $location.path());
+          //    var path = $location.path();
 
 
-     $rootScope.$on("$locationChangeStart", function(event, next, current){
-              $rootScope.error = null;
-              console.log("Route change!!!", $location.path());
-              var path = $location.path();
-
-
-              console.log("App Loaded!!!");
-          });
+            //  console.log("App Loaded!!!");
+          //});
 
 
 
 
-    }
+    //}
 
 
-])
+//])
 
 
 
@@ -120,9 +118,9 @@ angular.module('LoyalBonus', '')
         //console.log('hello');
 
 
-            $scope.onSlideMove = function(data){
-                alert("You have selected " + data.index + " tab");
-            };
+            //$scope.onSlideMove = function(data){
+              //  alert("You have selected " + data.index + " tab");
+            //};
 
 
         var restaurantData = [];

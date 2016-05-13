@@ -1,31 +1,26 @@
 <div id="restaurants">
+    <div class="tabs-top tabs-background-positive tabs-color-light">
+    
+        <ul rn-carousel class="tabs ">
+            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
+        </ul>
+        
+        <!--animation="slide-left-right"  -->
 
-<ion-view title="Scrollable Tabbed Slide box ">
-<label ng-show="showMe" class="item item-input new_margin">
+      
+    </div>  
+
+
+    <ion-view>
+        <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
 
 
             </label>
-    <ion-content>
-    <div class="tabs-top tabs-background-positive tabs-color-light">
-    
-    <tab-slide-box>
-    <div class="tsb-icons"> 
-       <div class="tsb-ic-wrp">
-       <ion-scroll direction="x" class="tsb-hscroll">
-        <!--<ul rn-carousel class="tabs ">-->
-            <a href="javascript:;" ng-repeat="(key, value) in heading" class="{tab.icon}}"  ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</a>
-        <!--</ul>-->
-       </ion-scroll> 
-        <!--animation="slide-left-right"  -->
 
-      </div>
-     </div>
-    </div>  
+        <ion-content>
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
-             <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
-             <ion-slide>
 
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
@@ -67,16 +62,13 @@
                 </div>
             </div>
             </ion-nav>
-            </ion-slide>
-           </ion-slide-box>
             <!-- <div class="loadingButton" ng-click="listData()" ng-show="loadmoreNgShow">loadmore..</div>
             <div class="noMoreRecordMsg text-align-center padding-top-10 padding-bottom-10" ng-hide="loadmoreNgShow">No records..</div> -->
             <!-- <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" icon="ion-loading-c" on-infinite="loadMore(); listData() " distance="1%">No records..</ion-infinite-scroll> -->
             <!-- <ion-infinite-scroll="addMoreItem" on-infinite="listData()"></ion-infinite-scroll> -->
             <!--  <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore() ; listData()" distance="1%"></ion-infinite-scroll> -->
             <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore();listData() " distance="1%"></ion-infinite-scroll>
-             
-        </tab-slide-box>
+
         </ion-content>
     </ion-view>
 </div>

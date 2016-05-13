@@ -202,9 +202,8 @@ map {
 
 #restaurants .scroll-content
 {
-   /*   top:72px; 
-    top:-3px; */
-    top:36px;
+     top:72px; 
+   /*  top:-3px; */
 }
 .rttitle
 {
@@ -1312,9 +1311,9 @@ span.icon_kasy_newsec
 {
 
 }
-/*#restaurants .current{
+#restaurants .current{
    color:white;font-size: 16px;
-}*/
+}
 ul[rn-carousel] > li.current
 {
    color:white; 
