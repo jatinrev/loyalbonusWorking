@@ -125,7 +125,7 @@ angular.module('LoyalBonus.services',[])
 .factory('get_user_location', function ( $cordovaGeolocation, $rootScope, loading ) {
 
 	function getLocation() {
-		console.log('kuchbhi');
+		//console.log('kuchbhi');
 	  	var posOptions = {maximumAge: 30000,	timeout: 15000, enableHighAccuracy: false};
 	
 	  	var output = $cordovaGeolocation
@@ -223,11 +223,11 @@ angular.module('LoyalBonus.services',[])
 				fromState  : fromState.name,
 				fromParams : fromParams
 			});
-			/*console.log(previous_page);
+			console.log(previous_page);
 			console.log(toState);
-	    	console.log(fromState);*/
+	    	console.log(fromState);
 	    }
-	    /*console.log(previous_page);*/
+	    console.log(previous_page);
     });
 
 	return {

@@ -8,6 +8,7 @@ angular.module('LoyalBonus')
     previousState       = fromState.name;
     previousStateParams = fromParams;
     // $state.go(fromState.name, fromParams);
+    //console.log(previousStateParams);
   });
 
   $scope.home_var = {};
@@ -83,7 +84,7 @@ angular.module('LoyalBonus')
     home : function() {
       console.log('home');
       $scope.output = 'home';
-      $state.go("home.restaurants");
+      $state.go('home.restaurants', { vertical: "1"});
     },
     aboutus : function() {
       console.log('aboutus');
