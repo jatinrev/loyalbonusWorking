@@ -202,8 +202,9 @@ map {
 
 #restaurants .scroll-content
 {
-     top:72px; 
-   /*  top:-3px; */
+   /*   top:72px; 
+    top:-3px; */
+    top:36px;
 }
 .rttitle
 {
