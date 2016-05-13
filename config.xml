@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.loyalbonus.loyal" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>loyalbonus</name>
-  <description>&#xD;
-        loyalbonus project.&#xD;
+  <description>
+        loyalbonus project.
     </description>
-  <author email="navdeep@revinfotech.com" href="http://www.revinfotech.com/">&#xD;
-      Your Name Here&#xD;
+  <author email="navdeep@revinfotech.com" href="http://www.revinfotech.com/">
+      Your Name Here
   </author>
-  <content src="http://192.168.3.7:8100" original-src="index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>

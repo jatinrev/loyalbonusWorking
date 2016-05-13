@@ -48,7 +48,7 @@ angular.module('LoyalBonus')
 
 
         $scope.state_on = function () {
-
+            console.log($state.params.id);
             return $state.params.id;
         };
 
@@ -65,7 +65,7 @@ angular.module('LoyalBonus')
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
-                    
+
                 ]
             });
             myPopup.then(function (res) {
@@ -162,6 +162,7 @@ angular.module('LoyalBonus')
                 $scope.newScope.positions = [];
                 $scope.newScope.address   = [];
                 for (i in res.businesslocationsList) {
+                    //console.log(res.businesslocationsList);
                     if(centerDefined == 0) {
                         $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
                         centerDefined          = 1;
@@ -204,7 +205,7 @@ angular.module('LoyalBonus')
             .then(function (res) {
                 console.log(res);
                 if(res.data.StatusMessage == 'Success') {
-                    
+
                 }
             });
         };

@@ -5,6 +5,7 @@
             <div>  <!-- outer div -->
                 <div class="row border-milestone" ng-repeat="(key, value) in myloyalbonus.print">
                     <div class="col-50">
+                    
                         <img ng-src="{{ value.Image == null ? 'img/placeholder.jpg' : value.Image }}" ng-click="open_detail_page(d.BusinessID)">
                         
                     </div>

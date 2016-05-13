@@ -1,12 +1,18 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-
-        <ul rn-carousel class="tabs ">
-            <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
-        </ul>
+    <div class="tsb-icons"> 
+       <div class="tsb-ic-wrp">
+       <ion-scroll direction="x" class="tsb-hscroll">
+        <!--<ul rn-carousel class="tabs ">-->
+            <a href="javascript:;" ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</a>
+        <!--</ul>-->
+       </ion-scroll> 
         <!--animation="slide-left-right"  -->
 
-    </div>
+      </div>
+     </div>
+    </div>  
+
 
     <ion-view>
         <label ng-show="showMe" class="item item-input new_margin">
@@ -22,7 +28,7 @@
             <div ng-repeat="d in print_data()">
                 {{ restaurants.demo }}
                 <div id="logo">
-
+                    
                     <img ng-src="{{ d.Image == null ? 'img/placeholder.jpg' : d.Image }}" ng-click="open_detail_page(d.BusinessID)">
                 </div>
                 <div class="row stake-house">

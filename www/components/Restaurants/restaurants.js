@@ -91,14 +91,39 @@ angular.module('LoyalBonus', '')
     })
 
 
+    .run(['$q', '$http', '$rootScope', '$location', '$window', '$timeout',
+  function ($q, $http, $rootScope, $location, $window, $timeout,$ionicPlatform, $rootScope, backFunctionality) {
 
-    .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform,
-        get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
+
+  $rootScope.$on("$locationChangeStart", function(event, next, current){
+              $rootScope.error = null;
+              console.log("Route change!!!", $location.path());
+              var path = $location.path();
+              
+              
+              console.log("App Loaded!!!");
+          });
+     
+
+
+ 
+   }
+
+
+])
+
+
+
+    .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform,$stateParams, $q, $location, $window,get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data, 
         active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate) {
 
         //console.log('hello');
 
-
+        
+            $scope.onSlideMove = function(data){
+                alert("You have selected " + data.index + " tab");
+            };
+        
 
         var restaurantData = [];
         active_controller.set('RestaurantController');
@@ -106,6 +131,7 @@ angular.module('LoyalBonus', '')
         $scope.restaurants = {};
 
         $scope.open_detail_page = function (id) {
+            console.log($scope.open_detail_page);
             $state.go("home.kaseydiner", { id: id });
         };
 

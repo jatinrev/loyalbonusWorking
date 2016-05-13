@@ -1,36 +1,19 @@
 angular.module('LoyalBonus')
 
 
-.factory('businessVisitMilestone', function (ajaxCall) {
 
-        /**
-         *  businessUid is qrCode
-         */
-        function give_visitmile(userId, businessUid, businessId) {
-            ajaxCall
-                .post('webapi/BusinessMaster/CreateBusinessQR',
-                { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
-                )
-                .then(function (response) {
-                    console.log('response');
-                    console.log(reponse);
-                });
-        }
-        return {
-            give_visitmile: give_visitmile
-            
-        };
-}) 
 
-.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope,businessVisitMilestone) {
+.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope) {
 
-	$scope.open_detail_page = function (id) {
-            $state.go("home.kaseydiner", { id: id });
+	$scope.open_detail_page = function (id, BusinessID, businessDetailId) {
+		
+            $state.go("home.kaseydiner", { id: id , BusinessID: BusinessID, businessDetailId: businessDetailId });
+            console.log($scope.open_detail_page);
         };
 
 
 
-	
+
 	$scope.myloyalbonus = {};
 
 	$scope.myloyalbonus.print = [];
@@ -43,7 +26,7 @@ angular.module('LoyalBonus')
 		//console.log($scope.myloyalbonus.print);
 	});
 
-	
+
 	function mydummyJson (input) {
 		var output = [];
 		for (var i = 0; i < input; i++) {

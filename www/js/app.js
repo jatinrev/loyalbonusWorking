@@ -1,6 +1,6 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
+angular.module('LoyalBonus', ['ionic','ionic-rating-stars', ,'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope) {
   /**Temp Data**/
