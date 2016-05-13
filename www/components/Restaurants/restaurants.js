@@ -207,11 +207,6 @@ angular.module('LoyalBonus', '')
                                 }
 
                             };
-                        });
-
-
-
-
                     $scope.showPopup = function (msg) {
                         $scope.data = {}
 
@@ -313,16 +308,7 @@ angular.module('LoyalBonus', '')
             return $state.params.vertical;
         }
 
-        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-
-            console.log("State changed: ", toState);
-            var url;
-            if (url.path() == "restaurants/:vertical") {
-                //$scope.refreshItems();
-                
-            }
-
-        });
+       
 
     });
 
