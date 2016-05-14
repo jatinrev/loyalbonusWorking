@@ -52,10 +52,15 @@
                     ">
                 </button>
                 <h1 class="title">
-                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i></span>
+                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
+                    </span>
+
                 </h1>
+
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
+
             </div>
+
         </ion-header-bar>
         <div ui-view="body"></div>
     </ion-side-menu-content>

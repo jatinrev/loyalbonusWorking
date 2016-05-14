@@ -345,6 +345,8 @@ angular.module('LoyalBonus.services',[])
 		showRatingImages : showRatingImages,
 		showRatingJson   : showRatingJson
 	};
+
+	
 });
 
 

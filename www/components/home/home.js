@@ -1,7 +1,7 @@
 angular.module('LoyalBonus')
 
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,
-                                        backFunctionality, get_business_data) {
+                                        backFunctionality, get_business_data,$ionicViewService ) {
   var previousState       = '';
   var previousStateParams = '';
   $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
@@ -22,6 +22,7 @@ angular.module('LoyalBonus')
     $ionicSideMenuDelegate.toggleRight();
   };
 
+  
 
 
   $scope.goBackHandler = function() {
@@ -35,7 +36,8 @@ angular.module('LoyalBonus')
     
     //$rootScope.doRefresh();
   }
-  
+
+   
 
   $scope.signOut = function() {
     // console.log('helllooooo');
@@ -53,6 +55,7 @@ angular.module('LoyalBonus')
   $scope.home_var.homeheading.text = function () {
     // remember to string length here
     if( get_business_data.getSearchKeyword() != '' ) {
+      //console.log(get_business_data.getSearchKeyword);
       return get_business_data.getSearchKeyword();
     }
     return '';
@@ -60,13 +63,39 @@ angular.module('LoyalBonus')
   $scope.home_var.homeheading.Visibility = function () {
     if( get_business_data.getSearchKeyword() != '' ) {
       return true;
+
     } else {
       return false;
+
     }
+
   }
   $scope.home_var.homeheading.deleteSearch = function () {
     get_business_data.removeSearchKeyword();
   }
+
+  $rootScope.showPopup = function (msg) {
+                        $scope.data = {}
+
+                        // An elaborate, custom popup
+                        var myPopup = $ionicPopup.show({
+                            /* template:'<i class="icon-gift"></i>',*/
+                            title: '<img src="img/bonus.png"> Bonus',
+
+                            subTitle: msg,
+                            scope: $scope,
+                            buttons: [
+                                { text: 'Cancel', type: 'button-positive' }
+
+                            ]
+                        });
+                        myPopup.then(function (res) {
+                            console.log('Tapped!', res);
+                        });
+                        $timeout(function () {
+                            myPopup.close(); //close the popup after 3 seconds for some reason
+                        }, 3000);
+                    };
   /******End : Home Heading Setting*******/
 
   $scope.redirect_urls = {

@@ -50,6 +50,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       $stateProvider
       .state("home", {
         url: "/home/",
+        cache: false,
         views: {
           "": {
             templateUrl: "components/home/home.html",
@@ -61,6 +62,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("signin", {
         url: "/signin/",
+
         views: {
           "": {
             templateUrl: "components/SignIn/signin.html",
@@ -92,6 +94,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.restaurants", {
         url: "restaurants/:vertical",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/Restaurants/restaurants.html",
@@ -103,6 +106,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.kaseydiner", {
         url: "kaseydiner/:id",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/KaseyDiner/KaseyDiner.html",
@@ -123,6 +127,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.review", {
         url: "review/:businessId/:businessImg/:businessRating",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/Review/review.html",
@@ -133,6 +138,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.milestones", {
         url: "milestones/",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/Milestones/milestones.html",
@@ -143,6 +149,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.account", {
         url: "account/",
+
         views: {
           "body": {
             templateUrl: "components/Account/account.html",
@@ -153,6 +160,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.membership", {
         url: "membership/",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/Membership/membership.html",
@@ -163,6 +171,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.map", {
         url: "map/",
+        cache: false,
         views: {
           "body": {
            templateUrl: "components/Map/map.html",
@@ -183,6 +192,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
     .state("home.businessmap", {
         url: "businessmap/",
+        cache: false,
         views: {
           "body": {
             templateUrl: "components/Businessmap/businessmap.html",

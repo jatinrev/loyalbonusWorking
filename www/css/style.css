@@ -25,6 +25,10 @@ img{
         margin-bottom: 5px;
        
 }
+#Businessmap .button
+{
+        min-width: 100px;
+}
 
 .slider-slide h3{
             color:#fff;
@@ -1353,7 +1357,7 @@ ul[rn-carousel] > li.current
     padding-bottom: 14px;
     padding-right: 0px;
     /* margin: 27px 0px 0px 17px; */
-    margin: 63px 0px 0px 17px;
+    margin: 103px 0px 0px 17px;
     width: 90%;
 }
 #Businessmap .item {

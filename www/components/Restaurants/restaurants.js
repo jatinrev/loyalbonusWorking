@@ -280,6 +280,7 @@ angular.module('LoyalBonus', '')
                                 .search(keyword, position.lat, position.long, +$state.params.vertical)
                                 .then(function (response) {
                                     restaurantData = response[+$state.params.vertical];
+                                    
                                 });
                         } else {
                             console.log('keyword empty');
