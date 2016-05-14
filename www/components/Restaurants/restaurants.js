@@ -58,18 +58,23 @@ angular.module('LoyalBonus', '')
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                         .then(function (res) {
+                            console.log(res);
                             var heading_data_temp = [];
                             for (variable in res.data.Data) {
+                                console.log(variable);
                                 heading_data_temp.push({
                                     CategoryID: res.data.Data[variable].CategoryID,
                                     CategoryName: res.data.Data[variable].CategoryName
                                 });
+                                //console.log(res.data.Data[variable].CategoryName);
                             }
 
                             heading_data = heading_data_temp;
+                            //console.log(restaurantData);
 
                             /**for restaurant page**/
                             for (i in heading_data) {
+                                //console.log(i);
                                 restaurantData[heading_data[i].CategoryID] = [];
                                 /**for indexing of each page**/
                                 pageIndex[heading_data[i].CategoryID] = 0;
@@ -122,6 +127,7 @@ angular.module('LoyalBonus', '')
               //  alert("You have selected " + data.index + " tab");
             //};
 
+            
             
 
 
