@@ -122,7 +122,45 @@ angular.module('LoyalBonus', '')
               //  alert("You have selected " + data.index + " tab");
             //};
 
-            
+            $scope.slides7 = [];
+            $scope.carouselIndex7 = 0;
+            $scope.setOfImagesToShow = 3;
+            addImages($scope.slides7, $scope.setOfImagesToShow);
+            $scope.loadNextImages = function() {
+                console.log("loading Next images");
+                if (slideImages[slideImages.length-1].id !== $scope.slides7[$scope.slides7.length-1].id) {
+                    // Go to next set of images if exist
+                    $scope.slides7 = [];
+                    $scope.carouselIndex7 = 0;
+                    ++$scope.galleryNumber;
+                    addImages($scope.slides7, $scope.setOfImagesToShow);
+                } else {
+                    // Go to first set of images if not exist
+                    $scope.galleryNumber = 1;
+                    $scope.slides7 = [];
+                    $scope.carouselIndex7 = 0;
+                    addImages($scope.slides7, $scope.setOfImagesToShow);
+                }
+            }
+            $scope.loadPreviousImages = function() {
+                if (slideImages[0].id !== $scope.slides7[0].id) {
+                    // Go to previous set of images if exist
+                    $scope.slides7 = [];
+                    $scope.carouselIndex7 = 0;
+                    --$scope.galleryNumber;
+                    addImages($scope.slides7, $scope.setOfImagesToShow);
+                } else {
+                    // Go to last set of images if not exist
+                    console.log("slideimageslength: " + slideImages.length + ", " + slideImages.length-1 / $scope.setOfImagesToShow);
+                    // console.log("slideimageslength: " + slideImages.length );
+                    $scope.galleryNumber = slideImages.length / $scope.setOfImagesToShow;
+                    $scope.slides7 = [];
+                    $scope.carouselIndex7 = 0;
+                    addImages($scope.slides7, $scope.setOfImagesToShow);
+                    console.log("no images left");
+                }
+                
+            }
 
 
         var restaurantData = [];
