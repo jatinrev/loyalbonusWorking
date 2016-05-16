@@ -464,6 +464,8 @@ p.stake-house
     line-height: normal;
     position: relative;
     top: 1px;
+        padding: 7px 3px;
+        float: left;
 }
 #Milestones .checkbox
 {
