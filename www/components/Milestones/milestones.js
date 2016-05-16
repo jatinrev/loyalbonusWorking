@@ -22,9 +22,9 @@ angular.module('LoyalBonus')
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
-		//console.log(res);
+		console.log(res);
 		$scope.myloyalbonus.print = res.data.Data;
-		//console.log($scope.myloyalbonus.print);
+		console.log($scope.myloyalbonus.print);
 		
 	});
 
