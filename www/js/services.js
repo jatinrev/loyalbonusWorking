@@ -139,8 +139,8 @@ angular.module('LoyalBonus.services',[])
 	    	return error;
 	    	// console.log('chiku');
 	    });
-	    console.log('console');
-	    console.log(output);
+	    /*console.log('console');
+	    console.log(output);*/
 	    return output;
 	}
 
@@ -223,11 +223,11 @@ angular.module('LoyalBonus.services',[])
 				fromState  : fromState.name,
 				fromParams : fromParams
 			});
-			console.log(previous_page);
+			/*console.log(previous_page);
 			console.log(toState);
-	    	console.log(fromState);
+	    	console.log(fromState);*/
 	    }
-	    console.log(previous_page);
+	    /*console.log(previous_page);*/
     });
 
 	return {

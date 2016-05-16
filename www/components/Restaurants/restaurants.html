@@ -4,22 +4,14 @@
         <ul rn-carousel class="tabs ">
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
         </ul>
-        
-        <!--animation="slide-left-right"  -->
-
       
-    </div>  
-
-
     <ion-view>
         <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
-
-
             </label>
 
-        <ion-content>
+        <ion-content class="tabs-top">
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
             <div ng-repeat="d in print_data()">
@@ -71,4 +63,5 @@
 
         </ion-content>
     </ion-view>
+   </div> 
 </div>

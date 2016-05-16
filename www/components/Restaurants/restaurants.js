@@ -58,10 +58,10 @@ angular.module('LoyalBonus', '')
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                         .then(function (res) {
-                            console.log(res);
+                           /* console.log(res);*/
                             var heading_data_temp = [];
                             for (variable in res.data.Data) {
-                                console.log(variable);
+                                //console.log(variable);
                                 heading_data_temp.push({
                                     CategoryID: res.data.Data[variable].CategoryID,
                                     CategoryName: res.data.Data[variable].CategoryName
@@ -94,29 +94,6 @@ angular.module('LoyalBonus', '')
         };
 
     })
-
-
-    //.factory('fortabs',['$q', '$http', '$rootScope', '$location', '$window', '$timeout',
-    //function ($q, $http, $rootScope, $location, $window, $timeout,$ionicPlatform, $rootScope, backFunctionality) {
-    // $rootScope.$on("$locationChangeStart", function(event, next, current){
-      //        $rootScope.error = null;
-        //      console.log("Route change!!!", $location.path());
-          //    var path = $location.path();
-
-
-            //  console.log("App Loaded!!!");
-          //});
-
-
-
-
-    //}
-
-
-//])
-
-
-
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform,$stateParams, $q, $location, $window,get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
         active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate) {
 
@@ -137,7 +114,7 @@ angular.module('LoyalBonus', '')
         $scope.restaurants = {};
 
         $scope.open_detail_page = function (id) {
-            console.log($scope.open_detail_page);
+            //console.log($scope.open_detail_page);
             $state.go("home.kaseydiner", { id: id });
         };
 
@@ -160,11 +137,11 @@ angular.module('LoyalBonus', '')
         $ionicPlatform.ready(function () {
 
             $scope.testing = 'in RestaurantController ionic ready.';
-            console.log('yoyoyooy');
+           /* console.log('yoyoyooy');*/
             get_user_location
                 .get
                 .then(function (positionfulljson) {
-                    console.log(positionfulljson);
+                    /*console.log(positionfulljson);*/
                     var position = {
                         lat: positionfulljson.coords.latitude,
                         long: positionfulljson.coords.longitude
@@ -195,8 +172,8 @@ angular.module('LoyalBonus', '')
                                         //console.log(restaurantData);
                                     });
                             } else if (+$state.params.vertical != 0) {
-                                console.log(position.lat);
-                                console.log(position.long);
+                                /*console.log(position.lat);
+                                console.log(position.long);*/
 
                                 return get_business_data               //getting records
                                     .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
