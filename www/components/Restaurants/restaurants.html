@@ -1,7 +1,7 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
     
-        <ul rn-carousel class="tabs ">
+        <ul rn-carousel class="tabs">
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
         </ul>
         
@@ -19,7 +19,7 @@
 
             </label>
 
-        <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
+        <ion-content>
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
             <div ng-repeat="d in print_data()">
