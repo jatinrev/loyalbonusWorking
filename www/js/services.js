@@ -161,7 +161,7 @@ angular.module('LoyalBonus.services',[])
 
     function set(name) {
 		activeController = name;
-		//console.log(activeController);
+		console.log(activeController);
 
     }
     function get() {

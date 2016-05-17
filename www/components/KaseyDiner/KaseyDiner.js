@@ -44,11 +44,18 @@ angular.module('LoyalBonus')
 
         $scope.Lovedpage = [];
 
+        $scope.lovecount = 0;
 
+        $scope.Lovedpage.giveLovedShow = true;
+        $scope.Lovedpage.enableLoved = function () {
+
+            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
+
+        };
 
 
         $scope.state_on = function () {
-            console.log($state.params.id);
+            //console.log($state.params.id);
             return $state.params.id;
         };
 
@@ -85,6 +92,28 @@ angular.module('LoyalBonus')
             alertPopup.then(function (res) {
                 console.log('Thank you for not eating my delicious ice cream cone');
             });
+        };
+       $scope.showPopupFor = function (msg) {
+            $scope.data = {}
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+              /* template:'<i class="icon-gift"></i>',*/
+                title: '<img src="img/bonus.png"> Number Of Visits',
+
+                subTitle: msg,
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel', type: 'button-positive' }
+
+                ]
+            });
+            myPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000);
         };
 
         $scope.toggleItem = function (item) {
@@ -144,7 +173,7 @@ angular.module('LoyalBonus')
         $scope.helperFunction = {};
 
         // $scope.checkGlobal = function () {
-            console.log($rootScope.userDetails.userId);
+            //console.log($rootScope.userDetails.userId);
         // }
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
@@ -152,8 +181,8 @@ angular.module('LoyalBonus')
             ajaxCall
             .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
-                //console.log(res);
-                //console.log(res);
+                
+                console.log(res);
                 $scope.datadeal = res.data.Data[0];
                 //console.log($scope.datadeal);
                 return $scope.datadeal;

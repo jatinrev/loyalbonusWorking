@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-50">
                     <ion-list>
-                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
+                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong><!-- {{ datadeal.lovecount }} -->{{ datadeal.enableLoved }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
                         <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from reviews</span></ion-item>
                     </ion-list>
@@ -33,7 +33,7 @@
                             <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.BonusDiscountToCust }}
                         </ion-item>
                         <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount }} OFF</ion-item>
-                        <ion-item class="wth-border" ng-click="showAlert()">Visit 10 times to receive Bonus.</ion-item>
+                        <ion-item class="wth-border" ng-click="showPopupFor(datadeal.uservisits)">Visit 10 times to receive Bonus.</ion-item>
                     </ion-list>
                 </div>
             </div>

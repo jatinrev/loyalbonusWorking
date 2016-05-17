@@ -36,6 +36,12 @@ angular.module('LoyalBonus')
     
     //$rootScope.doRefresh();
   }
+  $rootScope.gotextHandler = function() {
+    $rootScope.showMe = !$rootScope.showMe;
+    
+    
+    //$rootScope.doRefresh();
+  }
 
    
 
@@ -49,6 +55,8 @@ angular.module('LoyalBonus')
   $scope.home_var.magnifyOrBack = function () {
     return active_controller.get();
   };
+
+  
 
   /*****Start : Home Heading Setting*****/
   $scope.home_var.homeheading = {};
