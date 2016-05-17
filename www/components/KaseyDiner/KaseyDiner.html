@@ -3,7 +3,7 @@
         <ion-content>
             <div id="logo">
                 <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
-                <a ng-click="Lovedpage.enableLoved(); Lovedpage.loadKaro();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
+                <a ng-click="Lovedpage.enableLoved(); Lovedpage.loadKaro();" class="already-giveHeart button buttonListViewLove">'Give Heart'</a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-50">
                     <ion-list>
-                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ IsLovedPage }}</strong><span class="color-chnage">people love it</span>
+                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
                         <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from reviews</span></ion-item>
                     </ion-list>

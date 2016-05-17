@@ -48,32 +48,31 @@ angular.module('LoyalBonus')
 
         $scope.Lovedpage = [];
 
-        $scope.lovecount = 0;
+        var lovecount = 0;
 
-        $scope.Lovedpage.giveLovedShow = false;
+        $scope.Lovedpage.giveLovedShow = true;
         $scope.Lovedpage.enableLoved = function () {
 
-            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == false ? true : false;
+            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
 
 
         };
-
 
         $scope.StopLoad = true;
          $scope.Lovedpage.loadKaro = function () {
  
              if ($scope.StopLoad) {
                  businessVisit
-                     .giveLove($state.params.businessId, $scope.lovecount)
+                     .giveLove($state.params.businessId, lovecount)
                      .then(function (result) {
                         // console.log(result);
                          if (result.StatusMessage != "Success") {
                              //console.log(result);
-                             $scope.lovecount += 1;
+                             $scope.datadeal.lovecount += 1;
                              for (dv in result) {
                                  $scope.Lovedpage.push(result[dv]);
                              }
-                             console.log($scope.lovecount);
+                             console.log($scope.datadeal.lovecount);
                          }else{
                              $scope.StopLoad = false;
                          }

@@ -102,7 +102,8 @@ var app = angular.module('LoyalBonus')
                             console.log(fetch);
                             var positions = [];
                             for (i in fetch.data.Data) {
-                                positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng + ',' +fetch.data.Data[i].Address1 + ',' + fetch.data.Data[i].Address2);
+                                positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng );
+                                /*positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng + ',' +fetch.data.Data[i].Address1 + ',' + fetch.data.Data[i].Address2);*/
                                 /*positions.push( {
                                     'latLong' : fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng , 
                                     'address' : fetch.data.Data[i].Address1 + ',' + fetch.data.Data[i].Address2

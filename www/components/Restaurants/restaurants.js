@@ -6,7 +6,7 @@ angular.module('LoyalBonus', '')
             , searchKeyword = ''
             , searchPageIndex = []
             , searchData = []; //data is stored here categorywise
-            
+
 
 
 
@@ -61,7 +61,7 @@ angular.module('LoyalBonus', '')
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})
                         .then(function (res) {
-                           /* console.log(res);*/
+                            /* console.log(res);*/
                             var heading_data_temp = [];
                             for (variable in res.data.Data) {
                                 //console.log(variable);
@@ -97,18 +97,18 @@ angular.module('LoyalBonus', '')
         };
 
     })
-    .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform,$stateParams, $q, $location, $window,get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
+    .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
         active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate) {
 
         //console.log('hello');
 
 
-            //$scope.onSlideMove = function(data){
-              //  alert("You have selected " + data.index + " tab");
-            //};
+        //$scope.onSlideMove = function(data){
+        //  alert("You have selected " + data.index + " tab");
+        //};
 
-           
-            
+
+
 
 
         var restaurantData = [];
@@ -140,7 +140,7 @@ angular.module('LoyalBonus', '')
         $ionicPlatform.ready(function () {
 
             $scope.testing = 'in RestaurantController ionic ready.';
-           /* console.log('yoyoyooy');*/
+            /* console.log('yoyoyooy');*/
             get_user_location
                 .get
                 .then(function (positionfulljson) {
@@ -260,7 +260,7 @@ angular.module('LoyalBonus', '')
                                 .search(keyword, position.lat, position.long, +$state.params.vertical)
                                 .then(function (response) {
                                     restaurantData = response[+$state.params.vertical];
-                                    
+
                                 });
                         } else {
                             console.log('keyword empty');
