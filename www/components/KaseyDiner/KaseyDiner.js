@@ -17,7 +17,7 @@ angular.module('LoyalBonus')
         }
 
 
-        function giveLove(businessId, userId, isLove) {
+       function giveLove(businessId, userId, isLove) {
 
             return ajaxCall
                 .post('webapi/BusinessMaster/BusinessGiveHeart',
@@ -26,7 +26,11 @@ angular.module('LoyalBonus')
                     UserId: userId,
                     isLove: isLove
 
-                });
+                }
+                ).then(function (result) {
+                    //console.log(result);
+                    return result.data.Data;
+                })
 
         }
 
@@ -46,12 +50,41 @@ angular.module('LoyalBonus')
 
         $scope.lovecount = 0;
 
-        $scope.Lovedpage.giveLovedShow = true;
+        $scope.Lovedpage.giveLovedShow = false;
         $scope.Lovedpage.enableLoved = function () {
 
-            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
+            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == false ? true : false;
+
 
         };
+
+
+        $scope.StopLoad = true;
+         $scope.Lovedpage.loadKaro = function () {
+ 
+             if ($scope.StopLoad) {
+                 businessVisit
+                     .giveLove($state.params.businessId, $scope.lovecount)
+                     .then(function (result) {
+                        // console.log(result);
+                         if (result.StatusMessage != "Success") {
+                             //console.log(result);
+                             $scope.lovecount += 1;
+                             for (dv in result) {
+                                 $scope.Lovedpage.push(result[dv]);
+                             }
+                             console.log($scope.lovecount);
+                         }else{
+                             $scope.StopLoad = false;
+                         }
+                     });
+             }
+         }
+         $scope.Lovedpage.loadKaro();
+ 
+         $scope.Lovedpage.IsLovedPage = function() {
+         return IsLovedPage;
+     }
 
 
         $scope.state_on = function () {
@@ -228,16 +261,17 @@ angular.module('LoyalBonus')
 
         /**** End : rating service ****/
 
-        $scope.Lovedpage.enableLoved = function () {
+        /*$scope.Lovedpage.enableLoved = function () {
             businessVisit
             .giveLove($state.params.id, $rootScope.userDetails.userId, true)
             .then(function (res) {
                 console.log(res);
                 if(res.data.StatusMessage == 'Success') {
 
+
                 }
             });
-        };
+        };*/
 
 
         /*** Start : scanBarcode ***/

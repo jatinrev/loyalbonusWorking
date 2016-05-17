@@ -56,12 +56,13 @@ angular.module('LoyalBonus')
     return active_controller.get();
   };
 
-  
+
 
   /*****Start : Home Heading Setting*****/
   $scope.home_var.homeheading = {};
   $scope.home_var.homeheading.text = function () {
     // remember to string length here
+    
     if( get_business_data.getSearchKeyword() != '' ) {
       //console.log(get_business_data.getSearchKeyword);
       return get_business_data.getSearchKeyword();
