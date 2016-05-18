@@ -7,12 +7,12 @@
                 <div class="row border-milestone" ng-repeat="(key, value) in myloyalbonus.print">
                     <div class="col-50">
                     
-                        <img ng-src="{{ value.Image == null ? 'img/placeholder.jpg' : value.Image }}" ng-click="open_detail_page(d.BusinessID)">
+                        <img ng-src="{{ value.Image == null ? 'img/placeholder.jpg' : value.Image }}" ng-click="open_detail_page(value.BusinessID)">
                         
                     </div>
 
                     <div class="col-50">
-                        <p class="title" ng-click="open_detail_page(d.BusinessID)">{{ value.Name }}</p>
+                        <p class="title" ng-click="open_detail_page(value.BusinessID)">{{ value.Name }}</p>
                         <div class="bar-balanced">
                             <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(value.uservisits)">
                                 <img src="img/tick.png" >

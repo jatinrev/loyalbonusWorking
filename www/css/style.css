@@ -1318,7 +1318,7 @@ span.icon_kasy_newsec
 
 }
 #restaurants .current{
-   color:white;font-size: 16px;
+   color:white;font-size: 15px;
 }
 ul[rn-carousel] > li.current
 {
@@ -1568,13 +1568,14 @@ li {
     display: block;
     color:#fff;
 }
-.text-vertical
+span.text-vertical
 {
         font-size: 15px;
-    
-}
-span {
+
     display: inline-block;
     text-align: center;
     width: 90%;
+
+    
 }
+ 
