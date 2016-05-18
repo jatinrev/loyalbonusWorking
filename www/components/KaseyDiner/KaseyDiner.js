@@ -44,11 +44,11 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser) {
+
+        console.log($rootScope.userPresent());
 
         $scope.Lovedpage = [];
-        console.log('yoyoy');
-        console.log($state.params.id);
         var lovecount = 0;
 
         $scope.Lovedpage.giveLovedShow = true;
@@ -212,8 +212,14 @@ angular.module('LoyalBonus')
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         function test() {
+            var userIdInTestFunction = function () {
+                if( watchUser.userPresent() == 1 ) {
+                    return $rootScope.userDetails.userId;
+                }
+                return '';
+            }
             ajaxCall
-                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + $rootScope.userDetails.userId, {})
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
                 .then(function (res) {
 
                     console.log(res);

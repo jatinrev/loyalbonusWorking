@@ -116,10 +116,10 @@ angular.module('LoyalBonus', '')
         $scope.testing = 'in RestaurantController...';
 
 
-        $scope.print_data = [];
-        $scope.data = {};
-        $scope.positions = {};
-        $scope.heading = [];
+        $scope.print_data     = [];
+        $scope.data           = {};
+        $scope.positions      = {};
+        $scope.heading        = [];
         $scope.loadmoreNgShow = false;
         /**/
 
