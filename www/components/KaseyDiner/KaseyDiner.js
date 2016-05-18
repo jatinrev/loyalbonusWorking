@@ -72,6 +72,7 @@ angular.module('LoyalBonus')
                              for (dv in result) {
                                  $scope.Lovedpage.push(result[dv]);
                              }
+                             
                              console.log($scope.datadeal.lovecount);
                          }else{
                              $scope.StopLoad = false;

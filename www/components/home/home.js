@@ -57,6 +57,14 @@ angular.module('LoyalBonus')
   };
 
 
+  $scope.kaseydinner_var.headerText = function () {
+    return active_controller.get();
+  };
+
+  
+
+
+
 
   /*****Start : Home Heading Setting*****/
   $scope.home_var.homeheading = {};
