@@ -5,12 +5,11 @@ angular.module('LoyalBonus')
 
 .controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope,saveData) {
 
-	$scope.open_detail_page = function (id, BusinessID, businessDetailId,businesslocationsList) {
-		console.log($scope.open_detail_page);
-			saveData.set('id',id , 'businesslocationsList',businesslocationsList,'businessDetailId', businessDetailId);
-            $state.go("home.kaseydiner", { id: id}, { businessDetailId: businessDetailId },{businesslocationsList:businesslocationsList});
-            
-        };
+	$scope.open_detail_page = function (BusinessID) {
+		// console.log(BusinessID);
+		// saveData.set('id',id , 'businesslocationsList',businesslocationsList,'businessDetailId', businessDetailId);
+        $state.go("home.kaseydiner", { id: BusinessID });
+    };
 
 
 
@@ -18,14 +17,11 @@ angular.module('LoyalBonus')
 	$scope.myloyalbonus = {};
 
 	$scope.myloyalbonus.print = [];
-
+//.get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
-		console.log(res);
 		$scope.myloyalbonus.print = res.data.Data;
-		console.log($scope.myloyalbonus.print);
-		
 	});
 
 	

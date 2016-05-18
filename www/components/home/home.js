@@ -54,13 +54,6 @@ angular.module('LoyalBonus')
   };
 
 
-  
-
-
-
-
-
-
   /*****Start : Home Heading Setting*****/
   $scope.home_var.homeheading = {};
   $scope.home_var.homeheading.text = function () {

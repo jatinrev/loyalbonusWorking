@@ -17,7 +17,7 @@ angular.module('LoyalBonus')
         }
 
 
-       function giveLove(businessId, userId, isLove) {
+        function giveLove(businessId, userId, isLove) {
 
             return ajaxCall
                 .post('webapi/BusinessMaster/BusinessGiveHeart',
@@ -47,7 +47,8 @@ angular.module('LoyalBonus')
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope) {
 
         $scope.Lovedpage = [];
-
+        console.log('yoyoy');
+        console.log($state.params.id);
         var lovecount = 0;
 
         $scope.Lovedpage.giveLovedShow = true;
@@ -59,32 +60,32 @@ angular.module('LoyalBonus')
         };
 
         $scope.StopLoad = true;
-         $scope.Lovedpage.loadKaro = function () {
- 
-             if ($scope.StopLoad) {
-                 businessVisit
-                     .giveLove($state.params.businessId, lovecount)
-                     .then(function (result) {
+        $scope.Lovedpage.loadKaro = function () {
+
+            if ($scope.StopLoad) {
+                businessVisit
+                    .giveLove($state.params.businessId, lovecount)
+                    .then(function (result) {
                         // console.log(result);
-                         if (result.StatusMessage != "Success") {
-                             //console.log(result);
-                             $scope.datadeal.lovecount += 1;
-                             for (dv in result) {
-                                 $scope.Lovedpage.push(result[dv]);
-                             }
-                             
-                             console.log($scope.datadeal.lovecount);
-                         }else{
-                             $scope.StopLoad = false;
-                         }
-                     });
-             }
-         }
-         $scope.Lovedpage.loadKaro();
- 
-         $scope.Lovedpage.IsLovedPage = function() {
-         return IsLovedPage;
-     }
+                        if (result.StatusMessage != "Success") {
+                            //console.log(result);
+                            $scope.datadeal.lovecount += 1;
+                            for (dv in result) {
+                                $scope.Lovedpage.push(result[dv]);
+                            }
+
+                            console.log($scope.datadeal.lovecount);
+                        } else {
+                            $scope.StopLoad = false;
+                        }
+                    });
+            }
+        }
+        //$scope.Lovedpage.loadKaro();
+
+        $scope.Lovedpage.IsLovedPage = function () {
+            return IsLovedPage;
+        }
 
 
         $scope.state_on = function () {
@@ -98,7 +99,7 @@ angular.module('LoyalBonus')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-              /* template:'<i class="icon-gift"></i>',*/
+                /* template:'<i class="icon-gift"></i>',*/
                 title: '<img src="img/bonus.png"> Bonus',
 
                 subTitle: msg,
@@ -126,12 +127,12 @@ angular.module('LoyalBonus')
                 console.log('Thank you for not eating my delicious ice cream cone');
             });
         };
-       $scope.showPopupFor = function (msg) {
+        $scope.showPopupFor = function (msg) {
             $scope.data = {}
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-              /* template:'<i class="icon-gift"></i>',*/
+                /* template:'<i class="icon-gift"></i>',*/
                 title: '<img src="img/bonus.png"> Number Of Visits',
 
                 subTitle: msg,
@@ -206,37 +207,37 @@ angular.module('LoyalBonus')
         $scope.helperFunction = {};
 
         // $scope.checkGlobal = function () {
-            //console.log($rootScope.userDetails.userId);
+        //console.log($rootScope.userDetails.userId);
         // }
 
         // http://beta2.loyalbonus.com/webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=2&UserId=12
         function test() {
             ajaxCall
-            .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
-            .then(function (res) {
-                
-                console.log(res);
-                $scope.datadeal = res.data.Data[0];
-                saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
-                //console.log($scope.datadeal);
-                return $scope.datadeal;
-            }).then(function (res) {
-                var centerDefined         = 0;
-                $scope.newScope.positions = [];
-                $scope.newScope.address   = [];
-                for (i in res.businesslocationsList) {
-                    //console.log(res.businesslocationsList);
-                    if(centerDefined == 0) {
-                        $scope.newScope.center = res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng;
-                        centerDefined          = 1;
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + $rootScope.userDetails.userId, {})
+                .then(function (res) {
+
+                    console.log(res);
+                    $scope.datadeal = res.data.Data[0];
+                    saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
+                    //console.log($scope.datadeal);
+                    return $scope.datadeal;
+                }).then(function (res) {
+                    var centerDefined = 0;
+                    $scope.newScope.positions = [];
+                    $scope.newScope.address = [];
+                    for (i in res.businesslocationsList) {
+                        //console.log(res.businesslocationsList);
+                        if (centerDefined == 0) {
+                            $scope.newScope.center = res.businesslocationsList[i].Lat + ',' + res.businesslocationsList[i].Lng;
+                            centerDefined = 1;
+                        }
+                        $scope.newScope.positions.push(res.businesslocationsList[i].Lat + ',' + res.businesslocationsList[i].Lng);
+                        /**Start : for address printing**/
+                        $scope.newScope.address.push(res.businesslocationsList[i].Address1);
+                        /***End : for address printing***/
                     }
-                    $scope.newScope.positions.push(res.businesslocationsList[i].Lat+','+res.businesslocationsList[i].Lng);
-                    /**Start : for address printing**/
-                    $scope.newScope.address.push(res.businesslocationsList[i].Address1);
-                    /***End : for address printing***/
-                }
-                // console.log(res);
-            });
+                    // console.log(res);
+                });
         }
         test();
 
