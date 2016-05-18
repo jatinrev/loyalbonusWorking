@@ -88,6 +88,7 @@ angular.module('LoyalBonus', '')
                             }
 
                             $state.go("home.restaurants", { vertical: heading_data[0].CategoryID });
+                            
                             return heading_data;
                         });
                 }
@@ -100,7 +101,7 @@ angular.module('LoyalBonus', '')
 
     })
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate, watchUser) {
+        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
 
 
         var restaurantData = [];
@@ -115,20 +116,43 @@ angular.module('LoyalBonus', '')
 
         $scope.testing = 'in RestaurantController...';
 
-         $scope.goForward = function () {
-        var selected = $ionicTabsDelegate.selectedIndex();
-        console.log(selected);
-        if (selected != -1) {
-            $ionicTabsDelegate.select(selected + 1);
+        $scope.goForward = function () {
+            get_business_data
+            .getheading()
+            .then(function (res) {
+                var go = 0;
+                for(i in res) {
+                    if(go == 1) {
+                        $state.go("home.restaurants", { vertical: +res[i].CategoryID });
+                        console.log(+res[i].CategoryID);
+                        console.log(+$state.params.vertical);
+                        break;
+                    }
+                    if( +res[i].CategoryID == +$state.params.vertical ) {
+                        go = 1;
+                    }
+                } 
+            });
         }
-    }
 
-    $scope.goBack = function () {
-        var selected = $ionicTabsDelegate.selectedIndex();
-        if (selected != -1 && selected != 0) {
-            $ionicTabsDelegate.select(selected - 1);
+        $scope.goBack = function () {
+            get_business_data
+            .getheading()
+            .then(function (res) {
+                var go = 0
+                , counter = [];
+                for(i in res) {
+                    counter.push({categoryID : +res[i].CategoryID});
+                    if( +res[i].CategoryID == +$state.params.vertical ) {
+                        break;
+                    }
+                }
+                console.log(counter);
+                counter.pop();
+                $state.go("home.restaurants", { vertical: counter.slice(-1).pop().categoryID });
+                
+            });
         }
-    }
 
 
         $scope.print_data     = [];
