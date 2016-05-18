@@ -98,17 +98,7 @@ angular.module('LoyalBonus', '')
 
     })
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate) {
-
-        //console.log('hello');
-
-
-        //$scope.onSlideMove = function(data){
-        //  alert("You have selected " + data.index + " tab");
-        //};
-
-
-
+        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, $ionicTabsDelegate, watchUser) {
 
 
         var restaurantData = [];
@@ -140,20 +130,13 @@ angular.module('LoyalBonus', '')
         $ionicPlatform.ready(function () {
 
             $scope.testing = 'in RestaurantController ionic ready.';
-            /* console.log('yoyoyooy');*/
             get_user_location
                 .get
                 .then(function (positionfulljson) {
-                    /*console.log(positionfulljson);*/
                     var position = {
                         lat: positionfulljson.coords.latitude,
                         long: positionfulljson.coords.longitude
                     };
-
-
-                    /*position.lat, position.long
-                    loading.start();
-                    loading.stop();*/
 
                     $scope.testing = position;
 
@@ -315,8 +298,6 @@ angular.module('LoyalBonus', '')
             if (input == null) {
                 input = 0;
             }
-            // input = input.trim();
-            // input = input.replace('%', '');
             return input;
         }
 
@@ -325,8 +306,6 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
-
-
 
     });
 

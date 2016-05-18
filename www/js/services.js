@@ -354,6 +354,21 @@ angular.module('LoyalBonus.services',[])
 	};
 
 	
+})
+.factory('watchUser', function ($rootScope) {
+	var userPresent = 0;
+	$rootScope.$watch('userDetails', function() {
+		if( typeof($rootScope.userDetails.userId) == 'undefined' ) {
+			userPresent = 0;
+		} else {
+			userPresent = 1;
+		}
+		console.log('in watchUser');
+	}, true);
+
+	return {
+		userPresent : function () { return userPresent; }
+	};
 });
 
 
