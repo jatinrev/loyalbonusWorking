@@ -1568,13 +1568,14 @@ li {
     display: block;
     color:#fff;
 }
-.text-vertical
+span.text-vertical
 {
         font-size: 15px;
-    
-}
-span {
+
     display: inline-block;
     text-align: center;
     width: 90%;
+
+    
 }
+ 
