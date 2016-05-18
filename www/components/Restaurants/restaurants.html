@@ -1,17 +1,20 @@
 <div id="restaurants">
     <div class="tabs-top tabs-background-positive tabs-color-light">
-        --{{ userPresent() }}--
+        
         <ul rn-carousel class="tabs">
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{value.CategoryName }}</li>
         </ul>
 
+        <!--animation="slide-left-right"  -->
         <ion-view>
             <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
+
+
             </label>
 
-            <ion-content ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})">
+            <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})">
                 <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
                 <div ng-repeat="d in print_data()">
@@ -35,8 +38,8 @@
                     <div class="row">
                         <div class="col-50">
                             <ion-list>
-                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address1 == null ? 'Address not available' : d.Address1 }}</ion-item>
-                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address2 == null ? 'Address not available' : d.Address2 }}</ion-item>
+                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.add1 == null ? 'Address not available' : d.add1 }}</ion-item>
+                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.add2 == null ? 'Address not available' : d.add2 }}</ion-item>
                                 <ion-item class="wth-border"><i class="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
                                 <!-- <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item> -->
                             </ion-list>
