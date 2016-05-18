@@ -72,6 +72,7 @@ angular.module('LoyalBonus')
                              for (dv in result) {
                                  $scope.Lovedpage.push(result[dv]);
                              }
+                             
                              console.log($scope.datadeal.lovecount);
                          }else{
                              $scope.StopLoad = false;
@@ -216,6 +217,7 @@ angular.module('LoyalBonus')
                 
                 console.log(res);
                 $scope.datadeal = res.data.Data[0];
+                saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
                 //console.log($scope.datadeal);
                 return $scope.datadeal;
             }).then(function (res) {

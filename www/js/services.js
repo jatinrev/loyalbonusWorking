@@ -184,9 +184,14 @@ angular.module('LoyalBonus.services',[])
 		return saveHere[key];
 	}
 
+	function remove(key) {
+		saveHere[key] = '';
+	}
+
 	return {
 		set : set,
-		get : get
+		get : get,
+		remove : remove
 	};
 })
 .factory('loading', function ($ionicLoading) {
@@ -205,7 +210,7 @@ angular.module('LoyalBonus.services',[])
 		}
 	};
 })
-.factory('backFunctionality', function ($rootScope, $state) {
+.factory('backFunctionality', function ($rootScope, $state, saveData) {
 	var previous_page = [];
 	var array_key	  = '';
 	var setDontSave   = 0;  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
@@ -227,7 +232,9 @@ angular.module('LoyalBonus.services',[])
 			console.log(toState);
 	    	console.log(fromState);*/
 	    }
-	    /*console.log(previous_page);*/
+
+	    /*******Jali kaama lai(extra)******/
+	    saveData.remove('kaseyDinnerBusinessName');
     });
 
 	return {

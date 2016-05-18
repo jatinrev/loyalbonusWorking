@@ -1,7 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,
-                                        backFunctionality, get_business_data,$ionicViewService ) {
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData ) {
   var previousState       = '';
   var previousStateParams = '';
   $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
@@ -37,9 +36,7 @@ angular.module('LoyalBonus')
     //$rootScope.doRefresh();
   }
   $rootScope.gotextHandler = function() {
-    $rootScope.showMe = !$rootScope.showMe;
-    
-    
+    $rootScope.showMe = !$rootScope.showMe; //this is for search textbox.
     //$rootScope.doRefresh();
   }
 
@@ -57,6 +54,12 @@ angular.module('LoyalBonus')
   };
 
 
+  
+
+
+
+
+
 
   /*****Start : Home Heading Setting*****/
   $scope.home_var.homeheading = {};
@@ -72,39 +75,47 @@ angular.module('LoyalBonus')
   $scope.home_var.homeheading.Visibility = function () {
     if( get_business_data.getSearchKeyword() != '' ) {
       return true;
-
     } else {
       return false;
 
     }
-
   }
   $scope.home_var.homeheading.deleteSearch = function () {
     get_business_data.removeSearchKeyword();
   }
 
+  $scope.home_var.kaseyDinnerHeading = {
+    text : function () {
+      var KaseyDinnerBusinessName = saveData.get('kaseyDinnerBusinessName');
+      if( typeof(KaseyDinnerBusinessName) != 'undefined' && KaseyDinnerBusinessName != '' ) {
+        return KaseyDinnerBusinessName; // data is present
+      }
+      return '';
+    }
+  }
+
   $rootScope.showPopup = function (msg) {
-                        $scope.data = {}
+      $scope.data = {}
 
-                        // An elaborate, custom popup
-                        var myPopup = $ionicPopup.show({
-                            /* template:'<i class="icon-gift"></i>',*/
-                            title: '<img src="img/bonus.png"> Bonus',
+      // An elaborate, custom popup
+      var myPopup = $ionicPopup.show({
+          /* template:'<i class="icon-gift"></i>',*/
+          title: '<img src="img/bonus.png"> Bonus',
 
-                            subTitle: msg,
-                            scope: $scope,
-                            buttons: [
-                                { text: 'Cancel', type: 'button-positive' }
+          subTitle: msg,
+          scope: $scope,
+          buttons: [
+              { text: 'Cancel', type: 'button-positive' }
 
-                            ]
-                        });
-                        myPopup.then(function (res) {
-                            console.log('Tapped!', res);
-                        });
-                        $timeout(function () {
-                            myPopup.close(); //close the popup after 3 seconds for some reason
-                        }, 3000);
-                    };
+          ]
+      });
+      myPopup.then(function (res) {
+          console.log('Tapped!', res);
+      });
+      $timeout(function () {
+          myPopup.close(); //close the popup after 3 seconds for some reason
+      }, 3000);
+  };
   /******End : Home Heading Setting*******/
 
   $scope.redirect_urls = {

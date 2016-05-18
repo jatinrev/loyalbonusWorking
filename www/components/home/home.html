@@ -26,7 +26,7 @@
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list>
-                <ion-item menu-toggle >Invite a Friend</ion-item>
+                <ion-item menu-toggle>Invite a Friend</ion-item>
             </ion-list>
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.aboutus()">About Loyal Bonus</ion-item>
@@ -44,20 +44,26 @@
                     {{ home_var.magnifyOrBack() == 'RestaurantController' || 
                        home_var.magnifyOrBack() == 'BusinessController' ? 
                        'ion-search' : 'ion-arrow-left-c' 
-                    }}"
-                    ng-click="
+                    }}" ng-click="
                     home_var.magnifyOrBack() == 'RestaurantController' ||
                     home_var.magnifyOrBack() == 'BusinessController' ? 
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
-                 
+
+                <!-- <div class="row loyal-btdinner">
+                    <h2 class="loyal-kaseydiner">{{  }}</h2>
+                </div> -->
 
                 <h1 class="title">
-                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
+                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
+                        {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
-
+                    <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
+                        {{ home_var.kaseyDinnerHeading.text() }}
+                    </span>
                 </h1>
+
 
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
 
@@ -66,5 +72,5 @@
         </ion-header-bar>
         <div ui-view="body"></div>
     </ion-side-menu-content>
-   
+
 </ion-side-menus>
