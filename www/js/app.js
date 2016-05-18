@@ -28,12 +28,16 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     ngFB.init({appId: '1151061421612372'});
   });
 })
-.run(function ($ionicPlatform, $rootScope, backFunctionality) {
+.run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.userPresent = function () {
+    return watchUser.userPresent();
+  }
 
 })
 
