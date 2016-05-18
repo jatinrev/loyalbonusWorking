@@ -2,7 +2,7 @@
     <ion-side-menu side="left" id="restaurants">
 
         <ion-content>
-            <ion-item class="rtblock">
+            <ion-item class="rtblock" ng-show="home_var.userPresent() == 1 ? true : false">
                 <h1 class="rttitle">{{ userDetails.FullName == '' ? 'Null' : userDetails.FullName }}</h1>
                 <h1 class="rttitleEmail">{{ userDetails.Email == '' ? 'Null' : userDetails.Email }}</h1>
             </ion-item>
@@ -13,16 +13,16 @@
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.map()">Map View</ion-item>
             </ion-list>
-            <ion-list>
-                <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()">My Loyal Bonus</ion-item>
+            <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
+                <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()" >My Loyal Bonus</ion-item>
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
-            <ion-list>
-                <ion-item menu-toggle ng-click="redirect_urls.my_membership()">My Membership</ion-item>
+            <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
+                <ion-item menu-toggle ng-click="redirect_urls.my_membership()" >My Membership</ion-item>
                 <!-- ui-sref="home.membership" -->
             </ion-list>
-            <ion-list>
-                <ion-item menu-toggle ng-click="redirect_urls.account_settings()">Account Setting</ion-item>
+            <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
+                <ion-item menu-toggle ng-click="redirect_urls.account_settings()" >Account Setting</ion-item>
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list>
@@ -32,7 +32,7 @@
                 <ion-item menu-toggle ng-click="redirect_urls.aboutus()">About Loyal Bonus</ion-item>
             </ion-list>
             <ion-list>
-                <ion-item class="new-color-loyal" on-tap="signOut()">Sign Out</ion-item>
+                <ion-item class="new-color-loyal" on-tap="signOut()">{{ home_var.userPresent() == 1 ? 'Sign Out' : 'Sign Up' }}</ion-item>
                 <!-- ui-sref="signin" -->
             </ion-list>
         </ion-content>

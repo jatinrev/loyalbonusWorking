@@ -1,18 +1,13 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData ) {
-  var previousState       = '';
-  var previousStateParams = '';
-  $rootScope.$on('$stateChangeStart',  function(event, toState, toParams, fromState, fromParams, options) {
-    previousState       = fromState.name;
-    previousStateParams = fromParams;
-    // $state.go(fromState.name, fromParams);
-    //console.log(previousStateParams);
-  });
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser ) {
 
-  $scope.home_var = {};
-
-  
+  $scope.home_var = {
+    // userPresent => return 1 when user is present.
+    userPresent : function () {
+      return watchUser.userPresent();
+    }
+  };
 
   $scope.toggleLeft = function () {
     $ionicSideMenuDelegate.toggleLeft();
@@ -22,7 +17,6 @@ angular.module('LoyalBonus')
   };
 
   
-
 
   $scope.goBackHandler = function() {
     backFunctionality.one_step_back();
@@ -52,13 +46,6 @@ angular.module('LoyalBonus')
   $scope.home_var.magnifyOrBack = function () {
     return active_controller.get();
   };
-
-
-  
-
-
-
-
 
 
   /*****Start : Home Heading Setting*****/

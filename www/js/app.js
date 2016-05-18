@@ -44,8 +44,8 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
 
-      // $urlRouterProvider.otherwise("home/restaurants/");
-      $urlRouterProvider.otherwise("/signin/");
+      $urlRouterProvider.otherwise("home/restaurants/");
+      // $urlRouterProvider.otherwise("/signin/");
 
       $stateProvider
       .state("home", {

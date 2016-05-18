@@ -1,13 +1,11 @@
 angular.module('LoyalBonus', '')
     .factory('get_business_data', function (ajaxCall, $state, get_unique_elements, loading, $q) {
-        var heading_data = []
-            , restaurantData = []
-            , pageIndex = []
-            , searchKeyword = ''
-            , searchPageIndex = []
-            , searchData = []; //data is stored here categorywise
-
-
+        var heading_data  = []
+        , restaurantData  = []
+        , pageIndex       = []
+        , searchKeyword   = ''
+        , searchPageIndex = []
+        , searchData      = []; //data is stored here categorywise
 
 
         function getBusinessRecord(businessId, lat, long) {
@@ -41,7 +39,6 @@ angular.module('LoyalBonus', '')
                         if (response.data.Data.length > 0) {
                             searchPageIndex[catId] += 1;
                         }
-                        console.log(response);
                         for (i in response.data.Data) {
                             searchData[catId].push(response.data.Data[i]);
                         }
@@ -53,6 +50,11 @@ angular.module('LoyalBonus', '')
             },
             getheading: function () {
                 if (heading_data.length > 0) {
+                    /*console.log('yoyo');
+                    console.log(restaurantData);
+                    console.log(pageIndex);
+                    console.log(searchPageIndex);
+                    console.log(searchData);*/
                     var promise = $q.defer();
                     // var p2 = new Promise(function(resolve, reject) {
                     promise.resolve(heading_data);
@@ -143,6 +145,9 @@ angular.module('LoyalBonus', '')
                     get_business_data   //setting heading
                         .getheading()
                         .then(function (res) {
+                            if( typeof($state.params.vertical) == 'undefined' || $state.params.vertical.length == 0 ) {
+                                $state.go("home.restaurants", { vertical: res[0].CategoryID });
+                            }
                             $scope.heading = res;
                             return res;
                         })
@@ -214,12 +219,10 @@ angular.module('LoyalBonus', '')
                         var myPopup = $ionicPopup.show({
                             /* template:'<i class="icon-gift"></i>',*/
                             title: '<img src="img/bonus.png"> Bonus',
-
                             subTitle: msg,
                             scope: $scope,
                             buttons: [
                                 { text: 'Cancel', type: 'button-positive' }
-
                             ]
                         });
                         myPopup.then(function (res) {
@@ -272,10 +275,6 @@ angular.module('LoyalBonus', '')
 
 
         /* ion-infinite-scroll end*/
-
-
-
-
 
 
         $scope.print_data = function () {
