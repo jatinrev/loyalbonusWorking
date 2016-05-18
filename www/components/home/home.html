@@ -51,15 +51,17 @@
                     ">
                 </button>
 
-                <div class="row loyal-btdinner">
-                    <h2 class="loyal-kaseydiner {{ kaseydinner_var.headerText() == 'KaseyDinerController' || 
-                    kaseydinner_var.headerText() == 'RestaurantController' ? 'datadeal.Name' : ' '}}">{{ datadeal.Name }}</h2>
-                </div>
+                <!-- <div class="row loyal-btdinner">
+                    <h2 class="loyal-kaseydiner">{{  }}</h2>
+                </div> -->
 
                 <h1 class="title">
-                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >{{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
+                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
+                        {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
-
+                    <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
+                        {{ home_var.kaseyDinnerHeading.text() }}
+                    </span>
                 </h1>
 
 
