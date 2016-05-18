@@ -46,6 +46,7 @@ angular.module('LoyalBonus')
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser) {
 
+        console.log('userPresent');
         console.log($rootScope.userPresent());
 
         $scope.Lovedpage = [];
@@ -53,10 +54,7 @@ angular.module('LoyalBonus')
 
         $scope.Lovedpage.giveLovedShow = true;
         $scope.Lovedpage.enableLoved = function () {
-
             $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
-
-
         };
 
         $scope.StopLoad = true;

@@ -3,12 +3,12 @@
         <ion-content>
             <div id="logo">
                 <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
-                <a ng-click="Lovedpage.enableLoved(); Lovedpage.loadKaro();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
+                <a ng-show="userPresent() == 1 ? true : false" ng-click="Lovedpage.enableLoved(); Lovedpage.loadKaro();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
 
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
-                <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
+                <div  class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
-            <div class="bar-balanced newloyalcheckbox">
+            <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
                 <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits)">
                     <img src="img/tick.png">
                 </label>
@@ -50,7 +50,7 @@
                 ? 'Less' : 'More' }}
             </div>
 
-            <div class="row paddingLeftRight-0">
+            <div ng-show="userPresent() == 1 ? true : false" class="row paddingLeftRight-0">
                 <button class="button button-block button-positive" ng-click="helperFunction.write_review(datadeal.BusinessID, datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image, datadeal.reviews)">Write a review</button>
             </div>
             <!-- <div class="padding"> -->
@@ -74,7 +74,8 @@
             <!-- </footer> -->
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title" on-tap="scanBarcode(); showAlert()">SCAN NOW</div>
+            <div ng-show="userPresent() == 1 ? true : false" class="title" on-tap="scanBarcode(); showAlert()">SCAN NOW</div>
+            <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div>
         </ion-footer-bar>
     </ion-view>
 </div>
