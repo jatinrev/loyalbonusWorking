@@ -50,6 +50,12 @@ img{
     padding:5px
 }
 
+.text-align
+{
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
 .slider-slide h3{
             color:#fff;
             margin-top:10px;
