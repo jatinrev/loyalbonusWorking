@@ -1,11 +1,11 @@
 var app = angular.module('LoyalBonus')
-    .factory('get_business_data_map', function (ajaxCall, $state, get_unique_elements, loading, $q) {
-        var heading_data = []
-            , restaurantData = []
-            , pageIndex = []
-            , searchKeyword = ''
-            , searchPageIndex = []
-            , searchData = []; //data is stored here categorywise
+    .factory('get_business_data_map', function (ajaxCall, $state, get_unique_elements, loading, $q, $rootScope) {
+        var heading_data  = []
+        , restaurantData  = []
+        , pageIndex       = []
+        , searchKeyword   = ''
+        , searchPageIndex = []
+        , searchData      = []; //data is stored here categorywise
 
         function getBusinessPaging(businessId, lat, long) {
             loading.start();
@@ -28,44 +28,24 @@ var app = angular.module('LoyalBonus')
 
 
         return {
-            search: function (keyword, lat, long, catId) {
-                loading.start();
-                var heading = [],
-                    data = {};
-                return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + searchPageIndex[catId] + '&pageSize=5&CatId=' + catId + '&SubCatId=&locId=&Keyword=' + keyword + '&currlocationlatlong=' + lat + ',' + long, {})
-                    .then(function (response) {
-                        searchKeyword = keyword;
-                        console.log(response);
-                        for (i in response.data.Data) {
-                            heading.push(response.data.Data[i].CategoryName);
-                        }
-                        // Start : getting unique element of array
-                        heading = get_unique_elements.get_unique_arr(heading);
-
-                        for (i in heading) {
-                            data[heading[i]] = [];
-                        }
-
-                        for (i in response.data.Data) {
-                            for (heading_obj in heading) {
-                                if (heading[heading_obj] == response.data.Data[i].CategoryName) {
-                                    data[heading[heading_obj]].push(response.data.Data[i]);
-                                }
-                            }
-                        }
-                        //putting data in global variable.
-                        globaldata.businesses = data;
-
-                        if (typeof ($state.params.vertical) != 'undefined' && $state.params.vertical == '') {
-                            for (i in data_search) {
-                                // console.log('in here');
-                                $state.go("home.restaurants", { vertical: i });
-                                break;
-                            }
-                        }
-                        // console.log(data);
-                        return data;
-                    });
+            search: function (keyword) {
+                // below is the outdated function
+                // loading.start();
+                return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=1&pageSize=10&keyword=' + keyword, {})
+                .then(function (fetch) {
+                    console.log(fetch);
+                    var positions = [];
+                    for (i in fetch.data.Data) {
+                        positions.push(fetch.data.Data[i].Lat + ', ' + fetch.data.Data[i].Lng);
+                    }
+                    var arrayUnique = function (a) {
+                        return a.reduce(function (p, c) {
+                            if (p.indexOf(c) < 0) p.push(c);
+                            return p;
+                        }, []);
+                    };
+                    return arrayUnique(positions);
+                });
             },
 
             getBusinessRecord: getBusinessPaging,
@@ -97,7 +77,6 @@ var app = angular.module('LoyalBonus')
             .then(function (map) {
                 loading.start();
                 bc.showCustomMarker = function (BusinessId) {
-                    
                     bc.testdata(2);
                     //console.log(evt);
                     //this is for click fujnctionality for marker click
@@ -115,8 +94,7 @@ var app = angular.module('LoyalBonus')
                     loading.start();
                     $scope.loadmoreNgShow = true;
                     ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=0&pageSize=10&keyword=', {})
-                        .then(function (fetch, a) {
-                            //console.log(fetch);
+                        .then(function (fetch) {
                             var positions = [];
                             for (i in fetch.data.Data) {
                                 positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng);
@@ -143,28 +121,6 @@ var app = angular.module('LoyalBonus')
                 }
                 bc.test();
 
-
-                bc.search = function (input) {
-                    console.log(input);
-                    return 0;
-                    ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=0&pageSize=10&keyword=' + input, {})
-                        .then(function (fetch) {
-                            var positions = [];
-                            bc.positions = [];
-                            for (i in fetch.data.Data) {
-                                positions.push(fetch.data.Data[i].Lat + ', ' + fetch.data.Data[i].Lng);
-                            }
-                            var arrayUnique = function (a) {
-                                return a.reduce(function (p, c) {
-                                    if (p.indexOf(c) < 0) p.push(c);
-                                    return p;
-                                }, []);
-                            };
-                            bc.positions = arrayUnique(positions);
-                        });
-
-                }
-
             });
 
 
@@ -173,7 +129,6 @@ var app = angular.module('LoyalBonus')
             ajaxCall
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + BusinessId + '&UserId=', {})
                 .then(function (res) {
-
                     //console.log(res);
                     $scope.datadeal.push(res.data.Data[0]);
                     // $scope.datadeal.push(res.data.Data[0]);
@@ -200,22 +155,18 @@ var app = angular.module('LoyalBonus')
         }
 
         /*******Search functionality******/
-        /*bc.search = function (keyword) {
-           
+        bc.search = function (keyword) {
             if (typeof (keyword) != "undefined" && keyword.length > 0) {
                 $rootScope.showMe = false;
-
-                get_business_data
-                    .search(keyword, position.lat, position.long, +$state.params.vertical)
+                get_business_data_map
+                    .search(keyword)
                     .then(function (response) {
-                        restaurantData = response[+$state.params.vertical];
-
+                        bc.positions = response;
                     });
             } else {
                 console.log('keyword empty');
             }
-
-        };*/
+        };
 
 
     });
