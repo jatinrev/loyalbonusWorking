@@ -347,7 +347,8 @@ angular.module('LoyalBonus', '')
 
 
         $scope.refreshTest = function() {
-            console.log('hello, in on-swipe-down directive.');
+            
+           $state.go($state.current.name, $state.params, { reload: true });
         }
 
     });
