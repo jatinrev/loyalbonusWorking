@@ -103,8 +103,8 @@ var app = angular.module('LoyalBonus')
                     //console.log(evt);
                     //this is for click fujnctionality for marker click
 
-                    /*map.customMarkers.foo.setVisible(true);
-                    map.customMarkers.foo.setPosition(this.getPosition());*/
+                    map.customMarkers.foo.setVisible(true);
+                    map.customMarkers.foo.setPosition(this.getPosition());
                     // loading.stop();
                 };
 
