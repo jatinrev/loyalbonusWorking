@@ -27,7 +27,27 @@ img{
 }
 #Businessmap .button
 {
-        min-width: 100px;
+       /*  min-width: 100px; */
+           width: 100%;
+    float: left;
+    margin-bottom: 2px;
+    background-color: #fff;
+    color:#9b9d9f;
+    background: url(../img/listviewmap.png) no-repeat 130px 13px;
+}
+#businessmaplogo
+{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+#Businessmap .reviews-star img {
+    width:25px;
+}
+#Businessmap span.stake-house
+{
+    padding:5px
 }
 
 .slider-slide h3{
@@ -276,6 +296,29 @@ p.stake-house
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+#Businessmap p.stake-house
+{
+    float: left;
+    position: absolute;
+    top: 0px;
+    color: #000;
+    font-size: 20px;
+    left: 8px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    max-width: 156px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+        /* text-shadow: none; */
+}
+#Businessmap #businessmapButton.button
+{
+    background-color: #33cd5f;
+    color: #fff;
+    width: 65%;
+    margin-left: 19%;
+
 }
 .platform-android {
   p.stake-house {
