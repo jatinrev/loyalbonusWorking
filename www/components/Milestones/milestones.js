@@ -11,6 +11,11 @@ angular.module('LoyalBonus')
         $state.go("home.kaseydiner", { id: BusinessID });
     };
 
+    $scope.v = {
+        Dt: Date.now()
+        /*DDt: Date.parse()*/
+    }
+
 
 
 

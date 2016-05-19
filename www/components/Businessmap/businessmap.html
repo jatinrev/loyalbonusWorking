@@ -9,32 +9,29 @@
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">List View</a>
             <ng-map zoom="11" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:400px"
             on-center-changed="centerCustomMarker()">
-            <marker ng-repeat="value in bc.positions track by value" position="{{value}}" on-click="bc.showCustomMarker(BusinessId)"></marker>
+                <marker ng-repeat="value in bc.positions" position="{{value.positions}}" on-click="bc.showCustomMarker(value.businessIds)"></marker>
 
-            <custom-marker id="foo" position="{{ bc.positions }}" on-click="bc.closeCustomMarker()">
-                <div class="newdiv"></div>
-            </custom-marker>
-        </ng-map>
+                <!-- <custom-marker id="foo" position="{{ bc.positions }}" on-click="bc.closeCustomMarker()">
+                    <div class="newdiv"></div>
+                </custom-marker> -->
+            </ng-map>
+            <div ng-repeat="daj in datadeal">
+                <button class="button button-balanced" id="businessmapButton">
+                    Redo Search In This Area
+                </button>
 
-        <div ng-repeat="daj in datadeal">
-            <button class="button button-balanced" id="businessmapButton">
-                Redo Search In This Area
-            </button>
-
-            <div class="row">
-                <div id="businessmaplogo" class="col-20">
-                    <img ng-src="{{ daj.Image == null ? 'img/placeholder.jpg' : daj.Image }}">
-                </div>
-                <div id="businessmaplogo" class="col-80">
-                    <span class="stake-house">
-                        {{daj.Name}}
-                    </span>
-                    <div class="reviews-star" ng-bind-html=helperFunction.reviews(daj.reviews)></div>
+                <div class="row">
+                    <div id="businessmaplogo" class="col-20">
+                        <img ng-src="{{ daj.Image == null ? 'img/placeholder.jpg' : daj.Image }}">
+                    </div>
+                    <div id="businessmaplogo" class="col-80">
+                        <span class="stake-house">
+                            {{daj.Name}}
+                        </span>
+                        <div class="reviews-star" ng-bind-html=helperFunction.reviews(daj.reviews)></div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-    </ion-content>
-
-</ion-view>
+        </ion-content>
+    </ion-view>
 </div>
