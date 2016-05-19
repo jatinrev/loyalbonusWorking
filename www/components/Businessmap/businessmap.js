@@ -74,7 +74,7 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, watchUser) {
+    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, loading) {
         active_controller.set('BusinessController');
 
 
@@ -83,6 +83,7 @@ var app = angular.module('LoyalBonus')
         bc.center = null;
         $scope.datadeal = [];
         $scope.helperFunction = {};
+        $scope.loadmoreNgShow = false;
 
         $scope.state_on = function () {
             //console.log($state.params.id);
@@ -94,13 +95,16 @@ var app = angular.module('LoyalBonus')
         NgMap
             .getMap()
             .then(function (map) {
+                loading.start();
                 bc.showCustomMarker = function (BusinessId) {
+                    
                     bc.testdata(2);
                     //console.log(evt);
                     //this is for click fujnctionality for marker click
 
                     /*map.customMarkers.foo.setVisible(true);
                     map.customMarkers.foo.setPosition(this.getPosition());*/
+                    loading.stop();
                 };
 
                 bc.closeCustomMarker = function (evt) {
@@ -108,7 +112,8 @@ var app = angular.module('LoyalBonus')
                 };
 
                 bc.test = function () {
-                    http://beta2.loyalbonus.com/webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test
+                    loading.start();
+                    $scope.loadmoreNgShow = true;
                     ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch, a) {
                             //console.log(fetch);
@@ -120,6 +125,7 @@ var app = angular.module('LoyalBonus')
                                     'latLong' : fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng , 
                                     'address' : fetch.data.Data[i].Address1 + ',' + fetch.data.Data[i].Address2
                                 } );*/
+                                //$scope.loadmoreNgShow = true;
                             }
                             var arrayUnique = function (a) {
 
@@ -132,6 +138,7 @@ var app = angular.module('LoyalBonus')
                             bc.center = positions[0];
                             bc.positions = arrayUnique(positions);
                             //console.log(bc.positions);
+                            loading.stop()
                         });
                 }
                 bc.test();
@@ -193,10 +200,8 @@ var app = angular.module('LoyalBonus')
         }
 
         /*******Search functionality******/
-        bc.search = function (keyword) {
-            /*loading.start();
-            loading.stop();*/
-
+        /*bc.search = function (keyword) {
+           
             if (typeof (keyword) != "undefined" && keyword.length > 0) {
                 $rootScope.showMe = false;
 
@@ -210,7 +215,7 @@ var app = angular.module('LoyalBonus')
                 console.log('keyword empty');
             }
 
-        };
+        };*/
 
 
     });
