@@ -1,6 +1,7 @@
 angular.module('LoyalBonus')
 
-.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser ) {
+.controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
+  , get_business_data_map ) {
 
   $scope.home_var = {
     // userPresent => return 1 when user is present.
@@ -71,11 +72,24 @@ angular.module('LoyalBonus')
     get_business_data.removeSearchKeyword();
   }
 
+
+
+
   $scope.home_var.kaseyDinnerHeading = {
     text : function () {
       var KaseyDinnerBusinessName = saveData.get('kaseyDinnerBusinessName');
       if( typeof(KaseyDinnerBusinessName) != 'undefined' && KaseyDinnerBusinessName != '' ) {
         return KaseyDinnerBusinessName; // data is present
+      }
+      return '';
+    }
+  }
+
+  $scope.home_var.businessMap = {
+    text : function() {
+      var businessMap = get_business_data_map.getSearchKeyword();
+      if( typeof(businessMap) != 'undefined' && businessMap != '' ) {
+        return businessMap; // data is present
       }
       return '';
     }

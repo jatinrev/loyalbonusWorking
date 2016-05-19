@@ -4,7 +4,7 @@
 
             <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="searchKeyword" placeholder="Search">
-                <span class="ion-search paddingLR10" on-tap="bc.search(searchKeyword)"></span>
+                <span class="ion-search paddingLR10" on-tap="bc.search(searchKeyword)" ng-show="loadmoreNgShow"></span>
             </label>
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">List View</a>
             <ng-map zoom="11" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:400px"
