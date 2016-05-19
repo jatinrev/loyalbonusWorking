@@ -12,7 +12,7 @@
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
             </label>
 
-            <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})">
+            <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" on-swipe-down="refreshTest()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})">
                 <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
 
                 <div ng-repeat="d in print_data()">

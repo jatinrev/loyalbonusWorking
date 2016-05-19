@@ -345,6 +345,11 @@ angular.module('LoyalBonus', '')
             return $state.params.vertical;
         }
 
+
+        $scope.refreshTest = function() {
+            console.log('hello, in on-swipe-down directive.');
+        }
+
     });
 
 
