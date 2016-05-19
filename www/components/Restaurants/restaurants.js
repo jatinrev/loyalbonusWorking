@@ -1,11 +1,11 @@
 angular.module('LoyalBonus', '')
     .factory('get_business_data', function (ajaxCall, $state, get_unique_elements, loading, $q) {
-        var heading_data  = []
-        , restaurantData  = []
-        , pageIndex       = []
-        , searchKeyword   = ''
-        , searchPageIndex = []
-        , searchData      = []; //data is stored here categorywise
+        var heading_data = []
+            , restaurantData = []
+            , pageIndex = []
+            , searchKeyword = ''
+            , searchPageIndex = []
+            , searchData = []; //data is stored here categorywise
 
 
         function getBusinessRecord(businessId, lat, long) {
@@ -88,7 +88,7 @@ angular.module('LoyalBonus', '')
                             }
 
                             $state.go("home.restaurants", { vertical: heading_data[0].CategoryID });
-                            
+
                             return heading_data;
                         });
                 }
@@ -101,7 +101,8 @@ angular.module('LoyalBonus', '')
 
     })
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
+        active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
+
 
 
         var restaurantData = [];
@@ -109,56 +110,62 @@ angular.module('LoyalBonus', '')
 
         $scope.restaurants = {};
 
+
         $scope.open_detail_page = function (id) {
             //console.log($scope.open_detail_page);
             $state.go("home.kaseydiner", { id: id });
         };
 
+        $scope.Test = function () {
+
+            return refreshTest.showrefreshtest($state.current.name, $state.params);
+        }
+
         $scope.testing = 'in RestaurantController...';
 
         $scope.goForward = function () {
             get_business_data
-            .getheading()
-            .then(function (res) {
-                var go = 0;
-                for(i in res) {
-                    if(go == 1) {
-                        $state.go("home.restaurants", { vertical: +res[i].CategoryID });
-                        console.log(+res[i].CategoryID);
-                        console.log(+$state.params.vertical);
-                        break;
+                .getheading()
+                .then(function (res) {
+                    var go = 0;
+                    for (i in res) {
+                        if (go == 1) {
+                            $state.go("home.restaurants", { vertical: +res[i].CategoryID });
+                            //console.log(+res[i].CategoryID);
+                            //console.log(+$state.params.vertical);
+                            break;
+                        }
+                        if (+res[i].CategoryID == +$state.params.vertical) {
+                            go = 1;
+                        }
                     }
-                    if( +res[i].CategoryID == +$state.params.vertical ) {
-                        go = 1;
-                    }
-                } 
-            });
+                });
         }
 
         $scope.goBack = function () {
             get_business_data
-            .getheading()
-            .then(function (res) {
-                var go = 0
-                , counter = [];
-                for(i in res) {
-                    counter.push({categoryID : +res[i].CategoryID});
-                    if( +res[i].CategoryID == +$state.params.vertical ) {
-                        break;
+                .getheading()
+                .then(function (res) {
+                    var go = 0
+                        , counter = [];
+                    for (i in res) {
+                        counter.push({ categoryID: +res[i].CategoryID });
+                        if (+res[i].CategoryID == +$state.params.vertical) {
+                            break;
+                        }
                     }
-                }
-                console.log(counter);
-                counter.pop();
-                $state.go("home.restaurants", { vertical: counter.slice(-1).pop().categoryID });
-                
-            });
+                    //console.log(counter);
+                    counter.pop();
+                    $state.go("home.restaurants", { vertical: counter.slice(-1).pop().categoryID });
+
+                });
         }
 
 
-        $scope.print_data     = [];
-        $scope.data           = {};
-        $scope.positions      = {};
-        $scope.heading        = [];
+        $scope.print_data = [];
+        $scope.data = {};
+        $scope.positions = {};
+        $scope.heading = [];
         $scope.loadmoreNgShow = false;
         /**/
 
@@ -184,7 +191,7 @@ angular.module('LoyalBonus', '')
                     get_business_data   //setting heading
                         .getheading()
                         .then(function (res) {
-                            if( typeof($state.params.vertical) == 'undefined' || $state.params.vertical.length == 0 ) {
+                            if (typeof ($state.params.vertical) == 'undefined' || $state.params.vertical.length == 0) {
                                 $state.go("home.restaurants", { vertical: res[0].CategoryID });
                             }
                             $scope.heading = res;
@@ -248,6 +255,8 @@ angular.module('LoyalBonus', '')
                             };
                         });
 
+
+                   
 
 
 
@@ -346,10 +355,7 @@ angular.module('LoyalBonus', '')
         }
 
 
-        $scope.refreshTest = function() {
-            
-           $state.go($state.current.name, $state.params, { reload: true });
-        }
+
 
     });
 
