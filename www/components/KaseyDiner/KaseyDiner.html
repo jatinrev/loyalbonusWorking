@@ -3,7 +3,7 @@
         <ion-content>
             <div id="logo">
                 <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
-                <a ng-show="userPresent() == 1 ? true : false" ng-click="Lovedpage.enableLoved(); Lovedpage.loadKaro();" class="already-giveHeart button buttonListViewLove">Give Heart</a>
+                <a ng-show="userPresent() == 1 ? true : false" ng-click="Lovedpage.loadKaro()" class="already-giveHeart button buttonListViewLove">Give Heart</a>
 
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div  class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
@@ -74,8 +74,8 @@
             <!-- </footer> -->
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div ng-show="userPresent() == 1 ? true : false" class="title" on-tap="scanBarcode(); showAlert()">SCAN NOW</div>
-            <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div>
+            <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div><!-- ng-show="userPresent() == 1 ? true : false" -->
+            <!-- <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div> -->
         </ion-footer-bar>
     </ion-view>
 </div>

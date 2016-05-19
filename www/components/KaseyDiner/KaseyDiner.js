@@ -12,30 +12,23 @@ angular.module('LoyalBonus')
                 )
                 .then(function (response) {
                     console.log(response);
-                    //console.log(reponse);
                 });
         }
 
 
         function giveLove(businessId, userId, isLove) {
-
+            console.log('yoyoyo');
             return ajaxCall
-                .post('webapi/BusinessMaster/BusinessGiveHeart',
-                {
-                    BusinessId: businessId,
-                    UserId: userId,
-                    isLove: isLove
+            .post('webapi/BusinessMaster/BusinessGiveHeart',
+            {
+                BusinessId : businessId,
+                UserId     : userId,
+                IsLoved    : isLove
+            }).then(function (result) {
 
-                }
-                ).then(function (result) {
-                    //console.log(result);
-                    return result.data.Data;
-                })
-
+                return result.data.Data;
+            });
         }
-
-
-
         return {
             give_visit: give_visit,
             giveLove: giveLove
@@ -49,40 +42,19 @@ angular.module('LoyalBonus')
         console.log('userPresent');
         console.log($rootScope.userPresent());
 
-        $scope.Lovedpage = [];
+        $scope.Lovedpage = {};
         var lovecount = 0;
 
-        $scope.Lovedpage.giveLovedShow = true;
-        $scope.Lovedpage.enableLoved = function () {
-            $scope.Lovedpage.giveLovedShow = $scope.Lovedpage.giveLovedShow == true ? false : true;
-        };
-
-        $scope.StopLoad = true;
         $scope.Lovedpage.loadKaro = function () {
-
-            if ($scope.StopLoad) {
-                businessVisit
-                    .giveLove($state.params.businessId, lovecount)
-                    .then(function (result) {
-                        // console.log(result);
-                        if (result.StatusMessage != "Success") {
-                            //console.log(result);
-                            $scope.datadeal.lovecount += 1;
-                            for (dv in result) {
-                                $scope.Lovedpage.push(result[dv]);
-                            }
-
-                            console.log($scope.datadeal.lovecount);
-                        } else {
-                            $scope.StopLoad = false;
-                        }
-                    });
-            }
-        }
-        //$scope.Lovedpage.loadKaro();
-
-        $scope.Lovedpage.IsLovedPage = function () {
-            return IsLovedPage;
+            businessVisit
+            .giveLove($state.params.businessId, $rootScope.userDetails.userId, false)
+            .then(function (result) {
+                // console.log(result);
+                if (result.StatusMessage != "Success") {
+                    //console.log(result);
+                    console.log($scope.datadeal.lovecount);
+                }
+            });
         }
 
 
@@ -178,15 +150,15 @@ angular.module('LoyalBonus')
         }
         $scope.myloyalbonus = {};
 
-        $scope.myloyalbonus.printTick = function (input) {
+        $scope.myloyalbonus.printTick    = function (input) {
             return mydummyJson(input);
         }
-
+            
         $scope.myloyalbonus.printNonTick = function (input) {
             return mydummyJson(9 - +input);
         }
-
-        $scope.myloyalbonus.printGift = function (input) {
+            
+        $scope.myloyalbonus.printGift    = function (input) {
             if (+input == 10) {
                 return mydummyJson(0);
             } else {
@@ -198,10 +170,10 @@ angular.module('LoyalBonus')
 
         active_controller.set('KaseyDinerController');
 
-        $scope.datadeal = {};
-
-        $scope.newScope = {}; // helper variable
-
+        $scope.datadeal       = {};
+        
+        $scope.newScope       = {}; // helper variable
+        
         $scope.helperFunction = {};
 
         // $scope.checkGlobal = function () {
@@ -265,6 +237,10 @@ angular.module('LoyalBonus')
             $state.go("home.review", { businessId: businessId, businessImg: businessImage, businessRating: BusinessStars });
         };
 
+        $scope.helperFunction.go_to_login = function() {
+            $state.go("signin");
+        };
+
         /**** End : rating service ****/
 
         /*$scope.Lovedpage.enableLoved = function () {
@@ -314,6 +290,7 @@ angular.module('LoyalBonus')
                             // give some error here.
                         }
                     });
+                $scope.showAlert();
             };
         });
         /**** End : scanBarcode ****/

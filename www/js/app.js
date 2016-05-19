@@ -5,10 +5,10 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 .run(function ($ionicPlatform, ngFB, $rootScope) {
   /**Temp Data**/
     $rootScope.userDetails = {
-      userId        : 263,
-      Email         : 'jatinverma@gmail.com',
-      FullName      : 'Jatin',
-      userLocation  : '6.461573,3.479404'
+      userId       : 263,
+      Email        : 'jatinverma@gmail.com',
+      FullName     : 'Jatin',
+      userLocation : '6.461573,3.479404'
     }
   /**Temp Data**/
   $ionicPlatform.ready(function () {
@@ -53,155 +53,153 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 
       $stateProvider
       .state("home", {
-        url: "/home/",
-        cache: false,
-        views: {
-          "": {
-            templateUrl: "components/home/home.html",
-            controller: "HomeController",
-            controllerAs: "hc"
+        url   : "/home/",
+        cache : false,
+        views : {
+          "" : {
+            templateUrl  : "components/home/home.html",
+            controller   : "HomeController",
+            controllerAs : "hc"
           }
         },
         abstract: true
       })
       .state("signin", {
-        url: "/signin/",
-
-        views: {
-          "": {
-            templateUrl: "components/SignIn/signin.html",
-            controller: "SignInController",
-            controllerAs: "sc"
+        url   : "/signin/",
+        views : {
+          "" : {
+            templateUrl  : "components/SignIn/signin.html",
+            controller   : "SignInController",
+            controllerAs : "sc"
           }
         }
       })
       .state("signup", {
-        url: "/signup/",
-        views: {
-          "": {
-            templateUrl: "components/SignUp/signup.html",
-            controller: "SignUpController",
-            controllerAs: "suc"
+        url   : "/signup/",
+        views : {
+        ""    : {
+            templateUrl  : "components/SignUp/signup.html",
+            controller   : "SignUpController",
+            controllerAs : "suc"
           }
         }
       })
       .state("restpassword", {
-        url: "/restpassword/",
-        views: {
-          "": {
-            templateUrl: "components/Resetpassword/rest.html",
-            controller: "RestPasswordController",
-            controllerAs: "rpc"
+        url   : "/restpassword/",
+        views : {
+          "" : {
+            templateUrl  : "components/Resetpassword/rest.html",
+            controller   : "RestPasswordController",
+            controllerAs : "rpc"
           }
         }
 
       })
       .state("home.restaurants", {
-        url: "restaurants/:vertical",
-        cache: false,
-        views: {
+        url   : "restaurants/:vertical",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/Restaurants/restaurants.html",
-            controller: "RestaurantController",
-            controllerAs: "rc"
+            templateUrl  : "components/Restaurants/restaurants.html",
+            controller   : "RestaurantController",
+            controllerAs : "rc"
           }
         }
 
       })
       .state("home.kaseydiner", {
-        url: "kaseydiner/:id",
-        cache: false,
-        views: {
+        url   : "kaseydiner/:id",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/KaseyDiner/KaseyDiner.html",
-            controller: "KaseyDinerController",
-            controllerAs: "kdc"
+            templateUrl  : "components/KaseyDiner/KaseyDiner.html",
+            controller   : "KaseyDinerController",
+            controllerAs : "kdc"
           }
         }
       })
       .state("home.success", {
-        url: "success/",
-        views: {
+        url   : "success/",
+        views : {
           "body": {
-            templateUrl: "components/Success/success.html",
-            controller: "SuccessController",
-            controllerAs: "sc"
+            templateUrl  : "components/Success/success.html",
+            controller   : "SuccessController",
+            controllerAs : "sc"
           }
         }
       })
       .state("home.review", {
-        url: "review/:businessId/:businessImg/:businessRating",
-        cache: false,
-        views: {
+        url   : "review/:businessId/:businessImg/:businessRating",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/Review/review.html",
-            controller: "ReviewController",
-            controllerAs: "rc"
+            templateUrl  : "components/Review/review.html",
+            controller   : "ReviewController",
+            controllerAs : "rc"
           }
         }
       })
       .state("home.milestones", {
-        url: "milestones/",
-        cache: false,
-        views: {
+        url   : "milestones/",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/Milestones/milestones.html",
-            controller: "MileStoneController",
-            controllerAs: "msc"
+            templateUrl  : "components/Milestones/milestones.html",
+            controller   : "MileStoneController",
+            controllerAs : "msc"
           }
         }
       })
       .state("home.account", {
-        url: "account/",
-
-        views: {
+        url   : "account/",
+        views : {
           "body": {
-            templateUrl: "components/Account/account.html",
-            controller: "AccountController",
-            controllerAs: "acc"
+            templateUrl  : "components/Account/account.html",
+            controller   : "AccountController",
+            controllerAs : "acc"
           }
         }
       })
       .state("home.membership", {
-        url: "membership/",
-        cache: false,
-        views: {
+        url   : "membership/",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/Membership/membership.html",
-            controller: "MemberController",
-            controllerAs: "mc"
+            templateUrl  : "components/Membership/membership.html",
+            controller   : "MemberController",
+            controllerAs : "mc"
           }
         }
       })
       .state("home.map", {
-        url: "map/",
-        cache: false,
-        views: {
+        url   : "map/",
+        cache : false,
+        views : {
           "body": {
-           templateUrl: "components/Map/map.html",
-            controller: "MapController",
-          controllerAs: "mpc"
+            templateUrl  : "components/Map/map.html",
+            controller   : "MapController",
+            controllerAs : "mpc"
          }
         }
       })
       .state("home.aboutus", {
-        url: "aboutus/",
-        views: {
+        url   : "aboutus/",
+        views : {
           "body": {
-            templateUrl: "components/Aboutus/aboutus.html",
-            controller: "AboutusController",
-            controllerAs: "ac"
+            templateUrl  : "components/Aboutus/aboutus.html",
+            controller   : "AboutusController",
+            controllerAs : "ac"
           }
         }
       })
-    .state("home.businessmap", {
-        url: "businessmap/",
-        cache: false,
-        views: {
+      .state("home.businessmap", {
+        url   : "businessmap/",
+        cache : false,
+        views : {
           "body": {
-            templateUrl: "components/Businessmap/businessmap.html",
-            controller: "BusinessController",
-            controllerAs: "bc"
+            templateUrl  : "components/Businessmap/businessmap.html",
+            controller   : "BusinessController",
+            controllerAs : "bc"
           }
         }
       })
