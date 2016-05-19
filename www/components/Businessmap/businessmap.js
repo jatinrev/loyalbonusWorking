@@ -98,6 +98,7 @@ var app = angular.module('LoyalBonus')
             .then(function (map) {
                 loading.start();
                 bc.showCustomMarker = function (BusinessId) {
+                    //console.log(BusinessId)
                     bc.testdata(2);
                     //console.log(evt);
                     //this is for click fujnctionality for marker click
