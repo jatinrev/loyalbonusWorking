@@ -98,13 +98,14 @@ var app = angular.module('LoyalBonus')
             .then(function (map) {
                 loading.start();
                 bc.showCustomMarker = function (BusinessId) {
-                    bc.testdata(2);
+                    console.log(BusinessId);
+                    // bc.testdata(2);
                     //console.log(evt);
                     //this is for click fujnctionality for marker click
 
                     /*map.customMarkers.foo.setVisible(true);
                     map.customMarkers.foo.setPosition(this.getPosition());*/
-                    loading.stop();
+                    // loading.stop();
                 };
 
                 bc.closeCustomMarker = function (evt) {
@@ -127,7 +128,7 @@ var app = angular.module('LoyalBonus')
 
                             bc.center = sortedArray[0].positions;
                             bc.positions = sortedArray;
-
+                            console.log(sortedArray);
                             loading.stop()
                         });
                 }
