@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-    .factory('businessVisit', function (ajaxCall) {
+    .factory('businessVisit', function (ajaxCall, loading) {
 
         /**
          *  businessUid is qrCode
@@ -17,15 +17,15 @@ angular.module('LoyalBonus')
 
 
         function giveLove(businessId, userId, isLove) {
-            console.log('yoyoyo');
+            loading.start();
             return ajaxCall
             .post('webapi/BusinessMaster/BusinessGiveHeart',
             {
-                BusinessId : businessId,
                 UserId     : userId,
+                BusinessId : businessId,
                 IsLoved    : isLove
             }).then(function (result) {
-
+                loading.stop();
                 return result.data.Data;
             });
         }
@@ -39,29 +39,22 @@ angular.module('LoyalBonus')
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser) {
 
-        console.log('userPresent');
-        console.log($rootScope.userPresent());
+        $scope.state_on = function () {
+            return $state.params.id;
+        };
 
         $scope.Lovedpage = {};
         var lovecount = 0;
 
-        $scope.Lovedpage.loadKaro = function () {
+        $scope.Lovedpage.loadKaro = function (isLoveStatus) {
             businessVisit
-            .giveLove($state.params.businessId, $rootScope.userDetails.userId, false)
+            .giveLove($scope.state_on(), $rootScope.userDetails.userId, isLoveStatus)
             .then(function (result) {
-                // console.log(result);
                 if (result.StatusMessage != "Success") {
-                    //console.log(result);
                     console.log($scope.datadeal.lovecount);
                 }
             });
         }
-
-
-        $scope.state_on = function () {
-            //console.log($state.params.id);
-            return $state.params.id;
-        };
 
 
         $scope.showPopup = function (msg) {

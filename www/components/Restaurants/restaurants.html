@@ -10,8 +10,6 @@
             <label ng-show="showMe" class="item item-input new_margin">
                 <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
                 <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
-
-
             </label>
 
             <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})">
@@ -65,6 +63,7 @@
                 <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore();listData() " distance="1%"></ion-infinite-scroll>
 
             </ion-content>
+        </ion-view>
     </div>
-    </ion-view>
+    
 </div>
