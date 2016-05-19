@@ -74,21 +74,33 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval) {
+    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, watchUser) {
         active_controller.set('BusinessController');
 
-       
+
         var bc = this;
         bc.positions = [];
         bc.center = null;
+        $scope.datadeal = [];
+        $scope.helperFunction = {};
+
+        $scope.state_on = function () {
+            //console.log($state.params.id);
+            return $state.params.id;
+        };
+
+
 
         NgMap
             .getMap()
             .then(function (map) {
-                bc.showCustomMarker = function (evt) {
+                bc.showCustomMarker = function (BusinessId) {
+                    bc.testdata(2);
                     //console.log(evt);
-                    map.customMarkers.foo.setVisible(true);
-                    map.customMarkers.foo.setPosition(this.getPosition());
+                    //this is for click fujnctionality for marker click
+
+                    /*map.customMarkers.foo.setVisible(true);
+                    map.customMarkers.foo.setPosition(this.getPosition());*/
                 };
 
                 bc.closeCustomMarker = function (evt) {
@@ -98,11 +110,11 @@ var app = angular.module('LoyalBonus')
                 bc.test = function () {
                     http://beta2.loyalbonus.com/webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=1&pageSize=10&keyword=test
                     ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=0&pageSize=10&keyword=', {})
-                        .then(function (fetch,a) {
-                            console.log(fetch);
+                        .then(function (fetch, a) {
+                            //console.log(fetch);
                             var positions = [];
                             for (i in fetch.data.Data) {
-                                positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng );
+                                positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng);
                                 /*positions.push(fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng + ',' +fetch.data.Data[i].Address1 + ',' + fetch.data.Data[i].Address2);*/
                                 /*positions.push( {
                                     'latLong' : fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng , 
@@ -114,12 +126,12 @@ var app = angular.module('LoyalBonus')
                                 return a.reduce(function (p, c) {
                                     if (p.indexOf(c) < 0) p.push(c);
                                     return p;
-                                console.log(arrayUnique);
+                                    //console.log(arrayUnique);
                                 }, []);
                             };
                             bc.center = positions[0];
                             bc.positions = arrayUnique(positions);
-                            console.log(bc.positions);
+                            //console.log(bc.positions);
                         });
                 }
                 bc.test();
@@ -147,6 +159,34 @@ var app = angular.module('LoyalBonus')
                 }
 
             });
+
+
+        bc.testdata =function(BusinessId) {
+            $scope.datadeal=[];
+            ajaxCall
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + BusinessId + '&UserId=', {})
+                .then(function (res) {
+
+                    //console.log(res);
+                    $scope.datadeal.push(res.data.Data[0]);
+                    // $scope.datadeal.push(res.data.Data[0]);
+                    console.log($scope.datadeal);
+                });
+
+        }
+
+        $scope.helperFunction.reviews = function (number) {
+            console.log(typeof(number));
+            var str = '';
+            for (var i = 1; i <= number; i++) {
+                str += '<img class="filledStart" src="img/filledStar.png"/>';
+            }
+            var emptyStars = 5 - +number;
+            for (var j = 1; j <= emptyStars; j++) {
+                str += '<img class="emptyStart" src="img/emptyStart.png"/>';
+            }
+            return str;
+        }
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
             $state.go("home.restaurants", { vertical: 1 }, { businessDetailId: businessDetailId });
