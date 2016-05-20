@@ -1,8 +1,11 @@
 <div id="Membership">
     <ion-view>
         <form ua-login name="frmmember" novalidate>
-            <ion-content on-swipe-down="Test()">
-
+            <ion-content>
+                <ion-refresher
+                    pulling-text="Pull to refresh..."
+                    on-refresh="Test()">
+                </ion-refresher>
                 <div class="row padding">
                     <div class="col50">
                         <p class="h4 title">Membership Type: </p>

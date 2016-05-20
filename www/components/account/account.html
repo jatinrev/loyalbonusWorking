@@ -1,7 +1,11 @@
 <div id="Account">
     <ion-view>
         <form ua-login name="account" novalidate>
-            <ion-content on-swipe-down="Test()">
+            <ion-content>
+                <ion-refresher
+                    pulling-text="Pull to refresh..."
+                    on-refresh="Test()">
+                </ion-refresher>
                 <p class="h1 title">Account Settings</p>
                 <div class="list list-inset">
                     <div class="padding">

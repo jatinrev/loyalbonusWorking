@@ -1,7 +1,11 @@
 <!-- My loyalbonus -->
 <div id="Milestones">
     <ion-view>
-        <ion-content on-swipe-down="Test()">
+        <ion-content>
+            <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="Test()">
+            </ion-refresher>
             <div>  <!-- outer div -->
               <!-- <h1 class="text-center">Scanned Business</h1> -->
                 <div class="row border-milestone" ng-repeat="(key, value) in myloyalbonus.print">
