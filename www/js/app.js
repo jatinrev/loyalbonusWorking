@@ -10,6 +10,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       FullName     : 'Jatin',
       userLocation : '6.461573,3.479404'
     }
+  /*Temp Data*/
   
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {

@@ -20,7 +20,6 @@
                 <div ng-repeat="d in print_data()">
                     {{ restaurants.demo }}
                     <div id="logo">
-
                         <img ng-src="{{ d.Image == null ? 'img/placeholder.jpg' : d.Image }}" ng-click="open_detail_page(d.BusinessID)">
                     </div>
                     <div class="row stake-house">

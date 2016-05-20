@@ -17,18 +17,16 @@
                     <div class="newdiv"></div>
                 </custom-marker> -->
             </ng-map>
-            <button class="button button-balanced" id="businessmapButton">
+            <button class="button button-balanced" id="businessmapButton" ng-click="Test()">
                     Redo Search In This Area
-                </button>
+            </button>
             <div ng-repeat="daj in datadeal track by $index">
-                
-
                 <div class="row">
                     <div id="businessmaplogo" class="col-20">
-                        <img ng-src="{{ daj.Image == null ? 'img/placeholder.jpg' : daj.Image }}">
+                        <img ui-sref="home.kaseydiner({ id : daj.BusinessID })" ng-src="{{ daj.Image == null ? 'img/placeholder.jpg' : daj.Image }}">
                     </div>
                     <div id="businessmaplogo" class="col-80">
-                        <span class="stake-house">
+                        <span ui-sref="home.kaseydiner({ id : daj.BusinessID })" class="stake-house">
                             {{daj.Name}}
                         </span>
                         <div class="reviews-star" ng-bind-html=helperFunction.reviews(daj.reviews)></div>

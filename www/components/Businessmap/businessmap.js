@@ -59,13 +59,18 @@ var app = angular.module('LoyalBonus')
                 // below is the outdated function
                 // loading.start();
 
-                return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=1&pageSize=10&keyword=' + keyword, {})
-                    .then(function (fetch) {
-                        var test = [];
-                        for (i in fetch.data.Data) {
-                            test.push({ businessId: fetch.data.Data[i].BusinessId, positions: fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng })
-                        }
-                        return sort(test);
+                return get_user_location
+                    .get
+                    .then(function (position) {
+
+                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=1&pageSize=10&keyword=' + keyword, {})
+                        .then(function (fetch) {
+                            var test = [];
+                            for (i in fetch.data.Data) {
+                                test.push({ businessId: fetch.data.Data[i].BusinessId, positions: fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng })
+                            }
+                            return sort(test);
+                        });
                     });
             },
 
@@ -76,7 +81,7 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, loading, refreshTest) {
+    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, loading, refreshTest, get_user_location) {
         active_controller.set('BusinessController');
 
 
@@ -149,7 +154,13 @@ var app = angular.module('LoyalBonus')
                 bc.test = function () {
                     loading.start();
                     $scope.loadmoreNgShow = true;
-                    ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=0&pageSize=10&keyword=', {})
+                    
+                    get_user_location
+                    .get
+                    .then(function (position) {
+                        console.log(position.coords.latitude);
+                        console.log(position.coords.longitude);
+                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
                             var positions = []
                                 , test = [];
@@ -165,6 +176,7 @@ var app = angular.module('LoyalBonus')
                             //console.log(sortedArray);
                             loading.stop()
                         });
+                    });
                 }
                 bc.test();
             });

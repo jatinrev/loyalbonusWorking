@@ -6,8 +6,6 @@ angular.module('LoyalBonus')
 .controller('MileStoneController', function ($scope, $state, ajaxCall, active_controller,$rootScope,saveData, refreshTest) {
 
 	$scope.open_detail_page = function (BusinessID) {
-		// console.log(BusinessID);
-		// saveData.set('id',id , 'businesslocationsList',businesslocationsList,'businessDetailId', businessDetailId);
         $state.go("home.kaseydiner", { id: BusinessID });
     };
 
@@ -31,11 +29,9 @@ angular.module('LoyalBonus')
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
+		console.log(res);
 		$scope.myloyalbonus.print = res.data.Data;
 	});
-
-	
-
 
 	function mydummyJson (input) {
 		var output = [];
