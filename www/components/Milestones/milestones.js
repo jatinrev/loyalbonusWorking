@@ -3,13 +3,16 @@ angular.module('LoyalBonus')
 
 
 
-.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope,saveData, refreshTest) {
+.controller('MileStoneController', function ($scope, $state, ajaxCall, active_controller,$rootScope,saveData, refreshTest) {
 
 	$scope.open_detail_page = function (BusinessID) {
 		// console.log(BusinessID);
 		// saveData.set('id',id , 'businesslocationsList',businesslocationsList,'businessDetailId', businessDetailId);
         $state.go("home.kaseydiner", { id: BusinessID });
     };
+
+    var restaurantData = [];
+        active_controller.set('MileStoneController');
 
     $scope.v = {
         Dt: Date.now()

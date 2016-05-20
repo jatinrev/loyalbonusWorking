@@ -58,6 +58,7 @@ var app = angular.module('LoyalBonus')
             search: function (keyword) {
                 // below is the outdated function
                 // loading.start();
+
                 return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + $rootScope.userDetails.userLocation + '=&pageIndex=1&pageSize=10&keyword=' + keyword, {})
                     .then(function (fetch) {
                         var test = [];
@@ -99,15 +100,16 @@ var app = angular.module('LoyalBonus')
             $scope.datadeal = [];
             console.log(BusinessId);
             for (ij in BusinessId) {
-                console.log(BusinessId);
+                //console.log(BusinessId);
                 //$scope.datadeal.push({businessId : })
                 ajaxCall
                     .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + BusinessId[ij] + '&UserId=', {})
                     .then(function (res) {
-                        //console.log(res);
-                        $scope.datadeal.push(res.data.Data);
+                        console.log('res');
+                        console.log(res);
+                        $scope.datadeal.push(res.data.Data[0]);
                         // $scope.datadeal.push(res.data.Data[0]);
-                        console.log($scope.datadeal);
+                       // console.log($scope.datadeal);
                     });
             }
             //console.log($scope.datadeal);            

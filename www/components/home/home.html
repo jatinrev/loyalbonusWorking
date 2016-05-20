@@ -42,11 +42,12 @@
             <div class="buttons">
                 <button class="button button-icon 
                     {{ home_var.magnifyOrBack() == 'RestaurantController' || 
-                       home_var.magnifyOrBack() == 'BusinessController' ? 
+                       home_var.magnifyOrBack() == 'BusinessController'   ? 
                        'ion-search' : 'ion-arrow-left-c' 
                     }}" ng-click="
                     home_var.magnifyOrBack() == 'RestaurantController' ||
-                    home_var.magnifyOrBack() == 'BusinessController' ? 
+                    home_var.magnifyOrBack() == 'BusinessController'   ||
+                    home_var.magnifyOrBack() == 'MileStoneController'  ? 
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
