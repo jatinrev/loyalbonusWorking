@@ -1,7 +1,7 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu side="left" id="restaurants">
 
-        <ion-content>
+        <ion-content style="top: 0;">
             <ion-item class="rtblock" ng-show="home_var.userPresent() == 1 ? true : false">
                 <h1 class="rttitle">{{ userDetails.FullName == '' ? 'Null' : userDetails.FullName }}</h1>
                 <h1 class="rttitleEmail">{{ userDetails.Email == '' ? 'Null' : userDetails.Email }}</h1>
