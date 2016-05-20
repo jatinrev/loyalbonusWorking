@@ -55,7 +55,9 @@ angular.module('LoyalBonus')
             .giveLove($scope.state_on(), $rootScope.userDetails.userId, isLoveStatus)
             .then(function (result) {
                 if (result.StatusMessage != "Success") {
-                    console.log($scope.datadeal.lovecount);
+                    // console.log($scope.datadeal.lovecount);
+                    return $scope.Test();
+
                 }
             });
         }
