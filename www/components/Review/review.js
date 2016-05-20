@@ -49,7 +49,7 @@ angular.module('LoyalBonus')
 		};
 	})
 
-	.controller('ReviewController', function ($scope, $state, showRating, $ionicPopup, $timeout,reviewFactory, showRating, $rootScope, backFunctionality) {
+	.controller('ReviewController', function ($scope, $state, showRating, $ionicPopup, $timeout,reviewFactory, showRating, $rootScope, backFunctionality, refreshTest) {
 		var allReviews = [];
 		var reviewPage = 0;
 		$scope.reviewVar = {
@@ -60,6 +60,10 @@ angular.module('LoyalBonus')
 				return +$state.params.businessRating;
 			}
 		};
+
+		$scope.Test = function () {
+            return refreshTest.showrefreshtest($state.current.name, $state.params);
+        }
 
 		$scope.reviewVar.reviews = function (number) {
 			return showRating.showRatingImages(number);

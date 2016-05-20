@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, facebookFactory) {
+.controller('SignInController', function ($scope, $rootScope, $state, $http, update_user_details, loading, ngFB, facebookFactory, refreshTest) {
 	var vm                 = this;
 	vm.login               = login;
 	$scope.signIn          = {};
@@ -22,6 +22,9 @@ angular.module('LoyalBonus')
 
 	// console.log( window.localStorage['userId'] );
 
+	$scope.Test = function () {
+        return refreshTest.showrefreshtest($state.current.name, $state.params);
+    }
 
 	function login() {
 		loading.start();

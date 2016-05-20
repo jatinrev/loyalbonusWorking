@@ -110,14 +110,12 @@ angular.module('LoyalBonus', '')
 
         $scope.restaurants = {};
 
-
         $scope.open_detail_page = function (id) {
             //console.log($scope.open_detail_page);
             $state.go("home.kaseydiner", { id: id });
         };
 
         $scope.Test = function () {
-
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
 
@@ -193,6 +191,18 @@ angular.module('LoyalBonus', '')
                         .then(function (res) {
                             if (typeof ($state.params.vertical) == 'undefined' || $state.params.vertical.length == 0) {
                                 $state.go("home.restaurants", { vertical: res[0].CategoryID });
+                            }
+                            /*
+                                below is for changing the crousel position when heading is changed.
+                             */
+                            for (key in res) {
+                                if( res[key].CategoryID == $state.params.vertical ) {
+                                    console.log('hi');
+                                    $scope.carouselIndex = 2;
+                                    /*$scope.carouselIndex = +key;
+                                    console.log( $scope.carouselIndex );*/
+                                    break;
+                                }
                             }
                             $scope.heading = res;
                             return res;
@@ -354,8 +364,13 @@ angular.module('LoyalBonus', '')
             return $state.params.vertical;
         }
 
+        /*$scope.carausal_function = function() {
+            get_business_data   //setting heading
+            .getheading()
+            .then(function (res) {
 
-
+            });
+        }*/
 
     });
 

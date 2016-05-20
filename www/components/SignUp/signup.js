@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details, loading, facebookFactory) {
+.controller('SignUpController', function ($scope, $rootScope, $state, ajaxCall, update_user_details, loading, facebookFactory, refreshTest) {
 	var vm         = this;
 	$scope.signUp  = {};
 	$scope.tabName = $state.params.id;
@@ -8,6 +8,10 @@ angular.module('LoyalBonus')
 		$scope.datasignup = [{
 			name: 'Steak House',
 		}];
+
+	$scope.Test = function () {
+        return refreshTest.showrefreshtest($state.current.name, $state.params);
+    }
 
 	$scope.signUp.signUp_button_visibility = true;
 	

@@ -209,11 +209,12 @@ angular.module('LoyalBonus.services', [])
 			}
 		};
 	})
-	.factory('backFunctionality', function ($rootScope, $state, saveData) {
+	.factory('backFunctionality', function ($rootScope, $state, saveData, loading) {
 		var previous_page = [];
 		var array_key = '';
 		var setDontSave = 0;  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
 		$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
+			loading.start();
 			if (typeof (fromState.name) != 'undefined' && typeof (toState.name) != 'undefined' && fromState.name == toState.name) {
 				/*
 				if(Object.is(fromParams, toParams)) {
@@ -231,17 +232,20 @@ angular.module('LoyalBonus.services', [])
 				console.log(toState);
 				console.log(fromState);*/
 			}
-
+			loading.stop();
 			/*******Jali kaama lai(extra)******/
 			saveData.remove('kaseyDinnerBusinessName');
 		});
 
 		return {
-			one_step_back: function () {
+			one_step_back : function () {
 				setDontSave = 1
 				var back = previous_page.slice(-1)[0];
 				previous_page.pop();
 				$state.go(back.fromState, back.fromParams);
+			},
+			setDontSave   : function() {
+				setDontSave = 1;
 			}
 		};
 	})
@@ -355,15 +359,14 @@ angular.module('LoyalBonus.services', [])
 
 	})
 
-	.factory('refreshTest', function ($state) {
-		function showrefreshtest ($statename,$stateparam)
-		{
-		$state.go($statename, $stateparam, { reload: true });
-		return '';
+	.factory('refreshTest', function ($state, backFunctionality) {
+		function showrefreshtest ($statename,$stateparam) {
+			backFunctionality.setDontSave();
+			$state.go($statename, $stateparam, { reload: true });
+			return '';
 		}
 		return {
 			showrefreshtest: showrefreshtest
-
 		}
 	})
 	.factory('watchUser', function ($rootScope) {

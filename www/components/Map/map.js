@@ -1,5 +1,5 @@
 angular.module('LoyalBonus')
-    .controller('MapController', function($scope, $ionicHistory, active_controller, $ionicHistory, $state, saveData) {
+    .controller('MapController', function($scope, $ionicHistory, active_controller, $ionicHistory, $state, saveData, refreshTest) {
         $scope.locations = [{ lat: 30.899923, lon: 75.845864, place: "Bus stand, ludhiana" }];
         $scope.map;    // Google map object
         $scope.directionsDisplay;
@@ -11,6 +11,11 @@ angular.module('LoyalBonus')
                     $window.location.reload();;
                 }
 */
+
+        $scope.Test = function () {
+            return refreshTest.showrefreshtest($state.current.name, $state.params);
+        }
+
         console.log(saveData.get('businessDetailId'));
         $scope.goToKaseyDinner = function () {
             console.log(saveData.get('businessDetailId'));

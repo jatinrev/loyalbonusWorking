@@ -3,7 +3,7 @@ angular.module('LoyalBonus')
 
 
 
-.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope,saveData) {
+.controller('MileStoneController', function ($scope, $state, ajaxCall, $rootScope,saveData, refreshTest) {
 
 	$scope.open_detail_page = function (BusinessID) {
 		// console.log(BusinessID);
@@ -16,7 +16,9 @@ angular.module('LoyalBonus')
         /*DDt: Date.parse()*/
     }
 
-
+    $scope.Test = function () {
+        return refreshTest.showrefreshtest($state.current.name, $state.params);
+    }
 
 
 	$scope.myloyalbonus = {};

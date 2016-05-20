@@ -37,11 +37,15 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest) {
 
         $scope.state_on = function () {
             return $state.params.id;
         };
+
+        $scope.Test = function () {
+            return refreshTest.showrefreshtest($state.current.name, $state.params);
+        }
 
         $scope.Lovedpage = {};
         var lovecount = 0;

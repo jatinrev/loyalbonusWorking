@@ -1,8 +1,12 @@
 angular.module('LoyalBonus')
 
-.controller('RestPasswordController', function ($scope, $state, $ionicHistory, ajaxCall, validation, loading) {
+.controller('RestPasswordController', function ($scope, $state, $ionicHistory, ajaxCall, validation, loading, refreshTest) {
 
 	$scope.resetPass = {};
+
+	$scope.Test = function () {
+        return refreshTest.showrefreshtest($state.current.name, $state.params);
+    }
 
 	/**
 	 *	returns true when email is valid

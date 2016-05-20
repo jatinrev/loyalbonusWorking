@@ -21,13 +21,17 @@ angular.module('LoyalBonus')
 	};
 })
 
-.controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory, active_controller) {
+.controller('AccountController', function ($scope, $rootScope, $state, change_accout_settings_factory, active_controller, refreshTest) {
 	$scope.tabName = $state.params.id;
 	// $state.params.id == 'Account'
 	var savePreviosDetails = {
 		FullName  : $rootScope.userDetails.FullName,
 		Email 	  : $rootScope.userDetails.Email
 	};
+
+	$scope.Test = function () {
+        return refreshTest.showrefreshtest($state.current.name, $state.params);
+    }
 
  	$scope.custom = true;
     active_controller.set('AccountController');
