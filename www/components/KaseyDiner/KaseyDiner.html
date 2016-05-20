@@ -7,7 +7,9 @@
             </ion-refresher>
             <div id="logo">
                 <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
-                <a ng-show="userPresent() == 1 ? true : false" ng-click="Lovedpage.loadKaro(true)" class="already-giveHeart button buttonListViewLove">Give Heart</a>
+
+                <a ng-show="userPresent() == 1 ? true : false" ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}</a>
+
 
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div  class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>

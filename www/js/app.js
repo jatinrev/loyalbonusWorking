@@ -3,6 +3,7 @@ var globaldata = {};
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope) {
+
   /*Temp Data*/
     $rootScope.userDetails = {
       userId       : 263,

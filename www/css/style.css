@@ -1188,11 +1188,18 @@ font-size: 20px;
     top: 7px;
     left: 7px;
     /* background-color: #DDDDDD; */
-    color: #ffffff;
-    background: url('../img/giveheatimg.png') no-repeat 10px 14px #DDDDDD;
-    border: 1px solid #ffffff;
+    color: #000;
+    background:url('../img/giveheatimg.png') no-repeat 7px 8px;
+    border: 1px solid #000;
     padding: 0px;
-    width: 46%;
+    width: 39%;
+    line-height: 33px;
+    min-height: 37px;
+}
+#kaseydiner .loveU
+{
+       background: url('../img/giveheatimg.png') no-repeat 4px 8px;
+    width: 42%;
 }
 #kaseydiner .bar-footer
 {
