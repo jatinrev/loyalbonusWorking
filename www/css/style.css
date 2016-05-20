@@ -25,15 +25,18 @@ img{
         margin-bottom: 5px;
        
 }
-#Businessmap .button
+#Businessmap .buttonListView
 {
-       /*  min-width: 100px; */
-           width: 100%;
+       width: 100%;
     float: left;
     margin-bottom: 2px;
     background-color: #fff;
-    color:#9b9d9f;
-    background: url(../img/listviewmap.png) no-repeat 130px 13px;
+    color: #9b9d9f;
+    background: url(../img/listviewmap.png) no-repeat 123px 3px;
+    text-align: center;
+    padding-left: 35px;
+    height: 29px;
+    margin-top: 13px;
 }
 #businessmaplogo
 {
@@ -318,7 +321,7 @@ p.stake-house
     white-space: nowrap;
         /* text-shadow: none; */
 }
-#Businessmap #businessmapButton.button
+#Businessmap #businessmapButton.button-balanced
 {
     background-color: #33cd5f;
     color: #fff;
