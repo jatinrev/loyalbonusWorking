@@ -197,10 +197,7 @@ angular.module('LoyalBonus', '')
                              */
                             for (key in res) {
                                 if( res[key].CategoryID == $state.params.vertical ) {
-                                    console.log('hi');
-                                    $scope.carouselIndex = 2;
-                                    /*$scope.carouselIndex = +key;
-                                    console.log( $scope.carouselIndex );*/
+                                    $scope.carouselIndex = +key;
                                     break;
                                 }
                             }
@@ -363,14 +360,6 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
-
-        /*$scope.carausal_function = function() {
-            get_business_data   //setting heading
-            .getheading()
-            .then(function (res) {
-
-            });
-        }*/
 
     });
 
