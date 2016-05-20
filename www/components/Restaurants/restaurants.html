@@ -13,10 +13,12 @@
             
             <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})"><!-- on-swipe-down="Test()" -->
                 <ion-refresher
+                    class="row"
                     pulling-text="Pull to refresh..."
                     on-refresh="Test()">
                 </ion-refresher>
-                <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a>
+                <div class="row padding-top-10"><a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row">MapView</a></div>
+                
                 <div ng-repeat="d in print_data()">
                     {{ restaurants.demo }}
                     <div id="logo">
