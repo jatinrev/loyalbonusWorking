@@ -88,6 +88,7 @@ angular.module('LoyalBonus')
   $scope.home_var.businessMap = {
     text : function() {
       var businessMap = get_business_data_map.getSearchKeyword();
+      //console.log(businessMap);
       if( typeof(businessMap) != 'undefined' && businessMap != '' ) {
         return businessMap; // data is present
       }
