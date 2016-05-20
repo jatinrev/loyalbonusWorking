@@ -97,15 +97,15 @@ var app = angular.module('LoyalBonus')
             .getMap()
             .then(function (map) {
                 loading.start();
-                bc.showCustomMarker = function (BusinessId) {
-                    console.log(BusinessId);
+                bc.showCustomMarker = function (event) {
+                    console.log(this.id);
+                    // console.log(event.target); /*.attributes.id.value*/
                     // bc.testdata(2);
                     //console.log(evt);
-                    //this is for click fujnctionality for marker click
 
-                    map.customMarkers.foo.setVisible(true);
-                    map.customMarkers.foo.setPosition(this.getPosition());
-                    // loading.stop();
+                    //this is for click fujnctionality for marker click
+                    /*map.customMarkers.foo.setVisible(true);
+                    map.customMarkers.foo.setPosition(this.getPosition());*/
                 };
 
                 bc.closeCustomMarker = function (evt) {
@@ -125,6 +125,29 @@ var app = angular.module('LoyalBonus')
                             }
                             var sortedArray = get_business_data_map
                                               .sort_multi_array(test);
+
+                            /**Start : this is testing**
+                            // var map;
+                            $scope.dynMarkers = [];
+                            $scope.$on('mapInitialized', function(event, evtMap) {
+                              console.log('hello');
+                              map = evtMap;
+                              for (i in sortedArray) {
+                                var lat = sortedArray[i].positions.split(',')[0]
+                                , long  = sortedArray[i].positions.split(',')[1];
+                                console.log(lat);
+                                var latLng = new google.maps.LatLng(lat, long);
+                                var marker = new google.maps.Marker({position:latLng});
+                                $scope.dynMarkers.push(marker);
+                                
+                                google.maps.event.addListener(marker, 'click', function() {
+                                
+                                    alert("this is marker " + i);
+                                });
+                              }
+                              $scope.markerClusterer = new MarkerClusterer(map, $scope.dynMarkers, {});
+                            });
+                            /****End : this is testing****/
 
                             bc.center = sortedArray[0].positions;
                             bc.positions = sortedArray;
