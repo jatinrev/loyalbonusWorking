@@ -9,12 +9,12 @@
             <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">List View</a>
             <ng-map zoom="11" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:400px"
             on-center-changed="centerCustomMarker()">
-                <marker ng-repeat="(key, value) in bc.positions" position="{{value.positions}}" id="{{ key }}" on-click="bc.showCustomMarker($event)"></marker>
+                <marker ng-repeat="(key, value) in bc.positions" position="{{value.positions}}" id="{{ key }}" on-click="bc.showCustomMarker($event)" animation="DROP"></marker>
                 <!-- <custom-marker id="foo" position="{{ bc.positions }}" on-click="bc.closeCustomMarker('yoyoy')">
                     <div class="newdiv"></div>
                 </custom-marker> -->
             </ng-map>
-            <div ng-repeat="daj in datadeal">
+            <div ng-repeat="daj in datadeal track by $index">
                 <button class="button button-balanced" id="businessmapButton">
                     Redo Search In This Area
                 </button>

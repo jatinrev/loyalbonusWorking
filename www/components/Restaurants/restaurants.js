@@ -103,7 +103,7 @@ angular.module('LoyalBonus', '')
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
         active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
 
-        
+
 
         var restaurantData = [];
         active_controller.set('RestaurantController');

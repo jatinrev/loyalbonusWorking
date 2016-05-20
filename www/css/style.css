@@ -324,6 +324,7 @@ p.stake-house
     color: #fff;
     width: 65%;
     margin-left: 19%;
+    background-image: unset;
 
 }
 .platform-android {
