@@ -3,7 +3,7 @@ var globaldata = {};
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope) {
-  /*Temp Data*/
+  /*Temp Data*
     $rootScope.userDetails = {
       userId       : 263,
       Email        : 'jatinverma@gmail.com',
@@ -11,7 +11,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       userLocation : '6.461573,3.479404'
     }
   /*Temp Data*/
-  
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
