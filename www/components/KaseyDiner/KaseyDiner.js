@@ -86,6 +86,33 @@ angular.module('LoyalBonus')
             }, 3000);
         };
 
+        $scope.showPopupMy = function (msg) {
+            if(msg == 0) {
+                msg = '0';
+            }
+            console.log(msg);
+            $scope.data = {}
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+                /* template:'<i class="icon-gift"></i>',*/
+                title: '<img src="img/bonus.png"> My Bonus',
+
+                subTitle: msg,
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel', type: 'button-positive' }
+
+                ]
+            });
+            myPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000000);
+        };
+
 
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({

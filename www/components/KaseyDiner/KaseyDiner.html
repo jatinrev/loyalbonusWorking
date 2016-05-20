@@ -31,7 +31,9 @@
                     <ion-list>
                         <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
-                        <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from reviews</span></ion-item>
+                        <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from {{ datadeal.TotalReviewsGiven }} reviews</span>
+                        </ion-item>
+                        <ion-item class="wth-border" ng-click="showPopupMy(datadeal.TotalReceivedBonus)"><img style="position: relative; right: 3px;" src="img/bonus.png"> My Bonus : {{ datadeal.TotalReceivedBonus }}</ion-item>
                     </ion-list>
                 </div>
                 <div class="col-50">
