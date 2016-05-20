@@ -132,9 +132,10 @@ angular.module('LoyalBonus.services', [])
 				.getCurrentPosition(posOptions)
 				.then(function (result) {
 					// console.log('Success');
-					//console.log(res);
+					console.log(result);
 					return result;
 				}, function (error) {
+					console.log(error)
 					return error;
 					// console.log('chiku');
 				});
