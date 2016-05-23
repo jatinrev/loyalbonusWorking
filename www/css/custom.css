@@ -25,7 +25,9 @@
 .margin-top-minus1 {
 	margin-top: -1px !important;
 }
-
+.margin-top-10 {
+	margin-top:10px;
+}
 
 
 /**Border**/
