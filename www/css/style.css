@@ -264,8 +264,10 @@ map {
 }
 #restaurants .tabs
 {
-       height: 28px;
-    line-height: 28px;
+       /*height: 28px;
+    line-height: 28px;*/
+    height: 25px;
+    line-height: 25px;
 }
 #restaurants .new-color-loyal{
     color:#4fbb4f;
