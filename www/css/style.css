@@ -1168,10 +1168,12 @@ font-size: 20px;
 #restaurants .buttonListView
 {
      background-color: #fff;
-        margin: 7px 0px 0 0;
+    margin: 7px 0px 0 0;
     color: #a5a7a9;
     border: 1px solid #a5a7a9;
     display: inline-block;
+    font-size: 17px;
+    background: url('../img/ion-map.png') no-repeat 132px 8px;
 
 }
 
