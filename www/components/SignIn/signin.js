@@ -26,6 +26,14 @@ angular.module('LoyalBonus')
         return refreshTest.showrefreshtest($state.current.name, $state.params);
     }
 
+    $scope.redirect_urls = {
+    home : function() {
+      //console.log('home');
+      $scope.output = 'home';
+      $state.go('home.restaurants', { vertical: "1"});
+    }
+}
+
 	function login() {
 		loading.start();
 		$scope.signIn.response 				   = 'in login';
@@ -86,6 +94,8 @@ angular.module('LoyalBonus')
 	    	}
 	    });
 	};
+
+
 
 });
 

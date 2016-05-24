@@ -91,6 +91,12 @@
 	background-color: #617AAC;
 	padding: 12px 25px;
 }
+.loyalbonus_img_business {
+	color: #fff;
+	background-color: #00AEEF;
+	padding: 12px 25px;
+	margin-left: 13px;
+}
 .loyalbonus_img .icon		{
 	font-size: 21px;
     position: relative;
