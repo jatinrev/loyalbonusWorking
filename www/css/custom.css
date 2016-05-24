@@ -79,9 +79,12 @@
 
 /*****restaurant detail page****/
 .checkbox > img {
-        width: 36px;
+        width: 35px;
 }
-
+#kaseydiner .col-offset-20
+{
+	margin-left:3%
+}
 
 
 
@@ -137,5 +140,26 @@
 	font-weight: bold;
 }
 
+#home img.leftsidelogo {
+padding: 5px;
+    margin: 5px;
+        width: 60%;
+        
+}
+#home .ion-item
+{
+	border-bottom: none;
+}
+#home .colorchanged
+{
+	color: #387ff5;
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: 500;
+}
+#home .col:first-child
+{
+border:none;
+}
 
 

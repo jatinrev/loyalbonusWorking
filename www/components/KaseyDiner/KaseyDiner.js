@@ -181,6 +181,8 @@ angular.module('LoyalBonus')
         }
             
         $scope.myloyalbonus.printNonTick = function (input) {
+            //console.log(input);
+            
             return mydummyJson(9 - +input);
         }
             

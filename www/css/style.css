@@ -520,7 +520,7 @@ p.stake-house
     line-height: normal;
     position: relative;
     top: 1px;
-        padding: 7px 3px;
+        padding: 7px 5px;
         float: left;
 }
 #Milestones .checkbox
@@ -559,7 +559,7 @@ p.stake-house
     border-radius: 50%;
     float: left;
     height: 33px;
-    margin: 10px 1px 10px 5px;
+    margin: 10px 1px 10px 9px;
     position: relative;
     width: 33px;
 }

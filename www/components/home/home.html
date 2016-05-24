@@ -1,11 +1,19 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" id ="home">
     <ion-side-menu side="left" id="restaurants">
 
         <ion-content style="top: 0;">
+
             <ion-item class="rtblock" ng-show="home_var.userPresent() == 1 ? true : false">
                 <h1 class="rttitle">{{ userDetails.FullName == '' ? 'Null' : userDetails.FullName }}</h1>
                 <h1 class="rttitleEmail">{{ userDetails.Email == '' ? 'Null' : userDetails.Email }}</h1>
             </ion-item>
+            <ion-list ng-show="home_var.userPresent() == 0 ? true : false">
+                <ion-item class="col text-center" menu-toggle  ng-click="redirect_urls.home()"><img class="leftsidelogo" src="../img/logo.png"></ion-item>
+                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span>  <span class="colorchanged col-50 text-center" on-tap="signin()"> or Sign Up</span></ion-list>
+
+
+                <!-- ui-sref="home.restaurants" -->
+            </ion-list>
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.home()">Home</ion-item>
                 <!-- ui-sref="home.restaurants" -->

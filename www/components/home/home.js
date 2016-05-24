@@ -43,6 +43,18 @@ angular.module('LoyalBonus')
     window.localStorage.removeItem('userId');
     $state.go("signin");
   };
+  $scope.signOut = function() {
+    // console.log('helllooooo');
+    $rootScope.userDeatils = {};
+    window.localStorage.removeItem('userId');
+    $state.go("signup");
+  };
+  $scope.signin = function() {
+    // console.log('helllooooo');
+    $rootScope.userDeatils = {};
+    window.localStorage.removeItem('userId');
+    $state.go("signin");
+  };
 
   $scope.home_var.magnifyOrBack = function () {
     return active_controller.get();

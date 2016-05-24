@@ -63,12 +63,12 @@ angular.module('LoyalBonus.services', [])
 		$rootScope.userDetails.Email = '';
 		$rootScope.userDetails.FullName = '';
 		/**Temp Data**/
-		$rootScope.userDetails = {
+		/*$rootScope.userDetails = {
 			userId: 263,
 			Email: 'jatinverma@gmail.com',
 			FullName: 'Jatin',
 			userLocation: '6.461573,3.479404'
-		}
+		}*/
 		/**Temp Data**/
 		return {
 			get: function (userID) {
