@@ -496,6 +496,7 @@ p.stake-house
    border-bottom: 1px solid #cbcac8; 
    position: relative;
    top: -22px;
+       padding: 0px;
 
 }
 .loyal-kaseydinerpara
@@ -557,10 +558,10 @@ p.stake-house
     border: 1px solid #999999;
     border-radius: 50%;
     float: left;
-    height: 29px;
+    height: 33px;
     margin: 10px 1px 10px 5px;
     position: relative;
-    width: 29px;
+    width: 33px;
 }
 
 #Milestones .round
@@ -596,18 +597,18 @@ p.stake-house
 .round-span
 {
         color: #333333;
-    font-size: 12px;
+    font-size: 13px;
     left: 1px;
     line-height: normal;
     position: relative;
-    top: 0px;
+    top: 4px;
 }
 .round p {
         color: #333333;
-    font-size: 11px;
+    font-size: 12px;
     left: 0px;
     position: relative;
-    top: -6px;
+    top: -3px;
 }
 .checkbox input, .checkbox-icon
 {
@@ -748,8 +749,21 @@ p.stake-house
 }
 #Milestones h1, .h1
 {
+        font-size: 20px;
+}
+#Review h1, .h1
+{
         font-size: 30px;
 }
+#Review span.title
+{
+        color: #000;
+    font-weight: 500;
+    font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    line-height: 1.2;
+     font-size: 20px;
+}
+
 #Milestones .scroll-content {
     top: 58px;
     z-index: 99;
@@ -1199,14 +1213,15 @@ font-size: 20px;
     background:url('../img/giveheatimg.png') no-repeat 7px 8px;
     border: 1px solid #000;
     padding: 0px;
-    width: 39%;
+    width: 35%;
     line-height: 33px;
     min-height: 37px;
 }
 #kaseydiner .loveU
 {
        background: url('../img/giveheatimg.png') no-repeat 4px 8px;
-    width: 42%;
+    width: 35%;
+        padding-left: 15px;
 }
 #kaseydiner .bar-footer
 {
@@ -1457,13 +1472,22 @@ ul[rn-carousel] > li.current
     margin-top: 15px;
     
     float: left; */
-    color: #63615a;
+    /* color: #63615a;
     font-size: 17px;
     padding: 5px;
     margin-top: 25px;
     float: left;
     text-align: center;
+    width: 100%; */
+        color: #63615a;
+    font-size: 17px;
+    padding: 5px;
+    margin-top: 25px;
+    float: left;
+    /* text-align: right; */
     width: 100%;
+    margin-bottom: 0px;
+    padding: 0px 0px 0px 6px;
 }
 
 a.control_prev  {
