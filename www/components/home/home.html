@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" id ="home">
+<ion-side-menus enable-menu-with-back-views="false" id="home">
     <ion-side-menu side="left" id="restaurants">
 
         <ion-content style="top: 0;">
@@ -8,8 +8,9 @@
                 <h1 class="rttitleEmail">{{ userDetails.Email == '' ? 'Null' : userDetails.Email }}</h1>
             </ion-item>
             <ion-list ng-show="home_var.userPresent() == 0 ? true : false">
-                <ion-item class="col text-center" menu-toggle  ng-click="redirect_urls.home()"><img class="leftsidelogo" src="../img/logo.png"></ion-item>
-                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span>  <span class="colorchanged col-50 text-center" on-tap="signin()"> or Sign Up</span></ion-list>
+                <ion-item class="col text-center" menu-toggle ng-click="redirect_urls.home()"><img class="leftsidelogo" src="../img/logo.png"></ion-item>
+                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center"
+                        on-tap="signin()"> or Sign Up</span></ion-list>
 
 
                 <!-- ui-sref="home.restaurants" -->
@@ -22,15 +23,15 @@
                 <ion-item menu-toggle ng-click="redirect_urls.map()">Map View</ion-item>
             </ion-list>
             <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
-                <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()" >My Loyal Bonus</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()">My Loyal Bonus</ion-item>
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
-                <ion-item menu-toggle ng-click="redirect_urls.my_membership()" >My Membership</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.my_membership()">My Membership</ion-item>
                 <!-- ui-sref="home.membership" -->
             </ion-list>
             <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
-                <ion-item menu-toggle ng-click="redirect_urls.account_settings()" >Account Setting</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.account_settings()">Account Setting</ion-item>
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list>
@@ -59,6 +60,10 @@
                     ">
                 </button>
                 <h1 class="title">
+            <label ng-show="showMe" class="item item-input new_margin">
+                <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
+                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
+            </label>
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
                         {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
