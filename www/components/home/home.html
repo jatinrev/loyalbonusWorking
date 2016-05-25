@@ -8,7 +8,7 @@
                 <h1 class="rttitleEmail">{{ userDetails.Email == '' ? 'Null' : userDetails.Email }}</h1>
             </ion-item>
             <ion-list ng-show="home_var.userPresent() == 0 ? true : false">
-                <ion-item class="col text-center" menu-toggle ng-click="redirect_urls.home()"><img class="leftsidelogo" src="../img/logo.png"></ion-item>
+                <ion-item class="col text-center" menu-toggle ng-click="redirect_urls.home()"><img class="leftsidelogo" src="img/logo.png"></ion-item>
                 <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center"
                         on-tap="signin()"> or Sign Up</span></ion-list>
 
@@ -49,29 +49,24 @@
     <ion-side-menu-content side-menu-content drag-content="false">
         <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
             <div class="buttons">
-                <button class="button button-icon 
-                    {{ home_var.magnifyOrBack() == 'RestaurantController' || 
-                       home_var.magnifyOrBack() == 'BusinessController'   ? 
-                       'ion-search' : 'ion-arrow-left-c' 
+                <button class="button button-icon
+                    {{ home_var.magnifyOrBack() == 'RestaurantController' ||
+                       home_var.magnifyOrBack() == 'BusinessController'   ?
+                       'ion-search' : 'ion-arrow-left-c'
                     }}" ng-click="
                     home_var.magnifyOrBack() == 'RestaurantController' ||
-                    home_var.magnifyOrBack() == 'BusinessController'   ? 
+                    home_var.magnifyOrBack() == 'BusinessController'   ?
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
                 <h1 class="title">
                     <label ng-show="showMe" class="item item-input new_margin">
-
-                        <input type="text" ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
-                        <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"></span>
-
-                          
                         <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
                         <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span><!-- ng-show="loadmoreNgShow" -->
                          <!-- <div ng-show = "IsVisible"></div> -->
 
                     </label>
-            
+
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
                         {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
@@ -81,9 +76,9 @@
                     <span class="text-vertical"  ><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
                         {{ home_var.businessMap.text() }}
                     </span>
-                    
+
                 </h1>
-                <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
+                <button class="button button-clear icon ion-navicon-round {{ ios ? 'addclassios' : ' ' }}" ng-click="toggleLeft()"></button>
             </div>
 
         </ion-header-bar>
