@@ -12,10 +12,7 @@ angular.module('LoyalBonus')
     var restaurantData = [];
         active_controller.set('MileStoneController');
 
-    $scope.v = {
-        Dt: Date.now()
-        /*DDt: Date.parse()*/
-    }
+    
 
     $scope.Test = function () {
         return refreshTest.showrefreshtest($state.current.name, $state.params);
