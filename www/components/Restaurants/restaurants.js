@@ -96,6 +96,7 @@ angular.module('LoyalBonus', '')
             },
             getBusinessRecord: getBusinessRecord,
             getSearchKeyword: function () { return searchKeyword; },
+            setKewordSearch : function(input){ searchKeyword = input; console.log(searchKeyword); },
             removeSearchKeyword: function () { searchKeyword = ''; }
         };
 

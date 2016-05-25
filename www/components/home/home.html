@@ -60,10 +60,11 @@
                     ">
                 </button>
                 <h1 class="title">
-            <label ng-show="showMe" class="item item-input new_margin">
-                <input type="text" ng-model="restaurants.searchKeyword" placeholder="Search for restaurants" >
-                <span class="ion-search paddingLR10" on-tap="restaurants.search(restaurants.searchKeyword)" ng-show="loadmoreNgShow"></span>
-            </label>
+                    <label ng-show="showMe" class="item item-input new_margin">
+                        <input type="text" ng-show="home_var.homesearch" placeholder="Search for restaurants" >{{ home_var.homesearch.setValue(input) }}
+                        <span class="ion-search paddingLR10" on-tap=""></span>
+                    </label>
+            
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
                         {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
@@ -73,6 +74,7 @@
                     <span class="text-vertical"  ><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
                         {{ home_var.businessMap.text() }}
                     </span>
+                    
                 </h1>
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
             </div>
