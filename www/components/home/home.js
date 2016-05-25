@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
-  , get_business_data_map ) {
+  , get_business_data_map,refreshTest ) {
 
 
 
@@ -36,7 +36,7 @@ angular.module('LoyalBonus')
     //$rootScope.doRefresh();
   }
 
-   
+ 
 
   $scope.signOut = function() {
     // console.log('helllooooo');
@@ -85,10 +85,17 @@ angular.module('LoyalBonus')
     get_business_data.removeSearchKeyword();
   }
 
-
+ $scope.ShowHide = true;
 $scope.home_var.homesearch = {};
 $scope.home_var.homesearch.setValue = function(input){
+
   get_business_data.setKewordSearch(input);
+
+  //console.log(input);
+  get_business_data.setKewordSearch(input);
+  $rootScope.showMe = false;
+  refreshTest.showrefreshtest($state.current.name, $state.params);
+
 };
 
 

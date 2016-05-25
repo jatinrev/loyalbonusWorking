@@ -1187,8 +1187,13 @@ font-size: 20px;
     border: 1px solid #a5a7a9;
     display: inline-block;
     font-size: 17px;
-    background: url('../img/ion-map.png') no-repeat 132px 8px;
+    /* background: url('../img/ion-map.png') no-repeat 132px 8px; */
 
+}
+#restaurants .ion-mapclass
+{
+    position: relative;
+    top:8px;
 }
 
 #Map .gm-style-mtc
