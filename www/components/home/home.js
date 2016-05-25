@@ -88,9 +88,7 @@ angular.module('LoyalBonus')
 
 $scope.home_var.homesearch = {};
 $scope.home_var.homesearch.setValue = function(input){
-  
   get_business_data.setKewordSearch(input);
-  
 };
 
 

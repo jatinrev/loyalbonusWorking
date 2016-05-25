@@ -61,8 +61,8 @@
                 </button>
                 <h1 class="title">
                     <label ng-show="showMe" class="item item-input new_margin">
-                        <input type="text" ng-show="home_var.homesearch" placeholder="Search for restaurants" >{{ home_var.homesearch.setValue(input) }}
-                        <span class="ion-search paddingLR10" on-tap=""></span>
+                        <input type="text" ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
+                        <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"></span>
                     </label>
             
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
