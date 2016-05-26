@@ -42,16 +42,15 @@ angular.module('LoyalBonus')
   	$rootScope.userDeatils = {};
     window.localStorage.removeItem('userId');
     /**Start : removing from preference**/
+    /**
+     * Saving is done in services.js in factory 'update_user_details'
+     * some things are done in app.js
+     * and in the current file only removing is done.
+     */
     $cordovaPreferences.remove('userId', 'dict');
     /***End : removing from preference***/
     $state.go("signin");
   };
-  /*$scope.signOut = function() {
-    // console.log('helllooooo');
-    $rootScope.userDeatils = {};
-    window.localStorage.removeItem('userId');
-    $state.go("signup");
-  };*/
   $scope.signin = function() {
     // console.log('helllooooo');
     $rootScope.userDeatils = {};
