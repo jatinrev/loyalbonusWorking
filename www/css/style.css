@@ -453,7 +453,7 @@ p.stake-house
     font-size: 14px;
     padding: 6px;
 }
-.ion-ios-heart
+.ion-1360-heart
 {
     color:#d81814;
     padding-right: 3px;
@@ -1389,14 +1389,14 @@ padding: 16px 49px 16px 0px;     }
     width: 90%;
     z-index: 99 */
     background-color: #fff;
-    position: absolute;
-    height: 34px;
-    padding-left: 14px;
+    position: absolute !important;
+    height: 34px!important;
+    padding-left: 14px!important;
     padding-top: 12px;
     padding-bottom: 14px;
     padding-right: 0px;
     margin: 7px 0px 0px 7px;
-    width: 90%;
+    width: 90% !important;
     z-index: 99;
 }
 

@@ -58,7 +58,7 @@
                     ">
                 </button>
                 <h1 class="title">
-                    <label ng-show="showMe" class="item item-input new_margin">
+                    <label ng-show="showMe" class="item item-input new_margin {{ platform-ios == platform-ios ? 'addclassios' : ' ' }}">
                         <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
                         <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span><!-- ng-show="loadmoreNgShow" -->
                          <!-- <div ng-show = "IsVisible"></div> -->
@@ -67,15 +67,15 @@
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
                         {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                     </span>
-                    <span class="text-vertical {{ ios ? 'addclassios' : ' ' }}" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
+                    <span class="text-vertical {{ platform-ios == platform-ios ? 'addclassios' : ' ' }}" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
                         {{ home_var.kaseyDinnerHeading.text() }}
                     </span>
-                    <span class="text-vertical"  ><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
+                    <span class="text-vertical {{ platform-ios == platform-ios ? 'addclassiostext' : ' ' }}"  ><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
                         {{ home_var.businessMap.text() }}
                     </span>
 
                 </h1>
-                <button class="button button-clear icon ion-navicon-round {{ ios ? 'addclassios' : ' ' }}" ng-click="toggleLeft()"></button>
+                <button class="button button-clear icon ion-navicon-round {{ platform-ios == platform-ios ? 'addclassios' : ' ' }}" ng-click="toggleLeft()"></button>
             </div>
 
         </ion-header-bar>

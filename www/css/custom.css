@@ -163,7 +163,16 @@ border:none;
 }
 #home .addclassios
 {
-	    top: 15px;
+	    top: 19px;
+}
+#home .addclassiostext
+{
+	top:22px;
+}
+
+#home .addclassiosisloved
+{
+	top:22px;
 }
 
 
