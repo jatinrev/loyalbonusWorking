@@ -3,7 +3,51 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            <button class="button button-assertive">button-assertive </button>
-        </ion-content>    
+            <div class="row alert-danger text-center"></div>
+            <ion-list class="center">
+                <button class="button start_freebtn">Start Your Free Month</button>
+            </ion-list>
+            <ion-list class="row">
+                <h4 class="padding"><i class="fa fa-check pull-left"></i>Save up to 40% on your everyday purchases!</h4>
+                <h4 class="padding"><i class="fa fa-check pull-left"></i> Get a Bonus for showing your loyalty to the business!</h4>
+                <h4 class="padding"><i class="fa fa-check pull-left"></i> 1000 + Businesses around your town!</h4>
+            </ion-list>
+            <hr class="hr_border"></hr>
+            <div class="specear20"></div>
+            <div class="specear20"></div>
+            <ion-list class="row text-center">
+                <h4 class="padding">Invite at least 10 friends from facebook to receive an additional Month free!</h4>
+                <a href="#" onclick="#"><img src="img/facebook-invite-friends.jpg" alt="Invite Facebook Friends"></a>
+            </ion-list>
+            <div class="specear20"></div>
+            <hr class="hr_border"></hr>
+            <div class="specear20"></div>
+            <div class="specear20"></div>
+            <ion-list class="row text-center">
+                <h4 class="padding">Receive additional Free Month for  each friend who sign up!</h4>
+             </ion-list>  
+             <form ua-login name="frm" novalidate>
+             <div class="padding">
+                        <label class="item item-input new_margin">
+                            <input type="text" class="username" ng-model="signIn.username" ng-required="true" name="username" ng-minlength="3" ng-maxlength="40"
+                            placeholder="Input Emails">
+                        </label>
+                            <input type="submit" value="" placeholder="Input Emails" class="pos_absolute bkgnd_image">
+                        <div role="alert">
+                            <span class="error" ng-show="frm.username.$dirty && frm.username.$error.required">Email Is Required!</span>
+                            <span class="error" ng-show="frm.username.$dirty && frm.username.$error.minlength">Email Is Too Short!</span>
+                            <span class="error" ng-show="frm.username.$dirty && frm.username.$error.maxlength">Email Is Too Long!</span>
+                        </div>
+
+                            <span class="wd70">Use comma to seperate multiple emails</span>
+                        <textarea cols="20" id="EmailContent" placeholder="Your Personalized Message!" rows="6"></textarea>
+                    </div>
+
+             </form> 
+
+        </ion-content>
+         <ion-footer-bar class="footer-bar-custom bar-positive">
+            <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+        </ion-footer-bar>
     </ion-view>
 </div>
