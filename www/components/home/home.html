@@ -9,10 +9,8 @@
             </ion-item>
             <ion-list ng-show="home_var.userPresent() == 0 ? true : false">
                 <ion-item class="col text-center" menu-toggle ng-click="redirect_urls.home()"><img class="leftsidelogo" src="img/logo.png"></ion-item>
-                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center"
-                        on-tap="signin()"> or Sign Up</span></ion-list>
-
-
+                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center" on-tap="signin()"> or Sign Up</span>
+                </ion-list>
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list>
@@ -64,7 +62,6 @@
                         <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
                         <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span><!-- ng-show="loadmoreNgShow" -->
                          <!-- <div ng-show = "IsVisible"></div> -->
-
                     </label>
 
                     <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >

@@ -56,7 +56,7 @@ angular.module('LoyalBonus.services', [])
 			}
 		}
 	})
-	.factory('update_user_details', function ($rootScope, ajaxCall, $state) {
+	.factory('update_user_details', function ($rootScope, ajaxCall, $state, $cordovaPreferences) {
 		// update userDetails array which is global.
 		console.log('in userdetail factory')
 		$rootScope.userDetails = {};
@@ -82,7 +82,15 @@ angular.module('LoyalBonus.services', [])
 							$rootScope.userDetails.FullName = response.data.Data.FullName;
 							$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 							// $state.go("home.restaurants");
-							
+							$cordovaPreferences.store('userId', userID, 'dict');
+					        /*.success(function(value) {
+					            // alert("Success: " + value);
+					            // $scope.test = value;
+					        })
+					        .error(function(error) {
+					            // alert("Error: " + error);
+					            // $scope.test = error;
+					        });*/
 						} else {
 							$rootScope.userDetails = {};
 							$state.go("signin");
