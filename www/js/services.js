@@ -281,6 +281,9 @@ angular.module('LoyalBonus.services', [])
 	})
 	.factory('facebookFactory', function (ngFB, ajaxCall, loading) {
 		function facebookLogin() {
+			/*
+			ngFB init is done in app.js, where user could input app id for authentication.
+			 */
 			return ngFB
 				.login({ scope: 'email,read_stream,publish_actions' })
 				.then(function (response) {
