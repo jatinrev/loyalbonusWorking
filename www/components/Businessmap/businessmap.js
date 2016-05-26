@@ -81,7 +81,7 @@ var app = angular.module('LoyalBonus')
         };
     })
 
-    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, loading, refreshTest, get_user_location) {
+    .controller('BusinessController', function ($scope, saveData, $state, ajaxCall, $rootScope, active_controller, get_business_data_map, NgMap, $http, $interval, loading, refreshTest, get_user_location,$cordovaGeolocation) {
         active_controller.set('BusinessController');
 
 
@@ -92,8 +92,12 @@ var app = angular.module('LoyalBonus')
         $scope.helperFunction = {};
         $scope.loadmoreNgShow = false;
 
+        
+
         $scope.Test = function () {
+
             return refreshTest.showrefreshtest($state.current.name, $state.params);
+
         }
 
         $scope.state_on = function () {

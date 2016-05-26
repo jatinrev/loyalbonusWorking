@@ -58,7 +58,7 @@ angular.module('LoyalBonus.services', [])
 	})
 	.factory('update_user_details', function ($rootScope, ajaxCall, $state) {
 		// update userDetails array which is global.
-		console.log('in userdetail factory')
+		//console.log('in userdetail factory')
 		$rootScope.userDetails = {};
 		$rootScope.userDetails.Email = '';
 		$rootScope.userDetails.FullName = '';
