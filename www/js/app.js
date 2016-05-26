@@ -13,6 +13,10 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     }
   /*Temp Data*/
   $ionicPlatform.ready(function () {
+    /**Start : checking storage**/
+    
+    /***End : checking storage***/
+    
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
