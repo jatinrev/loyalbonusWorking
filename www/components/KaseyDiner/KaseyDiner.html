@@ -8,7 +8,7 @@
             <div id="logo">
                 <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> -->
 
-                <a ng-show="userPresent() == 1 ? true : false" ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}</a>
+                <a ng-show="userPresent() == 1 ? true : false" ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ ios ? 'margin-top-10' : ' ' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}</a>
 
 
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
