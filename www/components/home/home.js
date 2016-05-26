@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
-  , get_business_data_map,refreshTest ) {
+  , get_business_data_map,refreshTest, $cordovaPreferences ) {
 
 
 
@@ -39,16 +39,17 @@ angular.module('LoyalBonus')
  
 
   $scope.signOut = function() {
-    // console.log('helllooooo');
   	$rootScope.userDeatils = {};
     window.localStorage.removeItem('userId');
+    /**Start : removing from preference**/
+    /**
+     * Saving is done in services.js in factory 'update_user_details'
+     * some things are done in app.js
+     * and in the current file only removing is done.
+     */
+    $cordovaPreferences.remove('userId', 'dict');
+    /***End : removing from preference***/
     $state.go("signin");
-  };
-  $scope.signOut = function() {
-    // console.log('helllooooo');
-    $rootScope.userDeatils = {};
-    window.localStorage.removeItem('userId');
-    $state.go("signup");
   };
   $scope.signin = function() {
     // console.log('helllooooo');

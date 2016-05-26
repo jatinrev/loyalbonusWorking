@@ -33,6 +33,9 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
+        },
+        "cordova-plugin-app-preferences": {
+            "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },
     "dependent_plugins": {}
