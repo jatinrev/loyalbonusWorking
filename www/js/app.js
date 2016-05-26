@@ -215,6 +215,17 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
           }
         }
       })
+      .state("home.invite", {
+        url   : "invitefriend/",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/Invitefriend/invitefriend.html",
+            controller   : "InviteController",
+            controllerAs : "ic"
+          }
+        }
+      })
       // .state("home.deal.map", {
       //   url: "map/",
       //   views: {

@@ -91,13 +91,27 @@ var app = angular.module('LoyalBonus')
         $scope.datadeal = [];
         $scope.helperFunction = {};
         $scope.loadmoreNgShow = false;
+        $scope.gotoCurrentLocation ={};
+
+          $scope.gotoCurrentLocation = function () {
+            console.log(navigator);
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                         console.log(position);
+                        var c = position.coords;
+                        //$scope.gotoLocation(c.Lat, c.Lng);
+                    });
+                    return true;
+                }
+                return false;
+            };
 
         
 
         $scope.Test = function () {
 
             return refreshTest.showrefreshtest($state.current.name, $state.params);
-
+            $scope.gotoCurrentLocation();
         }
 
         $scope.state_on = function () {
@@ -174,22 +188,28 @@ var app = angular.module('LoyalBonus')
                             }
                             var sortedArray = get_business_data_map
                                               .sort_multi_array(test);
+                            console.log(sortedArray);                  
 
                             bc.center = sortedArray[0].positions;
+                            //bc.center = positions.Lat, positions.Lng;
+                            console.log(bc.center);
                             bc.positions = sortedArray;
                             //console.log(sortedArray);
                             loading.stop()
                         });
+
                     });
                 }
                 bc.test();
             });
 
+            
+
 
 
 
         $scope.helperFunction.reviews = function (number) {
-            console.log(typeof (number));
+            //console.log(typeof (number));
             var str = '';
             for (var i = 1; i <= number; i++) {
                 str += '<img class="filledStart" src="img/filledStar.png"/>';

@@ -160,6 +160,11 @@ $scope.home_var.kaseyDinnerHeading = {
       $scope.output = 'accout_settings';
       $state.go("home.account");
     },
+    invite_friend : function() {
+      console.log('invite_friend');
+      $scope.output = 'invite_friend';
+      $state.go("home.invite");
+    },
     home : function() {
       console.log('home');
       $scope.output = 'home';
