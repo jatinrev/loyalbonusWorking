@@ -82,6 +82,7 @@ angular.module('LoyalBonus.services', [])
 							$rootScope.userDetails.FullName = response.data.Data.FullName;
 							$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 							// $state.go("home.restaurants");
+							
 						} else {
 							$rootScope.userDetails = {};
 							$state.go("signin");
