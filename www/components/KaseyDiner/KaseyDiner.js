@@ -40,6 +40,7 @@ angular.module('LoyalBonus')
         console.log('testetse');
 
         $rootScope.showMe = false;
+        get_business_data.removeSearchKeyword();
 
         $scope.state_on = function () {
             return $state.params.id;
