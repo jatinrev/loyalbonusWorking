@@ -37,6 +37,8 @@ angular.module('LoyalBonus')
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest) {
 
+        console.log('testetse');
+
         $scope.state_on = function () {
             return $state.params.id;
         };
@@ -59,6 +61,10 @@ angular.module('LoyalBonus')
                 }
             });
         }
+
+        $scope.isAndroid = ionic.Platform.isAndroid();
+        // isIOS = ionic.Platform.isIOS();
+        // console.log(isAndroid);
 
 
         $scope.showPopup = function (msg) {
@@ -336,7 +342,7 @@ angular.module('LoyalBonus')
                             if (response.data.Data == "QrCode submitted")
                             {
                                  
-                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyslDiscount +' %  OFF for this visit.', 1);
+                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.', 1);
                                 test();
                             }
 

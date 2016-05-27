@@ -160,6 +160,8 @@ angular.module('LoyalBonus', '')
                 });
         }
 
+        $scope.isAndroid = ionic.Platform.isAndroid();
+
 
         $scope.print_data = [];
         $scope.data = {};
