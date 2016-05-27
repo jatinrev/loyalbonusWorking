@@ -11,7 +11,7 @@ var app = angular.module('LoyalBonus')
             loading.start();
             return ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=&pageIndex=' + pageIndex[businessId] + '&pageSize=10&keyword=' + keyword, {})
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.data.Data.length > 0) { //records are present so add pageIndex.
                         pageIndex[businessId] += 1;
                     }
@@ -93,25 +93,25 @@ var app = angular.module('LoyalBonus')
         $scope.loadmoreNgShow = false;
         $scope.gotoCurrentLocation ={};
 
-          $scope.gotoCurrentLocation = function () {
-            console.log(navigator);
-                if ("geolocation" in navigator) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                         console.log(position);
-                        var c = position.coords;
-                        //$scope.gotoLocation(c.Lat, c.Lng);
-                    });
-                    return true;
-                }
-                return false;
-            };
+        var businessMapPosition = '';
+
+        // $scope.gotoCurrentLocation = function () {
+        //     // console.log(navigator);
+        //     if ("geolocation" in navigator) {
+        //         navigator.geolocation.getCurrentPosition(function (position) {
+        //             businessMapPosition = position;
+        //             // console.log(position);
+        //             //$scope.gotoLocation(c.Lat, c.Lng);
+        //         });
+        //         // return true;
+        //     }
+        //     // return false;
+        // };
 
         
 
         $scope.Test = function () {
-
             return refreshTest.showrefreshtest($state.current.name, $state.params);
-            $scope.gotoCurrentLocation();
         }
 
         $scope.state_on = function () {
@@ -142,6 +142,14 @@ var app = angular.module('LoyalBonus')
         NgMap
             .getMap()
             .then(function (map) {
+                $scope.centerCustomMarker = function () {
+                    console.log('centrer');
+                    // console.log(map.getCenter().lat());
+                    // console.log(map.getCenter().lng());
+                    businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
+                    saveData.set('businessMapPosition', businessMapPosition);
+                }
+
                 loading.start();
                 bc.showCustomMarker = function (event) {
                     //console.log(bc.positions[this.id]);
@@ -176,8 +184,6 @@ var app = angular.module('LoyalBonus')
                     get_user_location
                     .get
                     .then(function (position) {
-                        console.log(position.coords.latitude);
-                        console.log(position.coords.longitude);
                         ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
                             var positions = []
@@ -188,9 +194,16 @@ var app = angular.module('LoyalBonus')
                             }
                             var sortedArray = get_business_data_map
                                               .sort_multi_array(test);
-                            console.log(sortedArray);                  
 
-                            bc.center = sortedArray[0].positions;
+                            var businessMapPosition = saveData.get('businessMapPosition');
+                            if( typeof(businessMapPosition) == 'undefined' || businessMapPosition == '') {
+                                bc.center = sortedArray[0].positions;
+                            } else {
+                                // console.log(businessMapPosition);
+                                bc.center = businessMapPosition;
+                                saveData.remove('businessMapPosition');
+                            }
+                            saveData.remove('businessMapPosition');
                             //bc.center = positions.Lat, positions.Lng;
                             console.log(bc.center);
                             bc.positions = sortedArray;
@@ -239,5 +252,7 @@ var app = angular.module('LoyalBonus')
             }
         };
 
-
+        $scope.testing = function () {
+            return saveData.get('businessMapPosition');
+        }
     });

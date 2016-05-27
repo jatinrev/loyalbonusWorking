@@ -186,6 +186,7 @@ angular.module('LoyalBonus.services', [])
 		var saveHere = {};
 
 		function set(key, value) {
+			console.log('saveingg');
 			saveHere[key] = value;
 		}
 
