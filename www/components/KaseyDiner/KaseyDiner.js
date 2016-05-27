@@ -135,9 +135,9 @@ angular.module('LoyalBonus')
                 /* template:'<i class="icon-gift"></i>',*/
                 title: '<img src="img/chk.png"> ',
 
-                subTitle: Scanned,
-                subTitle:Thank you for visiting us!,
-                subTitle:You will receive 10% OFF for this visit.
+                subTitle: 'Success',
+                subTitle: 'Thank you for visiting us!',
+                subTitle:'You will receive 10% OFF for this visit.',
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
