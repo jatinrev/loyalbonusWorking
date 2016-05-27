@@ -2,7 +2,9 @@ angular.module('LoyalBonus')
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
   , get_business_data_map,refreshTest, $cordovaPreferences ) {
 
-
+  $scope.testing = function () {
+    cordova.plugins.Keyboard.close();
+  }
 
   $scope.home_var = {
     // userPresent => return 1 when user is present.
