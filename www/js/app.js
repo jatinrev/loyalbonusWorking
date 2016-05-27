@@ -13,6 +13,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     }
   /*Temp Data*/
   $ionicPlatform.ready(function () {
+
     /**Start : checking storage**/
     $cordovaPreferences.fetch('userId', 'dict')
     .success(function(value) {
@@ -40,6 +41,10 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     ngFB.init({appId: '1151061421612372'});
   });
 })
+ var isIOS = ionic.Platform.isIOS();
+ console.log(isIOS);
+
+
 .run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
@@ -52,10 +57,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
   }
 
 })
-
-
-
-
 
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
@@ -295,3 +296,5 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       // });
     }
 ]);
+
+
