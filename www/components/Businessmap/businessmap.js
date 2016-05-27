@@ -205,7 +205,7 @@ var app = angular.module('LoyalBonus')
 
             
 
-
+            $scope.isAndroid = ionic.Platform.isAndroid();
 
 
         $scope.helperFunction.reviews = function (number) {

@@ -10,7 +10,7 @@
                 <span class="ion-search paddingLR10" on-tap="bc.search(searchKeyword)" ng-show="loadmoreNgShow"></span>
             </label> -->
             <!-- {{gotoCurrentLocation()}} -->
-            <a ng-click="goToMap(datadeal.BusinessID)" ng-model="gotoCurrentLocation" class="already-loyalbonus buttonListView {{ isIOS == true ? 'margin-top-10' : ' ' }}"><img class="listviewmapBusiness" src="img/listviewmap.png">List View</a>
+            <a ng-click="goToMap(datadeal.BusinessID)" ng-model="gotoCurrentLocation" class="already-loyalbonus buttonListView"><img class="listviewmapBusiness" src="img/listviewmap.png">List View</a>
             <ng-map zoom="11" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:80%" on-center-changed="centerCustomMarker()" >
                 <marker ng-repeat="(key, value) in bc.positions" position="{{value.positions}}" id="{{ key }}" on-click="bc.showCustomMarker($event)" animation="DROP"></marker>
                 <!-- <custom-marker id="foo" position="{{ bc.positions }}" on-click="bc.closeCustomMarker('yoyoy')">
