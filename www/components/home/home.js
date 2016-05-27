@@ -146,7 +146,8 @@ $scope.home_var.kaseyDinnerHeading = {
   /******End : Home Heading Setting*******/
 
 
-
+  var isIOS = ionic.Platform.isIOS();
+  
 
   $scope.redirect_urls = {
     my_membership : function() {
