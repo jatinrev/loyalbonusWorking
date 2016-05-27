@@ -314,11 +314,12 @@ angular.module('LoyalBonus')
                         if (qrCode == imageName) {
                             //run ajax here.
                             console.log('ajaxwa');
+                            $scope.showAlert();
                         } else {
                             // give some error here.
                         }
                     });
-                $scope.showAlert();
+                
             };
         });
         /**** End : scanBarcode ****/
