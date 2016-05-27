@@ -57,7 +57,7 @@
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
-                <h1 class="title {{ platform-ios == platform-ios ? 'addclassiostext' : ' ' }}">
+                <div class="title center {{ isIOS == true ? 'addclassiostext' : ' '}}">
                     <label ng-show="showMe" class="item item-input new_margin">
                         <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
                         <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span><!-- ng-show="loadmoreNgShow" -->
@@ -70,12 +70,12 @@
                     <span class="text-vertical " ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
                         {{ home_var.kaseyDinnerHeading.text() }}
                     </span>
-                    <span class="text-vertical {{ platform-ios == platform-ios ? 'addclassiostext' : ' ' }}"  ><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
+                    <span class="text-vertical><!-- ng-show="home_var.businessMap.text() == '' ? false : true" -->
                         {{ home_var.businessMap.text() }}
                     </span>
 
-                </h1>
-                <button class="button button-clear icon ion-navicon-round {{ platform-ios == platform-ios ? 'addclassios' : ' ' }}" ng-click="toggleLeft()"></button>
+                </div>
+                <button class="button button-clear icon ion-navicon-round {{ isIOS == true ? 'addclassios' : ' '}}" ng-click="toggleLeft()"></button>
             </div>
 
         </ion-header-bar>
