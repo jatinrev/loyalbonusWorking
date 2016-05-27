@@ -39,6 +39,8 @@ angular.module('LoyalBonus')
 
         console.log('testetse');
 
+        $rootScope.showMe = false;
+
         $scope.state_on = function () {
             return $state.params.id;
         };

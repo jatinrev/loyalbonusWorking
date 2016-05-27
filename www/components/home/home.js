@@ -88,18 +88,15 @@ angular.module('LoyalBonus')
     get_business_data.removeSearchKeyword();
   }
 
- $scope.ShowHide = true;
-$scope.home_var.homesearch = {};
-$scope.home_var.homesearch.setValue = function(input){
-
-  get_business_data.setKewordSearch(input);
-
-  //console.log(input);
-  get_business_data.setKewordSearch(input);
-  $rootScope.showMe = false;
-  refreshTest.showrefreshtest($state.current.name, $state.params);
-
-};
+  $scope.ShowHide = true;
+  $scope.home_var.homesearch = {};
+  $scope.home_var.homesearch.setValue = function(input){
+    get_business_data.setKewordSearch(input);
+    //console.log(input);
+    get_business_data.setKewordSearch(input);
+    $rootScope.showMe = false;
+    refreshTest.showrefreshtest($state.current.name, $state.params);
+  };
 
 
 $scope.home_var.kaseyDinnerHeading = {
