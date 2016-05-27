@@ -41,9 +41,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     ngFB.init({appId: '1151061421612372'});
   });
 })
- var isIOS = ionic.Platform.isIOS();
- console.log(isIOS);
-
+ 
 
 .run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser) {
   $ionicPlatform.ready(function () {

@@ -15,7 +15,7 @@
                     on-refresh="Test()">
                 </ion-refresher>
                 <!-- <div class="row" style="margin-top: 10px; margin-bottom:10px;"></div> -->
-                <div class="row  {{ isIOS == true ? 'addclassios' : ' '}}"><a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row"><img class="ion-mapclass" src="img/ion-map.png"> MapView </a></div>
+                <div class="row  {{ platform-ios == true ? 'addclassios' : ' '}}"><a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row"><img class="ion-mapclass" src="img/ion-map.png"> MapView </a></div>
                 
                 <div ng-repeat="d in print_data()">
                     {{ restaurants.demo }}
