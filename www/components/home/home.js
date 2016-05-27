@@ -19,6 +19,7 @@ angular.module('LoyalBonus')
   };
 
   var isIOS = ionic.Platform.isIOS();
+  console.log(isIOS);
 
   $scope.goBackHandler = function() {
     backFunctionality.one_step_back();
