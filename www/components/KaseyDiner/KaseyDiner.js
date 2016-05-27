@@ -342,28 +342,14 @@ angular.module('LoyalBonus')
 
                         },function(error)
                         {
-                                $scope.showAlertscanner('Sorry Press scan Button for Completing A Scan.');
+                                $scope.showAlertscanner('Your Scan Cant be completed');
                         });
                         
 
                         return 0;
 
 
-                        /*** Start : get image name 
-                        var imagePath = $scope.datadeal.QRCodePath;
-                        splitImage = imagePath.split("/");
-                        var imageNameWithExtension = splitImage.slice(-1).pop();
-                        var imageName = imageNameWithExtension.split(".");
-                        imageName = imageName[0]; 
                         
-                        qrCode = qrCode.replace('-', '');
-                        if (qrCode == imageName) {
-                          
-                            console.log('ajaxwa');
-                            
-                        } else {
-                            
-                        }***/
                     });
                 
             };
