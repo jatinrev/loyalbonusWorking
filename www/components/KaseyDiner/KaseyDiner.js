@@ -269,7 +269,8 @@ angular.module('LoyalBonus')
                         $scope.newScope.address.push(res.businesslocationsList[i].Address1);
                         /***End : for address printing***/
                     }
-                    // console.log(res);
+                     console.log(res);
+                    // $scope.showAlertscanner();
                 });
         }
         test();
@@ -332,21 +333,21 @@ angular.module('LoyalBonus')
                         return 0;
 
 
-                        /*** Start : get image name ***/
+                        /*** Start : get image name 
                         var imagePath = $scope.datadeal.QRCodePath;
                         splitImage = imagePath.split("/");
                         var imageNameWithExtension = splitImage.slice(-1).pop();
                         var imageName = imageNameWithExtension.split(".");
-                        imageName = imageName[0]; // this is the qr code to match
-                        /*** Start : get image name ***/
+                        imageName = imageName[0]; 
+                        
                         qrCode = qrCode.replace('-', '');
                         if (qrCode == imageName) {
-                            //run ajax here.
+                          
                             console.log('ajaxwa');
-                            $scope.showAlertscanner();
+                            
                         } else {
-                            // give some error here.
-                        }
+                            
+                        }***/
                     });
                 
             };
