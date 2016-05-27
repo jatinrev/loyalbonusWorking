@@ -123,6 +123,35 @@ angular.module('LoyalBonus')
                 console.log('Thank you for not eating my delicious ice cream cone');
             });
         };
+        $scope.showAlertscanner = function (msg) {
+            if(msg == 0) {
+                msg = '0';
+            }
+            console.log(msg);
+            $scope.data = {}
+
+            // An elaborate, custom popup
+            var myPopup = $ionicPopup.show({
+                /* template:'<i class="icon-gift"></i>',*/
+                title: '<img src="img/chk.png"> ',
+
+                subTitle: Scanned,
+                subTitle:Thank you for visiting us!,
+                subTitle:You will receive 10% OFF for this visit.
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel', type: 'button-positive' }
+
+                ]
+            });
+            myPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+            $timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000000);
+        };
+        
         $scope.showPopupFor = function (msg) {
             $scope.data = {}
 
@@ -314,7 +343,7 @@ angular.module('LoyalBonus')
                         if (qrCode == imageName) {
                             //run ajax here.
                             console.log('ajaxwa');
-                            $scope.showAlert();
+                            $scope.showAlertscanner();
                         } else {
                             // give some error here.
                         }
