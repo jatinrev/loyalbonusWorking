@@ -342,7 +342,7 @@ angular.module('LoyalBonus')
                             if (response.data.Data == "QrCode submitted")
                             {
                                  
-                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyslDiscount +' %  OFF for this visit.', 1);
+                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.', 1);
                                 test();
                             }
 
