@@ -169,9 +169,10 @@ border:none;
 {
 	    top: 18px;
 }
-#home .addclassiostext
+#Businessmap .addclassiostext
 {
-	top:30px;
+	top: 15px;
+	position: relative;
 }
 
 #kaseydiner .addclassiosisloved
@@ -179,10 +180,6 @@ border:none;
 	top:22px;
 }
 
-#Businessmap .scroll-content
-{
-     top:43px; 
-   /*  top:72px; */
-}
+
 
 
