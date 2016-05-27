@@ -6,13 +6,11 @@ angular.module('LoyalBonus')
          *  businessUid is qrCode
          */
         function give_visit(userId, businessUid, businessId) {
-            ajaxCall
+            return ajaxCall
                 .post('webapi/BusinessMaster/CreateBusinessQR',
                 { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
-                )
-                .then(function (response) {
-                    console.log(response);
-                });
+                );
+                
         }
 
 
@@ -123,21 +121,25 @@ angular.module('LoyalBonus')
                 console.log('Thank you for not eating my delicious ice cream cone');
             });
         };
-        $scope.showAlertscanner = function (msg) {
-            if(msg == 0) {
-                msg = '0';
-            }
-            console.log(msg);
-            $scope.data = {}
+        $scope.showAlertscanner = function (msg,status) {
+            console.log(status);
+            
+            $scope.data = {};
+
+           if(status == 1) {
+            var image = '<img src="img/chk.png"> ';
+           } else {
+            var image = '<img src="img/cancel.png">';
+           }
+                
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="img/chk.png"> ',
-
-                subTitle: 'Success',
-                subTitle: 'Thank you for visiting us!',
-                subTitle:'You will receive 10% OFF for this visit.',
+                title: image,
+            
+                subTitle: msg,
+               
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
@@ -269,8 +271,8 @@ angular.module('LoyalBonus')
                         $scope.newScope.address.push(res.businesslocationsList[i].Address1);
                         /***End : for address printing***/
                     }
-                     console.log(res);
-                    // $scope.showAlertscanner();
+                     //console.log(res);
+                    
                 });
         }
         test();
@@ -328,8 +330,22 @@ angular.module('LoyalBonus')
                     })
                     .then(function (qrCode) {
 
-                        businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID);
-                        test();
+                        businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID)
+                        .then(function (response) {
+                            
+                            if (response.data.Data == "QrCode submitted")
+                            {
+                                 
+                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyslDiscount +' %  OFF for this visit.', 1);
+                                test();
+                            }
+
+                        },function(error)
+                        {
+                                $scope.showAlertscanner('Sorry Press scan Button for Completing A Scan.');
+                        });
+                        
+
                         return 0;
 
 
