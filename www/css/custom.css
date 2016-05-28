@@ -18,6 +18,9 @@
 	padding-bottom: 5px;
 }
 .paddingLeftRight-0 { padding-left: 0; padding-right: 0; }
+.margin-top-10 {
+	margin-top:15px;
+}
 
 /**
  * all margins come here
@@ -180,6 +183,24 @@ border:none;
 	top:22px;
 }
 
-
+#kaseydiner .button.button-balanced
+{
+	    line-height: 35px;
+	    min-height: 27px;
+	    margin-left: 45px;
+}
+.margin-bottom-30{
+	margin-bottom: 30px;
+}
+#kaseydiner .wth-border.item.ng-binding.colorblack
+{
+	color:#000;
+	font-size: 15px;
+	font-weight: 600;
+}
+#kaseydiner .wth-border.item.ng-binding.color33cd5f
+{
+	color:#33cd5f;
+}
 
 
