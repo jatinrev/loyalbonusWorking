@@ -50,6 +50,7 @@ angular.module('LoyalBonus')
      * and in the current file only removing is done.
      */
     $cordovaPreferences.remove('userId', 'dict');
+    $rootScope.userDeatils = {};
     /***End : removing from preference***/
     $state.go("signin");
   };

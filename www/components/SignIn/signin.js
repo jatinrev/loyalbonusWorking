@@ -20,6 +20,8 @@ angular.module('LoyalBonus')
 		}*/
 	}, true);
 
+	$rootScope.userDetails = {};
+
 	// console.log( window.localStorage['userId'] );
 
 	$scope.Test = function () {
@@ -27,12 +29,12 @@ angular.module('LoyalBonus')
     }
 
     $scope.redirect_urls = {
-    home : function() {
-      //console.log('home');
-      $scope.output = 'home';
-      $state.go('home.restaurants', { vertical: "1"});
-    }
-}
+	    home : function() {
+	      //console.log('home');
+	      $scope.output = 'home';
+	      $state.go('home.restaurants', { vertical: "1"});
+	    }
+	}
 
 	function login() {
 		loading.start();

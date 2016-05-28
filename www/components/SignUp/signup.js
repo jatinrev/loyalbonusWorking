@@ -13,6 +13,8 @@ angular.module('LoyalBonus')
         return refreshTest.showrefreshtest($state.current.name, $state.params);
     }
 
+    $rootScope.userDetails = {};
+
 	$scope.signUp.signUp_button_visibility = true;
 	
 	$scope.signUp.submit = function() {
