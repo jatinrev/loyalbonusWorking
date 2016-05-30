@@ -24,7 +24,9 @@
 
 .fontsize
 {
-	font-size:20px;
+	font-size: 20px;
+    padding: 15px 0px 0px 5px;
+    margin: 0px
 }
 /**
  * all margins come here
@@ -212,17 +214,17 @@ border:none;
 	color:#42ae9d;
 	font-size: 19px;
 }
-#shoppingimg
+#Shoppingcart img#shoppingimg 
 {
-	width:90%;
+	width:95%;
 	/* margin-left:6%; */
 }
 .shoppingdesciption
 {
-	font-size: 18px;
-	color:#000;
-	font-weight: 600;
-	float: left;
+	font-size: 17px;
+    color: #000;
+    font-weight: 500;
+    float: left;
 	
 }
 #Shoppingcart .shoppingsmall
@@ -236,9 +238,9 @@ border:none;
 }
 #Shoppingcart .shoppingqty
 {
-	 clear: both;
+	clear: both;
     float: left;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     color:#000;
 	font-weight: 600;
 	margin-right: 6px;
@@ -249,9 +251,84 @@ border:none;
     width: 30%;
     float: left;
     height: 20px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     border-radius: 3px;
     text-align: center;
 
 }
-
+#Shoppingcart .offersshopping
+{
+	line-height: 31px;
+    background-color: #009f8b;
+    color: #fff;
+    float: right;
+    margin-top: -5px;
+    min-height: 27px;
+}
+#Shoppingcart .brderbottom
+{
+	border-bottom: 1px solid #acabab;
+	padding: 0px;
+}
+#Shoppingcart .brder
+{
+	border: 1px solid #acabab;
+}
+#Shoppingcart .wth-border.item.ng-binding.color33cd5f
+{
+	color: #33cd5f;
+    background-color: unset;
+    border: 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+#Shoppingcart .bordertop
+{
+	border-top:1px solid #acabab;
+	margin: 6px;
+}
+#Shoppingcart .shoppingloyality
+{
+	font-size: 12px;
+}
+#Shoppingcart .col-offset-10
+{
+	    margin-left: 2%;
+}
+.redcolor
+{
+	color: red;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: unset;
+    border: 0px;
+    padding: 2px;
+    position: relative;
+    top: -20px;
+    right: -67px;
+}
+.redcolornumber
+{
+	color: red;
+    font-size: 18px;
+    background-color: unset;
+    border: 0px;
+    padding: 2px;
+    text-decoration: line-through;
+    position: relative;
+    top: -25px;
+    
+}
+.subtotal
+{
+	color:#008000;
+	font-size: 18px;
+	font-weight: 600;
+}
+.subtotalamount
+{
+	color:#008000;
+	font-size: 18px;
+	font-weight: 600;
+	clear:both;
+}
