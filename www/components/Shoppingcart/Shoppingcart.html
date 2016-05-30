@@ -1,0 +1,14 @@
+<div id="Shoppingcart">
+    <ion-view>
+        <ion-content>
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
+            </ion-refresher>
+            
+        </ion-content>
+        <ion-footer-bar class="footer-bar-custom bar-positive">
+            <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+            <!-- ng-show="userPresent() == 1 ? true : false" -->
+            <!-- <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div> -->
+        </ion-footer-bar>
+    </ion-view>
+</div>
