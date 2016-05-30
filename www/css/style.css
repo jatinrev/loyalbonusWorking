@@ -1808,7 +1808,7 @@ span.text-vertical
     line-height: 20px;
     height: auto;
 }
-#kaseydiner  .center{
+#kaseydiner .center{
 
    display: -webkit-box;
     display: -moz-box;
@@ -1838,5 +1838,18 @@ span.text-vertical
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center; 
+}
+#Shoppingcart #logo
+{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+#Shoppingcart .scroll-content {
+    top: 44px;
+    
+}
+#Shoppingcart #logo img {
+width: 100%;
 }
 
