@@ -18,16 +18,21 @@
 	padding-bottom: 5px;
 }
 .paddingLeftRight-0 { padding-left: 0; padding-right: 0; }
-.margin-top-10 {
-	margin-top:15px;
-}
+.padding-right-5 { padding-right: 5px; }
+.padding-left-5 { padding-left: 5px; }
+
+
 
 /**
  * all margins come here
  */
+.margin-top-10 {
+	margin-top:15px;
+}
 .margin-top-minus1 {
 	margin-top: -1px !important;
 }
+.margin-right-5 { margin-right: 5px; }
 #restaurants .margin-top-10 {
 	margin-top:15px;
 }
