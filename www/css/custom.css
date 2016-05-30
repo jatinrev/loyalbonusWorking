@@ -300,12 +300,13 @@ border:none;
 	color: red;
     font-size: 18px;
     font-weight: bold;
+    float: right;
     background-color: unset;
     border: 0px;
     padding: 2px;
     position: relative;
     top: -20px;
-    right: -67px;
+    right: 34px;
 }
 .redcolornumber
 {
@@ -317,6 +318,7 @@ border:none;
     text-decoration: line-through;
     position: relative;
     top: -25px;
+    right: -83px;
     
 }
 .subtotal
@@ -331,4 +333,33 @@ border:none;
 	font-size: 18px;
 	font-weight: 600;
 	clear:both;
+}
+.checkoutbutton
+{
+	    background-color: #009f8b;
+	    padding:0 47px;
+	    color:#fff;
+	    line-height: 40px;
+	    min-height: 25px;
+	    margin-bottom: 10px;
+}
+.margintop
+{
+	margin-top: 25px;
+}
+.margintop15
+{
+	margin-top: 15px;
+}
+.margintop20
+{
+	margin-top: 20px;
+}
+.continueshoppingbutton
+{
+		padding:0 12px;
+	    color:#fff;
+	    line-height: 40px;
+	    min-height: 25px;
+	    margin-bottom: 10px;
 }
