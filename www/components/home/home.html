@@ -57,23 +57,23 @@
                     ">
                 </button>
             </div>    
-                <div class="title center">
-                    <form class="item item-input new_margin" ng-show="showMe" ng-submit="home_var.homesearch.setValue(home_var.homesearch.value)">
-                        <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
-                        <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span>
-                    </form>
+            <div class="title center">
+                <form class="item item-input new_margin" ng-show="showMe" ng-submit="home_var.homesearch.setValue(home_var.homesearch.value)">
+                    <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
+                    <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span>
+                </form>
 
-                    <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
-                        {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
-                    </span>
-                    <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
-                        {{ home_var.kaseyDinnerHeading.text() }}
-                    </span>
-                    <span class="text-vertical" ><!--ng-show="home_var.businessMap.text() == '' ? false : true"-->
-                        {{ home_var.businessMap.text() }}
-                    </span>
+                <span class="search-vertical" ng-show="home_var.homeheading.Visibility()" >
+                    {{ home_var.homeheading.text()  }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
+                </span>
+                <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
+                    {{ home_var.kaseyDinnerHeading.text() }}
+                </span>
+                <span class="text-vertical" ><!--ng-show="home_var.businessMap.text() == '' ? false : true"-->
+                    {{ home_var.businessMap.text() }}
+                </span>
 
-                </div>
+            </div>
             <div class="buttons">   
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
             </div>
