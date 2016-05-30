@@ -65,7 +65,7 @@
             <!-- <div class="newrow" ng-hide="newScope.showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div> -->
             <!-- </div> -->
             <div class="row paddingLeftRight-0">
-                ng-show="showMe"
+                
                 <ng-map zoom="8" center="{{newScope.center}}" style="width:100%">
                     <marker ng-repeat="value in newScope.positions track by value" position="{{value}}"></marker>
                 </ng-map>
@@ -105,7 +105,7 @@
                     </ion-list>
 
                 </div>
-            </div> <!--0-->
+            </div> 
             <div class="col-100">
                 <ion-item class="wth-border item ng-binding color42ae9d"> Gramercy Park Queen Bed in Weathered Gray
                 </ion-item>

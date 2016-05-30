@@ -22,6 +22,10 @@
 	margin-top:15px;
 }
 
+.fontsize
+{
+	font-size:20px;
+}
 /**
  * all margins come here
  */
@@ -208,5 +212,46 @@ border:none;
 	color:#42ae9d;
 	font-size: 19px;
 }
+#shoppingimg
+{
+	width:90%;
+	/* margin-left:6%; */
+}
+.shoppingdesciption
+{
+	font-size: 18px;
+	color:#000;
+	font-weight: 600;
+	float: left;
+	
+}
+#Shoppingcart .shoppingsmall
+{
+	float: left;
+	margin-top: 10px;
+	color:#63615a;
+	font-size: 10px;
+	margin-bottom: 3px;
 
+}
+#Shoppingcart .shoppingqty
+{
+	 clear: both;
+    float: left;
+    margin-top: 5px;
+    color:#000;
+	font-weight: 600;
+	margin-right: 6px;
+}
+#Shoppingcart .qty {
+    border: 1px solid #aaaaaa;
+    padding: 11px;
+    width: 30%;
+    float: left;
+    height: 20px;
+    margin-top: 5px;
+    border-radius: 3px;
+    text-align: center;
+
+}
 

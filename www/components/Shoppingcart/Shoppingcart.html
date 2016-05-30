@@ -6,6 +6,30 @@
             <div id="logo">
                 <img src="img/kaseydiner_distr.jpg">
             </div>
+            <div class="padding">
+                <ion-list>
+                    <p class="row fontsize">Shopping Cart</p>
+                </ion-list>
+            </div>
+            <div class="padding">
+                <div class="row">
+                    <div class="col-40"><img id="shoppingimg" src="img/kaseydiner_distr.jpg"></div>
+                    <div class="col-60">
+                        <span class="shoppingdesciption"> Gramercy Park Queen Bed in Weathered Gray </span>
+                        <label class="shoppingsmall">One (1) headboard, one</label>
+                        <div class="row">
+                            <div class="col-50">
+                                <span class="shoppingqty"> QTY: </span>
+                                <input type="text" class="qty" name="qty" placeholder="1">
+                            </div>
+                            <div class="col-50">
+                                <button class="button offersshopping">2 Offers</button>
+                            </div>
+                        </div>
+                        <!-- <ion-input type="number" placeholder="1" minlength="0" ng-maxlength="1000" ></ion-input> -->
+                    </div>
+                </div>
+            </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
