@@ -3,7 +3,9 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            
+            <div id="logo">
+                <img src="img/kaseydiner_distr.jpg">
+            </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
