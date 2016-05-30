@@ -35,7 +35,7 @@ angular.module('LoyalBonus')
     })
 
     .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data, loading) {
 
         console.log('testetse');
 
@@ -144,15 +144,11 @@ angular.module('LoyalBonus')
 
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
-                /* template:'<i class="icon-gift"></i>',*/
                 title: image,
-            
                 subTitle: msg,
-               
                 scope: $scope,
                 buttons: [
-                    { text: 'Cancel', type: 'button-positive' }
-
+                    { text: 'Ok', type: 'button-positive' }
                 ]
             });
             myPopup.then(function (res) {
@@ -338,7 +334,7 @@ angular.module('LoyalBonus')
                         console.log("An error happened -> " + error);
                     })
                     .then(function (qrCode) {
-
+                        loading.start();
                         businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID)
                         .then(function (response) {
                             
@@ -347,8 +343,10 @@ angular.module('LoyalBonus')
                                  
                                 $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.', 1);
                                 test();
+                            } else if(response.data.StatusMessage == "Failed") {
+                                $scope.showAlertscanner(response.data.Data, 0);
                             }
-
+                            loading.stop();
                         },function(error)
                         {
                                 $scope.showAlertscanner('Your Scan Cant be completed');
