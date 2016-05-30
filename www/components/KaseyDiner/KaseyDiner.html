@@ -54,8 +54,7 @@
                 <p class="loyal-kaseydinerpara">{{ datadeal.Description }}</p>
             </div>
             <div ng-click="toggleItem(item)" class="item-expand-footer">
-                <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(item)
-                ? 'Less' : 'More' }}
+                <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(item) ? 'Less' : 'More' }}
             </div>
 
             <div ng-show="userPresent() == 1 ? true : false" class="row paddingLeftRight-0">
