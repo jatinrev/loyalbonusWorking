@@ -62,40 +62,45 @@ angular.module('LoyalBonus.services', [])
 		$rootScope.userDetails = {};
 		$rootScope.userDetails.Email = '';
 		$rootScope.userDetails.FullName = '';
-		/**Temp Data**/
-		/*$rootScope.userDetails = {
+		/**Temp Data**
+		$rootScope.userDetails = {
 			userId: 263,
 			Email: 'jatinverma@gmail.com',
 			FullName: 'Jatin',
 			userLocation: '6.461573,3.479404'
-		}*/
+		}
 		/**Temp Data**/
 		return {
 			get: function (userID) {
-				return ajaxCall.get('webapi/user/GetUserByID',
-					{
-						"userID": userID
-					}).then(function (response) {
-						if (response.data.StatusMessage == 'Success') {
-							$rootScope.userDetails.userId = userID;
-							$rootScope.userDetails.Email = response.data.Data.Email;
-							$rootScope.userDetails.FullName = response.data.Data.FullName;
-							$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
-							// $state.go("home.restaurants");
-							$cordovaPreferences.store('userId', userID, 'dict');
-					        /*.success(function(value) {
-					            // alert("Success: " + value);
-					            // $scope.test = value;
-					        })
-					        .error(function(error) {
-					            // alert("Error: " + error);
-					            // $scope.test = error;
-					        });*/
-						} else {
-							$rootScope.userDetails = {};
-							$state.go("signin");
-						}
-					});
+				if( typeof(userID) != 'undefined' && userID != '' ) {
+					return ajaxCall.get('webapi/user/GetUserByID',
+						{
+							"userID": userID
+						})
+						.then(function (response) {
+							if (response.data.StatusMessage == 'Success') {
+								$rootScope.userDetails.userId = userID;
+								$rootScope.userDetails.Email = response.data.Data.Email;
+								$rootScope.userDetails.FullName = response.data.Data.FullName;
+								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
+								// $state.go("home.restaurants");
+								$cordovaPreferences.store('userId', userID, 'dict');
+						        /*.success(function(value) {
+						            // alert("Success: " + value);
+						            // $scope.test = value;
+						        })
+						        .error(function(error) {
+						            // alert("Error: " + error);
+						            // $scope.test = error;
+						        });*/
+							} else {
+								$rootScope.userDetails = {};
+								$state.go("signin");
+							}
+						});
+				} else {
+					return ;
+				}
 			}
 		};
 	})
@@ -131,32 +136,62 @@ angular.module('LoyalBonus.services', [])
 			return uniqueNames;
 		};
 	})
-	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading) {
+	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http) {
+
+		/**
+		 * url : http://stackoverflow.com/questions/21306088/getting-geolocation-from-ip-address
+		 */
+		function getIpGeoLocation() {
+
+			var output = $http.get("http://ipv4.myexternalip.com/json", {
+							params: {}
+						 })
+						 .then(function (result) {
+						 	// console.log(result.data.ip);
+						 	// return result;
+							return $http.get("http://ipinfo.io/"+result.data.ip, {
+								params: {}
+							})
+							.then(function(location) {
+								// console.log(location.data.loc);
+								var lat_long = location.data.loc.split(',');
+								return {
+									coords : {
+										latitude  : lat_long[0],
+										longitude : lat_long[1]
+									}
+								}
+							});
+						 });
+			
+			return output;
+		}
 
 		function getLocation() {
-			//console.log('kuchbhi');
-			var posOptions = { maximumAge: 30000, timeout: 15000, enableHighAccuracy: false };
+			var posOptions = { maximumAge: 30000, timeout: 30000, enableHighAccuracy: false };
 
 			var output = $cordovaGeolocation
-				.getCurrentPosition(posOptions)
-				.then(function (result) {
-					// console.log('Success');
-					console.log(result);
-					return result;
-				}, function (error) {
-					console.log(error)
-					return error;
-					// console.log('chiku');
-				});
-			/*console.log('console');
-			console.log(output);*/
+						 .getCurrentPosition(posOptions)
+						 .then(function (result) {
+						 	// console.log('Success');
+						 	console.log(result);
+						 	return result;
+						 }, function (error) {
+						 	return getIpGeoLocation();
+						 	// console.log(error)
+						 	return error;
+						 	// console.log('chiku');
+						 });
 			return output;
 		}
 
 
 
 		//watch.clearwatch();
-		return { get: getLocation() };
+		return {
+			get 	: getLocation(),
+			getIp 	: getIpGeoLocation
+		};
 
 	})
 	.filter('spaceless', function () {

@@ -4,7 +4,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
 
-  /*Temp Data*/
+  /*Temp Data*
     $rootScope.userDetails = {
       userId       : 263,
       Email        : 'jatinverma@gmail.com',
@@ -18,7 +18,9 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
     $cordovaPreferences.fetch('userId', 'dict')
     .success(function(value) {
       console.log(value);
-      update_user_details.get( value );
+      if(typeof(value) != 'undefined' ) {
+        update_user_details.get( value );
+      }
     })
     .error(function(error) {
       
