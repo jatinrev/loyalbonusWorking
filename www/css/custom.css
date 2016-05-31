@@ -452,9 +452,9 @@ border:none;
 {
 	font-size: 20px;
     line-height: 22px;
-    width: 65%;
+    width: 75%;
     padding-bottom: 15px;
-    border-bottom: 1px solid #acabab;
+    border-bottom: 1px solid #eee;
 }
 .shoppingdesciptioncolor33cd5f
 {
@@ -463,13 +463,28 @@ border:none;
     font-size: 15px;
     font-weight: 600;
     background-color: unset;
-    border:0px;
+    /* border: 0px; */
     padding: 5px 16px 16px 16px;
-
+    border-bottom: 1px solid #eee;
+    width: 70%;
+    text-align: center;
+   
 }
 
-
-
+span.Cartloyality
+{
+	/* font-size: 11px; */
+    position: relative;
+    left: 20px;
+    top: -10px;
+}
+span.cartredcolornumber
+{
+	/* font-size: 11px; */
+    position: relative;
+    left: 2px;
+    top: -10px;
+}
 
 
 
