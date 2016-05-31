@@ -95,20 +95,6 @@ var app = angular.module('LoyalBonus')
 
         var businessMapPosition = '';
 
-        // $scope.gotoCurrentLocation = function () {
-        //     // console.log(navigator);
-        //     if ("geolocation" in navigator) {
-        //         navigator.geolocation.getCurrentPosition(function (position) {
-        //             businessMapPosition = position;
-        //             // console.log(position);
-        //             //$scope.gotoLocation(c.Lat, c.Lng);
-        //         });
-        //         // return true;
-        //     }
-        //     // return false;
-        // };
-
-        
 
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
@@ -123,51 +109,33 @@ var app = angular.module('LoyalBonus')
             $scope.datadeal = [];
             console.log(BusinessId);
             for (ij in BusinessId) {
-                //console.log(BusinessId);
-                //$scope.datadeal.push({businessId : })
                 ajaxCall
                     .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + BusinessId[ij] + '&UserId=', {})
                     .then(function (res) {
                         console.log('res');
                         console.log(res);
                         $scope.datadeal.push(res.data.Data[0]);
-                        // $scope.datadeal.push(res.data.Data[0]);
-                       // console.log($scope.datadeal);
                     });
             }
-            //console.log($scope.datadeal);            
-
         }
 
         NgMap
             .getMap()
             .then(function (map) {
-                $scope.centerCustomMarker = function () {
-                    console.log('centrer');
-                    // console.log(map.getCenter().lat());
-                    // console.log(map.getCenter().lng());
-                    businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
-                    saveData.set('businessMapPosition', businessMapPosition);
-                }
-
                 loading.start();
                 bc.showCustomMarker = function (event) {
-                    //console.log(bc.positions[this.id]);
+                    // console.log(bc.positions[this.id]);
                     // console.log(event.target); /*.attributes.id.value*/
                     var variable = bc.positions[this.id];
                     // console.log(variable.businessIds);
                     testdata(variable.businessIds);
                     var vm = this;
-                    
-
-                        if (this.getAnimation() != null) {
-                            this.setAnimation(null);
-                        } else {
-                            this.setAnimation(google.maps.Animation.BOUNCE);
-                        }
-                    
+                    if (this.getAnimation() != null) {
+                        this.setAnimation(null);
+                    } else {
+                        this.setAnimation(google.maps.Animation.BOUNCE);
+                    }
                     //console.log(event);
-
                     //this is for click fujnctionality for marker click
                     /*map.customMarkers.foo.setVisible(true);
                     map.customMarkers.foo.setPosition(this.getPosition());*/
@@ -180,7 +148,7 @@ var app = angular.module('LoyalBonus')
                 bc.test = function () {
                     loading.start();
                     $scope.loadmoreNgShow = true;
-                    
+
                     get_user_location
                     .get
                     .then(function (position) {
@@ -198,28 +166,27 @@ var app = angular.module('LoyalBonus')
                             var businessMapPosition = saveData.get('businessMapPosition');
                             if( typeof(businessMapPosition) == 'undefined' || businessMapPosition == '') {
                                 bc.center = sortedArray[0].positions;
+                                saveData.remove('businessMapPosition');
                             } else {
                                 // console.log(businessMapPosition);
                                 bc.center = businessMapPosition;
-                                saveData.remove('businessMapPosition');
                             }
-                            saveData.remove('businessMapPosition');
-                            //bc.center = positions.Lat, positions.Lng;
                             console.log(bc.center);
                             bc.positions = sortedArray;
-                            //console.log(sortedArray);
                             loading.stop()
                         });
-
                     });
                 }
                 bc.test();
+
+                $scope.centerCustomMarker = function () {
+                    console.log('centrer');
+                    businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
+                    saveData.set('businessMapPosition', businessMapPosition);
+                }
             });
 
-            
-
             $scope.isAndroid = ionic.Platform.isAndroid();
-
 
         $scope.helperFunction.reviews = function (number) {
             //console.log(typeof (number));
