@@ -205,25 +205,27 @@ angular.module('LoyalBonus')
 
         function mydummyJson(input) {
             var output = [];
+            //console.log(input);
             for (var i = 0; i < input; i++) {
                 output.push(i)
+                //console.log(output.push(i));
             }
             return output;
         }
         $scope.myloyalbonus = {};
 
-        $scope.myloyalbonus.printTick    = function (input) {
-            return mydummyJson(input);
+        $scope.myloyalbonus.printTick    = function (input,BonusDiscountToCust) {
+            return mydummyJson(input,BonusDiscountToCust);
         }
             
-        $scope.myloyalbonus.printNonTick = function (input) {
-            //console.log(input);
+        $scope.myloyalbonus.printNonTick = function (input,BonusDiscountToCust) {
+            console.log(input);
             
-            return mydummyJson(9 - +input);
+            return mydummyJson(BonusDiscountToCust - +input);
         }
             
-        $scope.myloyalbonus.printGift    = function (input) {
-            if (+input == 10) {
+        $scope.myloyalbonus.printGift    = function (input,BonusDiscountToCust) {
+            if (+input == BonusDiscountToCust) {
                 return mydummyJson(0);
             } else {
                 return mydummyJson(1);
