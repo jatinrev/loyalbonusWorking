@@ -363,3 +363,34 @@ border:none;
 	    min-height: 25px;
 	    margin-bottom: 10px;
 }
+#Product #productimages
+{
+	width:100%;
+}
+#Product .colorblack {
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: unset;
+    border:0px;
+   padding: 16px 16px 0 16px;
+}
+#Product .color33cd5f {
+    color: #33cd5f;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: unset;
+    border:0px;
+    padding: 5px 16px 16px 16px;
+}
+#Product .color42ae9d {
+    color: #42ae9d;
+    font-size: 15px;
+    background-color: unset;
+    border:0px;
+    padding: 5px 16px 16px 16px;
+}
+#Product .brdertop
+{
+	border-top: 1px solid #acabab;
+}

@@ -1792,7 +1792,7 @@ span.text-vertical
     border: none;
 }
 .pos_absolute {
-        position: relative;
+    position: relative;
     top: -60px;
     right: -3px;
     float: right;
@@ -1846,6 +1846,10 @@ span.text-vertical
     position: relative;
 }
 #Shoppingcart .scroll-content {
+    top: 44px;
+    
+}
+#Product .scroll-content {
     top: 44px;
     
 }
