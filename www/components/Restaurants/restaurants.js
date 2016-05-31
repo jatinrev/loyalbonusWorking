@@ -178,14 +178,29 @@ angular.module('LoyalBonus', '')
 
         $ionicPlatform.ready(function () {
 
+            get_user_location
+            .getIp()
+            .then(function(ipResult) {
+                console.log('ip');
+                console.log(ipResult);
+            });
+
+
             $scope.testing = 'in RestaurantController ionic ready.';
             get_user_location
                 .get
                 .then(function (positionfulljson) {
-                    var position = {
-                        lat: positionfulljson.coords.latitude,
-                        long: positionfulljson.coords.longitude
-                    };
+                    if( typeof(positionfulljson.coords.latitude) != 'undefined' && positionfulljson.coords.latitude != '' ) {
+                        var position = {
+                            lat:  positionfulljson.coords.latitude,
+                            long: positionfulljson.coords.longitude
+                        };
+                    } else {
+                        var position = {
+                            lat:  '',
+                            long: ''
+                        };
+                    }
 
                     $scope.testing = position;
 
