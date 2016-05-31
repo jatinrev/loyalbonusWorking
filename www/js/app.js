@@ -247,6 +247,17 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
           }
         }
       })
+      .state("home.cart", {
+        url   : "cart/",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/Cart/cart.html",
+            controller   : "CartController",
+            controllerAs : "cc"
+          }
+        }
+      })
 
       // .state("home.deal.map", {
       //   url: "map/",
