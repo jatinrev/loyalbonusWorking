@@ -1,7 +1,4 @@
 angular.module('LoyalBonus')
-
-    
-
     .controller('CartController', function ($scope, $state,  active_controller, $ionicPlatform) {
         $scope.state_on = function () {
             return $state.params.id;
