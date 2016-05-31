@@ -218,10 +218,10 @@ angular.module('LoyalBonus')
             return mydummyJson(input,BonusDiscountToCust);
         }
             
-        $scope.myloyalbonus.printNonTick = function (input,BonusDiscountToCust) {
-            console.log(input);
+        $scope.myloyalbonus.printNonTick = function (uservisits,BonusDiscountToCust) {
+            //console.log(input);
             
-            return mydummyJson(BonusDiscountToCust - input);
+            return mydummyJson(BonusDiscountToCust - uservisits);
         }
             
         $scope.myloyalbonus.printGift    = function (input,BonusDiscountToCust) {
