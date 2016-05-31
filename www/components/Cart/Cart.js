@@ -7,14 +7,14 @@ angular.module('LoyalBonus')
             { image: 'img/img03.jpg', description: 'Image 03' },
             { image: 'img/img04.jpg', description: 'Image 04' }
         ];
-         $scope.hoverIn = function () {
-            
-            
+        $scope.hoverIn = function () {
+
+
         };
 
         $scope.hoverOut = function () {
 
-            
+
         };
 
 

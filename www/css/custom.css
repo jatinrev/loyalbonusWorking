@@ -485,7 +485,42 @@ span.cartredcolornumber
     left: 2px;
     top: -10px;
 }
+button.btninfo
+{
+	padding: 9px 40px;
+    margin: 0px auto;
+    font-size: 20px;
+    display: block;
+    background-color: #2A8FBD;
+    width: 76%;
+    line-height: 22px;
+    color: #fff;
+    min-height: 20px;
+    border-radius: 1px;
+}
+span.cartdescripttion
+{
+	padding:15px;
+	border:1px solid #e2e2e2;
+	float: left;
+}
+h4.titlecart
+{
+	color:#47c0e6;
+}
 
+p.textcart
+{
+	color:#999;
+}
+#Shoppingcart .col span.storecart
+{
+    padding: 15px;
+    border: 1px solid #e2e2e2;
+    float: left;
+    margin: 15px 0 0 0;
+    color: #47c0e6;
+}
 
 
 
