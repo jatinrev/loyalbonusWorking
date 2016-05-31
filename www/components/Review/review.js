@@ -168,7 +168,7 @@ angular.module('LoyalBonus')
 				, $rootScope.userDetails.userId
 				)
 				.then(function (res) {
-					//console.log(res);
+					console.log(res);
 					$scope.reviewVar.ratingMsg = true;
 					$scope.stopLoading = true;
 					

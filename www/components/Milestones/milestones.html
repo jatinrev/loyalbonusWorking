@@ -30,7 +30,7 @@
                             <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printGift(value.uservisits)">
                                 <img src="img/icon.png">
                             </label>
-                            <span class="text-align" ng-show="value.uservisits != 0 ? true : false">Last visited :{{ value.CreatedOn }}<!-- {{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss'}} --></span>
+                            <span class="text-align" ng-show="value.uservisits != 0 ? true : false">Last visited :{{ value.CreatedOn | date:'yyyy-MM-dd HH:mm:ss' }}<!-- {{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss'}} --></span>
                         </div>
                     </div>
                 </div>
