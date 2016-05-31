@@ -6,7 +6,24 @@
             <div id="logo">
                 <img src="img/kaseydiner_distr.jpg">
             </div>
+            <div class="slider image">
 
+                <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                    ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+
+
+                <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+                <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+
+            </div>
+            <div class="col center">
+                <span class="shoppingdesciptionnew"> Gramercy Park Queen Bed in Weathered Gray </span>
+            </div>
+
+            <div class="col center">
+                <span class="shoppingdesciptioncolor33cd5f"> ₦ 586923.75</span>
+            </div>
+           
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>

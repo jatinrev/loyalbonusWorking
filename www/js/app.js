@@ -1,6 +1,6 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
+angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
 
