@@ -202,8 +202,9 @@ angular.module('LoyalBonus')
             $state.go("home.map", { businessDetailId: businessDetailId });
         }
 
-
+        
         function mydummyJson(input) {
+
             var output = [];
             //console.log(input);
             for (var i = 0; i < input; i++) {
@@ -214,14 +215,23 @@ angular.module('LoyalBonus')
         }
         $scope.myloyalbonus = {};
 
-        $scope.myloyalbonus.printTick    = function (input,BonusDiscountToCust) {
-            return mydummyJson(input,BonusDiscountToCust);
+
+        $scope.myloyalbonus.printTick    = function (input , uservisits) {
+            /*console.log('printTick');
+            console.log(input)
+            console.log(uservisits);*/
+            var answer = (uservisits - input) + 1 ;
+            /*console.log(answer);*/
+            return mydummyJson(answer);
         }
             
-        $scope.myloyalbonus.printNonTick = function (uservisits,BonusDiscountToCust) {
-            //console.log(input);
-            
-            return mydummyJson(BonusDiscountToCust - uservisits);
+        $scope.myloyalbonus.printNonTick = function (input , uservisits) {
+            /*console.log('printNonTick');
+            console.log(input);
+            console.log(uservisits);*/
+            //console.log(BonusDiscountToCust);
+            var answerNontick = (uservisits - input) - 1 ;
+            return mydummyJson(answerNontick);
         }
             
         $scope.myloyalbonus.printGift    = function (input,BonusDiscountToCust) {

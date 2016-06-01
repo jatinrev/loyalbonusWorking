@@ -11,12 +11,13 @@
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
+            <!-- {{ datadeal }} -->
             <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
                 <div class="col-90 text-center col-offset-20">
-                    <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits)">
+                    <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
                     <img src="img/tick.png">
                 </label>
-                    <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.uservisits)">
+                <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
                     <span class="round-span">10%</span>
                     <p>off</p>
                 </label>
