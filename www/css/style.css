@@ -603,19 +603,19 @@ p.stake-house
 }
 .round-span
 {
-        color: #333333;
+    color: #333333;
     font-size: 13px;
     left: 1px;
     line-height: normal;
     position: relative;
-    top: 4px;
+    top: 1px;
 }
 .round p {
         color: #333333;
     font-size: 12px;
     left: 0px;
     position: relative;
-    top: -3px;
+    top: -4px;
 }
 .checkbox input, .checkbox-icon
 {

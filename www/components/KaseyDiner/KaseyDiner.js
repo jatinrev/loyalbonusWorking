@@ -216,26 +216,26 @@ angular.module('LoyalBonus')
         $scope.myloyalbonus = {};
 
 
-        $scope.myloyalbonus.printTick    = function (input , uservisits) {
-            /*console.log('printTick');
+        $scope.myloyalbonus.printTick    = function ( uservisits,input ) {
+            console.log('printTick');
             console.log(input)
-            console.log(uservisits);*/
-            var answer = (uservisits - input) + 1 ;
+            console.log(uservisits);
+            var answer =  uservisits,input;
             /*console.log(answer);*/
             return mydummyJson(answer);
         }
             
-        $scope.myloyalbonus.printNonTick = function (input , uservisits) {
-            /*console.log('printNonTick');
+        $scope.myloyalbonus.printNonTick = function (input , uservisits ) {
+            console.log('printNonTick');
             console.log(input);
-            console.log(uservisits);*/
+            console.log(uservisits);
             //console.log(BonusDiscountToCust);
-            var answerNontick = (uservisits - input) - 1 ;
+            var answerNontick =  uservisits - input ;
             return mydummyJson(answerNontick);
         }
             
-        $scope.myloyalbonus.printGift    = function (input,BonusDiscountToCust) {
-            if (+input == BonusDiscountToCust) {
+        $scope.myloyalbonus.printGift    = function (input,uservisits) {
+            if (+input == uservisits) {
                 return mydummyJson(0);
             } else {
                 return mydummyJson(1);
