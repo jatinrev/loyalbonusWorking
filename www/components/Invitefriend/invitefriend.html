@@ -15,9 +15,9 @@
             <hr class="hr_border"></hr>
             <div class="specear20"></div>
             <div class="specear20"></div>
-            <ion-list class="row text-center">
+            <ion-list class="row center">
                 <h4 class="padding">Invite at least 10 friends from facebook to receive an additional Month free!</h4>
-                <a href="#" onclick="#"><img src="img/facebook-invite-friends.jpg" alt="Invite Facebook Friends"></a>
+                <a class="center" href="#" onclick="#"><img src="img/facebook-invite-friends.jpg" alt="Invite Facebook Friends"></a>
             </ion-list>
             <div class="specear20"></div>
             <hr class="hr_border"></hr>
@@ -26,13 +26,14 @@
             <ion-list class="row text-center">
                 <h4 class="padding">Receive additional Free Month for  each friend who sign up!</h4>
              </ion-list>  
-             <form ua-login name="frm" novalidate>
+             <form ua-login name="frm" novalidate ng-submit="sc.login()">
              <div class="padding">
+             <!--  {{datadeal}} -->
                         <label class="item item-input new_margin">
-                            <input type="text" class="username" ng-model="signIn.username" ng-required="true" name="username" ng-minlength="3" ng-maxlength="40"
+                            <input type="text" class="username" ng-model="datadeal.emailaddresses" name="emailaddresses" ng-minlength="3" ng-maxlength="40"
                             placeholder="Input Emails">
                         </label>
-                            <input type="submit" value="" placeholder="Input Emails" class="pos_absolute bkgnd_image">
+                            <button type="submit" ng-disabled="frm.$invalid" ng-click="invitelist()" class="pos_absolute bkgnd_image"></button>
                         <div role="alert">
                             <span class="error" ng-show="frm.username.$dirty && frm.username.$error.required">Email Is Required!</span>
                             <span class="error" ng-show="frm.username.$dirty && frm.username.$error.minlength">Email Is Too Short!</span>
@@ -40,14 +41,14 @@
                         </div>
 
                             <span class="wd70">Use comma to seperate multiple emails</span>
-                        <textarea cols="20" id="EmailContent" placeholder="Your Personalized Message!" rows="6"></textarea>
+                        <textarea cols="20" id="EmailContent" ng-model="datadeal.emailcontent" name="emailcontent" placeholder="Your Personalized Message!" rows="6"></textarea>
                     </div>
 
              </form> 
 
         </ion-content>
-         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
-        </ion-footer-bar>
+        <!--  <ion-footer-bar class="footer-bar-custom bar-positive">
+           <div class="title center" on-tap="userPresent() == 1 ? go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+                </ion-footer-bar> -->
     </ion-view>
 </div>

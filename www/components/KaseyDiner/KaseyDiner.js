@@ -225,7 +225,7 @@ angular.module('LoyalBonus')
             return mydummyJson(answer);
         }
             
-        $scope.myloyalbonus.printNonTick = function (input , uservisits ) {
+        $scope.myloyalbonus.printNonTick = function (uservisits , input ) {
             console.log('printNonTick');
             console.log(input);
             console.log(uservisits);

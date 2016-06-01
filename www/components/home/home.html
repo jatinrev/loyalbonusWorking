@@ -32,7 +32,7 @@
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list>
-                <ion-item menu-toggle ng-click="redirect_urls.invite_friend()"><i class="ion-person-stalker margin-right-5"></i>Invite a Friend</ion-item>
+                <ion-item menu-toggle ng-show="home_var.userPresent() == 1 ? true : false" ng-click="redirect_urls.invite_friend()"><i class="ion-person-stalker margin-right-5"></i>Invite a Friend</ion-item>
             </ion-list>
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.aboutus()"><i class="ion-social-dropbox margin-right-5"></i>About Loyal Bonus</ion-item>

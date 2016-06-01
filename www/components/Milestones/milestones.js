@@ -21,38 +21,66 @@ angular.module('LoyalBonus')
 
 	$scope.myloyalbonus = {};
 
+
 	$scope.myloyalbonus.print = [];
+
 //.get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId='+$rootScope.userDetails.userId, {})
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
 		console.log(res);
+
 		$scope.myloyalbonus.print = res.data.Data;
+		//saveData.set('kaseyDinnerBusinessName', $scope.myloyalbonus.print.Name);
+		
+		
+		return $scope.myloyalbonus.print;
+
+       
 	});
 
-	function mydummyJson (input) {
-		var output = [];
-		for (var i = 0; i < input; i++) {
-			output.push(i)
-		}
-		return output;
-	}
+	function mydummyJson(input) {
 
-	$scope.myloyalbonus.printTick = function (input) {
-		return mydummyJson(input);
-	}
+            var output = [];
+            //console.log(input);
+            for (var i = 0; i < input; i++) {
+                output.push(i)
+                //console.log(output.push(i));
+            }
+            return output;
+        }
 
-	$scope.myloyalbonus.printNonTick = function (input) {
-		return mydummyJson(9 - +input);
-	}
+        $scope.myloyalbonus = {};
 
-	$scope.myloyalbonus.printGift = function (input) {
-		if(+input == 10) {
-			return mydummyJson(0);
-		} else {
-			return mydummyJson(1);
-		}
-	}
+
+        $scope.myloyalbonus.printTick    = function ( uservisits,input ) {
+            /*console.log('printTick');
+            console.log(input)
+            console.log(uservisits);*/
+            var answer =  uservisits,input;
+            /*console.log(answer);*/
+            return mydummyJson(answer);
+        }
+            
+        $scope.myloyalbonus.printNonTick = function (uservisits , input ) {
+            /*console.log('printNonTick');
+            console.log(input);
+            console.log(uservisits);*/
+            //console.log(BonusDiscountToCust);
+            var answerNontick =  uservisits - input ;
+            return mydummyJson(answerNontick);
+        }
+            
+        $scope.myloyalbonus.printGift    = function (input,uservisits) {
+            if (+input == uservisits) {
+                return mydummyJson(0);
+            } else {
+                return mydummyJson(1);
+            }
+        }
+         
+        
+
 
 });
 
