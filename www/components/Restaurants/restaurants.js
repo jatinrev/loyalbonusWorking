@@ -181,7 +181,7 @@ angular.module('LoyalBonus', '')
             get_user_location
             .getIp()
             .then(function(ipResult) {
-                console.log('ip');
+                /*console.log('ip');*/
                 console.log(ipResult);
             });
 
