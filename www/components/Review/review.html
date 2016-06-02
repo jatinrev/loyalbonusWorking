@@ -14,8 +14,8 @@
                     <p class="h1 title">Customer Review</p>
                 </div>
                 <div class="row border-review">
-                    <div class="col50">
-                        <img src="img/filledStar.png">
+                    <div class="col50" ng-bind-html=reviewVar.reviews(2)>
+                        <!-- <img src="img/filledStar.png"> -->
                     </div>
                     <div class="col50">
                         <strong>{{ reviewVar.businessRating() }}/ 5</strong>
@@ -51,7 +51,8 @@
                 </div>
                 
                 <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
-                    <img src="img/star.png">
+               
+                    <img src="img/filledStar.png">
                     <p class="color-reviewgrey col">By {{ value.FullName }} on {{ reviewVar.giveDataFormat(value.CreatedOn) }}</p>
                     <span class="title">Pros</span>
                     <p class="color-reviewgrey col">{{ value.Pros }}</p>
