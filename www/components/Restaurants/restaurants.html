@@ -40,7 +40,10 @@
                             <ion-list>
                                 <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address1 == null ? 'Address not available' : d.Address1 }}</ion-item>
                                 <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address2 == null ? 'Address not available' : d.Address2 }}</ion-item>
-                                <ion-item class="wth-border"><i class="ion-ios-telephone"></i>{{ d.ContactPhone }}</ion-item>
+                                <ion-item class="wth-border" ng-click="dialNumber(d.ContactPhone)" ><i class="ion-ios-telephone"></i>Call {{ d.ContactPhone }}</ion-item>
+                                <!-- <div class="item" ng-click="dialNumber(data.phoneNumber)" ng-if="data.phoneNumber">
+                                                  Call {{data.phoneNumber}} without Prompt
+                                              </div> -->
                                 <!-- <ion-item class="wth-border Change-color" ng-click="goToMap(d.BusinessID)">Get Directions</ion-item> -->
                             </ion-list>
                         </div>

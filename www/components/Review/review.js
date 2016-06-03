@@ -66,6 +66,7 @@ angular.module('LoyalBonus')
         }
 
 		$scope.reviewVar.reviews = function (number) {
+			//console.log(showRating.showRatingImages(number));
 			return showRating.showRatingImages(number);
 		};
 
@@ -87,7 +88,7 @@ angular.module('LoyalBonus')
 				reviewFactory
 					.printReview($state.params.businessId, reviewPage)
 					.then(function (res) {
-						//console.log(res);
+						console.log(res);
 						if (res.length > 0) {
 							reviewPage += 1;
 							for (i in res) {
@@ -102,6 +103,7 @@ angular.module('LoyalBonus')
 		$scope.reviewVar.loadMore();
 
 		$scope.reviewVar.allReview = function () {
+			/*console.log($scope.reviewVar.allReview);*/
 			return allReviews;
 		}
 
@@ -111,6 +113,7 @@ angular.module('LoyalBonus')
 
 		$scope.reviewVar.giveRating = function (number) {
 			$scope.reviewVar.ratingStarNumber = number;
+			console.log($scope.reviewVar.ratingStarNumber);
 			$scope.reviewVar.starsArr = [];
 			for (var i = 1; i < 6; i++) {
 				if (i > 0 && i <= number) {
@@ -128,7 +131,7 @@ angular.module('LoyalBonus')
 		}
 
 		$scope.reviewVar.giveRating(0);
-		// console.log(giveRating.ratingImages(2));
+		 //console.log(giveRating.ratingImages(0));
 
 		$scope.reviewVar.ratingMsg = false;
 
