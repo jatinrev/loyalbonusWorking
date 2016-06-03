@@ -31,6 +31,7 @@ angular.module('LoyalBonus')
 		console.log(res);
 
 		$scope.myloyalbonus.print = res.data.Data;
+        console.log($scope.myloyalbonus.print);
 		//saveData.set('kaseyDinnerBusinessName', $scope.myloyalbonus.print.Name);
 		
 		
@@ -49,30 +50,25 @@ angular.module('LoyalBonus')
             }
             return output;
         }
-
         $scope.myloyalbonus = {};
 
 
-        $scope.myloyalbonus.printTick    = function ( uservisits,input ) {
-            /*console.log('printTick');
-            console.log(input)
-            console.log(uservisits);*/
-            var answer =  uservisits,input;
-            /*console.log(answer);*/
-            return mydummyJson(answer);
+        $scope.myloyalbonus.printTick    = function ( uservisits, BonusDiscountToCust ) {
+            // var answer =  uservisits,BonusDiscountToCust;
+            return mydummyJson(+uservisits);
         }
             
-        $scope.myloyalbonus.printNonTick = function (uservisits , input ) {
-            /*console.log('printNonTick');
-            console.log(input);
-            console.log(uservisits);*/
-            //console.log(BonusDiscountToCust);
-            var answerNontick =  uservisits - input ;
-            return mydummyJson(answerNontick);
+        $scope.myloyalbonus.printNonTick = function ( uservisits, BonusDiscountToCust ) {
+            var answerNontick =  +BonusDiscountToCust - +uservisits ;
+            if( answerNontick - 1 <= 0 ) {
+                return mydummyJson(0);
+            } else {
+                return mydummyJson(answerNontick - 1);
+            }
         }
             
-        $scope.myloyalbonus.printGift    = function (input,uservisits) {
-            if (+input == uservisits) {
+        $scope.myloyalbonus.printGift    = function ( uservisits, BonusDiscountToCust ) {
+            if (+BonusDiscountToCust == uservisits) {
                 return mydummyJson(0);
             } else {
                 return mydummyJson(1);
