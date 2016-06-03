@@ -1,68 +1,19 @@
 angular.module('LoyalBonus.services', [])
-	.factory('MathService', function () {
-		var factory = {};
-
-		factory.multiply = function (a, b) {
-			return a * b
-		}
-		return factory;
-	})
-	.service('CalcService', function ($http) {
-
-		this.response = function (url, data) {
-			$http({
-				method: 'POST',
-				async: false,
-				url: "http://beta2.loyalbonus.com/" + url,
-				headers: { 'Content-Type': 'application/json; charset=utf-8' },
-				data: data //{ Email : $scope.signIn.username, Password : $scope.signIn.password }
-			}).then(function (response) {
-				this.response_data = response;
-				return response;
-			}, function errorCallback(response) {
-
-			});
-		}
-
-		/*this.response = function(url, data) {
-			$http({
-				method: 'POST',
-				async : false,
-				url: url,
-				headers: { 'Content-Type': 'application/json; charset=utf-8' },
-				data: data //{ Email : $scope.signIn.username, Password : $scope.signIn.password }
-			}).then(function(response){
-				this.response_data = response;
-				return response;
-			}, function errorCallback(response){
-	
-			});
-		}*/
-	})
 	.factory('ajaxCall', function ($http) {
-		function make_base_auth(user, password) {
-			var tok  = user + ':' + password;
-			var hash = btoa(tok);
-		  	return "Basic " + hash;
-		}
 		return {
 			post: function (url, data) {
 				return $http({
 					method: 'POST',
 					url: "http://beta2.loyalbonus.com/" + url,
 					headers: {
-						'Content-Type': 'application/json; charset=utf-8',
-						'Authorization' : "Basic "+make_base_auth('lbonus', 'c0m3!n')
+						'Content-Type': 'application/json; charset=utf-8'
 					},
 					data: data
 				});
 			},
 			get: function (url, data) {
 				return $http.get("http://beta2.loyalbonus.com/" + url, {
-					params  : data,
-					headers : {
-						'Authorization' : "Basic "+make_base_auth('lbonus', 'c0m3!n')
-					}
+					params  : data
 				});
 			}
 		}
