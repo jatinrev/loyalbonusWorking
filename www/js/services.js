@@ -40,18 +40,29 @@ angular.module('LoyalBonus.services', [])
 		}*/
 	})
 	.factory('ajaxCall', function ($http) {
+		function make_base_auth(user, password) {
+			var tok  = user + ':' + password;
+			var hash = btoa(tok);
+		  	return "Basic " + hash;
+		}
 		return {
 			post: function (url, data) {
 				return $http({
 					method: 'POST',
 					url: "http://beta2.loyalbonus.com/" + url,
-					headers: { 'Content-Type': 'application/json; charset=utf-8' },
+					headers: {
+						'Content-Type': 'application/json; charset=utf-8',
+						'Authorization' : "Basic "+make_base_auth('lbonus', 'c0m3!n')
+					},
 					data: data
 				});
 			},
 			get: function (url, data) {
 				return $http.get("http://beta2.loyalbonus.com/" + url, {
-					params: data
+					params  : data,
+					headers : {
+						'Authorization' : "Basic "+make_base_auth('lbonus', 'c0m3!n')
+					}
 				});
 			}
 		}

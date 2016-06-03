@@ -12,6 +12,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       userLocation : '6.461573,3.479404'
     }
   /*Temp Data*/
+
   $ionicPlatform.ready(function () {
 
     /**Start : checking storage**/
@@ -60,6 +61,9 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 
 .config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
+
+      // $httpProvider.defaults.headers.common['Authorization'] = 'Basic lbonus:c0m3!n';
+
 
       $urlRouterProvider.otherwise("home/restaurants/");
       // $urlRouterProvider.otherwise("/signin/");
@@ -307,5 +311,8 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       // });
     }
 ]);
+// .run(function ($http) {
+//   $http.defaults.headers.common['Authorization'] = 'Basic lbonus:c0m3!n';
+// });
 
 
