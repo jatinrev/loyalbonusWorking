@@ -306,6 +306,31 @@ angular.module('LoyalBonus', '')
                         }, 3000);
                     };
 
+                   /* $scope.callPopup = function (msg) {
+                        $scope.data = {}
+
+                        
+                        var myPopup = $ionicPopup.show({
+                            
+                            title: '<i class="ion-ios-telephone"> Call Now',
+                            subTitle: msg,
+                            scope: $scope,
+                            buttons: [
+                                { text: 'Cancel', type: 'button-positive' }
+                            ]
+                        });
+                        myPopup.then(function (res) {
+                            console.log('Tapped!', res);
+                        });
+                        $timeout(function () {
+                            myPopup.close(); 
+                        }, 30000);
+                    };*/
+
+                    $scope.dialNumber = function(number) {
+                    window.open('tel:' + number, '_system');
+                    }
+
 
                     /*******Search functionality******/
                     $scope.restaurants.search = function (keyword) {
