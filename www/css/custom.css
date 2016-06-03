@@ -114,9 +114,8 @@
 }
 .loyalbonus_img_business {
 	color: #fff;
-	background-color: #00AEEF;
-	padding: 12px 25px;
-	margin-left: 13px;
+    margin-left: 13px;
+    margin-top: 35px;
 }
 .loyalbonus_img .icon		{
 	font-size: 21px;
@@ -126,7 +125,12 @@
 .loyalbonus_img.activated 	{
 	background-color: #3B5998;
 }
-
+.popup-sub-title {
+    margin: 16px 0 0 0;
+    padding: 4px;
+    font-weight: normal;
+    font-size: 18px;
+}
 
 
 /*****Milestones******/
@@ -146,6 +150,13 @@
 	font-weight: bold;
 }
 
+#Review .Pros, #Review .Cons
+{
+	border: 1px solid #000;
+    padding: 6px;
+    margin: 8px 0 0 0;
+    width: 90%;
+}
 
 /****Review page***/
 #Review #logo { position: relative; }

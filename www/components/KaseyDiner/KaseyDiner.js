@@ -117,7 +117,7 @@ angular.module('LoyalBonus')
             });
             $timeout(function () {
                 myPopup.close(); //close the popup after 3 seconds for some reason
-            }, 3000000);
+            }, 3000);
         };
 
 
@@ -156,19 +156,19 @@ angular.module('LoyalBonus')
             });
             $timeout(function () {
                 myPopup.close(); //close the popup after 3 seconds for some reason
-            }, 3000000);
+            }, 3000);
         };
         
         $scope.showPopupFor = function (msg) {
             $scope.data = {}
-
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="img/bonus.png"> Number Of Visits',
+                //.datadeal[BonusDiscountToCust],
+                title: '<img src="img/bonus.png"> Visit times for Bonus',
 
                 subTitle: msg,
-                scope: $scope,
+               scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
 

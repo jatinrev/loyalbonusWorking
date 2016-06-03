@@ -38,11 +38,12 @@
                       </label>
                         <label class="item item-input item-stacked-label">
                         <span class="input-label">Pros</span>
-                        <input type="text" placeholder="Pros" ng-model="reviewVar.pros">
+                        <input type="text" class="Pros" placeholder="Pros" ng-model="reviewVar.pros">
+                        <!-- <input type="text" class="name ng-pristine ng-untouched ng-valid" placeholder="Name" ng-model="userDetails.FullName" name="fullName"> -->
                       </label>
                         <label class="item item-input item-stacked-label">
                         <span class="input-label">Cons</span>
-                        <input type="text" placeholder="Cons" ng-model="reviewVar.cons">
+                        <input type="text" placeholder="Cons" class="Cons" ng-model="reviewVar.cons">
                       </label>
                         <label class="item item-input item-stacked-label padding-top-8">
                         <button class="button button-positive" ng-click="reviewVar.giveFeedback() ; showPopup()">Submit</button>

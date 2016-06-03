@@ -17,10 +17,10 @@
                         <img src="img/tick.png">
                     </label>
                     <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
-                        <span class="round-span">10%</span>
+                        <span class="round-span">{{datadeal.LoyalDiscount}}%<!-- 10% --></span>
                         <p>off</p>
                     </label>
-                    <label class="checkbox" ng-click="showPopupMy(datadeal.TotalReceivedBonus)" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.uservisits, datadeal.BonusDiscountToCust)">
+                    <label class="checkbox" ng-click="showPopupMy(datadeal.BonusDiscount)" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.uservisits, datadeal.BonusDiscountToCust)">
                         <img src="img/icon.png">
                     </label>
                 </div>
@@ -38,11 +38,11 @@
                 <div class="col-50">
                     <ion-list>
                         <ion-item class="wth-border border-bottom">
-                            <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.LoyalDiscount }}
+                            <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.LoyalDiscount }}%
                         </ion-item>
                         <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount
                             }} OFF</ion-item>
-                        <ion-item class="wth-border" ng-click="showPopupFor(datadeal.uservisits)">Visit 10 times to receive Bonus.</ion-item>
+                        <ion-item class="wth-border newday" ng-click="showPopupFor(datadeal.BonusDiscountToCust)">Visit {x}  times to receive Bonus.</ion-item>
                     </ion-list>
                 </div>
             </div>
