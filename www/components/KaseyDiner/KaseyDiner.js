@@ -165,7 +165,7 @@ angular.module('LoyalBonus')
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
                 title: '<img src="img/bonus.png"> Total Number of Bonus',
-                subTitle: msg,
+                subTitle: ( +msg == 0 ? '0' : msg ),
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
