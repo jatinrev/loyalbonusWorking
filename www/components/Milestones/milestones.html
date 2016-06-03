@@ -8,6 +8,9 @@
             </ion-refresher>
             <div>  <!-- outer div -->
               <!-- <h1 class="text-center">Scanned Business</h1> -->
+                <div class="row text-align-center" ng-show="myloyalbonus.print.length < 1 ? true : false">
+                    No Record Present.
+                </div>
                 <div class="row border-milestone" ng-repeat="(key, value) in myloyalbonus.print">
                     <div class="col-50">
                     
