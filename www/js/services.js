@@ -252,7 +252,7 @@ angular.module('LoyalBonus.services', [])
 				setDontSave = 1
 				var back = previous_page.slice(-1)[0];
 				previous_page.pop();
-				$state.go(back.history, back.fromParams);
+				$state.go(fromState, back.fromParams);
 				//$window.history.back
 			},
 			setDontSave   : function() {
