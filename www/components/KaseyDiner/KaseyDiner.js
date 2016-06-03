@@ -34,7 +34,7 @@ angular.module('LoyalBonus')
 
     })
 
-    .controller('KaseyDinerController', function ($scope, $state, MathService, ajaxCall, $cordovaBarcodeScanner,
+    .controller('KaseyDinerController', function ($scope, $state, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data, loading) {
 
         console.log('testetse');
@@ -165,7 +165,7 @@ angular.module('LoyalBonus')
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="img/bonus.png"> Number Of Visits',
+                title: '<img src="img/bonus.png"> Total Number of Bonus',
 
                 subTitle: msg,
                 scope: $scope,
