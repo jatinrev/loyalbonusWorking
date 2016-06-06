@@ -15,14 +15,11 @@
                 </div>
                 <div class="row border-review">
                     <div class="col50" ng-bind-html=reviewVar.reviews(2)>
-                        <!-- <img src="img/filledStar.png"> -->
                     </div>
                     <div class="col50">
                         <strong>{{ reviewVar.businessRating() }}/ 5</strong>
-                        <!-- <span class="color-review">from 2 reviews</span> -->
                     </div>
                     <div class="col"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">{{ reviewVar.ShowCommentShow == true ? 'Show Records' : 'Write a review' }}</a></div>
-
                 </div>
 
                 <div class="row border-bottom-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow" >
@@ -53,8 +50,8 @@
                 
                 <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                
-                    <img src="img/filledStar.png">
-                    <p class="color-reviewgrey col">By {{ value.FullName }} on {{ reviewVar.giveDataFormat(value.CreatedOn) }}</p>
+                    <div ng-bind-html=reviewVar.reviews(2)></div>
+                    <p class="color-reviewgrey col">By {{ value.FullName }}{{ value.CreatedOn == null || value.CreatedOn == '' ? '' : reviewVar.giveDataFormat(value.CreatedOn) }}</p>
                     <span class="title">Pros</span>
                     <p class="color-reviewgrey col">{{ value.Pros }}</p>
                     <span class="title">Cons</span>

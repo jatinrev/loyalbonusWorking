@@ -103,7 +103,6 @@ angular.module('LoyalBonus')
 		$scope.reviewVar.loadMore();
 
 		$scope.reviewVar.allReview = function () {
-			/*console.log($scope.reviewVar.allReview);*/
 			return allReviews;
 		}
 
