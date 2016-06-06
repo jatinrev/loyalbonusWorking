@@ -174,7 +174,7 @@ var app = angular.module('LoyalBonus')
                                 console.log('center');
                                 console.log(businessMapPosition);
                             }
-                            console.log(bc.center);
+                            // console.log(bc.center);
                             bc.positions      = sortedArray;
                             loading.stop();
                             stopCenterStorage = false; // this is to again start storing center location in the factory.
@@ -186,7 +186,7 @@ var app = angular.module('LoyalBonus')
                 $scope.setCenter = function () {
                     if( stopCenterStorage != true ) { // this will only store location when data is not refreshing.
                         businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
-                        console.log(businessMapPosition);
+                        // console.log(businessMapPosition);
                         saveData.set('businessMapPosition', businessMapPosition);
                     } else {
                         console.log('not saving');
