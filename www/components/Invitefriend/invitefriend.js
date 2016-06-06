@@ -99,17 +99,18 @@ angular.module('LoyalBonus')
         }
         //   End : date calculation for showing discount offer.
 
-        
+         
         $scope.invitelist = function () {
-            $scope.show_hide_invite_submit = false;
+         $scope.show_hide_invite_submit = true;  
             Friendinvite
                 .invite($scope.datadeal.emailaddresses, $scope.datadeal.emailcontent)
                 .then(function (result) {
                     console.log(result);
-                    $scope.show_hide_invite_submit = true;
+                    $scope.show_hide_invite_submit = false;
                     //showPopup();
                 });
         }
+        //$scope.;
 
 
     });
