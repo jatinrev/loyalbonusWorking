@@ -101,13 +101,13 @@ angular.module('LoyalBonus')
 
         
         $scope.invitelist = function () {
-            $scope.show_hide_invite_submit = true;
+            $scope.show_hide_invite_submit = false;
             Friendinvite
                 .invite($scope.datadeal.emailaddresses, $scope.datadeal.emailcontent)
                 .then(function (result) {
                     console.log(result);
                     $scope.show_hide_invite_submit = true;
-                    showPopup(msg);
+                    //showPopup();
                 });
         }
 

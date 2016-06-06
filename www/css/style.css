@@ -1245,6 +1245,8 @@ font-size: 20px;
 }
 #kaseydiner .bar-footer
 {
+    border-top: 2px solid #0c60ee;
+    border-radius: 6px;
     display: flex;
        /* position: relative; */  
 
