@@ -35,7 +35,7 @@
                         <input type="text" class="emailaddresses" ng-model="datadeal.emailaddresses" name="emailaddresses" ng-minlength="3" ng-maxlength="40"
                         placeholder="Input Emails">
                     </label>
-                    <button type="submit" ng-disabled="frminvite.$invalid" ng-hide="show_hide_invite_submit" ng-click="invitelist()" class="pos_absolute bkgnd_image"></button>
+                    <button type="submit" ng-disabled="frminvite.$invalid" ng-click="invitelist()" class="pos_absolute bkgnd_image"></button>
                     <div role="alert">
                         <span class="error" ng-show="frminvite.emailaddresses.$dirty && frminvite.emailaddresses.$error.required">Email Is Required!</span>
                         <span class="error" ng-show="frminvite.emailaddresses.$dirty && frminvite.emailaddresses.$error.minlength">Email Is Too Short!</span>
@@ -43,7 +43,7 @@
                     </div>
 
                     <span class="wd70">Use comma to seperate multiple emails</span>
-                    <textarea cols="20" id="EmailContent" ng-model="datadeal.emailcontent" name="emailcontent" placeholder="Your Personalized Message!"
+                    <textarea cols="20" id="EmailContent" ng-model="datadeal.emailcontent" name="emailcontent" required placeholder="Your Personalized Message!"
                         rows="6"></textarea>
                 </div>
 
