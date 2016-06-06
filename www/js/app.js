@@ -4,12 +4,13 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
 
-  /*Temp Data*
+  /*Temp Data*/
     $rootScope.userDetails = {
-      userId       : 263,
-      Email        : 'jatinverma@gmail.com',
-      FullName     : 'Jatin',
-      userLocation : '6.461573,3.479404'
+      userId       : 282,
+      Email        : 'dvijesh@revinfotech.com',
+      FullName     : 'dvijesh',
+      userLocation : '6.461573,3.479404',
+      CreatedOn    : '2016-05-31T11:24:34.607'
     }
   /*Temp Data*/
 
