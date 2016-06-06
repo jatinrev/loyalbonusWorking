@@ -12,8 +12,6 @@ angular.module('LoyalBonus')
                 );
                 
         }
-
-
         function giveLove(businessId, userId, isLove) {
             loading.start();
             return ajaxCall
@@ -33,7 +31,6 @@ angular.module('LoyalBonus')
         };
 
     })
-
     .controller('KaseyDinerController', function ($scope, $state, ajaxCall, $cordovaBarcodeScanner,
         active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data, loading) {
 
@@ -164,7 +161,7 @@ angular.module('LoyalBonus')
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="img/bonus.png"> Total Number of Bonus',
+                title: '<img src="img/bonus.png"> Visit times for Bonus',
                 subTitle: ( +msg == 0 ? '0' : msg ),
                 scope: $scope,
                 buttons: [
