@@ -85,16 +85,17 @@ var app = angular.module('LoyalBonus')
         active_controller.set('BusinessController');
 
 
-        var bc = this;
-        bc.positions = [];
-        bc.center = null;
-        $scope.datadeal = [];
-        $scope.helperFunction = {};
-        $scope.loadmoreNgShow = false;
-        $scope.gotoCurrentLocation ={};
-
-        var businessMapPosition = '';
-
+        var bc                     = this,
+        stopCenterStorage          = false, //if false, then store center location and vice-versa.
+        businessMapPosition        = '';
+        
+        bc.positions               = [];
+        // bc.center                  = null;
+        $scope.datadeal            = [];
+        $scope.helperFunction      = {};
+        $scope.loadmoreNgShow      = false;
+        $scope.gotoCurrentLocation = {};
+                
 
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
@@ -146,6 +147,7 @@ var app = angular.module('LoyalBonus')
                 };
 
                 bc.test = function () {
+                    stopCenterStorage = true;  // this is to stop storing center location in the factory.
                     loading.start();
                     $scope.loadmoreNgShow = true;
 
@@ -155,7 +157,7 @@ var app = angular.module('LoyalBonus')
                         ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
                             var positions = []
-                                , test = [];
+                            , test        = [];
 
                             for (i in fetch.data.Data) {
                                 test.push({ businessId: fetch.data.Data[i].BusinessId, positions: fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng })
@@ -166,23 +168,29 @@ var app = angular.module('LoyalBonus')
                             var businessMapPosition = saveData.get('businessMapPosition');
                             if( typeof(businessMapPosition) == 'undefined' || businessMapPosition == '') {
                                 bc.center = sortedArray[0].positions;
+                                console.log(sortedArray[0].positions);
                                 saveData.remove('businessMapPosition');
                             } else {
-                                // console.log(businessMapPosition);
-                                bc.center = businessMapPosition;
+                                console.log('center');
+                                console.log(businessMapPosition);
                             }
                             console.log(bc.center);
-                            bc.positions = sortedArray;
-                            loading.stop()
+                            bc.positions      = sortedArray;
+                            loading.stop();
+                            stopCenterStorage = false; // this is to again start storing center location in the factory.
                         });
                     });
                 }
                 bc.test();
 
-                $scope.centerCustomMarker = function () {
-                    console.log('centrer');
-                    businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
-                    saveData.set('businessMapPosition', businessMapPosition);
+                $scope.setCenter = function () {
+                    if( stopCenterStorage != true ) { // this will only store location when data is not refreshing.
+                        businessMapPosition = map.getCenter().lat()+','+map.getCenter().lng();
+                        console.log(businessMapPosition);
+                        saveData.set('businessMapPosition', businessMapPosition);
+                    } else {
+                        console.log('not saving');
+                    }
                 }
             });
 
