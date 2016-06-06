@@ -4,7 +4,6 @@
         <ul rn-carousel class="tabs" rn-carousel-index="carouselIndex">
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
         </ul>
-        <!--animation="slide-left-right"  -->
         <ion-view>
             
             
@@ -38,9 +37,9 @@
                     <div class="row">
                         <div class="col-50">
                             <ion-list>
-                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address1 == null ? 'Address not available' : d.Address1 }}</ion-item>
-                                <ion-item class="wth-border"><i class="ion-home"></i> {{ d.Address2 == null ? 'Address not available' : d.Address2 }}</ion-item>
-                                <ion-item class="wth-border" ng-click="dialNumber(d.ContactPhone)" ><i class="ion-ios-telephone"></i>Call {{ d.ContactPhone }}</ion-item>
+                                <ion-item class="wth-border" ng-show="d.Address1 == null ? false : true "><i class="ion-home"></i> {{ d.Address1 }}</ion-item>
+                                <ion-item class="wth-border" ng-show="d.Address2 == null ? false : true"><i class="ion-home"></i> {{ d.Address2 }}</ion-item> <!-- {{ d.Address2 == null ? 'Address not available' : d.Address2 }} -->
+                                <ion-item class="wth-border" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)" ><i class="ion-ios-telephone"></i>Call {{ d.ContactPhone }}</ion-item>
                                 <!-- <div class="item" ng-click="dialNumber(data.phoneNumber)" ng-if="data.phoneNumber">
                                                   Call {{data.phoneNumber}} without Prompt
                                               </div> -->
@@ -49,12 +48,10 @@
                         </div>
                         <div class="col-50">
                             <ion-list>
-                                <ion-item class="wth-border border-bottom">
+                                <ion-item class="wth-border border-bottom" ng-show="d.LoyalDiscount == null ? false : true">
                                     <i class="ion-load-d"></i> Loyal Discount:{{ d.LoyalDiscount }}%</ion-item>
-                                <ion-item class="wth-border border-bottom" ng-click="showPopup()">
-                                    <!-- <i class="icon-gift"></i> --><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount)
-                                    }} OFF</ion-item>
-                                <!-- <ion-item class="wth-border">Visit 5 times to receive Bonus.</ion-item> -->
+                                <ion-item class="wth-border border-bottom" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup()">
+                                    <img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }} OFF</ion-item>
                             </ion-list>
                         </div>
                     </div>
