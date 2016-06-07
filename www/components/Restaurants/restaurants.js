@@ -109,7 +109,8 @@ angular.module('LoyalBonus', '')
         var restaurantData = [];
         active_controller.set('RestaurantController');
 
-        $scope.restaurants = {};
+        $scope.restaurants          = {};
+        $scope.noMoreItemsAvailable = false;
 
         $scope.open_detail_page = function (id) {
             //console.log($scope.open_detail_page);
@@ -241,6 +242,7 @@ angular.module('LoyalBonus', '')
                                 return get_business_data               //getting records
                                     .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                     .then(function (result) {
+                                        console.log(result);
                                         restaurantData = result[+$state.params.vertical];
                                         $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                     });
@@ -248,7 +250,7 @@ angular.module('LoyalBonus', '')
                         })
                         .then(function () {
                             // pagination starts here
-                            $scope.loadmoreNgShow = true;
+                            // $scope.loadmoreNgShow = true;
                             var reachLast = false;
                             $scope.listData = function () {
                                 if (reachLast) {
@@ -260,40 +262,43 @@ angular.module('LoyalBonus', '')
                                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                                         .then(function (response) {
                                             if (response[+$state.params.vertical].length == restaurantData.length) {
-                                                reachLast = true;
-                                                $scope.noMoreItemsAvailable = true;   // this is for infinite scroll to stop paging
+                                                // reachLast = true;
+                                                // $scope.noMoreItemsAvailable = true;   // this is for infinite scroll to stop paging
                                                 //$scope.loadmoreNgShow = false;
                                             } else {
                                                 restaurantData = response[+$state.params.vertical];
-                                                $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                             }
+                                            $scope.$broadcast('scroll.infiniteScrollComplete');// this is for infinite scroll, to stop showing loading icon
                                         });
                                 } else if (+$state.params.vertical != 0) {
                                     return get_business_data               //appending records
                                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                         .then(function (res) { // this is appending records getting from ajax.
+                                            console.log(res);
+                                            console.log(restaurantData);
                                             if (res[+$state.params.vertical].length == restaurantData.length) {
-                                                reachLast = true;
-                                                $scope.loadmoreNgShow = true;
-                                                $scope.noMoreItemsAvailable = true;  // this is for infinite scroll to stop paging
+                                                // reachLast = true;
+                                                // $scope.loadmoreNgShow = true;
+                                                // $scope.noMoreItemsAvailable = true;  // this is for infinite scroll to stop paging
+                                                $scope.$broadcast('scroll.infiniteScrollComplete');
                                             } else {
-                                                restaurantData = res[+$state.params.vertical];
+                                                // restaurantData = res[+$state.params.vertical];
                                                 console.log('teste');
-                                                $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                             }
+                                            $scope.$broadcast('scroll.infiniteScrollComplete');// this is for infinite scroll, to stop showing loading icon
                                         });
                                 }
 
                             };
 
                             /* ion-infinite-scroll start*/
-                            $scope.noMoreItemsAvailable = false;
-                            $scope.loadMore = function () {
+                            
+                            /*$scope.loadMore = function () {
                                 console.log('load more');
                                 $scope.listData();
                                 /*if ($scope.items.length == 99) {
                                     $scope.noMoreItemsAvailable = true;
-                                }*/
+                                }*
                                 // $scope.$broadcast('scroll.infiniteScrollComplete');
                                 
                                 // listData();
@@ -405,6 +410,11 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
+
+        $scope.showAll = function() {
+            console.log('restaurantData var');
+            console.log(restaurantData);
+        };
 
     });
 
