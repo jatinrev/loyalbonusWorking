@@ -87,12 +87,6 @@ angular.module('LoyalBonus')
 			return 0;
 		}
 
-		/* console.log(savePreviosDetails);
-		console.log( $rootScope.userDetails.FullName );
-		console.log( $rootScope.userDetails.Email );
-		console.log( form_field_obj.fullName.$viewValue);
-		console.log( form_field_obj.Email.$viewValue); */
-
 		//factory is made to change different part of user settings.
 		if( savePreviosDetails.FullName != form_field_obj.fullName.$viewValue || savePreviosDetails.Email != form_field_obj.Email.$viewValue ) {
 			// call change_accout_settings_factory.change_name_email factory.
@@ -105,15 +99,18 @@ angular.module('LoyalBonus')
 			
 		}
 
-		if( $scope.chnage_pass.old_pass.length > 0 && $scope.chnage_pass.new_pass.length > 0 ) {
-
-			//factory to change password
-			change_accout_settings_factory
-			.change_pass($scope.chnage_pass.old_pass, $scope.chnage_pass.new_pass)
-			.then(function (response) {
-				//console.log(response);
-				$scope.response = response.data.StatusMessage;
-			});
+		if( $scope.chnage_pass.old_pass.length > 0 && $scope.chnage_pass.new_pass.length > 0 && $scope.chnage_pass.confirm_pass.length > 0 ) {
+			if( $scope.chnage_pass.new_pass == $scope.chnage_pass.confirm_pass ) {
+				//factory to change password
+				change_accout_settings_factory
+				.change_pass($scope.chnage_pass.old_pass, $scope.chnage_pass.new_pass)
+				.then(function (response) {
+					//console.log(response);
+					$scope.response = response.data.StatusMessage;
+				});
+			} else {
+				$scope.response = 'Password and Confirm password does not match.';
+			}
 		}
 	}
 });
