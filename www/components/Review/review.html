@@ -50,7 +50,7 @@
                 
                 <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                
-                    <div ng-bind-html=reviewVar.reviews(2)></div>
+                    <div ng-bind-html=reviewVar.reviews(value.Reviews)></div>
                     <p class="color-reviewgrey col">By {{ value.FullName }}{{ value.CreatedOn == null || value.CreatedOn == '' ? '' : reviewVar.giveDataFormat(value.CreatedOn) }}</p>
                     <span class="title">Pros</span>
                     <p class="color-reviewgrey col">{{ value.Pros }}</p>

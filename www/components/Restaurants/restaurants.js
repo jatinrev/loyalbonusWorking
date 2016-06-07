@@ -106,7 +106,21 @@ angular.module('LoyalBonus', '')
 
         loading.start();
 
-        var restaurantData = [];
+        var restaurantData = []
+        , previous_length;
+        /*
+        This function return true if current_length and previous_length matches
+         */
+        function record_length(current_length) {
+            console.log(previous_length);
+            if(current_length == previous_length) {
+                return true;
+            } else {
+                console.log('previous length assignment.');
+                previous_length = current_length;
+            }
+        }
+
         active_controller.set('RestaurantController');
 
         $scope.restaurants          = {};
@@ -224,35 +238,51 @@ angular.module('LoyalBonus', '')
                             return res;
                         })
                         .then(function () {
+                            console.log('yoyoo');
                             // this if else is here when user changes navigation of business.
-                            if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
-                                // search results
-                                return get_business_data
-                                    .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
-                                    .then(function (response) {
-                                        //console.log(response);
-                                        restaurantData = response[+$state.params.vertical];
-                                        $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
-                                        //console.log(restaurantData);
-                                    });
-                            } else if (+$state.params.vertical != 0) {
-                                /*console.log(position.lat);
-                                console.log(position.long);*/
-
-                                return get_business_data               //getting records
-                                    .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
-                                    .then(function (result) {
-                                        console.log(result);
-                                        restaurantData = result[+$state.params.vertical];
-                                        $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
-                                    });
-                            }
+                            var reachLast;
+                            $scope.listData = function () {
+                                if(reachLast == true) {
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                    $scope.noMoreItemsAvailable = true;
+                                    return false;
+                                }
+                                if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
+                                    // search results
+                                    return get_business_data
+                                        .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
+                                        .then(function (response) {
+                                            //console.log(response);
+                                            restaurantData = response[+$state.params.vertical];
+                                            if( record_length(result[+$state.params.vertical].length) ) {
+                                                console.log('working');
+                                                reachLast = true;
+                                            }
+                                            $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
+                                        });
+                                } else if (+$state.params.vertical != 0) {
+                                    return get_business_data               //getting records
+                                        .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
+                                        .then(function (result) {
+                                            /*console.log(result);
+                                            console.log(restaurantData);*/
+                                            restaurantData = result[+$state.params.vertical];
+                                            if( record_length(result[+$state.params.vertical].length) ) {
+                                                console.log('working');
+                                                reachLast = true;
+                                            }
+                                            $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
+                                        });
+                                }
+                            };
+                            $scope.listData();
                         })
                         .then(function () {
                             // pagination starts here
                             // $scope.loadmoreNgShow = true;
-                            var reachLast = false;
-                            $scope.listData = function () {
+                            // var reachLast = false;
+                            /*$scope.listData = function () {
+                                console.log('in listData');
                                 if (reachLast) {
                                     return false;
                                 }
@@ -261,6 +291,7 @@ angular.module('LoyalBonus', '')
                                     return get_business_data
                                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                                         .then(function (response) {
+                                            console.log('in search');
                                             if (response[+$state.params.vertical].length == restaurantData.length) {
                                                 // reachLast = true;
                                                 // $scope.noMoreItemsAvailable = true;   // this is for infinite scroll to stop paging
@@ -277,6 +308,7 @@ angular.module('LoyalBonus', '')
                                             console.log(res);
                                             console.log(restaurantData);
                                             if (res[+$state.params.vertical].length == restaurantData.length) {
+                                                record_length.current_length = res[+$state.params.vertical].length;
                                                 // reachLast = true;
                                                 // $scope.loadmoreNgShow = true;
                                                 // $scope.noMoreItemsAvailable = true;  // this is for infinite scroll to stop paging
@@ -289,7 +321,7 @@ angular.module('LoyalBonus', '')
                                         });
                                 }
 
-                            };
+                            };*/
 
                             /* ion-infinite-scroll start*/
                             
