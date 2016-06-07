@@ -9,7 +9,7 @@ angular.module('LoyalBonus', '')
 
 
         function getBusinessRecord(businessId, lat, long) {
-            loading.start();
+            //loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + pageIndex[businessId] + '&pageSize=5&CatId=' + businessId + '&SubCatId=&locId=&Keyword=&currlocationlatlong=' + lat + ',' + long, {})
                 .then(function (response) {
                     //console.log(response);
@@ -21,7 +21,7 @@ angular.module('LoyalBonus', '')
                         restaurantData[businessId].push(response.data.Data[i]);
                     }
 
-                    loading.stop();
+                    //loading.stop();
                     return restaurantData;
                 }, function errorCallback(response) {
                     //console.log(response);
@@ -405,6 +405,8 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
+
+        loading.stop();
 
     });
 
