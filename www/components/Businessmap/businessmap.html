@@ -13,7 +13,7 @@
             </label> -->
             <!-- {{gotoCurrentLocation()}} -->
             <a ng-click="goToMap(datadeal.BusinessID)" ng-model="gotoCurrentLocation" class="already-loyalbonus buttonListView {{ isAndroid == true ? '' : 'addclassiostext' }}"><img class="listviewmapBusiness" src="img/listviewmap.png">List View</a>
-            <ng-map zoom="11" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:80%" on-center-changed="setCenter()">
+            <ng-map zoom="4" radius="100" zoomOnDoubleClick:true data-tap-disabled="false" center="{{bc.center}}" style="width:100%;height:80%" on-center-changed="setCenter()">
                 <marker ng-repeat="(key, value) in bc.positions" position="{{value.positions}}" id="{{ key }}" on-click="bc.showCustomMarker($event)" animation="DROP"></marker>
                 <!-- <custom-marker id="foo" position="{{ bc.positions }}" on-click="bc.closeCustomMarker('yoyoy')">
                     <div class="newdiv"></div>
