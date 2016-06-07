@@ -112,7 +112,7 @@ angular.module('LoyalBonus')
 
 		$scope.reviewVar.giveRating = function (number) {
 			$scope.reviewVar.ratingStarNumber = number;
-			console.log($scope.reviewVar.ratingStarNumber);
+			console.log(number);
 			$scope.reviewVar.starsArr = [];
 			for (var i = 1; i < 6; i++) {
 				if (i > 0 && i <= number) {
