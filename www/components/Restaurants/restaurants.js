@@ -1,11 +1,12 @@
 angular.module('LoyalBonus', '')
     .factory('get_business_data', function (ajaxCall, $state, get_unique_elements, loading, $q) {
-        var heading_data = []
-            , restaurantData = []
-            , pageIndex = []
-            , searchKeyword = ''
-            , searchPageIndex = []
-            , searchData = []; //data is stored here categorywise
+        var heading_data  = []
+        , restaurantData  = []
+        , pageIndex       = []
+        , searchKeyword   = ''
+        , searchPageIndex = []
+        , searchData      = []
+        , removeSearchKeywordChecker; //data is stored here categorywise
 
 
         function getBusinessRecord(businessId, lat, long) {
@@ -97,7 +98,16 @@ angular.module('LoyalBonus', '')
             getBusinessRecord: getBusinessRecord,
             getSearchKeyword: function () { return searchKeyword; },
             setKewordSearch : function(input){ searchKeyword = input; console.log(searchKeyword); },
-            removeSearchKeyword: function () { searchKeyword = ''; }
+            removeSearchKeyword: function () {
+                removeSearchKeywordChecker = 1;
+                searchKeyword = '';
+            },
+            stop_removeSearchKeywordChecker : function() {
+                removeSearchKeywordChecker = 0;
+            },
+            get_removeSearchKeywordChecker : function() {
+                return removeSearchKeywordChecker;
+            }
         };
 
     })
@@ -112,11 +122,9 @@ angular.module('LoyalBonus', '')
         This function return true if current_length and previous_length matches
          */
         function record_length(current_length) {
-            console.log(previous_length);
             if(current_length == previous_length) {
                 return true;
             } else {
-                console.log('previous length assignment.');
                 previous_length = current_length;
             }
         }
@@ -238,26 +246,30 @@ angular.module('LoyalBonus', '')
                             return res;
                         })
                         .then(function () {
-                            console.log('yoyoo');
                             // this if else is here when user changes navigation of business.
-                            var reachLast;
+                            var reachLast, 
+                            function_start;
                             $scope.listData = function () {
                                 if(reachLast == true) {
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
                                     $scope.noMoreItemsAvailable = true;
                                     return false;
+                                } else if( function_start ) {
+                                    // This thing stop the function when it is already called.
+                                    return false;
                                 }
+                                function_start = true;
                                 if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
                                     // search results
                                     return get_business_data
                                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                                         .then(function (response) {
-                                            //console.log(response);
                                             restaurantData = response[+$state.params.vertical];
-                                            if( record_length(result[+$state.params.vertical].length) ) {
+                                            if( record_length(response[+$state.params.vertical].length) ) {
                                                 console.log('working');
                                                 reachLast = true;
                                             }
+                                            function_start = false;
                                             $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                         });
                                 } else if (+$state.params.vertical != 0) {
@@ -271,71 +283,12 @@ angular.module('LoyalBonus', '')
                                                 console.log('working');
                                                 reachLast = true;
                                             }
+                                            function_start = false;
                                             $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                         });
                                 }
                             };
                             $scope.listData();
-                        })
-                        .then(function () {
-                            // pagination starts here
-                            // $scope.loadmoreNgShow = true;
-                            // var reachLast = false;
-                            /*$scope.listData = function () {
-                                console.log('in listData');
-                                if (reachLast) {
-                                    return false;
-                                }
-                                // This is appending records
-                                if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
-                                    return get_business_data
-                                        .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
-                                        .then(function (response) {
-                                            console.log('in search');
-                                            if (response[+$state.params.vertical].length == restaurantData.length) {
-                                                // reachLast = true;
-                                                // $scope.noMoreItemsAvailable = true;   // this is for infinite scroll to stop paging
-                                                //$scope.loadmoreNgShow = false;
-                                            } else {
-                                                restaurantData = response[+$state.params.vertical];
-                                            }
-                                            $scope.$broadcast('scroll.infiniteScrollComplete');// this is for infinite scroll, to stop showing loading icon
-                                        });
-                                } else if (+$state.params.vertical != 0) {
-                                    return get_business_data               //appending records
-                                        .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
-                                        .then(function (res) { // this is appending records getting from ajax.
-                                            console.log(res);
-                                            console.log(restaurantData);
-                                            if (res[+$state.params.vertical].length == restaurantData.length) {
-                                                record_length.current_length = res[+$state.params.vertical].length;
-                                                // reachLast = true;
-                                                // $scope.loadmoreNgShow = true;
-                                                // $scope.noMoreItemsAvailable = true;  // this is for infinite scroll to stop paging
-                                                $scope.$broadcast('scroll.infiniteScrollComplete');
-                                            } else {
-                                                // restaurantData = res[+$state.params.vertical];
-                                                console.log('teste');
-                                            }
-                                            $scope.$broadcast('scroll.infiniteScrollComplete');// this is for infinite scroll, to stop showing loading icon
-                                        });
-                                }
-
-                            };*/
-
-                            /* ion-infinite-scroll start*/
-                            
-                            /*$scope.loadMore = function () {
-                                console.log('load more');
-                                $scope.listData();
-                                /*if ($scope.items.length == 99) {
-                                    $scope.noMoreItemsAvailable = true;
-                                }*
-                                // $scope.$broadcast('scroll.infiniteScrollComplete');
-                                
-                                // listData();
-                            };
-                            /* ion-infinite-scroll end*/
                         });
 
 
@@ -447,6 +400,16 @@ angular.module('LoyalBonus', '')
             console.log('restaurantData var');
             console.log(restaurantData);
         };
+
+        $scope.$watch(function(){
+           return get_business_data.get_removeSearchKeywordChecker();
+        }, function(NewValue, OldValue){
+            get_business_data.stop_removeSearchKeywordChecker();
+            if( NewValue == 1 ) {
+                $scope.Test();
+            }
+            console.log(NewValue + ' ' + OldValue);
+        });
 
     });
 
