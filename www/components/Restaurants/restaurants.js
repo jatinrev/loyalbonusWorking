@@ -252,7 +252,7 @@ angular.module('LoyalBonus', '')
                                 if (reachLast) {
                                     return false;
                                 }
-
+                                // This is appending records
                                 if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
                                     return get_business_data
                                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
@@ -359,7 +359,7 @@ angular.module('LoyalBonus', '')
         /* ion-infinite-scroll start*/
 
         $scope.noMoreItemsAvailable = false;
-
+        $scope.items = [];
         $scope.loadMore = function () {
             $scope.items.push({ id: $scope.items.length });
 
@@ -369,7 +369,7 @@ angular.module('LoyalBonus', '')
             $scope.$broadcast('scroll.infiniteScrollComplete');
         };
 
-        $scope.items = [];
+
 
 
         /* ion-infinite-scroll end*/
