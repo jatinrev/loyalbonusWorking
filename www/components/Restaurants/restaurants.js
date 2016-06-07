@@ -231,6 +231,7 @@ angular.module('LoyalBonus', '')
                                     .then(function (response) {
                                         //console.log(response);
                                         restaurantData = response[+$state.params.vertical];
+                                        $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                         //console.log(restaurantData);
                                     });
                             } else if (+$state.params.vertical != 0) {
@@ -241,6 +242,7 @@ angular.module('LoyalBonus', '')
                                     .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                     .then(function (result) {
                                         restaurantData = result[+$state.params.vertical];
+                                        $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                     });
                             }
                         })
@@ -259,9 +261,11 @@ angular.module('LoyalBonus', '')
                                         .then(function (response) {
                                             if (response[+$state.params.vertical].length == restaurantData.length) {
                                                 reachLast = true;
+                                                $scope.noMoreItemsAvailable = true;   // this is for infinite scroll to stop paging
                                                 //$scope.loadmoreNgShow = false;
                                             } else {
                                                 restaurantData = response[+$state.params.vertical];
+                                                $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                             }
                                         });
                                 } else if (+$state.params.vertical != 0) {
@@ -271,13 +275,30 @@ angular.module('LoyalBonus', '')
                                             if (res[+$state.params.vertical].length == restaurantData.length) {
                                                 reachLast = true;
                                                 $scope.loadmoreNgShow = true;
+                                                $scope.noMoreItemsAvailable = true;  // this is for infinite scroll to stop paging
                                             } else {
                                                 restaurantData = res[+$state.params.vertical];
+                                                console.log('teste');
+                                                $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                             }
                                         });
                                 }
 
                             };
+
+                            /* ion-infinite-scroll start*/
+                            $scope.noMoreItemsAvailable = false;
+                            $scope.loadMore = function () {
+                                console.log('load more');
+                                $scope.listData();
+                                /*if ($scope.items.length == 99) {
+                                    $scope.noMoreItemsAvailable = true;
+                                }*/
+                                // $scope.$broadcast('scroll.infiniteScrollComplete');
+                                
+                                // listData();
+                            };
+                            /* ion-infinite-scroll end*/
                         });
 
 
@@ -354,25 +375,6 @@ angular.module('LoyalBonus', '')
 
                 });
         });
-
-
-        /* ion-infinite-scroll start*/
-
-        $scope.noMoreItemsAvailable = false;
-        $scope.items = [];
-        $scope.loadMore = function () {
-            $scope.items.push({ id: $scope.items.length });
-
-            if ($scope.items.length == 99) {
-                $scope.noMoreItemsAvailable = true;
-            }
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-        };
-
-
-
-
-        /* ion-infinite-scroll end*/
 
 
         $scope.print_data = function () {
