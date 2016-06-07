@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-app-preferences": {
+            "PACKAGE_NAME": "com.loyalbonus.loyal"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
@@ -32,9 +35,6 @@
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         },
         "phonegap-plugin-barcodescanner": {
-            "PACKAGE_NAME": "com.loyalbonus.loyal"
-        },
-        "cordova-plugin-app-preferences": {
             "PACKAGE_NAME": "com.loyalbonus.loyal"
         }
     },

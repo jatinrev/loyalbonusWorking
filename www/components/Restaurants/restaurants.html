@@ -5,8 +5,6 @@
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
         </ul>
         <ion-view>
-            
-            
             <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ng-load="loading.start()" ui-sref="home.restaurants({vertical: value.CategoryID})"><!-- on-swipe-down="Test()" -->
                 <ion-refresher
                     class="row"
@@ -15,7 +13,8 @@
                 </ion-refresher>
                 <!-- <div class="row" style="margin-top: 10px; margin-bottom:10px;"></div> -->
                 <div class="row">
-                <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row {{ isAndroid == true ? '' : 'addclassios' }}"><img class="ion-mapclass" src="img/ion-map.png"> MapView </a></div>
+                    <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView row {{ isAndroid == true ? '' : 'addclassios' }}"><img class="ion-mapclass" src="img/ion-map.png"> MapView </a>
+                </div>
                 
                 <div ng-repeat="d in print_data()">
                     {{ restaurants.demo }}

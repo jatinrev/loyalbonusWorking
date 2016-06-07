@@ -3,11 +3,11 @@ var globaldata = {};
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
-  /*Temp Data*
+  /*Temp Data*/
     $rootScope.userDetails = {
-      userId       : 282,
-      Email        : 'dvijesh@revinfotech.com',
-      FullName     : 'dvijesh',
+      userId       : 263,// 282
+      Email        : 'jatin@revinfotech.com', //'dvijesh@revinfotech.com',
+      FullName     : 'Jatin Verma',           //'dvijesh',
       userLocation : '6.461573,3.479404',
       CreatedOn    : '2016-05-31T11:24:34.607'
     }
