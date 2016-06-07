@@ -96,6 +96,7 @@ angular.module('LoyalBonus')
     //console.log(input);
     get_business_data.setKewordSearch(input);
     $rootScope.showMe = false;
+    // backFunctionality.set_saveOnRefresh(); // it is applied as we want to save state when user searches at restaurant page.
     refreshTest.showrefreshtest($state.current.name, $state.params);
   };
 

@@ -97,17 +97,13 @@ angular.module('LoyalBonus', '')
             },
             getBusinessRecord: getBusinessRecord,
             getSearchKeyword: function () { return searchKeyword; },
-            setKewordSearch : function(input){ searchKeyword = input; console.log(searchKeyword); },
+            setKewordSearch : function(input){ searchKeyword = input; },
             removeSearchKeyword: function () {
                 removeSearchKeywordChecker = 1;
                 searchKeyword = '';
             },
-            stop_removeSearchKeywordChecker : function() {
-                removeSearchKeywordChecker = 0;
-            },
-            get_removeSearchKeywordChecker : function() {
-                return removeSearchKeywordChecker;
-            }
+            stop_removeSearchKeywordChecker : function() { removeSearchKeywordChecker = 0; },
+            get_removeSearchKeywordChecker  : function() { return removeSearchKeywordChecker; }
         };
 
     })
@@ -168,8 +164,8 @@ angular.module('LoyalBonus', '')
             get_business_data
                 .getheading()
                 .then(function (res) {
-                    var go = 0
-                        , counter = [];
+                    var go    = 0
+                    , counter = [];
                     for (i in res) {
                         counter.push({ categoryID: +res[i].CategoryID });
                         if (+res[i].CategoryID == +$state.params.vertical) {
@@ -339,7 +335,7 @@ angular.module('LoyalBonus', '')
                     };*/
 
                     $scope.dialNumber = function(number) {
-                    window.open('tel:' + number, '_system');
+                        window.open('tel:' + number, '_system');
                     }
 
 
@@ -408,7 +404,6 @@ angular.module('LoyalBonus', '')
             if( NewValue == 1 ) {
                 $scope.Test();
             }
-            console.log(NewValue + ' ' + OldValue);
         });
 
     });

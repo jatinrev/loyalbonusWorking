@@ -220,28 +220,36 @@ angular.module('LoyalBonus.services', [])
 		};
 	})
 	.factory('backFunctionality', function ($rootScope, $state, saveData, loading) {
-		var previous_page = [];
-		var array_key = '';
-		var setDontSave = 0;  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
+		var previous_page = []
+		, array_key       = ''
+		, setDontSave     = 0  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
+		, saveOnRefresh   = 0;
 		$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
 			loading.start();
-			if (typeof (fromState.name) != 'undefined' && typeof (toState.name) != 'undefined' && fromState.name == toState.name) {
-				/*
-				if(Object.is(fromParams, toParams)) {
-					console.log('object is same');
-				}
-				console.log('from and to are same.');*/
-			} else if (setDontSave == 1) {
+			if (typeof (fromState.name) != 'undefined' && typeof (toState.name) != 'undefined' && (fromState.name == toState.name || Object.is(fromParams, toParams)) ) {
+				// nothing is done here because state is same or params are also same.
+				/**
+					If you dont want to add state in the back functionality add a condition here in this if.
+				 */
+			} else if ( setDontSave == 1 && saveOnRefresh == 0 ) {
+				console.log(fromState);
+				console.log('setDontSave');
 				setDontSave = 0;
 			} else if (typeof (fromState.name) != 'undefined' && fromState.name != '') {
 				previous_page.push({
 					fromState: fromState.name,
 					fromParams: fromParams
 				});
-				/*console.log(previous_page);
-				console.log(toState);
-				console.log(fromState);*/
+				saveOnRefresh = 0; // in case saveOnRefresh is set to (1)
+				
 			}
+			console.log('back functionality start');
+			console.log(fromParams);
+			console.log(fromState);
+			console.log(toParams);
+			console.log(toState);
+			console.log(previous_page);
+			console.log('back functionality stop');
 			loading.stop();
 			/*******Jali kaama lai(extra)******/
 			saveData.remove('kaseyDinnerBusinessName');
@@ -249,13 +257,19 @@ angular.module('LoyalBonus.services', [])
 
 		return {
 			one_step_back : function () {
-				setDontSave = 1
+				setDontSave = 1;
 				var back = previous_page.slice(-1)[0];
 				previous_page.pop();
 				$state.go(back.fromState, back.fromParams);
 			},
-			setDontSave   : function() {
-				setDontSave = 1;
+			setDontSave       : function() {
+				// setDontSave       = 1;
+			},
+			set_saveOnRefresh : function() {
+				// saveOnRefresh     = 1;
+			},
+			setNewDontSave    : function() {
+				setDontSave       = 1;
 			}
 		};
 	})
@@ -375,6 +389,7 @@ angular.module('LoyalBonus.services', [])
 
 	.factory('refreshTest', function ($state, backFunctionality) {
 		function showrefreshtest ($statename,$stateparam) {
+			console.log('refreshing');
 			backFunctionality.setDontSave();
 			$state.go($statename, $stateparam, { reload: true });
 			return '';
