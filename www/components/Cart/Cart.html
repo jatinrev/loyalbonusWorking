@@ -1,0 +1,63 @@
+<div id="Shoppingcart">
+    <ion-view>
+        <ion-content>
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
+            </ion-refresher>
+            <div id="logo">
+                <img src="img/kaseydiner_distr.jpg">
+            </div>
+            <div class="slider image">
+
+                <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                    ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+
+
+                <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+                <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+
+            </div>
+            <div class="col center">
+                <span class="shoppingdesciptionnew"> Gramercy Park Queen Bed in Weathered Gray </span>
+            </div>
+
+            <div class="col center">
+                <span class="shoppingdesciptioncolor33cd5f"> ₦ 586923.75</span>
+            </div>
+            <div class="col center">
+                <div class="col-50 center">
+                    <span class="Cartloyality"> 25% Loyality Discount</span>
+                </div>
+                <div class="col-50 center">
+                    <span class="cartredcolornumber">₦ 782565.00</span>
+                </div>
+            </div>
+            <div class="col center">
+                <button class="button btninfo"> Add To Cart</button>
+            </div>
+            <div class="col padding margintop20">
+                <span class="cartdescripttion">
+                  <h4 class="titlecart">Description</h4>
+                 <p class="textcart">
+                 Add a touch of vintage to your home with the Cottage Retreat sleigh bed. This bed
+                 features a neutral cream paint that helps brighten up the room and give it a natural 
+                 glow. Turned bun feet Bead board panels Set includes: One (1) headboard, one (1)
+                 footboard, two (2) rails Materials: Wood, metal Finish: Wood Dimensions: Twin: 51
+                 inches high x 41.5 inches wide x 86.5 inches long Full: 51 inches high x 56.5 inches
+                 wide x 86.5 inches long</p>
+              </span>
+            </div>
+            <div class="col padding">
+                <span class="storecart col">
+                 <h4 class="titlecart">Store Policy</h4>
+              </span>
+            </div>
+            <div class="col center margintop pull-left">
+                <img src="img/shipping_detail.png">
+            </div>
+
+        </ion-content>
+        <ion-footer-bar class="footer-bar-custom bar-positive">
+            <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+        </ion-footer-bar>
+    </ion-view>
+</div>

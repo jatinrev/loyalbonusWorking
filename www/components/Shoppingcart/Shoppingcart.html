@@ -6,11 +6,61 @@
             <div id="logo">
                 <img src="img/kaseydiner_distr.jpg">
             </div>
+            <div class="row">
+                <p class="row fontsize">Shopping Cart</p>
+            </div>
+            <div class="padding">
+                <div class="brder">
+                    <div class="row">
+                        <div class="col-40"><img id="shoppingimg" src="img/kaseydiner_distr.jpg"></div>
+                        <div class="col-60">
+                            <span class="shoppingdesciption"> Gramercy Park Queen Bed in Weathered Gray </span>
+                            <label class="shoppingsmall">One (1) headboard, one</label>
+                            <div class="row">
+                                <div class="col-50">
+                                    <span class="shoppingqty"> QTY: </span>
+                                    <input type="text" class="qty" name="qty" placeholder="1">
+                                </div>
+                                <div class="col-50">
+                                    <button class="button offersshopping">2 Offers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bordertop">
+                        <div class="center">
+                            <ion-item class="wth-border item ng-binding color33cd5f"> ₦ 586923.75</ion-item>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 col-offset-10">
+                                <span class="shoppingloyality"> 25% Loyality Discount</span>
+                            </div>
+                            <div class="col-50">
+
+                                <ion-item class="redcolor">₦</ion-item>
+
+                                <ion-item class="redcolornumber">782565.00</ion-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bordertop">
+                        <div class="row">
+                            <div class="col-50 col-offset-10">
+                                <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
+                                <span class="subtotal col pull-left  margintop center"> ₦ 586923.75</label>
+                            </div>
+                            <div class="col-50">
+                            <button class="button checkoutbutton margintop15">Checkout</button>
+                            <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
-            <!-- ng-show="userPresent() == 1 ? true : false" -->
-            <!-- <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div> -->
+            <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+
         </ion-footer-bar>
     </ion-view>
 </div>

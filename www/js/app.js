@@ -1,6 +1,6 @@
 var globaldata = {};
 
-angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap'])
+angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
   /*Temp Data* /
@@ -242,6 +242,29 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
           }
         }
       })
+      .state("home.product", {
+        url   : "product/",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/Product/product.html",
+            controller   : "ProductController",
+            controllerAs : "pc"
+          }
+        }
+      })
+      .state("home.cart", {
+        url   : "cart/",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/Cart/cart.html",
+            controller   : "CartController",
+            controllerAs : "cc"
+          }
+        }
+      })
+
       // .state("home.deal.map", {
       //   url: "map/",
       //   views: {

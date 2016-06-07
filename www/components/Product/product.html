@@ -1,0 +1,87 @@
+<div id="Product">
+    <ion-view>
+        <ion-content>
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
+            </ion-refresher>
+            <div id="logo">
+                <img id="productimages" src="img/kaseydiner_distr.jpg">
+            </div>
+            <div class="padding">
+                <p class="row fontsize">Products</p>
+            </div>
+            <div class="padding">
+                <hr>
+            </div>
+            <div id="logo">
+                <img id="productimages" class="margintop20" src="img/kaseydiner_distr.jpg">
+            </div>
+            <div class="row">
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <ion-item class="colorblack"> ₦ 782565.00</ion-item>
+                    </ion-list>
+                </div>
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <div class="list">
+                            <ion-item class="colorblack alignright "> Loyality Discount</ion-item>
+                            <ion-item class="color33cd5f"> ₦ 586923.75</ion-item>
+                        </div>
+                    </ion-list>
+                </div>
+            </div>
+            <div class="row">
+                <ion-item class="color42ae9d"> Gramercy Park Queen Bed in Weathered Gray
+                </ion-item>
+            </div>
+            <div id="logo">
+                <img id="productimages" class="margintop20" src="img/kaseydiner_distr.jpg">
+            </div>
+            <div class="row">
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <ion-item class="colorblack"> ₦ 782565.00</ion-item>
+                    </ion-list>
+                </div>
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <div class="list">
+                            <ion-item class="colorblack alignright "> Loyality Discount</ion-item>
+                            <ion-item class="color33cd5f"> ₦ 586923.75</ion-item>
+                        </div>
+                    </ion-list>
+                </div>
+            </div>
+            <div class="row">
+                <ion-item class="color42ae9d">Dinner Table
+                </ion-item>
+            </div>
+            <div id="logo">
+                <img id="productimages" class="margintop20" src="img/kaseydiner_distr.jpg">
+            </div>
+            <div class="row">
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <ion-item class="colorblack"> ₦ 782565.00</ion-item>
+                    </ion-list>
+                </div>
+                <div class="col-50">
+                    <ion-list class="disable-user-behavior">
+                        <div class="list">
+                            <ion-item class="colorblack alignright "> Loyality Discount</ion-item>
+                            <ion-item class="color33cd5f"> ₦ 586923.75</ion-item>
+                        </div>
+                    </ion-list>
+                </div>
+            </div>
+            <div class="row">
+                <ion-item class="color42ae9d"> Gramercy Park Queen Bed in Weathered Gray
+                </ion-item>
+            </div>
+
+        </ion-content>
+        <ion-footer-bar class="footer-bar-custom bar-positive">
+            <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+        </ion-footer-bar>
+    </ion-view>
+</div>
