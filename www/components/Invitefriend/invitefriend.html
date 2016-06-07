@@ -32,14 +32,14 @@
                 <div class="padding">
                     <!--  {{datadeal}} -->
                     <label class="item item-input new_margin">
-                        <input type="text" class="emailaddresses" ng-model="datadeal.emailaddresses" name="emailaddresses" ng-minlength="3" ng-maxlength="40"
+                        <input type="email" class="emailaddresses" ng-model="datadeal.emailaddresses" name="email" ng-minlength="3" ng-maxlength="40"
                         placeholder="Input Emails">
                     </label>
                     <button type="submit" ng-disabled="frminvite.$invalid" ng-click="invitelist()" class="pos_absolute bkgnd_image"></button>
                     <div role="alert">
-                        <span class="error" ng-show="frminvite.emailaddresses.$dirty && frminvite.emailaddresses.$error.required">Email Is Required!</span>
-                        <span class="error" ng-show="frminvite.emailaddresses.$dirty && frminvite.emailaddresses.$error.minlength">Email Is Too Short!</span>
-                        <span class="error" ng-show="frminvite.emailaddresses.$dirty && frminvite.emailaddresses.$error.maxlength">Email Is Too Long!</span>
+                        <span class="error" ng-show="frminvite.email.$dirty && frminvite.email.$error.required">Email Is Required!</span>
+                        
+                         <span class="error" ng-show="frminvite.email.$dirty && frminvite.email.$error.email">Not an Email!</span>
                     </div>
 
                     <span class="wd70">Use comma to seperate multiple emails</span>
