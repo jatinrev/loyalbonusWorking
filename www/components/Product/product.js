@@ -1,22 +1,10 @@
 angular.module('LoyalBonus')
     .factory('productFactory', function (ajaxCall,$rootScope,loading) {
-
-        function printProduct(BusinessId) {
-            console.log($rootScope.userDetails.userId);
-
+        function printProduct(BusinessId,pageIndex) {
             return ajaxCall
-                .post('webapi/ProductList/GetProductList',
-                {
-                    BusinessId: BusinessId, 
-                    pageIndex:  0,
-                    pageSize:5,
-                    userId : $rootScope.userDetails.userId
-                })
+                .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
                 .then(function (responseResult) {
-                    console.log(responseResult);
-                    //return res.data.Data;
-
-                    return responseResult.data.Data;
+                    return JSON.parse(responseResult.data.Data);
                 });
         }
         return {
@@ -24,31 +12,35 @@ angular.module('LoyalBonus')
         };
     })
     .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform,productFactory) {
-
         $scope.datadeal = {};
 
+         
+        
         $scope.state_on = function () {
-            //console.log($state.params.BusinessId);
+            console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
-        $scope.state_on();
 
-       
+        $scope.state_on();
 
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
         $scope.isAndroid = ionic.Platform.isAndroid();
+        
         active_controller.set('ProductController');
+
+        /* ------------started functionality productFactory-----------*/
 
         $scope.invitelistnew = function () {
             productFactory
-                .printProduct($state.params.BusinessId)
+                .printProduct($scope.state_on(), $scope.pageIndex)
                 .then(function (result) {
                     console.log(result);
-                    //showPopup();
+                    $scope.datadeal = result;
+                    // console.log($scope.datadeal);
                 });
         }
-
-         $scope.invitelistnew();
+        $scope.invitelistnew();
+        /* ------------Ended functionality productFactory------------*/
     });

@@ -359,6 +359,11 @@ angular.module('LoyalBonus')
         });
         /**** End : scanBarcode ****/
 
+        $scope.open_detail_product = function (BusinessId) {
+            console.log($scope.open_detail_page);
+            $state.go("home.product", { BusinessId: BusinessId });
+        };
+
     });
 
 
