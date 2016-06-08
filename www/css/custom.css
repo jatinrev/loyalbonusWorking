@@ -33,16 +33,15 @@
 /**
  * all margins come here
  */
-.margin-top-10 {
-	margin-top:15px;
-}
-.margin-top-minus1 {
-	margin-top: -1px !important;
-}
+.margin-top-minus1 { margin-top: -1px !important; }
+
 .margin-right-5 { margin-right: 5px; }
-#restaurants .margin-top-10 {
-	margin-top:15px;
-}
+.margin-top-10 { margin-top:15px; }
+.margin-top-15 { margin-top: 15px; }
+
+
+
+#restaurants .margin-top-10 { margin-top:15px; }
 
 
 /**Border**/
@@ -92,8 +91,8 @@
 
 /**restaurants.html**/
 .loadingButton {
-	background-color: #cccccc;
-     font-size: 20px;
+	/*background-color: #cccccc;*/
+    font-size: 20px;
     opacity: 0.56;
     padding-bottom: 15px;
     padding-top: 15px;
@@ -166,6 +165,7 @@
 }
 
 /****Review page***/
+
 #Review #logo { position: relative; }
 #Review #logo .reviews-star {
 	bottom: 2px;
@@ -175,6 +175,7 @@
 #Review .highlightThis.activated .title {
 	font-weight: bold;
 }
+
 
 #home img.leftsidelogo {
 padding: 5px;

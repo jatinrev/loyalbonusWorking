@@ -1,5 +1,6 @@
 angular.module('LoyalBonus')
     .factory('productFactory', function (ajaxCall,$rootScope,loading) {
+
         function printProduct(BusinessId,pageIndex) {
             return ajaxCall
                 .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
@@ -11,7 +12,10 @@ angular.module('LoyalBonus')
             printProduct: printProduct
         };
     })
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform,productFactory) {
+
+    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory) {
+
+
         $scope.datadeal = {};
 
          
