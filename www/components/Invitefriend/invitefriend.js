@@ -3,16 +3,9 @@ angular.module('LoyalBonus')
     .factory('Friendinvite', function (ajaxCall, loading, $rootScope) {
 
         function invite(EmailAddresses, EmailContent, userId) {
-        	/*console.log(EmailAddresses);
-        	console.log(EmailContent);*/
-           
             console.log($rootScope.userDetails.userId);
-
-
             loading.start();
-            
             return ajaxCall
-
                 .post('webapi/Invitation/SendInvitation',
                 {
                     EmailAddresses: EmailAddresses,
@@ -20,43 +13,34 @@ angular.module('LoyalBonus')
                     userId: $rootScope.userDetails.userId
                 }).then(function (result) {
                     console.log(result);
-                    
                     /*if(result.data.StatusMessage != null) {
                         return result.data;
                     } else {
                         
                     }*/
-
                     loading.stop();
                     return 1;
                 });
-
-
         }
         return {
 
             invite: invite
         };
-
     })
     .controller('InviteController', function ($scope, $state, showRating, $ionicPopup, $timeout, reviewFactory, showRating, $rootScope, backFunctionality, refreshTest, active_controller, Friendinvite) {
-
         active_controller.set('InviteController');
-
         console.log('have reached');
         $scope.datadeal = {};
 		/*$scope.emailaddresses ;
 		$scope.emailcontent;
 		$scope.Userid;*/
-
         function showPopup(msg) {
             $scope.data = {}
-
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
                 title: 'Success',
-                template: 'SuccessFully Send Email',
+                template: 'The mail has been sent successfully.',
                 subTitle: msg,
                 scope: $scope,
                 buttons: [
@@ -85,8 +69,6 @@ angular.module('LoyalBonus')
             }
             return '';
         }
-
-        
         // Start : date calculation for showing discount offer.
         var createdondate = new Date($rootScope.userDetails.CreatedOn)
         , todayDate       = new Date();
@@ -98,8 +80,6 @@ angular.module('LoyalBonus')
             $scope.Show_discount_offer = true;
         }
         //   End : date calculation for showing discount offer.
-
-         
         $scope.invitelist = function () {
          $scope.show_hide_invite_submit = true;  
             Friendinvite
@@ -110,7 +90,7 @@ angular.module('LoyalBonus')
                     //showPopup();
                 });
         }
-        //$scope.;
+       
 
 
     });
