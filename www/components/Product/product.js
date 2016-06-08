@@ -3,7 +3,7 @@ angular.module('LoyalBonus')
 
         function printProduct(BusinessId) {
             console.log($rootScope.userDetails.userId);
-            // loading.start();
+
             return ajaxCall
                 .post('webapi/ProductList/GetProductList',
                 {
@@ -15,7 +15,7 @@ angular.module('LoyalBonus')
                 .then(function (responseResult) {
                     console.log(responseResult);
                     //return res.data.Data;
-                    // loading.stop();
+
                     return responseResult.data.Data;
                 });
         }
@@ -28,9 +28,10 @@ angular.module('LoyalBonus')
         $scope.datadeal = {};
 
         $scope.state_on = function () {
-            console.log($state.params.BusinessId);
+            //console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
+        $scope.state_on();
 
        
 
@@ -40,16 +41,14 @@ angular.module('LoyalBonus')
         $scope.isAndroid = ionic.Platform.isAndroid();
         active_controller.set('ProductController');
 
-
-
-        $scope.invitelist = function () {
+        $scope.invitelistnew = function () {
             productFactory
-                .printProduct($scope.datadeal.BusinessId)
+                .printProduct($state.params.BusinessId)
                 .then(function (result) {
                     console.log(result);
                     //showPopup();
                 });
         }
 
-        $scope.invitelist();
+         $scope.invitelistnew();
     });

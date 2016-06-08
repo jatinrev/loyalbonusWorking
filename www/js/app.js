@@ -3,7 +3,7 @@ var globaldata = {};
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
-  /*Temp Data*/
+  /*Temp Data* /
     $rootScope.userDetails = {
       userId       : 263,// 282
       Email        : 'jatin@revinfotech.com', //'dvijesh@revinfotech.com',
@@ -264,6 +264,74 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
           }
         }
       })
+
+      // .state("home.deal.map", {
+      //   url: "map/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/map/map.html",
+      //       controller: "MapController",
+      //       controllerAs: "mc"
+      //     }
+      //   }
+      // })
+      // .state("home.deal.materialise", {
+      //   url: "materialise/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/materialise/materialise.html",
+      //       controller: "MaterialiseController",
+      //       controllerAs: "mc"
+      //     }
+      //   }
+      // })
+      // .state("home.deal.materialise.step1", {
+      //   url: "step1/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/step1/step1.html",
+      //     }
+      //   }
+      // })
+      // .state("home.deal.materialise.step2", {
+      //   url: "step2/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/step2/step2.html",
+      //     }
+      //   }
+      // })
+      // .state("home.deal.review", {
+      //   url: "review/:id",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/review/review.html",
+      //       controller: "ReviewController",
+      //       controllerAs: "rc"
+      //     }
+      //   }
+      // })
+      // 
+      // .state("home.account", {
+      //   url: "account/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/account/account.html",
+      //       controller: "AccountController",
+      //       controllerAs: "ac"
+      //     }
+      //   }
+      // })
+      // .state("home.membership", {
+      //   url: "membership/",
+      //   views: {
+      //     "body": {
+      //       templateUrl: "components/membership/membership.html",
+      //       controller: "MemberController",
+      //       controllerAs: "mc"
+      //     }
+      //   }
+      // });
     }
 ]);
 // .run(function ($http) {
