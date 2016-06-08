@@ -287,10 +287,7 @@ angular.module('LoyalBonus', '')
                             $scope.listData();
                         });
 
-
-
-
-
+                    /*******  Bonus popup started functionality******/
 
                     $scope.showPopup = function (msg) {
                         $scope.data = {}
@@ -312,32 +309,14 @@ angular.module('LoyalBonus', '')
                             myPopup.close(); //close the popup after 3 seconds for some reason
                         }, 3000);
                     };
+                    /******* Bonus popup Ended functionality******/
 
-                   /* $scope.callPopup = function (msg) {
-                        $scope.data = {}
-
-                        
-                        var myPopup = $ionicPopup.show({
-                            
-                            title: '<i class="ion-ios-telephone"> Call Now',
-                            subTitle: msg,
-                            scope: $scope,
-                            buttons: [
-                                { text: 'Cancel', type: 'button-positive' }
-                            ]
-                        });
-                        myPopup.then(function (res) {
-                            console.log('Tapped!', res);
-                        });
-                        $timeout(function () {
-                            myPopup.close(); 
-                        }, 30000);
-                    };*/
-
+                /*******  Call To make started functionality******/
                     $scope.dialNumber = function(number) {
                         window.open('tel:' + number, '_system');
                     }
 
+                /*******  Call To make ended functionality******/
 
                     /*******Search functionality******/
                     $scope.restaurants.search = function (keyword) {

@@ -243,6 +243,7 @@ angular.module('LoyalBonus.services', [])
 				saveOnRefresh = 0; // in case saveOnRefresh is set to (1)
 				
 			}
+			/*
 			console.log('back functionality start');
 			console.log(fromParams);
 			console.log(fromState);

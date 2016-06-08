@@ -77,9 +77,9 @@
                 <div class="newrow">Address not available</div>
             </div>
 
-            <!-- <ion-list class=center>
+            <ion-list class=center>
                 <p class="row margin-top-10">See Store to purchase item(s)</p>
-                <button class="button button-balanced margin-bottom-30">Enter Store</button>
+                <button class="button button-balanced margin-bottom-30" ng-load="loading.start()" ui-sref="home.product(BusinessId)">Enter Store</button>
 
             </ion-list>
 
@@ -108,7 +108,7 @@
             <div class="col-100">
                 <ion-item class="wth-border item ng-binding color42ae9d"> Gramercy Park Queen Bed in Weathered Gray
                 </ion-item>
-            </div> -->
+            </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
