@@ -3,7 +3,6 @@ angular.module('LoyalBonus')
 
         function printProduct(BusinessId) {
             console.log($rootScope.userDetails.userId);
-
             return ajaxCall
                 .post('webapi/ProductList/GetProductList',
                 {
@@ -23,7 +22,7 @@ angular.module('LoyalBonus')
             printProduct: printProduct
         };
     })
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform,productFactory) {
+    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory) {
 
         $scope.datadeal = {};
 
