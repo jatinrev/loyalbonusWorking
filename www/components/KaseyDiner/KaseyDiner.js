@@ -352,12 +352,7 @@ angular.module('LoyalBonus')
                         {
                                 $scope.showAlertscanner('Your Scan Cant be completed');
                         });
-                        
-
                         return 0;
-
-
-                        
                     });
                 
             };
