@@ -101,7 +101,7 @@ angular.module('LoyalBonus')
   };
 
 
-$scope.home_var.kaseyDinnerHeading = {
+  $scope.home_var.kaseyDinnerHeading = {
     text : function () {
       var KaseyDinnerBusinessName = saveData.get('kaseyDinnerBusinessName');
       if( typeof(KaseyDinnerBusinessName) != 'undefined' && KaseyDinnerBusinessName != '' ) {
