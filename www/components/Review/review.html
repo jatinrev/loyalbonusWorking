@@ -57,12 +57,13 @@
                     <span class="title">Cons</span>
                     <p class="color-reviewgrey col">{{ value.Cons }}</p>
                 </div>
+                <div class="loadingButton" ng-click="reviewVar.loadMore()">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
 
             </div>
         </ion-content>
-        <ion-footer-bar ng-show="reviewVar.ShowCommentShow == true ? false : true" class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
+        <!--<ion-footer-bar ng-show="reviewVar.ShowCommentShow == true ? false : true" class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
             <div class="title title-center">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
-        </ion-footer-bar>
+        </ion-footer-bar>-->
         <!-- <div class="bar bar-footer bar-light highlightThis border-top-0" ng-click="reviewVar.loadMore()">
                     <div class="title">{{ stopLoading == false ? 'No more records' : 'Load more..' }}</div>
                 </div> -->

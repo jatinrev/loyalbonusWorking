@@ -18,8 +18,7 @@ angular.module('LoyalBonus')
 					UserId: userId,
 					Pros: pros,
 					Cons: cons
-				}
-				)
+				})
 				.then(function (prosConsResult) {
 					//console.log('prosConsResult');
 					//console.log(prosConsResult);
@@ -73,10 +72,8 @@ angular.module('LoyalBonus')
 		$scope.reviewVar.writeReveiwShow = false;
 		$scope.reviewVar.ShowCommentShow = false;
 		$scope.reviewVar.enableReveiw = function () {
-
 			$scope.reviewVar.writeReveiwShow = $scope.reviewVar.writeReveiwShow == false ? true : false;
 			$scope.reviewVar.ShowCommentShow = $scope.reviewVar.ShowCommentShow == false ? true : false;
-
 		};
 
 
@@ -143,7 +140,7 @@ angular.module('LoyalBonus')
             var myPopup = $ionicPopup.show({
 				/* template:'<i class="icon-gift"></i>',*/
                 title: 'Success',
-                template:'SuccessFully Enter Data',
+                template:'SuccessFully Data Entered',
                 subTitle: msg,
                 scope: $scope,
                 buttons: [
@@ -170,10 +167,8 @@ angular.module('LoyalBonus')
 				, $rootScope.userDetails.userId
 				)
 				.then(function (res) {
-					console.log(res);
 					$scope.reviewVar.ratingMsg = true;
 					$scope.stopLoading = true;
-					
 					$scope.reviewVar.loadMore();
 				});
 
