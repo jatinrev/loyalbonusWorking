@@ -3,7 +3,7 @@ angular.module('LoyalBonus')
 
         function printProduct(BusinessId) {
             console.log($rootScope.userDetails.userId);
-            loading.start();
+            //loading.start();
             return ajaxCall
                 .post('webapi/ProductList/GetProductList',
                 {
@@ -16,7 +16,7 @@ angular.module('LoyalBonus')
                 .then(function (responseResult) {
                     console.log(responseResult);
                     //return res.data.Data;
-                    loading.stop();
+                   // loading.stop();
                     return responseResult.data.Data;
                 });
         }
@@ -43,7 +43,7 @@ angular.module('LoyalBonus')
 
 
 
-        $scope.invitelist = function () {
+        $scope.invitelistnew = function () {
             productFactory
                 .printProduct($scope.datadeal.BusinessId)
                 .then(function (result) {
@@ -52,5 +52,5 @@ angular.module('LoyalBonus')
                 });
         }
 
-        // $scope.invitelist();
+         $scope.invitelistnew();
     });
