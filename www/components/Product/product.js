@@ -3,7 +3,7 @@ angular.module('LoyalBonus')
 
         function printProduct(BusinessId) {
             console.log($rootScope.userDetails.userId);
-            // loading.start();
+            loading.start();
             return ajaxCall
                 .post('webapi/ProductList/GetProductList',
                 {
@@ -16,7 +16,7 @@ angular.module('LoyalBonus')
                 .then(function (responseResult) {
                     console.log(responseResult);
                     //return res.data.Data;
-                    // loading.stop();
+                    loading.stop();
                     return responseResult.data.Data;
                 });
         }
@@ -32,7 +32,7 @@ angular.module('LoyalBonus')
             console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
-        $scope.state_on();
+
        
 
         $scope.Test = function () {
