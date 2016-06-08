@@ -32,7 +32,7 @@ angular.module('LoyalBonus')
             console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
-        $scope.state_on();
+
        
 
         $scope.Test = function () {

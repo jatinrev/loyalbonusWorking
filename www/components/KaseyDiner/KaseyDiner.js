@@ -260,6 +260,7 @@ angular.module('LoyalBonus')
                     console.log(res);
                     $scope.datadeal = res.data.Data[0];
                     saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
+                    loading.stop();
                     //console.log($scope.datadeal);
                     return $scope.datadeal;
                 }).then(function (res) {
