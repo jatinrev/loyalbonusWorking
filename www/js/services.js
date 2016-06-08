@@ -250,7 +250,7 @@ angular.module('LoyalBonus.services', [])
 			console.log(toParams);
 			console.log(toState);
 			console.log(previous_page);
-			console.log('back functionality stop');
+			console.log('back functionality stop');*/
 			loading.stop();
 			/*******Jali kaama lai(extra)******/
 			saveData.remove('kaseyDinnerBusinessName');
