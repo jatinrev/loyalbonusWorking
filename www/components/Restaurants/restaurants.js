@@ -10,7 +10,7 @@ angular.module('LoyalBonus', '')
 
 
         function getBusinessRecord(businessId, lat, long) {
-            loading.start();
+            //loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + pageIndex[businessId] + '&pageSize=5&CatId=' + businessId + '&SubCatId=&locId=&Keyword=&currlocationlatlong=' + lat + ',' + long, {})
                 .then(function (response) {
                     //console.log(response);
@@ -105,7 +105,7 @@ angular.module('LoyalBonus', '')
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
         active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
 
-        loading.start();
+        //loading.start();
 
         var restaurantData = []
         , previous_length;
@@ -262,6 +262,7 @@ angular.module('LoyalBonus', '')
                                             }
                                             function_start = false;
                                             $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
+                                            
                                         });
                                 } else if (+$state.params.vertical != 0) {
                                     return get_business_data               //getting records
