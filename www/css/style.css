@@ -2,7 +2,7 @@
 body
 {
     height:100%;
-    
+
 }
 .new_margin
 {
@@ -23,7 +23,7 @@ img{
     text-align: center;
         margin-top: 15px;
         margin-bottom: 5px;
-       
+
 }
 #Businessmap .buttonListView
 {
@@ -72,7 +72,7 @@ img{
         .scroll{
             height:100%;
         }
-        
+
         .tabbed-slidebox .tsb-icons:after{
             display:none;
         }
@@ -89,31 +89,31 @@ img{
      background: url('../img/signup1.jpg') no-repeat center center fixed; ;
    background-size: cover;
    -webkit-background-size: cover;
-   -moz-background-size: cover; 
+   -moz-background-size: cover;
     /*min-height: 110px;*/
     background-color: unset;
     display: block;
     height:100%;
     width:100%;
-    
+
 }
 .item
 {
     background-color: #beaf98;
     opacity: 0.8;
     border: 1px solid #beaf98;
-    
-    
+
+
 }
 #Signin .scroll-content {
        top: 0px;
     padding-top: 25px;
-    
+
 }
 #Signup .scroll-content {
        top: 0px;
     padding-top: 25px;
-    
+
 }
 .loyalbonus_cap
 {
@@ -122,7 +122,7 @@ img{
 .scroll-content
 {
     top: 100px;
-   
+
     z-index: 98;
 }
 .card, .list-inset
@@ -135,7 +135,7 @@ img{
        color: #fff;
     text-decoration: none;
         font-size: 15px;
-    
+
 }
 .item-input
 {
@@ -241,14 +241,14 @@ map {
 
 #restaurants .scroll-content
 {
-     top:72px; 
+     top:72px;
    /*  top:72px; */
 }
 .rttitle
 {
   font-size: 25px;
   color:#f5f5f5;
-  
+
   }
   .rttitleEmail
   {
@@ -266,7 +266,7 @@ map {
 #restaurants .rtblock
 {
     background-color:#000;
-    
+
 }
 #restaurants .tabs
 {
@@ -284,7 +284,7 @@ map {
     width:100%;
    /*  position: relative;
    top: -35px; */
-    
+
 }
 p.stake-house
 {
@@ -299,7 +299,7 @@ p.stake-house
     overflow: hidden;
     max-width:110px;
     text-overflow: ellipsis;
-    white-space: nowrap; */ 
+    white-space: nowrap; */
     float: left;
     position: absolute;
     top: -30px;
@@ -386,7 +386,7 @@ p.stake-house
     position: absolute;
     /*top: 21%;*/
     right:0px;
-            
+
 }
 #kaseydiner .reviews-star
 {
@@ -394,7 +394,7 @@ p.stake-house
     position: absolute;
    bottom: 11px;
    right:0px;
-            
+
 }
 
 #restaurants .rat-star
@@ -423,7 +423,7 @@ p.stake-house
     width: 100%;
     display: inline-block;
 }
-.button.button-clear.icon.ion-navicon-round:before 
+.button.button-clear.icon.ion-navicon-round:before
 {
     color:#fff;
 }
@@ -460,7 +460,7 @@ p.stake-house
         font-size: 23px;
 }
  strong {
-   
+
     padding-right: 2px;
     padding-left: 2px;
     font-size: 18px;
@@ -496,11 +496,11 @@ p.stake-house
     color:#63615a;
     font-size:17px;
     padding:5px;
-   
+
 }
 .loyal-btdinner
 {
-   border-bottom: 1px solid #cbcac8; 
+   border-bottom: 1px solid #cbcac8;
    position: relative;
    top: -22px;
        padding: 0px;
@@ -558,7 +558,7 @@ p.stake-house
 }
 #kaseydiner .gift-round
 {
-  border: 6px solid #ffbf00;  
+  border: 6px solid #ffbf00;
   background-color: #fff;
 }
 .round
@@ -666,7 +666,7 @@ p.stake-house
 #logo .ion-ios-star-outline
 {
         margin: 5px;
-            
+
 }
 #restaurants .ion-ios-star-outline {
     margin: 5px;
@@ -688,10 +688,10 @@ p.stake-house
     }
 #Review .bar-footer {
     bottom: 0px;
-    }  
+    }
     #Review .bar .title.title-left {
     text-align: center;
-}  
+}
 #Review #logo .logoImage {
     width: 100%;
 }
@@ -742,7 +742,7 @@ p.stake-house
 }
 #Review .border-bottom-2
 {
-   
+
 }
 #Review .color-reviewgrey
 {
@@ -829,7 +829,7 @@ p.stake-house
 }
 #Account .h1.title
 {
-      
+
     text-align: center;
     padding-left: 12px;
 }
@@ -988,13 +988,13 @@ p.stake-house
 {
     color:#fff;
 }
-#Membership 
+#Membership
 {
     background-color:#ecf0f1
 }
-#Membership .h4.title 
+#Membership .h4.title
 {
-       
+
         text-align: left;
     padding: 1px;
    margin: 0;
@@ -1006,7 +1006,7 @@ p.stake-house
         color: #3290ed;
     font-size: 21px;
     float: left;
-    
+
     text-decoration: none;
     padding-right: 5px;
     padding-left: 6px;
@@ -1017,7 +1017,7 @@ p.stake-house
     font-size: 14px;
     float: left;
     margin-top: 3px;
-    
+
 }
 #Membership .scroll-content {
        top: 65px;
@@ -1057,20 +1057,20 @@ p.stake-house
 {
     border:1px solid #aaaaaa;
     padding:5px;
-    
+
 }
 #Membership .phonecode
 {
     border:1px solid #aaaaaa;
     padding:5px;
-    
+
 }
 #Membership .address
 {
     border:1px solid #aaaaaa;
     padding:5px;
     margin-bottom: 5px;
-    
+
 }
 #Membership .towncity
 {
@@ -1080,7 +1080,7 @@ p.stake-house
 #Membership .postcode
 {
   border:1px solid #aaaaaa;
-    padding:5px;  
+    padding:5px;
     margin-bottom: 50px
 }
 #Membership .marg-right
@@ -1126,7 +1126,7 @@ p.stake-house
 }
 #Membership .new-select
 {
-    
+
         margin-top: 18px;
 }
 span.error
@@ -1150,15 +1150,15 @@ font-size: 20px;
 }
 #Signup .firstname
 {
-  font-size: 20px;  
+  font-size: 20px;
 }
 #Signup .lastname
 {
-  font-size: 20px;  
+  font-size: 20px;
 }
 #Signup .email
 {
-  font-size: 20px;  
+  font-size: 20px;
 }
 #Signup .password
 {
@@ -1168,7 +1168,7 @@ font-size: 20px;
 
 #Map .scroll-content {
     top: 0px;
-    
+
 }
 #Map .list.list-inset
 {
@@ -1248,7 +1248,7 @@ font-size: 20px;
     border-top: 2px solid #0c60ee;
     border-radius: 6px;
     display: flex;
-       /* position: relative; */  
+       /* position: relative; */
 
       /*  position: fixed;
         left: 0;
@@ -1359,7 +1359,7 @@ padding: 16px 49px 16px 0px;     }
         height: 200px;  /* map height */
     }
    #kaseydiner .overflow-scroll .scroll {
-    
+
     height: 500px;
 }
 .search-vertical
@@ -1434,7 +1434,7 @@ span.icon_kasy_newsec
 }
 ul[rn-carousel] > li.current
 {
-   color:white; 
+   color:white;
 }
 
 #Signin .button
@@ -1502,7 +1502,7 @@ ul[rn-carousel] > li.current
     font-size: 17px;
     padding: 5px;
     margin-top: 15px;
-    
+
     float: left; */
     /* color: #63615a;
     font-size: 17px;
@@ -1557,9 +1557,9 @@ a.control_next
     z-index: 999;
 }
 .slider {
-    
+
         visibility: visible;
-    
+
 }
 .ion-ios-telephone
 {
@@ -1698,10 +1698,10 @@ span.text-vertical
     text-align: center;
     width: 100%;
 
-    
+
 }
 #Invitefriend .start_freebtn {
-    background-color: #d9534f; 
+    background-color: #d9534f;
     padding: 4px 50px;
     margin: 0 auto ;
     display: block;
@@ -1746,7 +1746,7 @@ span.text-vertical
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; 
+    align-items: center;
 }
 #Invitefriend h4 i {
     background: url('../img/invitecheck.png')no-repeat;
@@ -1785,9 +1785,9 @@ span.text-vertical
     display: block;
     padding-top: 5px;
     font-weight: 600;
-   
+
     width: 70%;
-   
+
 }
 .bkgnd_image {
     background: url('../img/send_btn.jpg') no-repeat;
@@ -1841,7 +1841,7 @@ span.text-vertical
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; 
+    align-items: center;
 }
 .center
 {
@@ -1872,7 +1872,7 @@ span.text-vertical
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center;   
+    align-items: center;
 }
 #Cart .center
 {
@@ -1903,7 +1903,7 @@ span.text-vertical
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center;   
+    align-items: center;
 }
 #Shoppingcart #logo
 {
@@ -1913,16 +1913,14 @@ span.text-vertical
 }
 #Shoppingcart .scroll-content {
     top: 44px;
-    
-}
-#Cart .scroll-content {
-    top: 22px;
-    overflow-y: auto;
-    
+
 }
 #Product .scroll-content {
     top: 44px;
-    
+}
+#Cart .scroll-content {
+    top: 44px;
+
 }
 #Shoppingcart #logo img {
 width: 100%;
@@ -1956,7 +1954,7 @@ width: 100%;
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; 
+    align-items: center;
 }
 #Product .center{
 
@@ -1987,7 +1985,7 @@ width: 100%;
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; 
+    align-items: center;
 }
 
 
