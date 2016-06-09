@@ -1,11 +1,12 @@
 <div id="Cart">
     <ion-view>
-        <ion-content>
+        <ion-content overflow-scroll="true">
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
+         
             <div ng-repeat-once="(key, productDetail) in datadeal ">
                 
                 <div class="slider image">
-                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"></a>
                 </div>
@@ -45,3 +46,8 @@
         </ion-footer-bar>
     </ion-view>
 </div>
+
+
+
+
+

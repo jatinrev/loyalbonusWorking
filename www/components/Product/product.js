@@ -23,13 +23,14 @@ angular.module('LoyalBonus')
         
         
         $scope.state_on = function () {
-            console.log($state.params.BusinessId);
+            //console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
 
         $scope.state_on();
 
         $scope.Test = function () {
+            console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
         $scope.isAndroid = ionic.Platform.isAndroid();
