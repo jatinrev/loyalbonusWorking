@@ -3,50 +3,50 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-          <div ng-repeat-once="(key, productDetail) in datadeal ">
-            <div class="slider image">
-            
-                <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-                    ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-            
-            
-                <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
-                <a class="arrow next" href="#" ng-click="prevSlide()"></a>
-            
-            </div>
-            <div class="col center">
-                <span class="shoppingdesciptionnew"> {{ datadeal.ProductName }} </span>
-            </div>
+            <div ng-repeat-once="(key, productDetail) in datadeal ">
+                <div class="slider image">
+                
+                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+                
+                
+                    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+                    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+                
+                </div>
+                <div class="col center">
+                    <span class="shoppingdesciptionnew"> {{ datadeal.ProductName }} </span>
+                </div>
 
-            <div class="col center">
-                <span class="shoppingdesciptioncolor33cd5f"> ₦ {{datadeal.PriceAfterBusinessDiscount}}</span>
-            </div>
-            <div class="col center">
-                <div class="col-50 center">
-                    <span class="Cartloyality"> {{ datadeal.LoyalDiscount}} % Loyality Discount</span>
+                <div class="col center">
+                    <span class="shoppingdesciptioncolor33cd5f"> ₦ {{datadeal.PriceAfterBusinessDiscount}}</span>
                 </div>
-                <div class="col-50 center">
-                    <span class="cartredcolornumber">₦ {{ datadeal.Price }}</span>
+                <div class="col center">
+                    <div class="col-50 center">
+                        <span class="Cartloyality"> {{ datadeal.LoyalDiscount}} % Loyality Discount</span>
+                    </div>
+                    <div class="col-50 center">
+                        <span class="cartredcolornumber">₦ {{ datadeal.Price }}</span>
+                    </div>
+                </div>
+                <div class="col center">
+                    <button class="button btninfo"> Add To Cart</button>
+                </div>
+                <div class="col padding margintop20">
+                    <span class="cartdescripttion">
+                      <h4 class="titlecart">Description</h4>
+                     <p class="textcart">{{ datadeal.Description }}</p>
+                  </span>
+                </div>
+                <div class="col padding">
+                   
+                     <span class="titlecart row">Store Policy</span>
+                 
+                </div>
+                <div class="col center margintop pull-left">
+                    <img src="img/shipping_detail.png">
                 </div>
             </div>
-            <div class="col center">
-                <button class="button btninfo"> Add To Cart</button>
-            </div>
-            <div class="col padding margintop20">
-                <span class="cartdescripttion">
-                  <h4 class="titlecart">Description</h4>
-                 <p class="textcart">{{ datadeal.Description }}</p>
-              </span>
-            </div>
-            <div class="col padding">
-               
-                 <span class="titlecart row">Store Policy</span>
-             
-            </div>
-            <div class="col center margintop pull-left">
-                <img src="img/shipping_detail.png">
-            </div>
-        </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
