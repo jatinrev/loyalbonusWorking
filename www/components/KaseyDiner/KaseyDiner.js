@@ -257,7 +257,7 @@ angular.module('LoyalBonus')
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
                 .then(function (res) {
 
-                    console.log(res);
+                    //console.log(res);
                     $scope.datadeal = res.data.Data[0];
                     saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
                     //console.log($scope.datadeal);
@@ -267,7 +267,7 @@ angular.module('LoyalBonus')
                     $scope.newScope.positions = [];
                     $scope.newScope.address = [];
                     for (i in res.businesslocationsList) {
-                        //console.log(res.businesslocationsList);
+                        console.log(res.businesslocationsList);
                         if (centerDefined == 0) {
                             $scope.newScope.center = res.businesslocationsList[i].Lat + ',' + res.businesslocationsList[i].Lng;
                             centerDefined = 1;
@@ -359,11 +359,7 @@ angular.module('LoyalBonus')
         });
         /**** End : scanBarcode ****/
 
-        $scope.open_detail_product = function (BusinessId) {
-            console.log($scope.open_detail_page);
-            $state.go("home.product", { BusinessId: BusinessId });
-        };
-
+       
     });
 
 

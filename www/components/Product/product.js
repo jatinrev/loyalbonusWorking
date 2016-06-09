@@ -18,10 +18,12 @@ angular.module('LoyalBonus')
 
 
         $scope.datadeal = {};
-
+        
+        $scope.helperFunction = {};
         
         
         $scope.state_on = function () {
+            console.log($state.params.BusinessId);
             return $state.params.BusinessId;
         };
 
@@ -40,11 +42,17 @@ angular.module('LoyalBonus')
             productFactory
                 .printProduct($scope.state_on(), $scope.pageIndex)
                 .then(function (result) {
-                    console.log(result);
+                    //console.log(result);
                     $scope.datadeal = result;
-                    console.log($scope.datadeal);
+                    //console.log($scope.datadeal);
                 });
         }
         $scope.invitelistnew();
         /* ------------Ended functionality productFactory------------*/
+
+        $scope.helperFunction.productdetails = function (businessId, productid) {
+            $state.go("home.productDetail", { BusinessId: businessId, Productid: productid});
+        };
     });
+
+

@@ -1,6 +1,7 @@
 angular.module('LoyalBonus')
     .factory('productDetailFactory', function (ajaxCall,$rootScope,loading) {
         function printProductDetail(BusinessId,ProductId) {
+            //console.log(BusinessId);
             return ajaxCall
                 .get('webapi/businessproduct/StoreProductDetails?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&ProductId=' +ProductId+ {})
                 .then(function (responseResult) {
@@ -12,7 +13,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, $state, active_controller, $ionicPlatform,productDetailFactory) {
+    .controller('CartController', function ($scope, $state, ajaxCall,active_controller, $ionicPlatform,productDetailFactory) {
         $scope.slides = [
             { image: 'img/img00.jpg', description: 'Image 00' },
             { image: 'img/img01.jpg', description: 'Image 01' },
@@ -55,16 +56,6 @@ angular.module('LoyalBonus')
 
 
 
-
-        $scope.state_on = function () {
-            console.log($state.params.ProductId);
-            return $state.params.BusinessId;
-            return $state.params.ProductId;
-
-        };
-        $scope.state_on();
-
-
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
@@ -74,17 +65,35 @@ angular.module('LoyalBonus')
 
         /* ------------started functionality productDetailFactory-----------*/
 
-        $scope.invitelistdetail = function () {
+        /*$scope.invitelistdetail = function () {
             productDetailFactory
-                .printProductDetail($scope.state_on(), $scope.ProductID)
+                .printProductDetail($state.params.BusinessId, $state.params.Productid)
                 .then(function (result) {
                     console.log(result);
                     $scope.datadeal = result;
                     // console.log($scope.datadeal);
                 });
         }
-        $scope.invitelistdetail();
+        $scope.invitelistdetail();*/
+
         /* ------------Ended functionality productDetailFactory------------*/
+
+        /* ------------Started functionality get data from one state to another state------------*/
+
+         function getTest() {
+
+            return ajaxCall
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' +$state.params.BusinessId +'&ProductId=' +$state.params.Productid + {})
+                .then(function (resResult) {
+                    console.log(resResult);
+                    return resResult.data.Data;
+                });
+         }
+         getTest();
+
+        /* ------------Ended functionality get data from one state to another state------------*/
+
+
     });
 
 

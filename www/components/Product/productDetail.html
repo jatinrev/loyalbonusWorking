@@ -3,9 +3,7 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-           <!--  <div id="logo">
-               <img src="img/kaseydiner_distr.jpg">
-           </div> -->
+          
             <div class="slider image">
             
                 <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
