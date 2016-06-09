@@ -1,12 +1,10 @@
 angular.module('LoyalBonus')
-.factory('productDetailFactory', function (ajaxCall,$rootScope,loading) {
-
+    .factory('productDetailFactory', function (ajaxCall,$rootScope,loading) {
         function printProductDetail(BusinessId,ProductId) {
             return ajaxCall
                 .get('webapi/businessproduct/StoreProductDetails?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&ProductId=' +ProductId+ {})
                 .then(function (responseResult) {
                     return JSON.parse(responseResult.data.Data);
-                    
                 });
         }
         return {

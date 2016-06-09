@@ -15,7 +15,7 @@
             </div>
             <div ng-repeat="(key, prod) in datadeal">
                 <div id="logo">
-                    <img id="productimages" class="margintop20" ng-src="{{prod.ProductImageUrl == null ? 'img/placeholder.jpg' : prod.ProductImageUrl }}" ui-sref="home.cart({ BusinessId : state_on() })">
+                    <img id="productimages" class="margintop20" ng-src="{{prod.ProductImageUrl == null ? 'img/placeholder.jpg' : prod.ProductImageUrl }}" ui-sref="home.productDetail({ productId : prod.ProductId })">
                 </div>
                 <div class="row">
                     <div class="col-50">

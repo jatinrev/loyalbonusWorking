@@ -22,9 +22,7 @@ angular.module('LoyalBonus')
         
         
         $scope.state_on = function () {
-            
             return $state.params.BusinessId;
-            
         };
 
         $scope.state_on();
@@ -44,7 +42,7 @@ angular.module('LoyalBonus')
                 .then(function (result) {
                     console.log(result);
                     $scope.datadeal = result;
-                    // console.log($scope.datadeal);
+                    console.log($scope.datadeal);
                 });
         }
         $scope.invitelistnew();
