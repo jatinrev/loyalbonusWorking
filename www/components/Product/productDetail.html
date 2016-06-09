@@ -1,23 +1,18 @@
-<div id="Cart">
+<div id="some">
     <ion-view>
         <ion-content>
-            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
-            </ion-refresher>
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
             <div ng-repeat-once="(key, productDetail) in datadeal ">
+                <p>{{ key }}</p>
+                <p>{{ productDetail }}</p>
                 <div class="slider image">
-                
-                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-                        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                
-                
+                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"></a>
-                
                 </div>
                 <div class="col center">
                     <span class="shoppingdesciptionnew"> {{ datadeal.ProductName }} </span>
                 </div>
-
                 <div class="col center">
                     <span class="shoppingdesciptioncolor33cd5f"> ₦ {{datadeal.PriceAfterBusinessDiscount}}</span>
                 </div>
@@ -34,14 +29,12 @@
                 </div>
                 <div class="col padding margintop20">
                     <span class="cartdescripttion">
-                      <h4 class="titlecart">Description</h4>
-                     <p class="textcart">{{ datadeal.Description }}</p>
-                  </span>
+                        <h4 class="titlecart">Description</h4>
+                        <p class="textcart">{{ datadeal.Description }}</p>
+                    </span>
                 </div>
                 <div class="col padding">
-                   
                      <span class="titlecart row">Store Policy</span>
-                 
                 </div>
                 <div class="col center margintop pull-left">
                     <img src="img/shipping_detail.png">
