@@ -80,16 +80,15 @@ angular.module('LoyalBonus')
 
         /* ------------Started functionality get data from one state to another state------------*/
 
-         function getTest() {
-
+        function getTest() {
             return ajaxCall
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' +$state.params.BusinessId +'&ProductId=' +$state.params.Productid + {})
                 .then(function (resResult) {
                     console.log(resResult);
                     return resResult.data.Data;
                 });
-         }
-         getTest();
+        }
+        getTest();
 
         /* ------------Ended functionality get data from one state to another state------------*/
 
