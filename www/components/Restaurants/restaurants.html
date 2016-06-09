@@ -45,8 +45,8 @@
                             <ion-list>
                                 <ion-item class="wth-border border-bottom" ng-show="d.LoyalDiscount == null ? false : true">
                                     <i class="ion-load-d"></i> Loyal Discount:{{ d.LoyalDiscount }}%</ion-item>
-                                <ion-item class="wth-border border-bottom" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup()">
-                                    <img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }} OFF</ion-item>
+                                <ion-item class="wth-border border-bottom" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup(d.BonusDiscount)">
+                                    <img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}</ion-item>
                             </ion-list>
                         </div>
                     </div>

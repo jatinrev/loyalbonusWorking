@@ -130,13 +130,11 @@ angular.module('LoyalBonus')
             
             $scope.data = {};
 
-           if(status == 1) {
-            var image = '<img src="img/chk.png"> ';
-           } else {
-            var image = '<img src="img/cancel.png">';
-           }
-                
-
+            if(status == 1) {
+                var image = '<img src="img/chk.png"> ';
+            } else {
+                var image = '<img src="img/cancel.png">';
+            }
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 title: image,
@@ -159,8 +157,7 @@ angular.module('LoyalBonus')
             // An elaborate, custom popup
             var myPopup = $ionicPopup.show({
                 /* template:'<i class="icon-gift"></i>',*/
-                title: '<img src="img/bonus.png"> Visit times for Bonus',
-                subTitle: ( +msg == 0 ? '0' : msg ),
+                title: '<img src="img/bonus.png"> You have receive this bonus '+( +msg == 0 ? '0' : msg )+' time(s).',
                 scope: $scope,
                 buttons: [
                     { text: 'Cancel', type: 'button-positive' }
@@ -342,7 +339,7 @@ angular.module('LoyalBonus')
                             if (response.data.Data == "QrCode submitted")
                             {
                                  
-                                $scope.showAlertscanner('Success Thank you for visiting us! You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.', 1);
+                                $scope.showAlertscanner('<p class="text-align-center margin-bottom-0">Success!</p><p class="text-align-center margin-bottom-0">Thank you for visiting us.</p><p class="text-align-center margin-bottom-0">You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.</p>', 1);
                                 test();
                             } else if(response.data.StatusMessage == "Failed") {
                                 $scope.showAlertscanner(response.data.Data, 0);
@@ -354,7 +351,6 @@ angular.module('LoyalBonus')
                         });
                         return 0;
                     });
-                
             };
         });
         /**** End : scanBarcode ****/

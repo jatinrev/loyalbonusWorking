@@ -410,6 +410,22 @@ angular.module('LoyalBonus.services', [])
 		return {
 			userPresent: function () { return userPresent; }
 		};
+	})
+	.factory('popUp', function ($ionicPopup) {
+		function confirm(title, content) {
+			var options = {};
+			if(title != null && title != '') {
+				options.title = title;
+			}
+			if(content != null && content != '') {
+				options.template = content;
+			}
+			return $ionicPopup.confirm(options);
+		}
+		
+		return {
+			confirm : confirm
+		};
 	});
 
 

@@ -4,13 +4,11 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
             <div id="logo">
-                <!-- <a ng-click="goToMap(datadeal.BusinessID)" class="already-loyalbonus button buttonListView">MapView</a> {{ isIOS == true ? 'addclassiosisloved' : ''}}-->
                 <a ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}
                 </a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
             </div>
-            <!-- {{ datadeal }} -->
             <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
                 <div class="col-90 center col-offset-20">
                     <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
@@ -32,7 +30,6 @@
                         </ion-item>
                         <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from {{ datadeal.TotalReviewsGiven }} reviews</span>
                         </ion-item>
-                        <!-- <ion-item class="wth-border" ng-click="showPopupMy(datadeal.TotalReceivedBonus)"><img style="position: relative; right: 3px;" src="img/bonus.png"> My Bonus : {{ datadeal.TotalReceivedBonus }}</ion-item> -->
                     </ion-list>
                 </div>
                 <div class="col-50">
@@ -40,8 +37,7 @@
                         <ion-item class="wth-border border-bottom">
                             <i class="ion-load-d"></i> Loyal Discount:{{ datadeal.LoyalDiscount }}%
                         </ion-item>
-                        <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount
-                            }} OFF</ion-item>
+                        <ion-item class="wth-border border-bottom" ng-click="showPopup(datadeal.BonusDiscount)"><img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ datadeal.BonusDiscount }}</ion-item>
                         <ion-item class="wth-border newday" ng-click="showPopupFor(datadeal.TotalReceivedBonus)">Visit {{ datadeal.BonusDiscountToCust }} times for Bonus.</ion-item>
                     </ion-list>
                 </div>

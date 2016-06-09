@@ -103,7 +103,7 @@ angular.module('LoyalBonus', '')
 
     })
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser) {
+        active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser, popUp) {
 
         loading.start();
 
@@ -303,12 +303,18 @@ angular.module('LoyalBonus', '')
                     };
                     /******* Bonus popup Ended functionality******/
 
-                /*******  Call To make started functionality******/
+                    /*******  Call To make started functionality******/
                     $scope.dialNumber = function(number) {
-                        window.open('tel:' + number, '_system');
+                        popUp
+                        .confirm('', '<p class="text-align-center margin-bottom-0">Are you sure you want to call?</p>')
+                        .then(function (res) {
+                            if(res) {
+                                window.open('tel:' + number, '_system');
+                            }
+                        });
                     }
 
-                /*******  Call To make ended functionality******/
+                    /*******  Call To make ended functionality******/
 
                     /*******Search functionality******/
                     $scope.restaurants.search = function (keyword) {
