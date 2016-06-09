@@ -1,11 +1,11 @@
 angular.module('LoyalBonus')
-    .factory('productDetailFactory', function (ajaxCall,$rootScope,loading) {
-        function printProductDetail(BusinessId,ProductId) {
+    .factory('productDetailFactory', function (ajaxCall,$rootScope,loading, $state) {
+        function printProductDetail(BusinessId,Productid) {
             //console.log(BusinessId);
             return ajaxCall
-                .get('webapi/businessproduct/StoreProductDetails?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&ProductId=' +ProductId+ {})
+                .get('webapi/businessproduct/StoreProductDetails?userId=' +$rootScope.userDetails.userId +'&businessid='+$state.params.BusinessId+'&Productid=' +$state.params.Productid, {})
                 .then(function (responseResult) {
-                    return JSON.parse(responseResult.data.Data);
+                    return responseResult.data.Data;
                 });
         }
         return {
@@ -65,7 +65,7 @@ angular.module('LoyalBonus')
 
         /* ------------started functionality productDetailFactory-----------*/
 
-        /*$scope.invitelistdetail = function () {
+        $scope.invitelistdetail = function () {
             productDetailFactory
                 .printProductDetail($state.params.BusinessId, $state.params.Productid)
                 .then(function (result) {
@@ -74,25 +74,9 @@ angular.module('LoyalBonus')
                     // console.log($scope.datadeal);
                 });
         }
-        $scope.invitelistdetail();*/
+        $scope.invitelistdetail();
 
         /* ------------Ended functionality productDetailFactory------------*/
-
-        /* ------------Started functionality get data from one state to another state------------*/
-
-        function getTest() {
-            return ajaxCall
-                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' +$state.params.BusinessId +'&ProductId=' +$state.params.Productid + {})
-                .then(function (resResult) {
-                    console.log(resResult);
-                    return resResult.data.Data;
-                });
-        }
-        getTest();
-
-        /* ------------Ended functionality get data from one state to another state------------*/
-
-
     });
 
 
