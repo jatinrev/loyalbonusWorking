@@ -1917,6 +1917,7 @@ span.text-vertical
 }
 #Cart .scroll-content {
     top: 22px;
+    overflow-y: auto;
     
 }
 #Product .scroll-content {
