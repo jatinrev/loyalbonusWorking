@@ -383,6 +383,7 @@ angular.module('LoyalBonus', '')
                 $scope.Test();
             }
         });
+        loading.stop();
 
     });
 
