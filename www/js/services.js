@@ -101,7 +101,6 @@ angular.module('LoyalBonus.services', [])
 		};
 	})
 	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http) {
-
 		/**
 		 * url : http://stackoverflow.com/questions/21306088/getting-geolocation-from-ip-address
 		 */
@@ -127,13 +126,12 @@ angular.module('LoyalBonus.services', [])
 								}
 							});
 						 });
-			
+
 			return output;
 		}
 
 		function getLocation() {
 			var posOptions = { maximumAge: 30000, timeout: 30000, enableHighAccuracy: false };
-
 			var output = $cordovaGeolocation
 						 .getCurrentPosition(posOptions)
 						 .then(function (result) {
@@ -148,10 +146,6 @@ angular.module('LoyalBonus.services', [])
 						 });
 			return output;
 		}
-
-
-
-		//watch.clearwatch();
 		return {
 			get 	: getLocation(),
 			getIp 	: getIpGeoLocation
@@ -241,7 +235,7 @@ angular.module('LoyalBonus.services', [])
 					fromParams: fromParams
 				});
 				saveOnRefresh = 0; // in case saveOnRefresh is set to (1)
-				
+
 			}
 			/*
 			console.log('back functionality start');
@@ -387,7 +381,6 @@ angular.module('LoyalBonus.services', [])
 
 
 	})
-
 	.factory('refreshTest', function ($state, backFunctionality) {
 		function showrefreshtest ($statename,$stateparam) {
 			console.log('refreshing');
@@ -417,9 +410,9 @@ angular.module('LoyalBonus.services', [])
 		return {
 			userPresent: function () { return userPresent; }
 		};
-	})
+	});
 
-	
+
 
 
 

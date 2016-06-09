@@ -51,11 +51,6 @@ angular.module('LoyalBonus', '')
             },
             getheading: function () {
                 if (heading_data.length > 0) {
-                    /*console.log('yoyo');
-                    console.log(restaurantData);
-                    console.log(pageIndex);
-                    console.log(searchPageIndex);
-                    console.log(searchData);*/
                     var promise = $q.defer();
                     // var p2 = new Promise(function(resolve, reject) {
                     promise.resolve(heading_data);
@@ -95,12 +90,12 @@ angular.module('LoyalBonus', '')
                 }
 
             },
-            getBusinessRecord: getBusinessRecord,
-            getSearchKeyword: function () { return searchKeyword; },
-            setKewordSearch : function(input){ searchKeyword = input; },
-            removeSearchKeyword: function () {
+            getBusinessRecord               : getBusinessRecord,
+            getSearchKeyword                : function () { return searchKeyword; },
+            setKewordSearch                 : function(input){ searchKeyword = input; },
+            removeSearchKeyword             : function () {
                 removeSearchKeywordChecker = 1;
-                searchKeyword = '';
+                searchKeyword              = '';
             },
             stop_removeSearchKeywordChecker : function() { removeSearchKeywordChecker = 0; },
             get_removeSearchKeywordChecker  : function() { return removeSearchKeywordChecker; }
@@ -272,11 +267,8 @@ angular.module('LoyalBonus', '')
                                     return get_business_data               //getting records
                                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                         .then(function (result) {
-                                            /*console.log(result);
-                                            console.log(restaurantData);*/
                                             restaurantData = result[+$state.params.vertical];
                                             if( record_length(result[+$state.params.vertical].length) ) {
-                                                console.log('working');
                                                 reachLast = true;
                                             }
                                             function_start = false;
