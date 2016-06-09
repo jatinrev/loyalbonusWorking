@@ -6,6 +6,7 @@ angular.module('LoyalBonus')
                 .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
                 .then(function (responseResult) {
                     return JSON.parse(responseResult.data.Data);
+                    
                 });
         }
         return {
@@ -18,11 +19,12 @@ angular.module('LoyalBonus')
 
         $scope.datadeal = {};
 
-         
+        
         
         $scope.state_on = function () {
-            console.log($state.params.BusinessId);
+            
             return $state.params.BusinessId;
+            
         };
 
         $scope.state_on();

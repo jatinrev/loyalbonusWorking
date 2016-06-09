@@ -1,20 +1,20 @@
-<div id="Shoppingcart">
+<div id="Cart">
     <ion-view>
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            <div id="logo">
-                <img src="img/kaseydiner_distr.jpg">
-            </div>
+           <!--  <div id="logo">
+               <img src="img/kaseydiner_distr.jpg">
+           </div> -->
             <div class="slider image">
-
+            
                 <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage " ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
                     ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-
-
+            
+            
                 <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
                 <a class="arrow next" href="#" ng-click="prevSlide()"></a>
-
+            
             </div>
             <div class="col center">
                 <span class="shoppingdesciptionnew"> Gramercy Park Queen Bed in Weathered Gray </span>
@@ -47,9 +47,9 @@
               </span>
             </div>
             <div class="col padding">
-                <span class="storecart col">
-                 <h4 class="titlecart">Store Policy</h4>
-              </span>
+               
+                 <span class="titlecart row">Store Policy</span>
+             
             </div>
             <div class="col center margintop pull-left">
                 <img src="img/shipping_detail.png">

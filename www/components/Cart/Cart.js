@@ -1,5 +1,20 @@
 angular.module('LoyalBonus')
-    .controller('CartController', function ($scope, $state, active_controller, $ionicPlatform) {
+.factory('productDetailFactory', function (ajaxCall,$rootScope,loading) {
+
+        function printProductDetail(BusinessId,ProductId) {
+            return ajaxCall
+                .get('webapi/businessproduct/StoreProductDetails?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&ProductId=' +ProductId+ {})
+                .then(function (responseResult) {
+                    return JSON.parse(responseResult.data.Data);
+                    
+                });
+        }
+        return {
+            printProductDetail: printProductDetail
+        };
+    })
+
+    .controller('CartController', function ($scope, $state, active_controller, $ionicPlatform,productDetailFactory) {
         $scope.slides = [
             { image: 'img/img00.jpg', description: 'Image 00' },
             { image: 'img/img01.jpg', description: 'Image 01' },
@@ -44,9 +59,12 @@ angular.module('LoyalBonus')
 
 
         $scope.state_on = function () {
-            return $state.params.id;
-        };
+            console.log($state.params.ProductId);
+            return $state.params.BusinessId;
+            return $state.params.ProductId;
 
+        };
+        $scope.state_on();
 
 
         $scope.Test = function () {
@@ -55,6 +73,20 @@ angular.module('LoyalBonus')
         $scope.isAndroid = ionic.Platform.isAndroid();
 
         active_controller.set('CartController');
+
+        /* ------------started functionality productDetailFactory-----------*/
+
+        $scope.invitelistdetail = function () {
+            productDetailFactory
+                .printProductDetail($scope.state_on(), $scope.ProductID)
+                .then(function (result) {
+                    console.log(result);
+                    $scope.datadeal = result;
+                    // console.log($scope.datadeal);
+                });
+        }
+        $scope.invitelistdetail();
+        /* ------------Ended functionality productDetailFactory------------*/
     });
 
 
