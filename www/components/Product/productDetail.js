@@ -13,7 +13,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, $state, ajaxCall,active_controller, $ionicPlatform,productDetailFactory) {
+    .controller('CartController', function ($scope, refreshTest, $state, ajaxCall,active_controller, $ionicPlatform,productDetailFactory) {
         $scope.slides = [
             { image: 'img/img00.jpg', description: 'Image 00' },
             { image: 'img/img01.jpg', description: 'Image 01' },
@@ -57,6 +57,7 @@ angular.module('LoyalBonus')
 
 
         $scope.Test = function () {
+            //console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
         $scope.isAndroid = ionic.Platform.isAndroid();
