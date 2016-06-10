@@ -33,7 +33,7 @@
                         <div class="col-50">
                             <ion-list>
                                 <ion-item class="wth-border" ng-show="d.Address1 == null ? false : true "><i class="ion-home"></i> {{ d.Address1 }}</ion-item>
-                                <ion-item class="wth-border" ng-show="d.Address2 == null ? false : true"><i class="ion-home"></i> {{ d.Address2 }}</ion-item> <!-- {{ d.Address2 == null ? 'Address not available' : d.Address2 }} -->
+                                <ion-item class="wth-border" ng-show="d.Address2 == null ? false : true"><i class="ion-home"></i> {{ d.Address2 }}</ion-item>
                                 <ion-item class="wth-border" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)" ><i class="ion-ios-telephone"></i>Call {{ d.ContactPhone }}</ion-item>
                                 <!-- <div class="item" ng-click="dialNumber(data.phoneNumber)" ng-if="data.phoneNumber">
                                                   Call {{data.phoneNumber}} without Prompt
