@@ -9,6 +9,11 @@ angular.module('LoyalBonus.services', [])
 						'Content-Type': 'application/json; charset=utf-8'
 					},
 					data: data
+				})
+				.then(function (res) {
+					return res;
+				}, function (error) {
+					console.log(error);
 				});
 			},
 			get: function (url, data) {
