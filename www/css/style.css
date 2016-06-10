@@ -61,7 +61,7 @@ img{
 
 .text-align
 {
-    text-align: center;
+    text-align: left;
     width: 90%;
     display: inline-block;
 }
@@ -704,11 +704,12 @@ p.stake-house
 }
 #Review strong
 {
-       color: #000;
-    font-size: 23px;
-    margin-left: 3px;
-    float: left;
-    margin-top: 2px;
+    color: #000;
+font-size: 23px;
+margin-left: 3px;
+float: left;
+margin-top: 7px;
+width: 50%;
 }
 #Review .color-review
 {
@@ -722,23 +723,26 @@ p.stake-house
 #Review .color-reviewblue
 {
     color: #3290ed;
-    font-size: 16px;
-    float: right;
-    margin-top: 0px;
-    text-decoration: none;
+font-size: 16px;
+float: right;
+margin-top: 0px;
+text-decoration: none;
+width: 28%;
+margin-right: -11%;
 }
 #Review .border-review
 {
     border-bottom: 1px solid #ccc;
     margin: 0px;
 }
-#Review .item
+#Review .items
 {
     border-top:none;
     border-bottom: none;
     border-left:none;
     border-right:none;
-    background: unset;
+    background-color: unset;
+    padding: 10px;
 }
 #Review .border-bottom-2
 {

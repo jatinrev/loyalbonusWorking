@@ -14,41 +14,41 @@
                     <p class="h1 title">Customer Review</p>
                 </div>
                 <div class="row border-review">
-                    <div class="col50" ng-bind-html=reviewVar.reviews(2)>
+                    <div class="col-30" ng-bind-html=reviewVar.reviews(2)>
                     </div>
-                    <div class="col50">
+                    <div class="col-20">
                         <strong>{{ reviewVar.businessRating() }}/ 5</strong>
                     </div>
-                    <div class="col"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">{{ reviewVar.ShowCommentShow == true ? 'Show Records' : 'Write a review' }}</a></div>
+                    <div class="col-50"><a class="color-reviewblue highlightThis" ng-click="reviewVar.enableReveiw()">{{ reviewVar.ShowCommentShow == true ? 'Show Records' : 'Write a review' }}</a></div>
                 </div>
 
                 <div class="row border-bottom-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow" >
                     <div class="list width-100">
-                        <label class="item item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
+                        <label class="items item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
                         <p></p>
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="items item-input item-stacked-label">
                         <span class="input-label">Rating</span>
                         <p>
                             <img ng-repeat="(key, value) in reviewVar.starsArr" class="{{ value.class }}" on-tap="reviewVar.giveRating(+key + 1)" ng-src="{{ value.src }}"/>
                         </p>
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="items item-input item-stacked-label">
                         <span class="input-label">Pros</span>
                         <input type="text" class="Pros" placeholder="Pros" ng-model="reviewVar.pros">
                         <!-- <input type="text" class="name ng-pristine ng-untouched ng-valid" placeholder="Name" ng-model="userDetails.FullName" name="fullName"> -->
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="items item-input item-stacked-label">
                         <span class="input-label">Cons</span>
                         <input type="text" placeholder="Cons" class="Cons" ng-model="reviewVar.cons">
                       </label>
-                        <label class="item item-input item-stacked-label padding-top-8">
+                        <label class="items item-input item-stacked-label padding-top-8">
                         <button class="button button-positive" ng-click="reviewVar.giveFeedback() ; showPopup()">Submit</button>
                       </label>
                     </div>
                 </div>
                 
-                <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
+                <div class="items border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                
                     <div ng-bind-html=reviewVar.reviews(value.Reviews)></div>
                     <p class="color-reviewgrey col">By {{ value.FullName }}{{ value.CreatedOn == null || value.CreatedOn == '' ? '' : reviewVar.giveDataFormat(value.CreatedOn) }}</p>

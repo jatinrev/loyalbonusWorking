@@ -12,11 +12,11 @@
                     No Record Present.
                 </div>
                 <div class="row border-milestone" ng-repeat="(key, value) in myloyalbonus.print">
-                    <div class="col-50">
+                    <div class="col-40">
                         <img ng-src="{{ value.Image == null ? 'img/placeholder.jpg' : value.Image }}" ng-click="open_detail_page(value.BusinessID)">
                     </div>
 
-                    <div class="col-50">
+                    <div class="col-60">
                         <p class="title" ng-click="open_detail_page(value.BusinessID)">{{ value.Name }}</p>
                         <div class="bar-balanced">
                             <!-- {{ myloyalbonus.print }} -->
