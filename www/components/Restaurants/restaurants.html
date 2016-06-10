@@ -5,7 +5,7 @@
             <li ng-repeat="(key, value) in heading" class="tab-item" ui-sref-active="current" ui-sref="home.restaurants({vertical: value.CategoryID})">{{ value.CategoryName }}</li>
         </ul>
         <ion-view>
-            <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()" ui-sref="home.restaurants({vertical: value.CategoryID})">
+            <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
                 <ion-refresher
                     class="row"
                     pulling-text="Pull to refresh..."
