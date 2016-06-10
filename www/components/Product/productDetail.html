@@ -2,11 +2,12 @@
     <ion-view>
         <ion-content overflow-scroll="true">
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
-         
+            
             <div ng-repeat-once="(key, productDetail) in datadeal ">
-                
+
                 <div class="slider image">
-                    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+                <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
+                    <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"></a>
                 </div>
@@ -27,14 +28,14 @@
                 <div class="col center">
                     <button class="button btninfo"> Add To Cart</button>
                 </div>
-                <div class="col padding margintop20">
-                    <span class="cartdescripttion">
-                        <h4 class="titlecart">Description</h4>
-                        <p class="textcart">{{ datadeal.Description }}</p>
-                    </span>
+                <div class="padding">
+                 <div class="col margintop20 cartdescripttion">
+                        <h4 class="titlecart col">Description</h4>
+                        <p class="textcart col">{{ datadeal.Description }}</p>
                 </div>
+               </div> 
                 <div class="col padding">
-                     <span class="titlecart row">Store Policy</span>
+                    <span class="titlecart row">Store Policy</span>
                 </div>
                 <div class="col center margintop pull-left">
                     <img src="img/shipping_detail.png">
@@ -46,8 +47,3 @@
         </ion-footer-bar>
     </ion-view>
 </div>
-
-
-
-
-
