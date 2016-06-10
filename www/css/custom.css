@@ -375,6 +375,14 @@ border:none;
 {
 	margin-top: 25px;
 }
+.margintop16
+{
+    margin-top: 16px;
+}
+.margintop5
+{
+    margin-top: 5px;
+}
 .margintop15
 {
 	margin-top: 15px;
@@ -382,6 +390,10 @@ border:none;
 .margintop20
 {
 	margin-top: 20px;
+}
+.margintop40
+{
+    margin-top: 40px;
 }
 .continueshoppingbutton
 {
@@ -570,5 +582,64 @@ p.textcart
 }
 .Enlarge i{
   padding:2px;  
+}
+
+
+.borderbottome2e2e2
+{
+ border: 1px solid #e2e2e2;
+ border-bottom:none;
+}
+.bordertope2e2e2
+{
+ border: 1px solid #e2e2e2;
+ border-top:none;
+}
+
+
+label.shippingWeight
+{
+    font-weight: 600;
+    font-size: 17px;
+    float: left;
+    padding: 0 10px 0px 2px;
+    
+}
+label.storePickup
+{
+    font-weight: 600;
+    font-size: 17px;
+    float: left;
+    padding: 0 10px 0px 2px;
+    
+}
+span.freedays
+{
+width:60%;
+color:#575755;
+float:left;
+font-size: 15px;
+    margin-top: 3px;
+
+}
+a.editcolor
+{
+    padding: 0px 4px 0 0px;
+    color:#0761b7;
+    text-decoration: none;
+}
+a.checkstore
+{
+    padding: 0px 4px 0 0px;
+    color:#0761b7;
+    text-decoration: none;
+    float: left;
+}
+label.learn
+{
+   padding: 0px 4px 0 0px;
+    color:#0761b7;
+    text-decoration: none;
+    float: left; 
 }
 
