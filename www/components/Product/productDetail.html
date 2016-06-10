@@ -2,7 +2,10 @@
     <ion-view>
         <ion-content overflow-scroll="true">
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
-            
+            <div id="logo">
+                <!-- ProductImageUrl , ProductImages-->
+                <img id="productimages" src="img/kaseydiner_distr.jpg">
+            </div>
             <div ng-repeat-once="(key, productDetail) in datadeal ">
 
                 <div class="slider image">
@@ -10,6 +13,10 @@
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+                </div>
+                <div class="col center">
+                <span class="Enlarge">
+                <i class="ion-android-add-circle" aria-hidden="true"></i >Enlarge </span>
                 </div>
                 <div class="col center">
                     <span class="shoppingdesciptionnew"> {{ datadeal.ProductName }} </span>
@@ -34,7 +41,7 @@
                         <p class="textcart col">{{ datadeal.Description }}</p>
                 </div>
                </div> 
-                <div class="col padding">
+                <div class="row padding">
                     <span class="titlecart row">Store Policy</span>
                 </div>
                 <div class="col center margintop pull-left">

@@ -51,11 +51,15 @@
 }
 .border-bottom-1 {
 	border-bottom: 1px solid #ccc !important;
+    background-color: unset;
 }
 .border-top-0 { border: 0px; }
 
 
-
+#Membership .list.list-inset
+{
+background-color: unset;
+}
 
 .width-100 {
 	width: 100%;
@@ -405,7 +409,7 @@ border:none;
     font-weight: 600;
     background-color: unset;
     border:0px;
-    padding: 5px 16px 16px 16px;
+    padding: 5px 16px 16px 30px;
 }
 #Product .color42ae9d {
     color: #42ae9d;
@@ -558,7 +562,13 @@ p.textcart
     margin: 15px 0 0 0;
     color: #47c0e6;
 }
-
-
-
+.Enlarge
+{
+    color: #009f8b; 
+    
+   
+}
+.Enlarge i{
+  padding:2px;  
+}
 
