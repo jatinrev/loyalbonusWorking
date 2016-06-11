@@ -5,8 +5,8 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
                 .then(function (responseResult) {
+                    console.log(JSON.parse(responseResult.data.Data));
                     return JSON.parse(responseResult.data.Data);
-                    
                 });
         }
         return {
