@@ -2,18 +2,34 @@ var globaldata = {};
 
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch'])
 
-.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
+.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $ionicPopup, ionic) {
   /*Temp Data*/
     $rootScope.userDetails = {
-      userId       : 263,// 282
-      Email        : 'jatin@revinfotech.com', //'dvijesh@revinfotech.com',
+      userId       : 236,//jatin = 263, karan = 236, dvijesh = 282
+      Email        : 'karan@revinfotech.com', //'dvijesh@revinfotech.com',
       FullName     : 'Jatin Verma',           //'dvijesh',
       userLocation : '6.461573,3.479404',
       CreatedOn    : '2016-05-31T11:24:34.607'
     }
   /*Temp Data*/
-
+  console.log('yoyyoyo');
   $ionicPlatform.ready(function () {
+    /*****Start : checking network connection******/
+    if(window.Connection) {
+      console.log('hello');
+      if(navigator.connection.type == Connection.NONE) {
+        $ionicPopup.confirm({
+            title: "Internet Disconnected",
+            content: "The internet is disconnected on your device."
+        })
+        .then(function(result) {
+            if(!result) {
+                ionic.Platform.exitApp();
+            }
+        });
+      }
+    }
+    /******End : checking network connection*******/
 
     /**Start : checking storage**/
     $cordovaPreferences.fetch('userId', 'dict')
