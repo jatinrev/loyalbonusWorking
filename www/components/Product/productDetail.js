@@ -1,43 +1,41 @@
 angular.module('LoyalBonus')
     .factory('productDetailFactory', function (ajaxCall, $rootScope, loading, $state) {
-        var dataStoreId = [];
-
         function printProductDetail(BusinessId, Productid) {
             //console.log(BusinessId);
             return ajaxCall
                 .get('webapi/businessproduct/StoreProductDetails?userId=' + $rootScope.userDetails.userId + '&businessid=' + $state.params.BusinessId + '&Productid=' + $state.params.Productid, {})
                 .then(function (responseResult) {
-                    dataStoreId = responseResult.data.Data.BusinessStoreId;
-                    console.log(dataStoreId);
-                    return dataStoreId;
+                    //console.log(responseResult.data.Data.BusinessStoreId);
+                    return responseResult.data.Data;
                 });
+
         }
 
-        function addCart(Productid, Price, PriceAfterDiscount, BusinessStoreId){
+        function addCart(Productid, Price, PriceAfterDiscount, BusinessStoreId) {
             loading.start();
-            
-            
+
+
             return ajaxCall
-            .post('webapi/UserCartAPI/AddItemtoCart' ,
+                .post('webapi/UserCartAPI/AddItemtoCart',
                 {
-                    userId   : $rootScope.userDetails.userId,
+                    userId: $rootScope.userDetails.userId,
                     Productid: $state.params.Productid,
                     Price: Price,
                     PriceAfterDiscount: PriceAfterDiscount,
-                    BusinessStoreId: dataStoreId 
+                    BusinessStoreId: BusinessStoreId
 
-            }).then(function(cartResult){
-               console.log(cartResult);
-                //console.log(JSON.parse(cartResult.data.Data));
-                loading.stop();
-                return  cartResult.data.Data;
+                }).then(function (cartResult) {
+                    console.log(cartResult);
+                    //console.log(JSON.parse(cartResult.data.Data));
+                    loading.stop();
+                    return cartResult.data.Data;
 
-            });
+                });
         }
         return {
-            printProductDetail : printProductDetail,
-            addCart : addCart
-        };       
+            printProductDetail: printProductDetail,
+            addCart: addCart
+        };
     })
 
     .controller('CartController', function ($scope, refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory) {
@@ -73,10 +71,26 @@ angular.module('LoyalBonus')
                 .printProductDetail($state.params.BusinessId, $state.params.Productid)
                 .then(function (result) {
                     //console.log(result);
+                    var BusinessStoreId = result.BusinessStoreId;
+                    var Price = result.Price;
+                    var PriceAfterDiscount = result.PriceAfterBusinessDiscount
+                    
                     var heading_data_temp = [];
                     $scope.datadeal = result;
                     heading_data_temp = $scope.datadeal.ProductImages;
                     $scope.heading_image = heading_data_temp;
+
+
+                    $scope.addtoCart = function () {
+                        //console.log(newVarible);
+                        productDetailFactory
+                            .addCart($state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId)
+                            .then(function (resultCart) {
+                                console.log(resultCart);
+
+                            });
+                    }
+                    $scope.addtoCart();
                     //console.log($scope.heading_image);
                 });
             $scope.prevSlide = function () {
@@ -99,21 +113,7 @@ angular.module('LoyalBonus')
 
 
 
-        /* ------------started functionality AddTo Cart-----------*/
-
-        $scope.addtoCart = function () {
-            productDetailFactory
-                .addCart($state.params.Productid, $scope.price, $scope.priceafterdiscount, $scope.dataStoreId)
-                .then(function (resultCart) {
-                    console.log(resultCart);
-                    
-                });
-            
-        }
-        $scope.addtoCart();
-
-        /* ------------Ended functionality Add To Cart------------*/
-
+       
 
     });
 
