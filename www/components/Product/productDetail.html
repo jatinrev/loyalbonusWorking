@@ -23,18 +23,21 @@
                 </div>
             </div>
             </div>
-            <div ng-repeat-once="(key, productDetail) in datadeal ">
+            <div ><!-- ng-repeat-once="(key, productDetail) in datadeal " -->
 
                 <div class="slider image">
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
+
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
                         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
+
                 </div>
                 <div class="col center">
-                    <span class="Enlarge">
-                <i class="ion-android-add-circle" aria-hidden="true"></i >Enlarge </span>
+                    {{ currentIndex }}
+                    <span zoom-src="{{ datadeal.ProductImages[currentIndex].ImageName }}" zoom-view class="Enlarge"><i class="ion-android-add-circle" aria-hidden="true"></i >Enlarge </span>
+                    <!-- .ImageName.ProductImages[currentIndex] -->
                 </div>
                 <div class="col center">
                     <span class="shoppingdesciptionnew"> {{ datadeal.ProductName }} </span>
