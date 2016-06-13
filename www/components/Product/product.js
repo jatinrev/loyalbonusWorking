@@ -43,7 +43,7 @@ angular.module('LoyalBonus')
             productFactory
                 .printProduct($scope.state_on(), $scope.pageIndex)
                 .then(function (result) {
-                    //console.log(result);
+                    console.log(result);
                     $scope.datadeal = result;
                     //console.log($scope.datadeal);
                 });
@@ -54,6 +54,19 @@ angular.module('LoyalBonus')
         $scope.helperFunction.productdetails = function (businessId, productid) {
             $state.go("home.productDetail", { BusinessId: businessId, Productid: productid});
         };
+
+        $scope.helperFunction.reviews = function (number) {
+            //console.log(typeof(number));
+            var str = '';
+            for (var i = 1; i <= number; i++) {
+                str += '<img class="filledStart" src="img/filledStar.png"/>';
+            }
+            var emptyStars = 5 - +number;
+            for (var j = 1; j <= emptyStars; j++) {
+                str += '<img class="emptyStart" src="img/emptyStart.png"/>';
+            }
+            return str;
+        }
     });
 
 
