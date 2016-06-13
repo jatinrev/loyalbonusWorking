@@ -456,7 +456,7 @@ border:none;
     position: absolute;
     z-index: 1002;
     display: block;
-    top: 50%;
+    top: 45%;
     margin-top: -35px;
     width: 36px;
     height: 71px;
@@ -468,14 +468,14 @@ border:none;
 #Cart .arrow.prev {
     /* opacity: 0.2; */
     left: 25px;
-    //background-image: url(../img/paddle_prev_999.png);
+    background-image: url(../img/paddle_previous_999.png);
     transition: 0.2s linear all;
 }
 
 #Cart .arrow.next {
     /* opacity: 0.2; */
-       right: -2px;
-    //background-image: url(../img/paddle_next_999.png);
+       right: 25px;
+    background-image: url(../img/paddle_next_999.png);
     transition: 0.2s linear all;
 }
 
@@ -618,7 +618,7 @@ span.freedays
 {
     width: 60%;
     color: #575755;
-    float: left;
+    /* float: left; */
     font-size: 15px;
     margin-top: 0px;
     padding: 2px;
@@ -648,4 +648,56 @@ label.learn
 #Invitefriend .emailaddresses
 {
     border: 2px solid #e9e9e9;
+}
+
+.detail-label {
+    background-color: #c6af5c;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    padding: 3px 15px;
+}
+
+.detail-verified {
+    background-color: #8dc63f;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0px 0px 0px 10px;
+    padding: 3px 15px;
+    text-shadow: none;
+    text-align: center;
+}
+.detail-banner-left h2 {
+    color: #fff;
+    font-size: 26px;
+   
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+.detail-banner-address {
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0px 0px 20px #000;
+}
+.detail-banner-left {
+    position: absolute;
+        top: 14%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    z-index: 1;
+}
+.detail-banner-left {
+        left: 22px;
+}
+
+.famap
+{
+    
+    background: url(../img/mapion.png);
+        width: 23px;
+    height: 19px;
+    float: left;
+    margin-right: 4px;
+    margin-top: -2px;
 }

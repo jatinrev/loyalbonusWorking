@@ -187,7 +187,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         url   : "account/",
         views : {
           "body": {
-            templateUrl  : "components/Account/account.html",
+            templateUrl  : "components/account/account.html",
             controller   : "AccountController",
             controllerAs : "acc"
           }
@@ -198,7 +198,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         cache : false,
         views : {
           "body": {
-            templateUrl  : "components/Membership/membership.html",
+            templateUrl  : "components/membership/membership.html",
             controller   : "MemberController",
             controllerAs : "mc"
           }
