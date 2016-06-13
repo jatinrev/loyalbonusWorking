@@ -71,14 +71,14 @@ angular.module('LoyalBonus')
                 .printProductDetail($state.params.BusinessId, $state.params.Productid)
                 .then(function (result) {
                     //console.log(result);
-                    var BusinessStoreId = result.BusinessStoreId;
-                    var Price = result.Price;
+                    var BusinessStoreId    = result.BusinessStoreId;
+                    var Price              = result.Price;
                     var PriceAfterDiscount = result.PriceAfterBusinessDiscount
                     
-                    var heading_data_temp = [];
-                    $scope.datadeal = result;
-                    heading_data_temp = $scope.datadeal.ProductImages;
-                    $scope.heading_image = heading_data_temp;
+                    var heading_data_temp  = [];
+                    $scope.datadeal        = result;
+                    heading_data_temp      = $scope.datadeal.ProductImages;
+                    $scope.heading_image   = heading_data_temp;
 
 
                     $scope.addtoCart = function () {
@@ -90,7 +90,7 @@ angular.module('LoyalBonus')
 
                             });
                     }
-                    $scope.addtoCart();
+                    // $scope.addtoCart();
                     //console.log($scope.heading_image);
                 });
             $scope.prevSlide = function () {

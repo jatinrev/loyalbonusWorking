@@ -95,9 +95,11 @@ var app = angular.module('LoyalBonus')
         $scope.helperFunction      = {};
         $scope.loadmoreNgShow      = false;
         $scope.gotoCurrentLocation = {};
-                
+
+        saveData.remove('businessMapPosition');
 
         $scope.Test = function () {
+            saveData.remove('businessMapPosition');
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
 
