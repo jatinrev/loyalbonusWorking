@@ -618,7 +618,7 @@ span.freedays
 {
     width: 60%;
     color: #575755;
-    float: left;
+    /* float: left; */
     font-size: 15px;
     margin-top: 0px;
     padding: 2px;
