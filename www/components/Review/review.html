@@ -24,25 +24,25 @@
 
                 <div class="row border-bottom-1 margin-top-minus1" ng-show="reviewVar.writeReveiwShow" >
                     <div class="list width-100">
-                        <label class="item item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
+                        <label class="item-input item-stacked-label" ng-show="giveFeedback.ratingMsg">
                         <p></p>
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="item-input item-stacked-label">
                         <span class="input-label">Rating</span>
                         <p>
                             <img ng-repeat="(key, value) in reviewVar.starsArr" class="{{ value.class }}" on-tap="reviewVar.giveRating(+key + 1)" ng-src="{{ value.src }}"/>
                         </p>
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="item-input item-stacked-label">
                         <span class="input-label">Pros</span>
                         <input type="text" class="Pros" placeholder="Pros" ng-model="reviewVar.pros">
                         <!-- <input type="text" class="name ng-pristine ng-untouched ng-valid" placeholder="Name" ng-model="userDetails.FullName" name="fullName"> -->
                       </label>
-                        <label class="item item-input item-stacked-label">
+                        <label class="item-input item-stacked-label">
                         <span class="input-label">Cons</span>
                         <input type="text" placeholder="Cons" class="Cons" ng-model="reviewVar.cons">
                       </label>
-                        <label class="item item-input item-stacked-label padding-top-8">
+                        <label class="item-input item-stacked-label padding-top-8">
                         <button class="button button-positive" ng-click="reviewVar.giveFeedback() ; showPopup()">Submit</button>
                       </label>
                     </div>

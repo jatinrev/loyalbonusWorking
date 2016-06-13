@@ -52,6 +52,7 @@
 .border-bottom-1 {
 	border-bottom: 1px solid #ccc !important;
     background-color: unset;
+        padding: 5px;
 }
 .border-top-0 { border: 0px; }
 
