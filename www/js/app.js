@@ -2,7 +2,7 @@ var globaldata = {};
 
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch'])
 
-.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $ionicPopup, ionic) {
+.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
   /*Temp Data*/
     $rootScope.userDetails = {
       userId       : 236,//jatin = 263, karan = 236, dvijesh = 282
@@ -14,7 +14,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
   /*Temp Data*/
   console.log('yoyyoyo');
   $ionicPlatform.ready(function () {
-    /*****Start : checking network connection******/
+    /*****Start : checking network connection******
     if(window.Connection) {
       console.log('hello');
       if(navigator.connection.type == Connection.NONE) {
