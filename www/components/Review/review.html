@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 
-                <div class="item border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
+                <div class="border-bottom-1" ng-hide="reviewVar.writeReveiwShow" ng-repeat="(key, value) in reviewVar.allReview()">
                
                     <div ng-bind-html=reviewVar.reviews(value.Reviews)></div>
                     <p class="color-reviewgrey col">By {{ value.FullName }}{{ value.CreatedOn == null || value.CreatedOn == '' ? '' : reviewVar.giveDataFormat(value.CreatedOn) }}</p>
