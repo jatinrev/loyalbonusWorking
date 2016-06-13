@@ -52,6 +52,7 @@
 .border-bottom-1 {
 	border-bottom: 1px solid #ccc !important;
     background-color: unset;
+        padding: 5px;
 }
 .border-top-0 { border: 0px; }
 
@@ -455,7 +456,7 @@ border:none;
     position: absolute;
     z-index: 1002;
     display: block;
-    top: 42%;
+    top: 50%;
     margin-top: -35px;
     width: 36px;
     height: 71px;
@@ -466,15 +467,15 @@ border:none;
 
 #Cart .arrow.prev {
     /* opacity: 0.2; */
-    left: 0px;
-    background-image: url(../img/paddle_prev_999.png);
+    left: 25px;
+    //background-image: url(../img/paddle_prev_999.png);
     transition: 0.2s linear all;
 }
 
 #Cart .arrow.next {
     /* opacity: 0.2; */
-       right: 3px;
-    background-image: url(../img/paddle_next_999.png);
+       right: -2px;
+    //background-image: url(../img/paddle_next_999.png);
     transition: 0.2s linear all;
 }
 
@@ -600,7 +601,7 @@ p.textcart
 label.shippingWeight
 {
     font-weight: 600;
-    font-size: 17px;
+    font-size: 15px;
     float: left;
     padding: 0 10px 0px 2px;
     
@@ -608,18 +609,19 @@ label.shippingWeight
 label.storePickup
 {
     font-weight: 600;
-    font-size: 17px;
+    font-size: 15px;
     float: left;
     padding: 0 10px 0px 2px;
     
 }
 span.freedays
 {
-width:60%;
-color:#575755;
-float:left;
-font-size: 15px;
-    margin-top: 3px;
+    width: 60%;
+    color: #575755;
+    float: left;
+    font-size: 15px;
+    margin-top: 0px;
+    padding: 2px;
 
 }
 a.editcolor
@@ -643,3 +645,7 @@ label.learn
     float: left; 
 }
 
+#Invitefriend .emailaddresses
+{
+    border: 2px solid #e9e9e9;
+}

@@ -12,8 +12,8 @@
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
                         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
-                    <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
-                    <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+                    <a class="arrow prev" href="#" ng-click="nextSlide()"><i class="ion-chevron-left"></i></a>
+                    <a class="arrow next" href="#" ng-click="prevSlide()"><i class="ion-chevron-right"></i></a>
                 </div>
                 <div class="col center">
                     <span class="Enlarge">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-90 margintop16 ">
                             <label class="shippingWeight">Shipping:</label>
-                            <span class="col-80 pull-left freedays">FREE Two Day Get it by 4/15/2016 for 50301 <a class="editcolor" href="#">Edit </a> Order by 1:00 p.m. CT on 4/13/2016</span>
+                            <span class="col pull-left freedays">FREE Two Day Get it by 4/15/2016 for 50301 <a class="editcolor" href="#">Edit </a> Order by 1:00 p.m. CT on 4/13/2016</span>
                         </div>
                     </div>
                     <div class="row bordertope2e2e2">

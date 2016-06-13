@@ -24,7 +24,7 @@
                 </div>
                 <div class="list list-inset">
                     <div class="padding">
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">First Name <i class="ion-ios-star"></i></span>
                             <input type="text" name="firstname" class="firstname" ng-model="bill.firstname" ng-required="true" ng-minlength="3" ng-maxlength="10" placeholder="First Name">
                         </label>
@@ -34,7 +34,7 @@
                             <span class="error" ng-show="frmmember.firstname.$dirty && frmmember.firstname.$error.maxlength">Firstname Is Too Long!</span>
                         </div>
 
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Last Name <i class="ion-ios-star"></i></span>
                             <input type="text" class="lastname" name="lastname" ng-model="bill.lastname" ng-required="true" ng-minlength="3" ng-maxlength="10"placeholder="Last Name">
                         </label>
@@ -43,11 +43,11 @@
                             <span class="error" ng-show="frmmember.lastname.$dirty && frmmember.lastname.$error.minlength">Lastname Is Too Short!</span>
                             <span class="error" ng-show="frmmember.lastname.$dirty && frmmember.lastname.$error.maxlength">Lastname Is Too Long!</span>
                         </div>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Company Name </span>
                             <input type="text" class="companyname" placeholder="Company Name">
                         </label>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Email Address</span>
                             <input type="email" class="email" name="email"ng-model="bill.email" ng-required="true" pattern="/^[A-Za-z][A-Za-z0-9]*$/" placeholder="Email Address">
                         </label>
@@ -55,7 +55,7 @@
                             <span class="error" ng-show="frmmember.email.$dirty && frmmember.email.$error.required">Email Is Required!</span>
                             <span class="error" ng-show="frmmember.email.$dirty && frmmember.email.$error.email">Not an Email!</span>
                         </div>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Phone</span>
                             <div class="row">
                                 <div class="col-20 marg-right">
@@ -71,7 +71,7 @@
                             <span class="error" ng-show="frmmember.phone.$dirty && frmmember.phone.$error.required">Phone Is Required!</span>
                             <span class="error" ng-show="frmmember.phone.$dirty && frmmember.phone.$error.pattern">Not A Correct Format!</span>
                         </div> 
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <select ng-model="country" name ="new-select" class="new-select row" ng-model="bill.new-select"ng-required="true" >
                              <option value="">Select Country</option>
                                 <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
@@ -81,48 +81,48 @@
                             <span class="error" ng-show="frmmember.new-select.$dirty && frmmember.new-select.$error.required">Select Country Is Required!</span>
                             
                         </div>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Address <i class="ion-ios-star"></i></span>
                             <input type="text" class="address" name="address" placeholder="Address">
                             <input type="text" class="address" name="address" placeholder="">
                         </label>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Town / City</span>
                             <input type="text" class="towncity" name="towncity" placeholder="Town / City">
                         </label>
-                        <label class="item item-input item-floating-label">
+                        <label class="item-input item-floating-label">
                             <span class="input-label">Postcode</span>
                             <input type="number" class="postcode" name="postcode" placeholder="Postcode">
                         </label>
                         <p class="h1 title">Payment Method</p>
-                        <div class="item border-nd">
+                        <div class="border-nd">
                             <label>
                                 <input type="radio" class="creditcard" name="creditcard" value="CreditCard">
                                 <span class="creditcard-span">Credit Card</span>
                                 <img class="flot-right" src="img/creditcard.png">
                             </label>
                         </div>
-                        <div class="item border-nd">
+                        <div class="border-nd">
                             <label>
                                 <input type="radio" class="paypal" name="paypal" value="paypal">
                                 <span class="creditcard-span">Paypal</span>
                                 <img class="flot-right" src="img/paypal.png">
                             </label>
                         </div>
-                        <div class="item border-nd">
+                        <div class="border-nd">
                             <label>
                                 <input type="radio" class="googlepal" name="googlepal" value="googlepal">
                                 <span class="creditcard-span">Google pay</span>
                                 <img class="flot-right" src="img/googlepay.png">
                             </label>
                         </div>
-                        <div class="item border-nd">
+                        <div class="border-nd">
                             <label>
                                 <input type="radio" class="promocode" name="promocode" value="promocode">
                                 <span class="creditcard-span">Promo Code</span>
                             </label>
                         </div>
-                        <label class="item item-input height-bottom">
+                        <label class="item-input height-bottom">
                             <button class="button button-positive" ng-disabled="frmmember.$invalid">Save Changes</button>
                         </label>
                     </div>
