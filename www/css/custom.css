@@ -675,10 +675,22 @@ label.learn
     margin-bottom: 10px;
     font-weight: normal;
 }
+#Cart .detail-banner-left h2 {
+    color: #fff;
+    font-size: 26px;
+   float: left;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
 .detail-banner-address {
     color: #fff;
     font-weight: 300;
     text-shadow: 0px 0px 20px #000;
+}
+#Cart .detail-banner-address
+{
+        float: left;
+    clear: both;
 }
 .detail-banner-left {
     position: absolute;

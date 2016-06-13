@@ -3,7 +3,7 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            <div ng-repeat="(key, prod) in datadeal">
+            
             <div id="logo">
                 <!-- ProductImageUrl , ProductImages-->
                 <img id="productimages" src="img/businesslisting.jpg">
@@ -32,7 +32,7 @@
             <div class="padding">
                 <hr>
             </div>
-            
+            <div ng-repeat="(key, prod) in datadeal">
                 <div id="logo">
                     <img id="productimages" class="margintop20" ng-src="{{prod.ProductImageUrl == null ? 'img/placeholder.jpg' : prod.ProductImageUrl }}"
                         ng-click="helperFunction.productdetails(prod.BusinessId , prod.ProductId )">
