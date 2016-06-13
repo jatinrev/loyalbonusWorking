@@ -340,8 +340,57 @@ angular.module('LoyalBonus.services', [])
 				});
 		}
 
+		function facebookSharing() {
+			/*
+			ngFB init is done in app.js, where user could input app id for authentication.
+			 */
+			return ngFB
+				.login({ scope: 'email,read_stream,publish_actions' })
+				.then(function (response) {
+					console.log(response);
+					if (response.status === 'connected') {
+						return response.authResponse.accessToken;
+					} else {
+						alert('Facebook login failed');
+					}
+					return 0;
+				})
+				.then(function (response) {
+					if (response == 0) {
+						return 0;
+					} else {
+						loading.start();
+						return ngFB
+							.api({
+								path: '/me',
+								params: { fields: 'id,name,email' }
+							})
+							.then(function (fbResponse) {
+								return ajaxCall
+									.post('webapi/AppLogin/RegisterWithFB',
+									{
+										userName: fbResponse.name,
+										accessToken: response,     //access token from login
+										email: fbResponse.email
+									}
+									)
+									.then(function (res) {
+										loading.stop();
+										return res;
+									});
+							},
+							function (error) {
+								loading.stop();
+								return 0;
+							}
+							);
+					}
+				});
+		}
+
 		return {
-			facebookLogin: facebookLogin
+			facebookLogin   : facebookLogin,
+			facebookSharing : facebookSharing
 		};
 	})
 	.factory('showRating', function () {
