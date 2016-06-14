@@ -100,7 +100,7 @@ angular.module('LoyalBonus.services', [])
 			return uniqueNames;
 		};
 	})
-	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http) {
+	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http, $cordovaNetwork) {
 		/**
 		 * url : http://stackoverflow.com/questions/21306088/getting-geolocation-from-ip-address
 		 */
@@ -140,15 +140,12 @@ angular.module('LoyalBonus.services', [])
 						 	return result;
 						 }, function (error) {
 						 	return getIpGeoLocation();
-						 	// console.log(error)
 						 	return error;
-						 	// console.log('chiku');
 						 });
 			return output;
 		}
 		return {
-			get 	: getLocation(),
-			getIp 	: getIpGeoLocation
+			get 	: getLocation()
 		};
 
 	})

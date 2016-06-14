@@ -193,7 +193,7 @@ angular.module('LoyalBonus', '')
         $ionicPlatform.ready(function () {
 
             get_user_location
-            .getIp()
+            .get
             .then(function(ipResult) {
                 /*console.log('ip');*/
                 console.log(ipResult);
