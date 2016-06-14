@@ -409,6 +409,7 @@ angular.module('LoyalBonus.services', [])
 
 		function showRatingJson(number) {
 			var starsArr = [];
+			//var starsArr;
 			for (var i = 1; i < 6; i++) {
 				if (i > 0 && i <= number) {
 					starsArr.push({

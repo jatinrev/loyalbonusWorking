@@ -27,8 +27,8 @@
                         </div>
 
                         <div class="col-50">
-                           <img class="rat-star" ng-repeat="ii in str" ng-src="{{ ii.Reviews }}" >
-                            <!-- <div class="rat-star" ng-bind-html="restaurants.print_image(d.Reviews)"></div> -->
+                           <!-- <img class="{{starArr.class}}" ng-repeat="starArr in restaurants.print_image(d.Reviews)" ng-src="{{ starArr.src }}" > -->
+                            <div class="rat-star" ng-bind-html="restaurants.print_image(d.Reviews)"></div>
                            
                         </div>
                     </div>

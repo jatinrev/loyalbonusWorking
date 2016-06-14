@@ -357,7 +357,7 @@ angular.module('LoyalBonus', '')
             return str;*/
             //console.log(showRating.showRatingImages(newNumber));
             //return showRating.showRatingImages(newNumber);
-            return showRating.showRatingJson(newNumber);
+            return showRating.showRatingImages(newNumber);
         }
 
         $scope.restaurants.print_BonusDiscount = function (input) {
