@@ -68,7 +68,7 @@ angular.module('LoyalBonus.services', [])
 			}
 		};
 	})
-	.factory('giveRating', function ($scope) {
+	/*.factory('giveRating', function ($scope) {
 		function ratingImages(number) {
 			//console.log(typeof(number));
 			var str = '';
@@ -85,7 +85,7 @@ angular.module('LoyalBonus.services', [])
 		return {
 			ratingImages: ratingImages
 		}
-	})
+	})*/
 	.service('get_unique_elements', function () {
 		this.get_unique_arr = function (arr) {
 			var uniqueNames = [];
@@ -393,7 +393,7 @@ angular.module('LoyalBonus.services', [])
 			facebookSharing : facebookSharing
 		};
 	})
-	.factory('showRating', function () {
+	.factory('showRating', function () {//
 		function showRatingImages(number) {
 			//console.log(typeof(number));
 			var str = '';
@@ -422,6 +422,7 @@ angular.module('LoyalBonus.services', [])
 					});
 				}
 			}
+			//console.log(starsArr);
 			return starsArr;
 		}
 

@@ -205,7 +205,8 @@ border:none;
 }
 #home .addclassios
 {
-	    top: 18px;
+	    /* top: 18px; */
+        top:1px;
 }
 #Businessmap .addclassiostext
 {
