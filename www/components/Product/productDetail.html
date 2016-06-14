@@ -4,7 +4,24 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
             <div id="logo">
                 <!-- ProductImageUrl , ProductImages-->
-                <img id="productimages" src="img/kaseydiner_distr.jpg">
+                <img id="productimages" src="img/businesslisting.jpg">
+
+                <div class="detail-banner-left">
+                <div class="detail-banner-info">
+                    <div class="detail-label">Restaurant</div>
+                    <div class="detail-verified">Verified</div>
+                </div>
+                <!-- /.detail-banner-info -->
+                <h2 class="detail-title"> Fox </h2>
+                <div class="detail-banner-address">
+                    <i class="famap"></i> News ,Ajah Lagos
+                </div>
+                <!-- /.detail-banner-address -->
+                <div class="detail-banner-left_inner inline-block vertical-m">
+                    <div class="reviews-star" ng-bind-html=helperFunction.reviews(2)></div>
+                    <!-- /.detail-banner-rating -->
+                </div>
+            </div>
             </div>
             <div ><!-- ng-repeat-once="(key, productDetail) in datadeal " -->
 
