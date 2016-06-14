@@ -284,7 +284,7 @@ angular.module('LoyalBonus')
 
         $scope.helperFunction.reviews = function (number) {
             //console.log(typeof(number));
-            var str = '';
+            /*var str = '';
             for (var i = 1; i <= number; i++) {
                 str += '<img class="filledStart" src="img/filledStar.png"/>';
             }
@@ -292,7 +292,8 @@ angular.module('LoyalBonus')
             for (var j = 1; j <= emptyStars; j++) {
                 str += '<img class="emptyStart" src="img/emptyStart.png"/>';
             }
-            return str;
+            return str;*/
+            return showRating.showRatingImages(number);
         }
 
         $scope.helperFunction.write_review = function (businessId, businessImage, BusinessStars) {

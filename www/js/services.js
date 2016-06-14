@@ -68,7 +68,7 @@ angular.module('LoyalBonus.services', [])
 			}
 		};
 	})
-	.factory('giveRating', function ($scope) {
+	/*.factory('giveRating', function ($scope) {
 		function ratingImages(number) {
 			//console.log(typeof(number));
 			var str = '';
@@ -85,7 +85,7 @@ angular.module('LoyalBonus.services', [])
 		return {
 			ratingImages: ratingImages
 		}
-	})
+	})*/
 	.service('get_unique_elements', function () {
 		this.get_unique_arr = function (arr) {
 			var uniqueNames = [];
@@ -390,35 +390,37 @@ angular.module('LoyalBonus.services', [])
 			facebookSharing : facebookSharing
 		};
 	})
-	.factory('showRating', function () {
+	.factory('showRating', function () {//
 		function showRatingImages(number) {
-			//console.log(typeof(number));
+			//console.log(number);
 			var str = '';
 			for (var i = 1; i <= number; i++) {
-				str += '<img class="filledStart" src="img/filledStar.png"/>';
+				str += '<img class="filledStart" src="img/stars/filledStar.png"/>';
 			}
 			var emptyStars = 5 - +number;
 			for (var j = 1; j <= emptyStars; j++) {
-				str += '<img class="emptyStart" src="img/emptyStart.png"/>';
+				str += '<img class="emptyStart" src="img/stars/emptyStart.png"/>';
 			}
 			return str;
 		}
 
 		function showRatingJson(number) {
 			var starsArr = [];
+			//var starsArr;
 			for (var i = 1; i < 6; i++) {
 				if (i > 0 && i <= number) {
 					starsArr.push({
 						class: 'filledStart',
-						src: 'img/filledStar.png'
+						src: 'img/stars/filledStar.png'
 					});
 				} else {
 					starsArr.push({
 						class: 'emptyStart',
-						src: 'img/emptyStart.png'
+						src: 'img/stars/emptyStart.png'
 					});
 				}
 			}
+			//console.log(starsArr);
 			return starsArr;
 		}
 

@@ -103,7 +103,7 @@ angular.module('LoyalBonus', '')
 
     })
     .controller('RestaurantController', function ($scope, $rootScope, $state, ajaxCall, $ionicPlatform, $stateParams, $q, $location, $window, get_unique_elements, get_user_location, $cordovaGeolocation, get_business_data,
-        active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser, popUp) {
+        active_controller, loading, $ionicPopup, $timeout, refreshTest, saveData, $ionicHistory, $ionicScrollDelegate, watchUser, popUp,showRating) {
 
         //loading.start();
 
@@ -345,8 +345,8 @@ angular.module('LoyalBonus', '')
             return restaurantData;
         }
 
-        $scope.restaurants.print_image = function (number) {
-            var str = '';
+        $scope.restaurants.print_image = function (newNumber) {
+            /*var str = '';
             for (var i = 1; i <= 5; i++) {
                 if (i > 0 && i <= number) {
                     str += '<img src="img/filledStar.png" class="filledStart">';
@@ -354,7 +354,10 @@ angular.module('LoyalBonus', '')
                     str += '<img src="img/emptyStart.png" class="emptyStart">';
                 }
             }
-            return str;
+            return str;*/
+            //console.log(showRating.showRatingImages(newNumber));
+            //return showRating.showRatingImages(newNumber);
+            return showRating.showRatingImages(newNumber);
         }
 
         $scope.restaurants.print_BonusDiscount = function (input) {
