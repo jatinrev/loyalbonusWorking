@@ -395,14 +395,14 @@ angular.module('LoyalBonus.services', [])
 	})
 	.factory('showRating', function () {//
 		function showRatingImages(number) {
-			//console.log(typeof(number));
+			//console.log(number);
 			var str = '';
 			for (var i = 1; i <= number; i++) {
-				str += '<img class="filledStart" src="img/filledStar.png"/>';
+				str += '<img class="filledStart" src="img/stars/filledStar.png"/>';
 			}
 			var emptyStars = 5 - +number;
 			for (var j = 1; j <= emptyStars; j++) {
-				str += '<img class="emptyStart" src="img/emptyStart.png"/>';
+				str += '<img class="emptyStart" src="img/stars/emptyStart.png"/>';
 			}
 			return str;
 		}
@@ -414,12 +414,12 @@ angular.module('LoyalBonus.services', [])
 				if (i > 0 && i <= number) {
 					starsArr.push({
 						class: 'filledStart',
-						src: 'img/filledStar.png'
+						src: 'img/stars/filledStar.png'
 					});
 				} else {
 					starsArr.push({
 						class: 'emptyStart',
-						src: 'img/emptyStart.png'
+						src: 'img/stars/emptyStart.png'
 					});
 				}
 			}
