@@ -2,8 +2,8 @@ var globaldata = {};
 
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch', 'ionic-zoom-view'])
 
-.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details) {
-  /*Temp Data*/
+.run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $cordovaNetwork) {
+  /*Temp Data*
     $rootScope.userDetails = {
       userId       : 236,//jatin = 263, karan = 236, dvijesh = 282
       Email        : 'karan@revinfotech.com', //'dvijesh@revinfotech.com',
@@ -12,24 +12,27 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       CreatedOn    : '2016-05-31T11:24:34.607'
     }
   /*Temp Data*/
-  console.log('yoyyoyo');
-  $ionicPlatform.ready(function () {
-    /*****Start : checking network connection******
-    if(window.Connection) {
-      console.log('hello');
-      if(navigator.connection.type == Connection.NONE) {
-        $ionicPopup.confirm({
-            title: "Internet Disconnected",
-            content: "The internet is disconnected on your device."
-        })
-        .then(function(result) {
-            if(!result) {
-                ionic.Platform.exitApp();
-            }
-        });
-      }
+  
+  /*
+  checking network connection
+   */
+  document.addEventListener("deviceready", function () {
+    if($cordovaNetwork.isOffline()) { // if user is offline
+      alert('Please check you internet connection and restart the app.');
     }
-    /******End : checking network connection*******/
+  }, false);
+  
+
+  $ionicPlatform.ready(function () {
+    /*
+    Geo location
+     *
+    navigator.geolocation.getCurrentPosition(function (res) {
+      console.log(res);
+    });
+    */
+    
+
 
     /**Start : checking storage**/
     $cordovaPreferences.fetch('userId', 'dict')
@@ -187,7 +190,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         url   : "account/",
         views : {
           "body": {
-            templateUrl  : "components/account/account.html",
+            templateUrl  : "components/Account/account.html",
             controller   : "AccountController",
             controllerAs : "acc"
           }
@@ -198,7 +201,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         cache : false,
         views : {
           "body": {
-            templateUrl  : "components/membership/membership.html",
+            templateUrl  : "components/Membership/membership.html",
             controller   : "MemberController",
             controllerAs : "mc"
           }
