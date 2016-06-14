@@ -395,14 +395,21 @@ angular.module('LoyalBonus.services', [])
 	})
 	.factory('showRating', function () {//
 		function showRatingImages(number) {
-			//console.log(number);
+			console.log('Number:' +number);
 			var str = '';
 			for (var i = 1; i <= number; i++) {
+				if (ParseFloat(i) >= ParseFloat(number) {
+					str +='<img src="img/stars/0.9.png"/>';	
+				}else{
+				console.log('22 da:' + i);
 				str += '<img class="filledStart" src="img/stars/filledStar.png"/>';
+			    }
+				
 			}
 			var emptyStars = 5 - +number;
 			for (var j = 1; j <= emptyStars; j++) {
 				str += '<img class="emptyStart" src="img/stars/emptyStart.png"/>';
+				
 			}
 			return str;
 		}
