@@ -24,16 +24,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
   
 
   $ionicPlatform.ready(function () {
-    /*
-    Geo location
-     *
-    navigator.geolocation.getCurrentPosition(function (res) {
-      console.log(res);
-    });
-    */
-    
-
-
     /**Start : checking storage**/
     $cordovaPreferences.fetch('userId', 'dict')
     .success(function(value) {
