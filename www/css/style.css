@@ -1126,13 +1126,22 @@ width: 100%;
 .flot-right
 {
     float: right;
+   
+}
+.flot-rightcreditcard
+{
+    width: 140px;
+    float: right;
+    position: relative;
+    top: 2px;
+   
 }
 #Membership .border-nd
 {
     border:1px solid #aaaaaa;
-        margin-bottom: 25px;
-            padding: 7px;
-                margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 7px;
+    margin-top: 25px;
 }
 #Membership .creditcard-span
 {
