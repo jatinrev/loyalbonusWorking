@@ -38,7 +38,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory) {
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory) {
 
         $scope.helperFunction = {};
 
@@ -113,17 +113,17 @@ angular.module('LoyalBonus')
 
         /* ------------Ended functionality productDetailFactory------------*/
 
-        $scope.helperFunction.reviews = function (number) {
+        $scope.helperFunction.reviews = function (newNumber) {
             //console.log(typeof(number));
-            var str = '';
+           /* var str = '';
             for (var i = 1; i <= number; i++) {
                 str += '<img class="filledStart" src="img/filledStar.png"/>';
             }
             var emptyStars = 5 - +number;
             for (var j = 1; j <= emptyStars; j++) {
                 str += '<img class="emptyStart" src="img/emptyStart.png"/>';
-            }
-            return str;
+            }*/
+           return showRating.showRatingImages(newNumber);;
         }
 
        
