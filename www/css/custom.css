@@ -678,7 +678,8 @@ label.learn
 }
 
 #Cart .detail-banner-left h2 {
-        text-align: left;
+        /* text-align: left;
+            display: inline-block; */
 }
 .detail-banner-address {
     color: #fff;
@@ -688,7 +689,13 @@ label.learn
 #Cart .detail-banner-address
 {
         
-    clear: both;
+       /*  float: left; */
+           text-align: left;
+}
+#Cart .detail-banner-info
+{
+    /* float: left; */
+        text-align: left;
 }
 .detail-banner-left {
     position: absolute;

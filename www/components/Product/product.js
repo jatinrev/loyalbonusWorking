@@ -5,7 +5,7 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
                 .then(function (responseResult) {
-                    console.log(JSON.parse(responseResult.data.Data));
+                    //console.log(JSON.parse(responseResult.data.Data));
                     return JSON.parse(responseResult.data.Data);
                 });
         }
@@ -42,7 +42,7 @@ angular.module('LoyalBonus')
 
 
         $scope.Test = function () {
-            console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
+            //console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
         $scope.isAndroid = ionic.Platform.isAndroid();
