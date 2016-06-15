@@ -85,7 +85,7 @@ angular.module('LoyalBonus')
 				reviewFactory
 					.printReview($state.params.businessId, reviewPage)
 					.then(function (res) {
-						console.log(res);
+						//console.log(res);
 						if (res.length > 0) {
 							reviewPage += 1;
 							for (i in res) {
@@ -167,6 +167,7 @@ angular.module('LoyalBonus')
 				, $rootScope.userDetails.userId
 				)
 				.then(function (res) {
+					console.log(res);
 					$scope.reviewVar.ratingMsg = true;
 					$scope.stopLoading = true;
 					$scope.reviewVar.loadMore();

@@ -13,7 +13,7 @@ angular.module('LoyalBonus.services', [])
 			},
 			get: function (url, data) {
 				return $http.get("http://beta2.loyalbonus.com/" + url, {
-					params  : data
+					params: data
 				});
 			}
 		}
@@ -34,16 +34,16 @@ angular.module('LoyalBonus.services', [])
 		/**Temp Data**/
 		return {
 			get: function (userID) {
-				if( typeof(userID) != 'undefined' && userID != '' ) {
+				if (typeof (userID) != 'undefined' && userID != '') {
 					return ajaxCall.get('webapi/user/GetUserByID',
 						{
 							"userID": userID
 						})
 						.then(function (response) {
 							if (response.data.StatusMessage == 'Success') {
-								$rootScope.userDetails.userId    = userID;
-								$rootScope.userDetails.Email     = response.data.Data.Email;
-								$rootScope.userDetails.FullName  = response.data.Data.FullName;
+								$rootScope.userDetails.userId = userID;
+								$rootScope.userDetails.Email = response.data.Data.Email;
+								$rootScope.userDetails.FullName = response.data.Data.FullName;
 								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 								$rootScope.userDetails.CreatedOn = response.data.Data.CreatedOn;
 								//console.log($rootScope.userDetails.CreatedOn);
@@ -63,7 +63,7 @@ angular.module('LoyalBonus.services', [])
 							}
 						});
 				} else {
-					return ;
+					return;
 				}
 			}
 		};
@@ -107,25 +107,25 @@ angular.module('LoyalBonus.services', [])
 		function getIpGeoLocation() {
 
 			var output = $http.get("http://ipv4.myexternalip.com/json", {
-							params: {}
-						 })
-						 .then(function (result) {
-						 	// console.log(result.data.ip);
-						 	// return result;
-							return $http.get("http://ipinfo.io/"+result.data.ip, {
-								params: {}
-							})
-							.then(function(location) {
-								// console.log(location.data.loc);
-								var lat_long = location.data.loc.split(',');
-								return {
-									coords : {
-										latitude  : lat_long[0],
-										longitude : lat_long[1]
-									}
+				params: {}
+			})
+				.then(function (result) {
+					// console.log(result.data.ip);
+					// return result;
+					return $http.get("http://ipinfo.io/" + result.data.ip, {
+						params: {}
+					})
+						.then(function (location) {
+							// console.log(location.data.loc);
+							var lat_long = location.data.loc.split(',');
+							return {
+								coords: {
+									latitude: lat_long[0],
+									longitude: lat_long[1]
 								}
-							});
-						 });
+							}
+						});
+				});
 
 			return output;
 		}
@@ -142,7 +142,7 @@ angular.module('LoyalBonus.services', [])
 			return output;
 		}
 		return {
-			get 	: getLocation()
+			get: getLocation()
 		};
 
 	})
@@ -157,7 +157,7 @@ angular.module('LoyalBonus.services', [])
 
 		function set(name) {
 			activeController = name;
-			
+
 			console.log(activeController);
 
 
@@ -211,17 +211,17 @@ angular.module('LoyalBonus.services', [])
 	})
 	.factory('backFunctionality', function ($rootScope, $state, saveData, loading) {
 		var previous_page = []
-		, array_key       = ''
-		, setDontSave     = 0  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
-		, saveOnRefresh   = 0;
+			, array_key = ''
+			, setDontSave = 0  // this variable is set because when user clicks on go back, and when he reaches back the fromState is again added to the array which remains in the history.
+			, saveOnRefresh = 0;
 		$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
 			loading.start();
-			if (typeof (fromState.name) != 'undefined' && typeof (toState.name) != 'undefined' && (fromState.name == toState.name || Object.is(fromParams, toParams)) ) {
+			if (typeof (fromState.name) != 'undefined' && typeof (toState.name) != 'undefined' && (fromState.name == toState.name || Object.is(fromParams, toParams))) {
 				// nothing is done here because state is same or params are also same.
 				/**
 					If you dont want to add state in the back functionality add a condition here in this if.
 				 */
-			} else if ( setDontSave == 1 && saveOnRefresh == 0 ) {
+			} else if (setDontSave == 1 && saveOnRefresh == 0) {
 				console.log(fromState);
 				console.log('setDontSave');
 				setDontSave = 0;
@@ -247,20 +247,20 @@ angular.module('LoyalBonus.services', [])
 		});
 
 		return {
-			one_step_back : function () {
+			one_step_back: function () {
 				setDontSave = 1;
 				var back = previous_page.slice(-1)[0];
 				previous_page.pop();
 				$state.go(back.fromState, back.fromParams);
 			},
-			setDontSave       : function() {
+			setDontSave: function () {
 				// setDontSave       = 1;
 			},
-			set_saveOnRefresh : function() {
+			set_saveOnRefresh: function () {
 				// saveOnRefresh     = 1;
 			},
-			setNewDontSave    : function() {
-				setDontSave       = 1;
+			setNewDontSave: function () {
+				setDontSave = 1;
 			}
 		};
 	})
@@ -383,21 +383,46 @@ angular.module('LoyalBonus.services', [])
 		}
 
 		return {
-			facebookLogin   : facebookLogin,
-			facebookSharing : facebookSharing
+			facebookLogin: facebookLogin,
+			facebookSharing: facebookSharing
 		};
 	})
 	.factory('showRating', function () {//
 		function showRatingImages(number) {
-			//console.log(number);
+
+			//console.log('number'+number);
+			var numberRound = Math.ceil(number);
+			var no = number;
 			var str = '';
-			for (var i = 1; i <= number; i++) {
-				str += '<img class="filledStart" src="img/stars/filledStar.png"/>';
+			for (var i = 1; i <= parseInt(numberRound); i++) {
+				//console.log(i);
+				if (parseFloat(i) <= parseFloat(no)) {
+					//console.log("i ="+parseFloat(i)+ "  number = "+parseFloat(no)+ "final ="+parseInt(numberRound));
+					str += '<img class="filledStart" src="img/stars/filledStar.png"/>';
+					//console.log(str);
+				} else {
+					//console.log('else');
+					var string = no.toString();
+					//console.log(string);
+					var val = string.split('.');
+					//console.log(val);
+					var final = '0.' + val[1];
+					//console.log(final+no+i);
+					//console.log('half'+ final + str + no +"  i ="+ i);
+
+					str += '<img src="img/stars/' + final + '.png"/>';
+					//console.log('22 da:' + i);
+				}
+
 			}
 			var emptyStars = 5 - +number;
 			for (var j = 1; j <= emptyStars; j++) {
 				str += '<img class="emptyStart" src="img/stars/emptyStart.png"/>';
+
+
 			}
+			//console.log("string");
+			//console.log(str);
 			return str;
 		}
 
@@ -429,7 +454,7 @@ angular.module('LoyalBonus.services', [])
 
 	})
 	.factory('refreshTest', function ($state, backFunctionality) {
-		function showrefreshtest ($statename,$stateparam) {
+		function showrefreshtest($statename, $stateparam) {
 			console.log('refreshing');
 			backFunctionality.setDontSave();
 			$state.go($statename, $stateparam, { reload: true });
@@ -461,17 +486,17 @@ angular.module('LoyalBonus.services', [])
 	.factory('popUp', function ($ionicPopup) {
 		function confirm(title, content) {
 			var options = {};
-			if(title != null && title != '') {
+			if (title != null && title != '') {
 				options.title = title;
 			}
-			if(content != null && content != '') {
+			if (content != null && content != '') {
 				options.template = content;
 			}
 			return $ionicPopup.confirm(options);
 		}
-		
+
 		return {
-			confirm : confirm
+			confirm: confirm
 		};
 	});
 

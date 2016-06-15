@@ -7,7 +7,7 @@
                 <a ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}
                 </a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
-                <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.reviews)></div>
+                <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.Reviews)></div>
             </div>
             <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
                 <div class="col-90 center col-offset-20">

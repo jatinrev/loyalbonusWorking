@@ -346,17 +346,7 @@ angular.module('LoyalBonus', '')
         }
 
         $scope.restaurants.print_image = function (newNumber) {
-            /*var str = '';
-            for (var i = 1; i <= 5; i++) {
-                if (i > 0 && i <= number) {
-                    str += '<img src="img/filledStar.png" class="filledStart">';
-                } else {
-                    str += '<img src="img/emptyStart.png" class="emptyStart">';
-                }
-            }
-            return str;*/
-            //console.log(showRating.showRatingImages(newNumber));
-            //return showRating.showRatingImages(newNumber);
+            
             return showRating.showRatingImages(newNumber);
         }
 
