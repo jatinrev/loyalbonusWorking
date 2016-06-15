@@ -1,4 +1,6 @@
-var globaldata = {};
+var globaldata = {
+  prefix : 'http://beta2.loyalbonus.com/'
+};
 
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch', 'ionic-zoom-view'])
 

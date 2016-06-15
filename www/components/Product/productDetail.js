@@ -33,10 +33,25 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp) {
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp, $cordovaSocialSharing) {
         
         $scope.helperFunction = {};
         $scope.businessData   = {};
+        $scope.product_detail = {
+            share_twitter  : function () {
+                document.addEventListener("deviceready", function () {
+                    $cordovaSocialSharing
+                    .shareViaTwitter('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid);
+                }, false);
+            },
+            share_facebook : function () {
+                $cordovaSocialSharing
+                .shareViaFacebook('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid);
+            },
+            share_google   : function () {
+                return false;
+            }
+        };
         
         $scope.direction      = 'left';
         $scope.currentIndex   = 0;
@@ -49,6 +64,8 @@ angular.module('LoyalBonus')
         $scope.isCurrentSlideIndex = function (index) {
             return $scope.currentIndex === index;
         };
+
+
 
         /*
         business Lising starts : this is comming from kaseyDinner.js
