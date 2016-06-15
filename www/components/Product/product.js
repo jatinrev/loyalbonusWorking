@@ -13,11 +13,13 @@ angular.module('LoyalBonus')
             printProduct: printProduct
         };
     })
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
+    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, showRating) {
 
 
         $scope.datadeal = {};
         
+        $scope.businessData = {};
+
         $scope.helperFunction = {};
         
         
@@ -32,7 +34,7 @@ angular.module('LoyalBonus')
         businessVisit
         .businessDetail( $state.params.BusinessId, $rootScope.userDetails.userId )
         .then(function (res) {
-            console.log(res);
+            $scope.businessData = res.data.Data[0];
         });
 
 

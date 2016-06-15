@@ -6,20 +6,20 @@
             
             <div id="logo">
                 <!-- ProductImageUrl , ProductImages-->
-                <img id="productimages" src="img/businesslisting.jpg">
+                <img id="productimages" ng-src="{{ businessData.Image }}">
                 <div class="detail-banner-left">
                     <div class="detail-banner-info">
                         <div class="detail-label">Restaurant</div>
                         <div class="detail-verified">Verified</div>
                     </div>
                     <!-- /.detail-banner-info -->
-                    <h2 class="detail-title"> Fox </h2>
+                    <h2 class="detail-title">{{ businessData.Name }}</h2>
                     <div class="detail-banner-address">
-                        <i class="famap"></i> News ,Ajah Lagos
+                        <i class="famap"></i>{{ businessData.Address1 }}
                     </div>
                     <!-- /.detail-banner-address -->
                     <div class="detail-banner-left_inner inline-block vertical-m">
-                        <div class="reviews-star" ng-bind-html=helperFunction.reviews(2)></div>
+                        <div class="reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews)></div>
                         <!-- /.detail-banner-rating -->
                     </div>
                 </div>

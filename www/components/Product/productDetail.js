@@ -38,12 +38,13 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory) {
-
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope) {
+        
         $scope.helperFunction = {};
-
-        $scope.direction = 'left';
-        $scope.currentIndex = 0;
+        $scope.businessData   = {};
+        
+        $scope.direction      = 'left';
+        $scope.currentIndex   = 0;
 
         $scope.setCurrentSlideIndex = function (index) {
             $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
@@ -54,8 +55,14 @@ angular.module('LoyalBonus')
             return $scope.currentIndex === index;
         };
 
-
-
+        /*
+        business Lising starts : this is comming from kaseyDinner.js
+         */
+        businessVisit
+        .businessDetail( $state.params.BusinessId, $rootScope.userDetails.userId )
+        .then(function (res) {
+            $scope.businessData = res.data.Data[0];
+        });
 
 
         $scope.Test = function () {
@@ -114,15 +121,6 @@ angular.module('LoyalBonus')
         /* ------------Ended functionality productDetailFactory------------*/
 
         $scope.helperFunction.reviews = function (newNumber) {
-            //console.log(typeof(number));
-           /* var str = '';
-            for (var i = 1; i <= number; i++) {
-                str += '<img class="filledStart" src="img/filledStar.png"/>';
-            }
-            var emptyStars = 5 - +number;
-            for (var j = 1; j <= emptyStars; j++) {
-                str += '<img class="emptyStart" src="img/emptyStart.png"/>';
-            }*/
            return showRating.showRatingImages(newNumber);;
         }
 
