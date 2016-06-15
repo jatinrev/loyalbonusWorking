@@ -28,7 +28,7 @@
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
 
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-                        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
+                        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}" id="imgheight">
                     <a class="arrow prev" href="#" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
                     <a class="arrow next" href="#" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
 

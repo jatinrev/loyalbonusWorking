@@ -729,3 +729,9 @@ label.learn
     position: relative;
 }
 
+#Cart .slider img#imgheight
+{
+    height: 200px;
+        width: 100%;
+}
+
