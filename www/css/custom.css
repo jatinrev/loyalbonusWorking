@@ -408,6 +408,7 @@ border:none;
 #Product #productimages
 {
 	width:100%;
+    height: 100%; 
 }
 #Product .colorblack {
     color: #000;
@@ -656,7 +657,7 @@ label.learn
     color: #fff;
     display: inline-block;
     font-size: 13px;
-    padding: 3px 15px;
+    padding: 3px 15px 0px 15px
 }
 
 .detail-verified {
@@ -665,7 +666,7 @@ label.learn
     display: inline-block;
     font-size: 13px;
     margin: 0px 0px 0px 10px;
-    padding: 3px 15px;
+    padding: 3px 15px 0px 15px;
     text-shadow: none;
     text-align: center;
 }
@@ -678,7 +679,8 @@ label.learn
 }
 
 #Cart .detail-banner-left h2 {
-        text-align: left;
+        /* text-align: left;
+            display: inline-block; */
 }
 .detail-banner-address {
     color: #fff;
@@ -688,19 +690,28 @@ label.learn
 #Cart .detail-banner-address
 {
         
-    clear: both;
+       /*  float: left; */
+           text-align: left;
+}
+#Cart .detail-banner-info
+{
+    /* float: left; */
+        text-align: left;
 }
 .detail-banner-left {
     position: absolute;
-        top: 15%;
+               bottom: -10%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     z-index: 1;
 }
 .detail-banner-left {
-    left: 22px;
+        left: 15px;
 }
-
+#Product #logo
+{
+    position: relative;
+}
 .famap
 {
     
@@ -712,12 +723,13 @@ label.learn
     margin-top: -2px;
 }
 .zoom-done-button { color: #387EF5 !important; }
-.social_icon_style {
-    color: #fff;
-    padding-left: 8px;
-    padding-right: 7px;
-    margin-right: 5px;
+#Cart #logo
+{
+    position: relative;
 }
-.background_facebook_blue { background-color : #3d5b99; padding-left: 11px; padding-right: 10px; }
-.background_twitter_blue  { background-color : #1da1f2; }
-.background_gmail_blue    { background-color : #ff0000; }
+
+#Cart .slider img#imgheight
+{
+    height: 200px;
+        width: 100%;
+}

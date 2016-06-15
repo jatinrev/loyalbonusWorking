@@ -2,12 +2,11 @@
 <div id="Milestones">
     <ion-view>
         <ion-content>
-            <ion-refresher
-                pulling-text="Pull to refresh..."
-                on-refresh="Test()">
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            <div>  <!-- outer div -->
-              <!-- <h1 class="text-center">Scanned Business</h1> -->
+            <div>
+                <!-- outer div -->
+                <!-- <h1 class="text-center">Scanned Business</h1> -->
                 <div class="row text-align-center" ng-show="myloyalbonus.print.length < 1 ? true : false">
                     No Record Present.
                 </div>
@@ -20,19 +19,25 @@
                         <p class="title" ng-click="open_detail_page(value.BusinessID)">{{ value.Name }}</p>
                         <div class="bar-balanced">
                             <!-- {{ myloyalbonus.print }} -->
-                            <label class="checkbox" ng-repeat="tickRepeat in myloyalbonus.printTick(value.uservisits, value.BonusDiscountToCust)">
+                            <div class="row">
+                                <label class="checkbox" ng-repeat="tickRepeat in myloyalbonus.printTick(value.uservisits, value.BonusDiscountToCust)">
                                 <img src="img/tick.png" >
-                            </label>
-                            <label class="round" ng-repeat="nonTick in myloyalbonus.printNonTick(value.uservisits, value.BonusDiscountToCust)">
+                                </label>
+                                <label class="round" ng-repeat="nonTick in myloyalbonus.printNonTick(value.uservisits, value.BonusDiscountToCust)">
                             
                                 <span class="round-span">{{ value.LoyalDiscount }}%</span>
                                 <p>off</p>
                                 
-                            </label>
-                            <label class="checkbox" ng-click="showPopupMy(myloyalbonus.print.TotalReceivedBonus)" ng-repeat="presentIcon in myloyalbonus.printGift(value.uservisits, value.BonusDiscountToCust)">
+                                </label>
+                                <label class="checkbox" ng-click="showPopupMy(myloyalbonus.print.TotalReceivedBonus)" ng-repeat="presentIcon in myloyalbonus.printGift(value.uservisits, value.BonusDiscountToCust)">
                                 <img src="img/icon.png">
-                            </label>
-                            <span class="text-align" ng-show="value.uservisits != 0 ? true : false">Last visited :{{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss' }}<!-- {{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss'}} --></span>
+                                 </label>
+                            </div>
+                            <div class="row">
+                                <span class="text-align" ng-show="value.uservisits != 0 ? true : false">Last visited :{{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss' }}<!-- {{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss'}} -->
+                                    
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+BusinessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
                 .then(function (responseResult) {
-                    console.log(JSON.parse(responseResult.data.Data));
+                    //console.log(JSON.parse(responseResult.data.Data));
                     return JSON.parse(responseResult.data.Data);
                 });
         }
@@ -13,7 +13,10 @@ angular.module('LoyalBonus')
             printProduct: printProduct
         };
     })
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, showRating) {
+
+    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
+
+    
 
 
         $scope.datadeal = {};
