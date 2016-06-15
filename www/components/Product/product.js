@@ -13,7 +13,7 @@ angular.module('LoyalBonus')
             printProduct: printProduct
         };
     })
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
+    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
 
 
         $scope.datadeal = {};
