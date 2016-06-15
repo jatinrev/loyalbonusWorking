@@ -3,42 +3,37 @@ angular.module('LoyalBonus')
         function printProductDetail(BusinessId, Productid) {
             //console.log(BusinessId);
             return ajaxCall
-                .get('webapi/businessproduct/StoreProductDetails?userId=' + $rootScope.userDetails.userId + '&businessid=' + $state.params.BusinessId + '&Productid=' + $state.params.Productid, {})
+                .get('webapi/businessproduct/StoreProductDetails?userId=' + $rootScope.userDetails.userId + '&BusinessID=' + $state.params.BusinessId + '&ProductID=' + $state.params.Productid, {})
                 .then(function (responseResult) {
                     //console.log(responseResult.data.Data.BusinessStoreId);
                     return responseResult.data.Data;
                 });
-
         }
 
         function addCart(Productid, Price, PriceAfterDiscount, BusinessStoreId) {
             loading.start();
-
-
             return ajaxCall
-                .post('webapi/UserCartAPI/AddItemtoCart',
+                .post('webapi/UserCartAPI/AddItemtoCart?userId='+$rootScope.userDetails.userId,
                 {
-                    userId: $rootScope.userDetails.userId,
-                    Productid: $state.params.Productid,
-                    Price: Price,
-                    PriceAfterDiscount: PriceAfterDiscount,
-                    BusinessStoreId: BusinessStoreId
+                    userId             : $rootScope.userDetails.userId,
+                    ProductId          : Productid,
+                    Price              : Price,
+                    PriceAfterDiscount : PriceAfterDiscount,
+                    BusinessStoreId    : BusinessStoreId
 
-                }).then(function (cartResult) {
-                    console.log(cartResult);
-                    //console.log(JSON.parse(cartResult.data.Data));
+                }).then(function (cartResult) {                    //console.log(JSON.parse(cartResult.data.Data));
                     loading.stop();
                     return cartResult.data.Data;
 
                 });
         }
         return {
-            printProductDetail: printProductDetail,
-            addCart: addCart
+            printProductDetail : printProductDetail,
+            addCart            : addCart
         };
     })
 
-    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope) {
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp) {
         
         $scope.helperFunction = {};
         $scope.businessData   = {};
@@ -91,16 +86,14 @@ angular.module('LoyalBonus')
 
 
                     $scope.addtoCart = function () {
-                        //console.log(newVarible);
-                        productDetailFactory
-                            .addCart($state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId)
-                            .then(function (resultCart) {
-                                console.log(resultCart);
-
-                            });
+                        if( watchUser.userPresent() == 1 ) {
+                            productDetailFactory
+                            .addCart(+$state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId);
+                        } else {
+                            popUp
+                            .msgPopUp('You can not add product without login.');
+                        }
                     }
-                    // $scope.addtoCart();
-                    //console.log($scope.heading_image);
                 });
             $scope.prevSlide = function () {
                 $scope.direction = 'left';
@@ -124,7 +117,6 @@ angular.module('LoyalBonus')
            return showRating.showRatingImages(newNumber);;
         }
 
-       
 
     });
 

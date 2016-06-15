@@ -27,6 +27,9 @@ angular.module('LoyalBonus')
         }
 
         function businessDetail(businessId, userId) {
+            if( typeof(userId) == 'undefined' || +userId == 0 ) {
+                userId = '';
+            }
             return ajaxCall
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {});
         }

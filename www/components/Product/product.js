@@ -39,7 +39,6 @@ angular.module('LoyalBonus')
 
 
         $scope.Test = function () {
-            console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
         $scope.isAndroid = ionic.Platform.isAndroid();

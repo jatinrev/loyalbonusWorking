@@ -46,17 +46,7 @@ angular.module('LoyalBonus.services', [])
 								$rootScope.userDetails.FullName = response.data.Data.FullName;
 								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 								$rootScope.userDetails.CreatedOn = response.data.Data.CreatedOn;
-								//console.log($rootScope.userDetails.CreatedOn);
-								// $state.go("home.restaurants");
 								$cordovaPreferences.store('userId', userID, 'dict');
-						        /*.success(function(value) {
-						            // alert("Success: " + value);
-						            // $scope.test = value;
-						        })
-						        .error(function(error) {
-						            // alert("Error: " + error);
-						            // $scope.test = error;
-						        });*/
 							} else {
 								$rootScope.userDetails = {};
 								$state.go("signin");
@@ -495,8 +485,29 @@ angular.module('LoyalBonus.services', [])
 			return $ionicPopup.confirm(options);
 		}
 
+		function msgPopUp(msg, status) {
+            if(status == 1) {
+                var image = '<img src="img/chk.png"> ';
+            } else {
+                var image = '<img src="img/cancel.png">';
+            }
+            // An elaborate, custom popup
+            return $ionicPopup
+            .show({
+                title: image,
+                subTitle: msg,
+                buttons: [
+                    { text: 'Ok', type: 'button-positive' }
+                ]
+            })
+            /*$timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000);*/
+		}
+
 		return {
-			confirm: confirm
+			confirm  : confirm,
+			msgPopUp : msgPopUp
 		};
 	});
 

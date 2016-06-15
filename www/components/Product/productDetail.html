@@ -4,7 +4,7 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
             <div id="logo">
                 <!-- ProductImageUrl , ProductImages-->
-                <img id="productimages" ng-src="{{ businessData.Image }}">
+                <img id="productimages" ng-src="{{ businessData.Image == null || businessData.Image == '' ? 'img/placeholder.jpg' : businessData.Image }}">
                 <div class="detail-banner-left">
                     <div class="detail-banner-info">
                         <div class="detail-label">Restaurant</div>
@@ -29,8 +29,8 @@
 
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
                         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}">
-                    <a class="arrow prev" href="#" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
-                    <a class="arrow next" href="#" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
+                    <a class="arrow prev" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
+                    <a class="arrow next" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
 
                 </div>
                 <div class="col center">
@@ -51,7 +51,12 @@
                     </div>
                 </div>
                 <div class="col center">
-                    <button class="button btninfo"> Add To Cart</button>
+                    <button class="button btninfo" ng-click="addtoCart()"> Add To Cart</button>
+                </div>
+                <div class="col center">
+                    <i class="ion-social-facebook social_icon_style background_facebook_blue"></i>
+                    <i class="ion-social-twitter social_icon_style background_twitter_blue"></i>
+                    <i class="ion-social-googleplus social_icon_style background_gmail_blue"></i>
                 </div>
                 <div class="padding">
                     <div class="col margintop20 cartdescripttion">
@@ -70,7 +75,7 @@
                         </div>
                         <div class="col-90 margintop16 ">
                             <label class="shippingWeight">Shipping:
-                            <span class="freedays">FREE Two Day Get it by 4/15/2016 for 50301 <a class="editcolor" href="#">Edit </a> Order by 1:00 p.m. CT on 4/13/2016</span></label>
+                            <span class="freedays">FREE Two Day Get it by 4/15/2016 for 50301 <a class="editcolor">Edit </a> Order by 1:00 p.m. CT on 4/13/2016</span></label>
                         </div>
                     </div>
                     <div class="row bordertope2e2e2">
@@ -79,7 +84,7 @@
                         </div>
                         <div class="col-90 margintop16 ">
                             <label class="storePickup">Store Pickup:</label>
-                            <span class="col-80 freedays">Available at most stores <a class="checkstore" href="#">Check Stores </a> <label class="learn">Learn more about store pickup</label></span>
+                            <span class="col-80 freedays">Available at most stores <a class="checkstore">Check Stores </a> <label class="learn">Learn more about store pickup</label></span>
                         </div>
                     </div>
                 </div>
