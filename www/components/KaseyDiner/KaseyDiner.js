@@ -25,9 +25,16 @@ angular.module('LoyalBonus')
                 return result.data.Data;
             });
         }
+
+        function businessDetail(businessId, userId) {
+            return ajaxCall
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {});
+        }
+
         return {
-            give_visit: give_visit,
-            giveLove: giveLove
+            give_visit     : give_visit,
+            giveLove       : giveLove,
+            businessDetail : businessDetail
         };
 
     })
@@ -207,7 +214,9 @@ angular.module('LoyalBonus')
 
 
         $scope.myloyalbonus.printTick    = function ( uservisits, BonusDiscountToCust ) {
-            // var answer =  uservisits,BonusDiscountToCust;
+            if( +uservisits == +BonusDiscountToCust ) {
+                return mydummyJson(+uservisits - 1);
+            }
             return mydummyJson(+uservisits);
         }
             
@@ -224,6 +233,11 @@ angular.module('LoyalBonus')
             if (+BonusDiscountToCust == uservisits) {
                 return mydummyJson(0);
             } else {
+                return mydummyJson(1);
+            }
+        }
+        $scope.myloyalbonus.printGiftDiscount = function( uservisits, BonusDiscountToCust ) {
+            if( +uservisits == +BonusDiscountToCust ) {
                 return mydummyJson(1);
             }
         }

@@ -11,24 +11,27 @@
             </div>
             <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
                 <div class="col-90 center col-offset-20">
-                    <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
+                    <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
                         <img src="img/tick.png">
                     </label>
-                    <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.uservisits, datadeal.BonusDiscountToCust)">
+                    <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
                         <span class="round-span">{{datadeal.LoyalDiscount}}%<!-- 10% --></span>
                         <p>off</p>
                     </label>
-                    <label class="checkbox" ng-click="showPopupMy(datadeal.BonusDiscount)" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.uservisits, datadeal.BonusDiscountToCust)">
+                    <label class="checkbox" ng-click="showPopupMy(datadeal.BonusDiscount)" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
                         <img src="img/icon.png">
+                    </label>
+                    <label class="checkbox" ng-click="showPopupMy(datadeal.BonusDiscount)" ng-repeat="(key, value) in myloyalbonus.printGiftDiscount(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
+                        <img src="img/discountwithtick.png">
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-50">
                     <ion-list>
-                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.lovecount }}</strong><span class="color-chnage">people love it</span>
+                        <ion-item class="wth-border"><i class="ion-ios-heart"></i><strong>{{ datadeal.Lovecount }}</strong><span class="color-chnage">people love it</span>
                         </ion-item>
-                        <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.reviews }}/ 5</strong><span class="color-chnage">from {{ datadeal.TotalReviewsGiven }} reviews</span>
+                        <ion-item class="wth-border"><i class="ion-ios-star-outline"></i><strong>{{ datadeal.Reviews }}/ 5</strong><span class="color-chnage">from {{ datadeal.TotalReviewsGiven }} reviews</span>
                         </ion-item>
                     </ion-list>
                 </div>

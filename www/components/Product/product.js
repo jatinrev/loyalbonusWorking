@@ -14,7 +14,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory) {
+    .controller('ProductController', function ($scope, refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
 
 
         $scope.datadeal = {};
@@ -27,7 +27,15 @@ angular.module('LoyalBonus')
             return $state.params.BusinessId;
         };
 
-        $scope.state_on();
+        /*
+        business Lising starts : this is comming from kaseyDinner.js
+         */
+        businessVisit
+        .businessDetail( $state.params.BusinessId, $rootScope.userDetails.userId )
+        .then(function (res) {
+            console.log(res);
+        });
+
 
         $scope.Test = function () {
             console.log(refreshTest.showrefreshtest($state.current.name, $state.params));
@@ -38,14 +46,12 @@ angular.module('LoyalBonus')
         active_controller.set('ProductController');
 
         /* ------------started functionality productFactory-----------*/
-
         $scope.invitelistnew = function () {
             productFactory
                 .printProduct($scope.state_on(), $scope.pageIndex)
                 .then(function (result) {
                     console.log(result);
                     $scope.datadeal = result;
-                    //console.log($scope.datadeal);
                 });
         }
         $scope.invitelistnew();

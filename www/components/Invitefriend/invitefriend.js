@@ -10,7 +10,7 @@ angular.module('LoyalBonus')
                 {
                     EmailAddresses: EmailAddresses,
                     EmailContent: EmailContent,
-                    userId: $rootScope.userDetails.userId
+                    userid: $rootScope.userDetails.userId
                 }).then(function (result) {
                     console.log(result);
                     /*if(result.data.StatusMessage != null) {
