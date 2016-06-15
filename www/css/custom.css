@@ -408,7 +408,7 @@ border:none;
 #Product #productimages
 {
 	width:100%;
-    height: 260px;
+    height: 100%; 
 }
 #Product .colorblack {
     color: #000;
@@ -700,7 +700,7 @@ label.learn
 }
 .detail-banner-left {
     position: absolute;
-               bottom: -20%;
+               bottom: -10%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     z-index: 1;
@@ -723,4 +723,9 @@ label.learn
     margin-top: -2px;
 }
 .zoom-done-button { color: #387EF5 !important; }
+
+#Cart #logo
+{
+    position: relative;
+}
 
