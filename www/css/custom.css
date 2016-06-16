@@ -407,8 +407,11 @@ border:none;
 }
 #Product #productimages
 {
-	width:100%;
-    height: 100%; 
+	 width:100%;
+         height: 100%;  
+        /*  display: block;
+            max-width: 100%;
+            min-height: 200px; */
 }
 #Product .colorblack {
     color: #000;
@@ -700,7 +703,7 @@ label.learn
 }
 .detail-banner-left {
     position: absolute;
-               bottom: -10%;
+               bottom: 7%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     z-index: 1;
@@ -730,8 +733,9 @@ label.learn
 
 #Cart .slider img#imgheight
 {
-    height: 200px;
-    width: 100%;
+    display: block;
+    max-width: 100%;
+    min-height: 250px;
 }
 .social_icon_style {
     color: #fff;
