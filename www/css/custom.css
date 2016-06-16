@@ -733,7 +733,7 @@ label.learn
 
 #Cart .slider img#imgheight
 {
-       display: block;
+    display: block;
     max-width: 100%;
     min-height: 250px;
 }
