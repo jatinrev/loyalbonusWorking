@@ -24,7 +24,6 @@ angular.module('LoyalBonus')
                 }).then(function (cartResult) {                    //console.log(JSON.parse(cartResult.data.Data));
                     loading.stop();
                     return cartResult.data.Data;
-
                 });
         }
         return {
@@ -105,7 +104,16 @@ angular.module('LoyalBonus')
                     $scope.addtoCart = function () {
                         if( watchUser.userPresent() == 1 ) {
                             productDetailFactory
-                            .addCart(+$state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId);
+                            .addCart(+$state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId)
+                            .then(function (res) {
+                                if( +res.$id > 0 ) {
+                                    popUp
+                                    .msgPopUp('Item Added to Cart.', 1);
+                                } else {
+                                    popUp
+                                    .msgPopUp('Item was not added to Cart.');
+                                }
+                            });
                         } else {
                             popUp
                             .msgPopUp('You can not add product without login.');
@@ -131,7 +139,7 @@ angular.module('LoyalBonus')
         /* ------------Ended functionality productDetailFactory------------*/
 
         $scope.helperFunction.reviews = function (newNumber) {
-           return showRating.showRatingImages(newNumber);;
+           return showRating.showRatingImages(newNumber);
         }
 
 

@@ -499,10 +499,7 @@ angular.module('LoyalBonus.services', [])
                 buttons: [
                     { text: 'Ok', type: 'button-positive' }
                 ]
-            })
-            /*$timeout(function () {
-                myPopup.close(); //close the popup after 3 seconds for some reason
-            }, 3000);*/
+            });
 		}
 
 		return {

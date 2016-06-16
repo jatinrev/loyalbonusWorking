@@ -4,7 +4,22 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
             <div id="logo">
-                <img src="img/kaseydiner_distr.jpg">
+                <!-- ProductImageUrl , ProductImages-->
+                <img id="productimages" ng-src="{{ businessData.Image == null || businessData.Image == '' ? 'img/placeholder.jpg' : businessData.Image }}">
+                <div class="detail-banner-left">
+                    <div class="detail-banner-info">
+                        <div class="detail-label">Restaurant</div>
+                        <div class="detail-verified">Verified</div>
+                    </div>
+                    <!-- /.detail-banner-info -->
+                    <h2 class="detail-title">{{ businessData.Name }}</h2>
+                    <div class="detail-banner-address text-left">
+                        <i class="famap"></i> {{ businessData.Address1 }}
+                    </div>
+                    <!-- /.detail-banner-address -->
+                    <div class="row reviews-star" ng-bind-html=roothelperFunction.print_stars(businessData.Reviews)></div>
+                    <!-- /.detail-banner-rating -->
+                </div>
             </div>
             <div class="row">
                 <p class="row fontsize">Shopping Cart</p>

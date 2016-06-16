@@ -16,9 +16,6 @@ angular.module('LoyalBonus')
 
     .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
 
-    
-
-
         $scope.datadeal = {};
         
         $scope.businessData = {};

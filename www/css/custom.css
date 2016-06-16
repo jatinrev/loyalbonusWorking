@@ -731,5 +731,23 @@ label.learn
 #Cart .slider img#imgheight
 {
     height: 200px;
-        width: 100%;
+    width: 100%;
 }
+.social_icon_style {
+    color: #fff;
+    padding-left: 8px;
+    padding-right: 7px;
+    margin-right: 5px;
+}
+.background_facebook_blue { background-color : #3d5b99; padding-left: 11px; padding-right: 10px; }
+.background_twitter_blue  { background-color : #1da1f2; }
+.background_gmail_blue    { background-color : #ff0000; }
+
+
+
+
+/*
+    Background colors
+ */
+.redBack { background-color: #9c263f; }
+
