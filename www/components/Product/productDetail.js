@@ -32,23 +32,51 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp, $cordovaSocialSharing) {
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp, $cordovaSocialSharing, loading) {
         
         $scope.helperFunction = {};
         $scope.businessData   = {};
         $scope.product_detail = {
             share_twitter  : function () {
                 document.addEventListener("deviceready", function () {
+                    loading.start();
                     $cordovaSocialSharing
-                    .shareViaTwitter('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid);
+                    .shareViaTwitter('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid)
+                    .then(function (res) {
+                        loading.stop();
+                    }, function (error) {
+                        popUp
+                        .msgPopUp('Please install Twitter app.');
+                        loading.stop();
+                    });
                 }, false);
             },
             share_facebook : function () {
-                $cordovaSocialSharing
-                .shareViaFacebook('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid);
+                document.addEventListener("deviceready", function () {
+                    loading.start();
+                    $cordovaSocialSharing
+                    .shareViaFacebook('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid)
+                    .then(function (res) {
+                        loading.stop();
+                    }, function (error) {
+                        popUp
+                            .msgPopUp('Please install Facebook app.');
+                        loading.stop();
+                    });
+                }, false);
             },
             share_google   : function () {
-                return false;
+                document.addEventListener("deviceready", function () {
+                    $cordovaSocialSharing
+                    .shareVia("gm", 'Hey check this out', 'Loyalbonus', 'www/img/logo.png', globaldata.prefix+'Business/StoreProductDetails?businessid='+$state.params.BusinessId+'&productid='+$state.params.Productid)
+                    .then(function (res) {
+                        console.log('res output:');
+                        console.log(res);
+                    }, function (error) {
+                        popUp
+                            .msgPopUp('Please install Gmail app.');
+                    });
+                }, false);
             }
         };
         

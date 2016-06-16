@@ -737,14 +737,15 @@ label.learn
     color: #fff;
     padding-left: 8px;
     padding-right: 7px;
-    margin-right: 5px;
+    margin-right: 10px;
+    font-size: 35px;
 }
-.background_facebook_blue { background-color : #3d5b99; padding-left: 11px; padding-right: 10px; }
-.background_twitter_blue  { background-color : #1da1f2; }
-.background_gmail_blue    { background-color : #ff0000; }
-
-
-
+.background_facebook_blue           { background-color : #3d5b99; padding-left: 16px; padding-right: 15px; }
+.background_twitter_blue            { background-color : #00aced; }
+.background_gmail_blue              { background-color : #ff0000; }
+.background_facebook_blue.activated { background-color : #3b5998; border: 1px solid #000; }
+.background_twitter_blue.activated  { background-color : #4db8cd; border: 1px solid #000; }
+.background_gmail_blue.activated    { background-color : #8e313a; border: 1px solid #000; }
 
 /*
     Background colors
