@@ -27,6 +27,22 @@ angular.module('LoyalBonus')
                    });
         }
 
+        function update_cart() {
+            var data = $.param({
+                firstName: 'jatin',
+                lastName: 'verma'
+            });
+            return ajaxCall
+            .put('http://localhost/jatinTest/', 'lalal')
+            .then(function (res) {
+                console.log('success');
+                console.log(res);
+                return res;
+            }, function (error) {
+                console.log(error);
+            });
+        }
+
         /*
         get cart data from BUSINESSID
          */
@@ -45,8 +61,9 @@ angular.module('LoyalBonus')
         }
         
         return {
-            list_cart : list_cart,
-            GetUserCartByBusinessId : GetUserCartByBusinessId
+            list_cart               : list_cart,
+            GetUserCartByBusinessId : GetUserCartByBusinessId,
+            update_cart             : update_cart
         };
     })
 
@@ -55,7 +72,18 @@ angular.module('LoyalBonus')
         business Lising starts : this is comming from kaseyDinner.js
          */
         $scope.businessData = {};
-        $scope.cart         = {};
+        $scope.cart         = {
+            /**
+             * To change quantity of the product.
+             */
+            quantity_change : function (productQuantity, key) {
+                cart_functions
+                .update_cart()
+                .then(function (res) {
+                    // console.log();
+                });
+            }
+        };
 
         /*
         THIS IS TO GET BUSINESS DATA.
@@ -73,11 +101,8 @@ angular.module('LoyalBonus')
         .GetUserCartByBusinessId($state.params.businessId)
         .then(function (res) {
             $scope.cart.data = res;
-            /*$scope.cart.product_id_in_cart = []
-            for (key in $scope.cart.data.UserCartDetails) {
-                $scope.cart.product_id_in_cart[key] = $scope.cart.data.UserCartDetails[key].ProductId;
-            }*/
         });
+
 
         $scope.state_on = function () {
             return $state.params.id;

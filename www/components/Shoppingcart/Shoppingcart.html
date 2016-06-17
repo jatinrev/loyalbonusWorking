@@ -8,7 +8,7 @@
                 <img id="productimages" ng-src="{{ businessData.Image == null || businessData.Image == '' ? 'img/placeholder.jpg' : businessData.Image }}">
                 <div class="detail-banner-left">
                     <div class="detail-banner-info">
-                        <div class="detail-label">Restaurant</div>
+                        <!-- <div class="detail-label">Restaurant</div> -->
                         <div class="detail-verified {{ businessData.StatusName == 'Live' ? '' : 'redBack' }}">{{ businessData.StatusName == "Live" ? "Verified" : "Not Verified" }}</div>
                     </div>
                     <!-- /.detail-banner-info -->
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
+                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(cart.data.UserCartDetails[key].Qty, key)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
                                     <button class="button offersshopping">2 Offers</button>
@@ -51,9 +51,7 @@
                                 <span class="shoppingloyality"> 25% Loyality Discount</span>
                             </div>
                             <div class="col-50">
-
                                 <ion-item class="redcolor">₦</ion-item>
-
                                 <ion-item class="redcolornumber">782565.00</ion-item>
                             </div>
                         </div>

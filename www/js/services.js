@@ -11,10 +11,19 @@ angular.module('LoyalBonus.services', [])
 					data: data
 				});
 			},
-			get: function (url, data) {
+			get : function (url, data) {
 				return $http.get("http://beta2.loyalbonus.com/" + url, {
 					params: data
 				});
+			},
+			put : function (url, data) {
+				return $http.put(url, {
+					params: 'oyoy'
+				});
+
+				/*return $http.put("http://beta2.loyalbonus.com/" + url, {
+					params: data
+				});*/
 			}
 		}
 	})
