@@ -17,8 +17,9 @@ angular.module('LoyalBonus.services', [])
 				});
 			},
 			put : function (url, data) {
-				return $http.put(url, {
-					params: 'oyoy'
+				console.log(data);
+				return $http.put("http://beta2.loyalbonus.com/" + url, {
+					params: data
 				});
 
 				/*return $http.put("http://beta2.loyalbonus.com/" + url, {

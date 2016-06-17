@@ -27,22 +27,6 @@ angular.module('LoyalBonus')
                    });
         }
 
-        function update_cart() {
-            var data = $.param({
-                firstName: 'jatin',
-                lastName: 'verma'
-            });
-            return ajaxCall
-            .put('http://localhost/jatinTest/', 'lalal')
-            .then(function (res) {
-                console.log('success');
-                console.log(res);
-                return res;
-            }, function (error) {
-                console.log(error);
-            });
-        }
-
         /*
         get cart data from BUSINESSID
          */
@@ -58,6 +42,33 @@ angular.module('LoyalBonus')
                     console.log(error);
                     return error;
                 });
+        }
+
+        function update_cart(cartDetailId, productId, qty) {
+            return ajaxCall
+            .put('webapi/UserCartAPI/UpdateQuantityByCartDetailId', 'abc')
+            .then(function (res) {
+                console.log('success');
+                console.log(res);
+                return res;
+            }, function (error) {
+                console.log(error);
+            });
+
+            return ajaxCall
+            .put('webapi/UserCartAPI/UpdateQuantityByCartDetailId', {
+                cartDetailId : cartDetailId,
+                productId    : productId,
+                qty          : qty,
+                userId       : $rootScope.userDetails.userId
+            })
+            .then(function (res) {
+                console.log('success');
+                console.log(res);
+                return res;
+            }, function (error) {
+                console.log(error);
+            });
         }
         
         return {
@@ -76,11 +87,11 @@ angular.module('LoyalBonus')
             /**
              * To change quantity of the product.
              */
-            quantity_change : function (productQuantity, key) {
+            quantity_change : function (cartDetailId, productId, qty) {
                 cart_functions
-                .update_cart()
+                .update_cart(cartDetailId, productId, qty)
                 .then(function (res) {
-                    // console.log();
+                    console.log();
                 });
             }
         };

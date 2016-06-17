@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(cart.data.UserCartDetails[key].Qty, key)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
+                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(cart.data.UserCartDetails[key].CartDetailId, cart.data.UserCartDetails[key].ProductId, cart.data.UserCartDetails[key].Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
                                     <button class="button offersshopping">2 Offers</button>
