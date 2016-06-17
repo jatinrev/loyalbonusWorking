@@ -28,7 +28,7 @@ angular.module('LoyalBonus')
         }
 
         /*
-        get cart data from BUSINESSID
+        get all cart data from BUSINESSID
          */
         function GetUserCartByBusinessId(businessId) {
             loading.start();
@@ -39,35 +39,28 @@ angular.module('LoyalBonus')
                     return res.data.Data;
                 }, function (error) {
                     loading.stop();
-                    console.log(error);
                     return error;
                 });
         }
 
         function update_cart(cartDetailId, productId, qty) {
             return ajaxCall
-            .put('webapi/UserCartAPI/UpdateQuantityByCartDetailId', 'abc')
-            .then(function (res) {
-                console.log('success');
-                console.log(res);
-                return res;
-            }, function (error) {
-                console.log(error);
-            });
-
-            return ajaxCall
-            .put('webapi/UserCartAPI/UpdateQuantityByCartDetailId', {
+            .post('webapi/UserCartAPI/UpdateQuantityByCartDetailId', {
                 cartDetailId : cartDetailId,
                 productId    : productId,
                 qty          : qty,
                 userId       : $rootScope.userDetails.userId
-            })
+            });
+        }
+
+        /*
+            UserCartAPI/RemoveItemFromCart(Get): Parameters – [cartDetailId, cartId, businessStoreId, businessId, productId, userId]
+         */
+        function remove_product(cartDetailId, cartId, businessStoreId, businessId, productId) {
+            return ajaxCall
+            .get('webapi/UserCartAPI/RemoveItemFromCart?cartDetailId='+cartDetailId+'&cartId='+cartId+'&businessStoreId='+businessStoreId+'businessId='+businessId+'&productId='+productId+'&userId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
-                console.log('success');
                 console.log(res);
-                return res;
-            }, function (error) {
-                console.log(error);
             });
         }
         
@@ -91,7 +84,14 @@ angular.module('LoyalBonus')
                 cart_functions
                 .update_cart(cartDetailId, productId, qty)
                 .then(function (res) {
-                    console.log();
+
+                });
+            }
+            , remove_product : function (cartDetailId, cartId, businessStoreId, businessId, productId) {
+                cart_functions
+                .update_cart(cartDetailId, cartId, businessStoreId, $state.params.businessId, productId)
+                .then(function (res) {
+                    // console.log();
                 });
             }
         };

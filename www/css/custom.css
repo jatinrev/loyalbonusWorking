@@ -2,21 +2,11 @@
 /**
  * all padding come here
  */
-.paddingLR10 {
-	padding-left: 10px;
-	padding-right: 10px;
-}
+.paddingLR10 { padding-left: 10px; padding-right: 10px; }
 .padding-top-8 { padding-top: 8px; }
-.padding-top-10 {
-	padding-top: 10px;
-}
-.padding-bottom-10 {
-	padding-bottom: 10px;
-}
-.padding-TB-5 {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
+.padding-top-10 { padding-top: 10px; }
+.padding-bottom-10 { padding-bottom: 10px; }
+.padding-TB-5 { padding-top: 5px; padding-bottom: 5px; }
 .paddingLeftRight-0 { padding-left: 0; padding-right: 0; }
 .paddingLeftRight-15 { padding-left: 15px; padding-right: 15px; }
 .padding-right-5 { padding-right: 5px; }
@@ -323,8 +313,10 @@ border:none;
 }
 #Shoppingcart .col-offset-10
 {
-	    margin-left: 2%;
+	margin-left: 2%;
 }
+#Shoppingcart .position_relative_item { position: relative; }
+#Shoppingcart .icon_close_position_absolute { position: absolute; right: 10px; }
 .redcolor
 {
 	color: red;
@@ -734,6 +726,28 @@ label.learn
     max-width: 100%;
     min-height: 250px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .social_icon_style {
     color: #fff;
     padding-left: 8px;
@@ -752,4 +766,8 @@ label.learn
     Background colors
  */
 .redBack { background-color: #9c263f; }
+
+
+
+
 

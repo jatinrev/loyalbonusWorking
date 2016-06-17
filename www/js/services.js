@@ -18,8 +18,13 @@ angular.module('LoyalBonus.services', [])
 			},
 			put : function (url, data) {
 				console.log(data);
-				return $http.put("http://beta2.loyalbonus.com/" + url, {
-					params: data
+				return $http({
+					method  : 'PUT',
+					url     : 'http://beta2.loyalbonus.com/' + url,
+					headers : {
+					  	'Content-Type': 'application/json; charset=utf-8'
+					},
+					data    : data
 				});
 
 				/*return $http.put("http://beta2.loyalbonus.com/" + url, {

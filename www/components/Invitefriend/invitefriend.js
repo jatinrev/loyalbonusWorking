@@ -17,14 +17,19 @@ angular.module('LoyalBonus')
                     return 1;
                 });
         }
-        return {
 
-            invite: invite
+        function GetFBInviteLink() {
+            return ajaxCall
+            .get('webapi/AppLogin/GetFBInviteLink?userID='+$rootScope.userDetails.userId);
+        }
+
+        return {
+            invite          : invite,
+            GetFBInviteLink : GetFBInviteLink
         };
     })
-    .controller('InviteController', function ($scope, $state, showRating, $timeout, reviewFactory, showRating, $rootScope, backFunctionality, refreshTest, active_controller, Friendinvite, popUp) {
+    .controller('InviteController', function ($scope, $state, showRating, $timeout, reviewFactory, showRating, $rootScope, backFunctionality, refreshTest, active_controller, Friendinvite, popUp, $cordovaSocialSharing, loading) {
         active_controller.set('InviteController');
-        console.log('have reached');
         $scope.datadeal = {};
 
         $scope.Test = function () {
@@ -59,7 +64,34 @@ angular.module('LoyalBonus')
                 });
         }
        
-
+        $scope.inviteFacebook = function() {
+            popUp
+            .confirm(null, 'Are you sure you want to share this via Facebook?')
+            .then(function (res) {
+                // GETTING URL TO SEND TO FACEBOOK.
+                Friendinvite
+                .GetFBInviteLink()
+                .then(function (facebookUrl) {
+                    // CONDITION TO CHECK deviceready.
+                    document.addEventListener("deviceready", function () {
+                        if(res == true) {
+                            loading.start();
+                            $cordovaSocialSharing
+                            .shareViaFacebook('Hey check this out ', globaldata.prefix+'assets/img/logo-w-o-text.png', facebookUrl.data.Data)
+                            .then(function (res) {
+                                loading.stop();
+                            }, function (error) {
+                                popUp
+                                    .msgPopUp('Please install Facebook app.');
+                                loading.stop();
+                            });
+                        }
+                    }, function () {
+                        alert('please wait device is not ready.');
+                    });
+                });
+            });
+        }
 
     });
 
