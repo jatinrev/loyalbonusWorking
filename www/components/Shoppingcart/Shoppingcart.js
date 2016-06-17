@@ -4,17 +4,21 @@ angular.module('LoyalBonus')
 
         /*
         THIS FUNCTION IS INCOMPLETE
+        ShoppingCart(Post): Parameters – [ cartId, businessStoreId, BusinessID, ProductID, userid].
          */
         function list_cart(businessId) {
             return GetUserCartByBusinessId(businessId)
                    .then(function (res) {
+                        console.log('Cart By Business Data');
+                        res.BusinessStoreId;
+                        res.CartId;
                         console.log(res);
                         return  ajaxCall
-                        .post('webapi/UserCartAPI/ShoppingCart?userid='+$rootScope.userDetails.userId, {
+                        .post('webapi/UserCartAPI/ShoppingCart', {
                             cartId          : res.CartId,
                             businessStoreId : res.BusinessStoreId,
                             BusinessID      : businessId,
-                            ProductID       : ProductId,
+                            ProductID       : 61,
                             userid          : $rootScope.userDetails.userId
 
                         })
@@ -55,19 +59,25 @@ angular.module('LoyalBonus')
 
         /*
             UserCartAPI/RemoveItemFromCart(Get): Parameters – [cartDetailId, cartId, businessStoreId, businessId, productId, userId]
+            return 1, when product is removed.
          */
         function remove_product(cartDetailId, cartId, businessStoreId, businessId, productId) {
+            loading.start();
             return ajaxCall
-            .get('webapi/UserCartAPI/RemoveItemFromCart?cartDetailId='+cartDetailId+'&cartId='+cartId+'&businessStoreId='+businessStoreId+'businessId='+businessId+'&productId='+productId+'&userId='+$rootScope.userDetails.userId, {})
-            .then(function (res) {
-                console.log(res);
+            .get('webapi/UserCartAPI/RemoveItemFromCart?cartDetailId='+cartDetailId+'&cartId='+cartId+'&businessStoreId='+businessStoreId+'&businessId='+businessId+'&productId='+productId+'&userId='+$rootScope.userDetails.userId, {})
+            .then(function(res) {
+                loading.start();
+                if( res.data.Data.BusinessID == businessId ) {
+                    return 1;
+                }
             });
         }
         
         return {
             list_cart               : list_cart,
             GetUserCartByBusinessId : GetUserCartByBusinessId,
-            update_cart             : update_cart
+            update_cart             : update_cart,
+            remove_product          : remove_product
         };
     })
 
@@ -87,20 +97,34 @@ angular.module('LoyalBonus')
 
                 });
             }
-            , remove_product : function (cartDetailId, cartId, businessStoreId, businessId, productId) {
-                cart_functions
-                .update_cart(cartDetailId, cartId, businessStoreId, $state.params.businessId, productId)
+                                        //      1       2             3             4
+            , remove_product : function (cartDetailId, cartId, businessStoreId, productId) {
+                cart_functions      //1         2             3                     4               5
+                .remove_product(cartDetailId, cartId, businessStoreId, $state.params.businessId, productId)
                 .then(function (res) {
-                    // console.log();
+                    if(res == 1) {
+                        $scope.Test();
+                    } else {
+                        alert('Unfortunately the product was not removed.');
+                    }
                 });
             }
         };
 
         /*
+        Listing cart
+         */
+        cart_functions
+        .list_cart($state.params.businessId)
+        .then(function(res) {
+            console.log(res);
+        });
+
+        /*
         THIS IS TO GET BUSINESS DATA.
          */
         businessVisit
-        .businessDetail( 80, $rootScope.userDetails.userId )
+        .businessDetail( $state.params.businessId, $rootScope.userDetails.userId )
         .then(function (res) {
             $scope.businessData = res.data.Data[0];
         });
