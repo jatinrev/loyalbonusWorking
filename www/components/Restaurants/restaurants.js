@@ -192,14 +192,6 @@ angular.module('LoyalBonus', '')
 
         $ionicPlatform.ready(function () {
 
-            get_user_location
-            .get
-            .then(function(ipResult) {
-                /*console.log('ip');*/
-                console.log(ipResult);
-            });
-
-
             $scope.testing = 'in RestaurantController ionic ready.';
             get_user_location
                 .get

@@ -246,7 +246,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         }
       })
       .state("home.shoppingcart", {
-        url   : "shoppingcart/",
+        url   : "shoppingcart/:businessId",
         cache : false,
         views : {
           "body": {

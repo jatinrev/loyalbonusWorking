@@ -25,16 +25,16 @@
                 <p class="row fontsize">Shopping Cart</p>
             </div>
             <div class="padding">
-                <div class="brder">
-                    <div class="row">
-                        <div class="col-40"><img id="shoppingimg" src="img/kaseydiner_distr.jpg"></div>
+                <div class="brder" >
+                    <div class="row" ng-repeat="(key, product) in cart.data.UserCartDetails">
+                        <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
-                            <span class="shoppingdesciption"> Gramercy Park Queen Bed in Weathered Gray </span>
+                            <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }}</span>
                             <label class="shoppingsmall">One (1) headboard, one</label>
                             <div class="row">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" placeholder="1">
+                                    <input type="text" class="qty" name="qty" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
                                     <button class="button offersshopping">2 Offers</button>

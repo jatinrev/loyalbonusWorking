@@ -46,6 +46,7 @@
         <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
             
             <div class="buttons">
+                <!-- home_var.magnifyOrBack() gives active_controller -->
                 <button class="button button-icon
                     {{ home_var.magnifyOrBack() == 'RestaurantController' ||
                        home_var.magnifyOrBack() == 'BusinessController'   ?
@@ -69,12 +70,16 @@
                 <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
                     {{ home_var.kaseyDinnerHeading.text() }}
                 </span>
-                <span class="text-vertical" ><!--ng-show="home_var.businessMap.text() == '' ? false : true"-->
+                <span class="text-vertical">
                     {{ home_var.businessMap.text() }}
                 </span>
 
             </div>
-            <div class="buttons">   
+            <div class="buttons">
+                <button ng-show="home_var.magnifyOrBack() == 'ProductController'
+                                 || home_var.magnifyOrBack() == 'CartController'" 
+                        class="button button-clear icon ion-ios-cart"
+                        ng-click="home_var.go_to_cart()"></button>
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
             </div>
 

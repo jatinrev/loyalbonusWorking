@@ -1,48 +1,82 @@
 angular.module('LoyalBonus')
 
-    .factory('cart_functions', function (ajaxCall, $rootScope) {
+    .factory('cart_functions', function (ajaxCall, $rootScope, loading) {
 
-        function list_cart(cartId, businessStoreId, businessId, ProductId) {
-            return  ajaxCall
-                    .post('webapi/UserCartAPI/ShoppingCart?userid='+$rootScope.userDetails.userId, {
-                        cartId          : cartId,
-                        businessStoreId : businessStoreId,
-                        BusinessID      : businessId,
-                        ProductID       : ProductId,
-                        userid          : $rootScope.userDetails.userId
-
-                    })
-                    .then(function(res) {
+        /*
+        THIS FUNCTION IS INCOMPLETE
+         */
+        function list_cart(businessId) {
+            return GetUserCartByBusinessId(businessId)
+                   .then(function (res) {
                         console.log(res);
-                        return res;
-                    });
+                        return  ajaxCall
+                        .post('webapi/UserCartAPI/ShoppingCart?userid='+$rootScope.userDetails.userId, {
+                            cartId          : res.CartId,
+                            businessStoreId : res.BusinessStoreId,
+                            BusinessID      : businessId,
+                            ProductID       : ProductId,
+                            userid          : $rootScope.userDetails.userId
+
+                        })
+                        .then(function(res) {
+                            console.log(res);
+                            return res;
+                        });
+                   }, function (error) {
+                        console.log(error);
+                   });
+        }
+
+        /*
+        get cart data from BUSINESSID
+         */
+        function GetUserCartByBusinessId(businessId) {
+            loading.start();
+            return ajaxCall
+                .get('webapi/UserCartAPI/GetUserCartByBusinessId?businessId='+businessId+'&userId='+$rootScope.userDetails.userId, {})
+                .then(function (res) {
+                    loading.stop();
+                    return res.data.Data;
+                }, function (error) {
+                    loading.stop();
+                    console.log(error);
+                    return error;
+                });
         }
         
         return {
-            list_cart : list_cart
+            list_cart : list_cart,
+            GetUserCartByBusinessId : GetUserCartByBusinessId
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
         $scope.businessData = {};
         $scope.cart         = {};
+
+        /*
+        THIS IS TO GET BUSINESS DATA.
+         */
         businessVisit
         .businessDetail( 80, $rootScope.userDetails.userId )
         .then(function (res) {
             $scope.businessData = res.data.Data[0];
         });
-       
 
         /*
         Listing cart products
          */
         cart_functions
-        .list_cart('5a72a75d-6c31-4d52-a3df-27233ab03293', 'adf76e03-eaf8-4190-8bd3-b8e9c8ad9d84', 80, 60)
+        .GetUserCartByBusinessId($state.params.businessId)
         .then(function (res) {
-
+            $scope.cart.data = res;
+            /*$scope.cart.product_id_in_cart = []
+            for (key in $scope.cart.data.UserCartDetails) {
+                $scope.cart.product_id_in_cart[key] = $scope.cart.data.UserCartDetails[key].ProductId;
+            }*/
         });
 
         $scope.state_on = function () {

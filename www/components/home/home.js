@@ -10,6 +10,9 @@ angular.module('LoyalBonus')
     // userPresent => return 1 when user is present.
     userPresent : function () {
       return watchUser.userPresent();
+    },
+    go_to_cart  : function () {
+      $state.go( "home.shoppingcart", {businessId : saveData.get('business_id_for_shoppingcart')} );
     }
   };
 
@@ -54,6 +57,7 @@ angular.module('LoyalBonus')
     /***End : removing from preference***/
     $state.go("signin");
   };
+
   $scope.signin = function() {
     // console.log('helllooooo');
     $rootScope.userDeatils = {};
@@ -123,26 +127,26 @@ angular.module('LoyalBonus')
   }
 
   $rootScope.showPopup = function (msg) {
-      $scope.data = {}
+    $scope.data = {}
 
-      // An elaborate, custom popup
-      var myPopup = $ionicPopup.show({
-          /* template:'<i class="icon-gift"></i>',*/
-          title: '<img src="img/bonus.png"> Bonus',
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+        /* template:'<i class="icon-gift"></i>',*/
+        title: '<img src="img/bonus.png"> Bonus',
 
-          subTitle: msg,
-          scope: $scope,
-          buttons: [
-              { text: 'Cancel', type: 'button-positive' }
+        subTitle: msg,
+        scope: $scope,
+        buttons: [
+            { text: 'Cancel', type: 'button-positive' }
 
-          ]
-      });
-      myPopup.then(function (res) {
-          console.log('Tapped!', res);
-      });
-      $timeout(function () {
-          myPopup.close(); //close the popup after 3 seconds for some reason
-      }, 3000);
+        ]
+    });
+    myPopup.then(function (res) {
+        console.log('Tapped!', res);
+    });
+    $timeout(function () {
+        myPopup.close(); //close the popup after 3 seconds for some reason
+    }, 3000);
   };
   /******End : Home Heading Setting*******/
 

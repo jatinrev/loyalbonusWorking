@@ -14,7 +14,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope) {
+    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, saveData) {
 
         $scope.datadeal = {};
         
@@ -65,6 +65,10 @@ angular.module('LoyalBonus')
             //console.log(typeof(number));
             return showRating.showRatingImages(newNumber);
         }
+
+        saveData
+        .set('business_id_for_shoppingcart', $state.params.BusinessId);
+
     });
 
 

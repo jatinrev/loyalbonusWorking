@@ -715,19 +715,16 @@ label.learn
 {
     position: relative;
 }
-.famap
-{
-    
+.famap {
     background: url(../img/mapion.png);
-        width: 23px;
+    width: 23px;
     height: 19px;
     float: left;
     margin-right: 4px;
     margin-top: -2px;
 }
 .zoom-done-button { color: #387EF5 !important; }
-#Cart #logo
-{
+#Cart #logo {
     position: relative;
 }
 
