@@ -98,11 +98,12 @@ angular.module('LoyalBonus')
                 });
             }
                                         //      1       2             3             4
-            , remove_product : function (cartDetailId, cartId, businessStoreId, productId) {
+            , remove_product : function (cartDetailId, cartId, businessStoreId, productId, ArrayKey) {
                 cart_functions      //1         2             3                     4               5
                 .remove_product(cartDetailId, cartId, businessStoreId, $state.params.businessId, productId)
                 .then(function (res) {
                     if(res == 1) {
+                        $scope.cart.data.UserCartDetails.splice(ArrayKey, 1);
                         $scope.Test();
                     } else {
                         alert('Unfortunately the product was not removed.');
@@ -113,7 +114,7 @@ angular.module('LoyalBonus')
 
         /*
         Listing cart
-         */
+         *
         cart_functions
         .list_cart($state.params.businessId)
         .then(function(res) {
