@@ -26,7 +26,8 @@
             </div>
             <div class="padding">
                 <div class="brder" >
-                    <div class="row position_relative_item" ng-repeat="(key, product) in cart.data.UserCartDetails">
+                    <div class="row position_relative_item bordertop" ng-repeat="(key, product) in cart.data.UserCartDetails">
+
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
                             <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }}</span>
@@ -42,7 +43,9 @@
                             </div>
                         </div>
                         <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(cart.data.UserCartDetails[key].CartDetailId, cart.data.UserCartDetails[key].CartId, cart.data.BusinessStoreId, cart.data.UserCartDetails[key].ProductId)"></i>
+
                     </div>
+
                     <div class="bordertop">
                         <div class="center">
                             <ion-item class="wth-border item ng-binding color33cd5f"> ₦ 586923.75</ion-item>

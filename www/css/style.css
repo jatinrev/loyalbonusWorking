@@ -2018,4 +2018,49 @@ width: 100%;
         width: 80%;
 }
 
-
+#restaurants .cart{
+    font-size: 30px;
+    padding: 2px;
+    margin-right: 10px;
+}
+#restaurants .cart .ion-ios-cart
+{
+    padding:5px;
+    margin: 5px;
+}
+.nav-sprite
+{
+    background: url('../img/cart-2f.png') no-repeat;
+}
+.nav-cart-icon
+{
+    overflow: hidden;
+    position: relative;
+    left: 3px;
+    top: 1px;
+    /* background-position: -10px -340px; */
+    width: 38px;
+    height: 26px;
+}
+#nav-cart-count
+{
+    color: #f08804;
+    top: 4px;
+}
+.nav-cart-0
+{
+    left: 19px;
+    top: 9px;
+    font-size: 16px;
+    width: 19px;
+}
+.nav-cart-count
+{
+    color: #e47911;
+    font-weight: 700;
+    
+    position: absolute;
+    line-height: 16px;
+    width: 20px;
+    text-align: center;
+}
