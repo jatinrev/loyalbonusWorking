@@ -9,7 +9,8 @@
             </ion-item>
             <ion-list ng-show="home_var.userPresent() == 0 ? true : false">
                 <ion-item class="col text-center" menu-toggle ng-click="redirect_urls.home()"><img class="leftsidelogo" src="img/logo.png"></ion-item>
-                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center" on-tap="signin()"> or Sign Up</span>
+                <ion-list class="col text-center"><span class="colorchanged col-50 text-center" on-tap="signOut()">Login</span> <span class="colorchanged col-50 text-center"
+                        on-tap="signin()"> or Sign Up</span>
                 </ion-list>
             </ion-list>
             <ion-list>
@@ -32,19 +33,20 @@
                 <!-- ui-sref="home.account" -->
             </ion-list>
             <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
-                <ion-item menu-toggle  ng-click="redirect_urls.invite_friend()"><i class="ion-person-stalker margin-right-5"></i>Invite a Friend</ion-item>
+                <ion-item menu-toggle ng-click="redirect_urls.invite_friend()"><i class="ion-person-stalker margin-right-5"></i>Invite a Friend</ion-item>
             </ion-list>
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.aboutus()"><i class="ion-social-dropbox margin-right-5"></i>About Loyal Bonus</ion-item>
             </ion-list>
             <ion-list>
-                <ion-item class="new-color-loyal" on-tap="signOut()"><i ng-show="home_var.userPresent() == 1 ? true : false" class="ion-arrow-left-c margin-right-5"></i>{{ home_var.userPresent() == 1 ? 'Sign Out' : 'Sign Up' }}<i ng-show="home_var.userPresent() == 1 ? false : true" class="padding-left-5 ion-arrow-right-c"></i></ion-item>
+                <ion-item class="new-color-loyal" on-tap="signOut()"><i ng-show="home_var.userPresent() == 1 ? true : false" class="ion-arrow-left-c margin-right-5"></i>{{ home_var.userPresent()
+                    == 1 ? 'Sign Out' : 'Sign Up' }}<i ng-show="home_var.userPresent() == 1 ? false : true" class="padding-left-5 ion-arrow-right-c"></i></ion-item>
             </ion-list>
         </ion-content>
     </ion-side-menu>
     <ion-side-menu-content side-menu-content drag-content="false">
         <ion-header-bar class="bar-positive transparent-nav" id="restaurants">
-            
+
             <div class="buttons">
                 <!-- home_var.magnifyOrBack() gives active_controller -->
                 <button class="button button-icon
@@ -57,17 +59,17 @@
                     goSearchHandler() : goBackHandler()
                     ">
                 </button>
-            </div>    
+            </div>
             <div class="title center">
                 <form class="item item-input new_margin" ng-show="showMe" ng-submit="home_var.homesearch.setValue(home_var.homesearch.value)">
-                    <input type="text"  ng-model="home_var.homesearch.value" placeholder="Search for restaurants" >
-                    <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"  ></span>
+                    <input type="text" ng-model="home_var.homesearch.value" placeholder="Search for restaurants">
+                    <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"></span>
                 </form>
 
-                <span class="search-vertical center" ng-show="home_var.homeheading.Visibility()" >
+                <span class="search-vertical center" ng-show="home_var.homeheading.Visibility()">
                     {{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                 </span>
-                <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true" >
+                <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true">
                     {{ home_var.kaseyDinnerHeading.text() }}
                 </span>
                 <span class="text-vertical">
@@ -75,11 +77,19 @@
                 </span>
 
             </div>
+
             <div class="buttons">
-                <button ng-show="home_var.magnifyOrBack() == 'ProductController'
-                                 || home_var.magnifyOrBack() == 'CartController'" 
-                        class="button button-clear icon ion-ios-cart"
-                        ng-click="home_var.go_to_cart()"></button>
+                <div class="cart" ng-show="home_var.magnifyOrBack() == 'ProductController' || home_var.magnifyOrBack() == 'CartController'"
+                    ng-click="home_var.go_to_cart()">
+                    <!-- <span aria-hidden="true" class="nav-line-2">Cart</span> -->
+                    <span class="nav-cart-icon nav-sprite"></span>
+                    <span id="nav-cart-count" class="nav-cart-count nav-cart-0">0</span>
+
+                </div>
+                <!--  <button ng-show="home_var.magnifyOrBack() == 'ProductController'
+                                || home_var.magnifyOrBack() == 'CartController'" 
+                       class="button button-clear icon ion-ios-cart"
+                       ng-click="home_var.go_to_cart()"></button> -->
                 <button class="button button-clear icon ion-navicon-round" ng-click="toggleLeft()"></button>
             </div>
 
