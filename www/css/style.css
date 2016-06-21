@@ -1019,7 +1019,8 @@ width: 100%;
 
 #Membership .color-reviewblue
 {
-        color: #3290ed;
+       /*  color: #3290ed; */
+    color:#000;
     font-size: 21px;
     float: left;
 
@@ -1044,10 +1045,14 @@ width: 100%;
  padding-left: 5px;
  color:#727171;
 }
+#Membership .item-stable
+{
+    background-color: #E5E5E5;
+    border:1px solid #b2b2b2;
+}
 #Membership .item
 {
-    background-color: unset;
-    border:none;
+   background-color: #fff; 
 }
 #Membership .firstname
 {
@@ -1584,6 +1589,9 @@ a.control_next
 .slider {
 
         visibility: visible;
+        width:429px;
+        height:158px;
+
 
 }
 .ion-ios-telephone

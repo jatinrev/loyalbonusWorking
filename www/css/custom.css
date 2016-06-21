@@ -11,8 +11,11 @@
 .paddingLeftRight-15 { padding-left: 15px; padding-right: 15px; }
 .padding-right-5 { padding-right: 5px; }
 .padding-left-5 { padding-left: 5px; }
+.padding-left-10 { padding-left: 10px; }
 
+.padding-bottom {padding-bottom:0px;}
 
+.margin-bottom {margin-bottom: 50px;}
 
 .fontsize
 {
@@ -29,8 +32,8 @@
 .margin-top-10 { margin-top:15px; }
 .margin-top-15 { margin-top: 15px; }
 
-
-
+.margin-left-15{margin-left:15}
+.mgtop20 {margin-top: 20px;}
 #restaurants .margin-top-10 { margin-top:15px; }
 
 
@@ -354,6 +357,10 @@ border:none;
 	font-size: 18px;
 	font-weight: 600;
 }
+input.promoCart{
+    border:1px solid #000;
+    padding:5px 6px 0 5px
+}
 .subtotalamount
 {
 	color:#008000;
@@ -369,6 +376,15 @@ border:none;
 	    line-height: 40px;
 	    min-height: 25px;
 	    margin-bottom: 10px;
+}
+.applypromo
+{
+    background-color: #009f8b;
+        padding:0 35px;
+        color:#fff;
+        line-height: 40px;
+        min-height: 25px;
+        margin-bottom: 10px;
 }
 .margintop
 {
@@ -728,10 +744,30 @@ label.learn
 #Cart .slider img#imgheight
 {
     display: block;
-    max-width: 100%;
-    min-height: 250px;
+        /* width: 250px;
+        min-height: 100px; */
+         /* height: 150px; */
+        /* max-width: auto !important;
+            height: auto; */
+             /* height:140px;
+                        clear: both; */
+                            height: auto !important;
 }
 
+input[type="radio"] {
+    margin: 14px 0 0;
+    
+    line-height: normal;
+}
+span.Monthly
+{
+    margin: 10px 3px 0;
+}  
+span.price
+{
+    margin: 10px 3px 0;
+    float: left;
+}  
 
 
 
@@ -779,5 +815,97 @@ label.learn
 
 
 
+/*
+css for accordian in mermbership
+*/
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+#promoCodeDiv .form-control {
+    box-shadow: none;
+    border-radius: 0px;
+    border: 2px solid #e9e9e9;
+    height: 40px;
+    line-height: 20px;
+    padding: 6px 12px;
+}
+.mgtop20 a{
+    position: relative;
+    top:-10px;
+    left: 5px;
+    color: #009f8b;
+}
+
+.mdtb10_30 {
+    margin: 10px 0px 30px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.btn {
+    border: 0px;
+    border-radius: 0px;
+    padding: 9px 15px;
+    position: relative;
+    transition: background-color 0.15s linear;
+}
+.wd172 {
+    width: 172px;
+}
 
 
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 2px;
+}
+.table > caption + thead > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > th, .table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 2px;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+    border: 1px solid #ddd;
+}
+
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.table-bordered {
+    border: 1px solid #ddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+th {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.table-responsive {
+    overflow-x: auto;
+    min-height: 0.01%;
+}
