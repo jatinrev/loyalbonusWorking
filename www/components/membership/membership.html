@@ -18,9 +18,7 @@
                     <label class="color-txt">Your membership will end:</label>
                     <label class="black-color">03/17/2016</label>
                 </div>
-                <!-- <div class="padding">
-                    <p class="h1 title">Billing Details</p>
-                </div> -->
+                
                 <div ng-repeat="group in groups">
 
                     <ion-item class="item-stable" id="{{ group.id }}" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">

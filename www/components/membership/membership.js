@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, refreshTest,$sce) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
@@ -20,15 +20,15 @@ angular.module('LoyalBonus')
         ]},
 
       { name: 'Payment History', 
-        id: 2, items :[{ bkgtxt: $sce.trustAsHtml('<div class="row"></div><div class="col-25"><label class="title col-50">Transaction Ref No.</label></div><div class="col-25"><label class="title col-50">Transaction Date</label></div><div class="col-25"><label class="title col-50">Transaction Amt.</label></div><div class="col-25"><label class="title col-50">Transaction Type </label></div>')}
+        id: 2, items :[{ bkgtxt: $sce.trustAsHtml('<div class="table-responsive"><table id="tbl" class="table table-bordered"><thead><tr><th>Ref No.</th><th>Date</th><th class="text-center">Amt.</th><th class="text-center">Transaction Type</th><th class="text-center">Plan Type</th></tr></thead><tbody><tr><td>3451e546-739b-43df-82e1-96ffa99da22d</td><td>17/06/2016 12:14:28 PM</td><td class="text-right"><b>₦</b> 250.00</td><td class="text-center">Regular</td><td class="text-center">Monthly</td></tr></tbody></table></div>')}
 
         ]},
 
       
 
       { name: 'Cancel membership', 
-        id: 3, 
-      }
+        id: 3, items:[{ bkgtxt: $ionicModal.fromTemplate ('').show()}
+      ]}
     ];
 
   
