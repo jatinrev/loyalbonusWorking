@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-    .factory('cart_functions', function (ajaxCall, $rootScope, loading) {
+    .factory('cart_functions', function (ajaxCall, $rootScope, loading, saveData) {
 
         /*
         THIS FUNCTION IS INCOMPLETE
@@ -39,6 +39,11 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/UserCartAPI/GetUserCartByBusinessId?businessId='+businessId+'&userId='+$rootScope.userDetails.userId, {})
                 .then(function (res) {
+                    //UPDATING CART DATA.
+                    if( res.data.Data != null ) {
+                        saveData
+                        .set('business_cart_size', res.data.Data.UserCartDetails.length);
+                    }
                     loading.stop();
                     return res.data.Data;
                 }, function (error) {
@@ -66,22 +71,55 @@ angular.module('LoyalBonus')
             return ajaxCall
             .get('webapi/UserCartAPI/RemoveItemFromCart?cartDetailId='+cartDetailId+'&cartId='+cartId+'&businessStoreId='+businessStoreId+'&businessId='+businessId+'&productId='+productId+'&userId='+$rootScope.userDetails.userId, {})
             .then(function(res) {
-                loading.start();
+                saveData.set('business_cart_size', +saveData.get('business_cart_size') - 1);
+
+                loading.stop();
                 if( res.data.Data.BusinessID == businessId ) {
                     return 1;
                 }
             });
         }
+
+        // ApplyPromoCode (Post): Parameters – [CartId, BusinessStoreId, PromoCode,  userId]
+        function apply_promo(CartId, BusinessStoreId, PromoCode) {
+            loading.start();
+            return ajaxCall
+            .post('webapi/UserCartAPI/ApplyPromoCode', {
+                CartId          : CartId,
+                BusinessStoreId : BusinessStoreId,
+                PromoCode       : PromoCode,
+                userId          : $rootScope.userDetails.userId
+            })
+            .then(function (res) {
+                loading.stop();
+                return res;
+            });
+        }
         
+        // CheckOut(Get): Parameters – [cartId, businessStoreId, BusinessID, ProductID, userId].
+        // THIS FUNCTION IS INCOMPLETE
+        function checkout(cartId, businessStoreId, BusinessID, ProductID) {
+            loading.start();
+            return ajaxCall
+            .get('webapi/UserCartAPI/CheckOut?cartId='+cartId+',businessStoreId='+businessStoreId+',BusinessID='+BusinessID+',ProductID='+ProductID+',userId='+$rootScope.userDetails.userId, {})
+            .then(function(res) {
+                loading.stop();
+                console.log(res);
+                return res;
+            });
+        }
+
         return {
             list_cart               : list_cart,
             GetUserCartByBusinessId : GetUserCartByBusinessId,
             update_cart             : update_cart,
-            remove_product          : remove_product
+            remove_product          : remove_product,
+            apply_promo             : apply_promo,
+            checkout                : checkout
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -97,23 +135,41 @@ angular.module('LoyalBonus')
 
                 });
             }
-                                        //      1       2             3             4
-            , remove_product : function (cartDetailId, cartId, businessStoreId, productId) {
+                                        //      1        2            3             4
+            , remove_product : function (cartDetailId, cartId, businessStoreId, productId, ArrayKey) {
                 cart_functions      //1         2             3                     4               5
                 .remove_product(cartDetailId, cartId, businessStoreId, $state.params.businessId, productId)
                 .then(function (res) {
                     if(res == 1) {
+                        $scope.cart.data.UserCartDetails.splice(ArrayKey, 1);
                         $scope.Test();
                     } else {
                         alert('Unfortunately the product was not removed.');
                     }
                 });
             }
+            , apply_promo : function () {
+                cart_functions
+                .apply_promo($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $scope.cart.promo)
+                .then(function(res) {
+                    if(res.data.Data.success == false) {
+                        popUp
+                        .msgPopUp( res.data.Data.result, 0);
+                    }
+                });
+            }
+            , check_out : function() {
+                cart_functions
+                .checkout($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $state.params.businessId, ProductID)
+                .then(function (res) {
+
+                });
+            }
         };
 
         /*
         Listing cart
-         */
+         *
         cart_functions
         .list_cart($state.params.businessId)
         .then(function(res) {

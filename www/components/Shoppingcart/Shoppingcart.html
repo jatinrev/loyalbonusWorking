@@ -26,8 +26,7 @@
             </div>
             <div class="padding">
                 <div class="brder" >
-                    <div class="row position_relative_item bordertop" ng-repeat="(key, product) in cart.data.UserCartDetails">
-
+                    <div class="row position_relative_item" ng-show="cart.data.UserCartDetails.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetails">
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
                             <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }}</span>
@@ -35,15 +34,14 @@
                             <div class="row">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(cart.data.UserCartDetails[key].CartDetailId, cart.data.UserCartDetails[key].ProductId, cart.data.UserCartDetails[key].Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
+                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
                                     <button class="button offersshopping">2 Offers</button>
                                 </div>
                             </div>
                         </div>
-                        <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(cart.data.UserCartDetails[key].CartDetailId, cart.data.UserCartDetails[key].CartId, cart.data.BusinessStoreId, cart.data.UserCartDetails[key].ProductId)"></i>
-
+                        <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(product.CartDetailId, product.CartId, cart.data.BusinessStoreId, product.ProductId, key)"></i>
                     </div>
 
                     <div class="bordertop">
@@ -63,12 +61,14 @@
                     <div class="bordertop">
                         <div class="row">
                             <div class="col-50 col-offset-10">
+                                <input class="subtotal col pull-left center margintop20" type="text" ng-model="cart.promo">
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
                                 <span class="subtotal col pull-left  margintop center"> ₦ 586923.75</label>
                             </div>
                             <div class="col-50">
-                            <button class="button checkoutbutton margintop15">Checkout</button>
-                            <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
+                                <button class="button checkoutbutton margintop15" ng-click="cart.apply_promo()">Apply Promo</button>
+                                <button class="button checkoutbutton margintop15">Checkout</button>
+                                <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
                             </div>
                         </div>
                     </div>

@@ -80,10 +80,10 @@
 
             <div class="buttons">
                 <div class="cart" ng-show="home_var.magnifyOrBack() == 'ProductController' || home_var.magnifyOrBack() == 'CartController'"
-                    ng-click="home_var.go_to_cart()">
+                    ng-click="home_var.business_cart_size() == 0 ? home_var.popUp('Please add product to cart first.', 0) : home_var.go_to_cart()">
                     <!-- <span aria-hidden="true" class="nav-line-2">Cart</span> -->
                     <span class="nav-cart-icon nav-sprite"></span>
-                    <span id="nav-cart-count" class="nav-cart-count nav-cart-0">0</span>
+                    <span id="nav-cart-count" class="nav-cart-count nav-cart-0">{{ home_var.business_cart_size() }}</span>
 
                 </div>
                 <!--  <button ng-show="home_var.magnifyOrBack() == 'ProductController'

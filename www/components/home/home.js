@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
-  , get_business_data_map,refreshTest, $cordovaPreferences ) {
+  , get_business_data_map,refreshTest, $cordovaPreferences, popUp ) {
 
   $scope.testing = function () {
     cordova.plugins.Keyboard.close();
@@ -13,6 +13,18 @@ angular.module('LoyalBonus')
     },
     go_to_cart  : function () {
       $state.go( "home.shoppingcart", {businessId : saveData.get('business_id_for_shoppingcart')} );
+    },
+    business_cart_size : function() {
+      var business_cart_size = saveData.get('business_cart_size');
+      if( typeof(business_cart_size) == 'undefined' ) {
+        return 0;
+      } else {
+        return saveData.get('business_cart_size');
+      }
+    },
+    popUp : function (msg, status) {
+      popUp
+      .msgPopUp(msg, status);
     }
   };
 
