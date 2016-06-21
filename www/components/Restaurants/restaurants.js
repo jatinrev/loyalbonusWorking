@@ -64,8 +64,8 @@ angular.module('LoyalBonus', '')
                             for (variable in res.data.Data) {
                                 //console.log(variable);
                                 heading_data_temp.push({
-                                    CategoryID: res.data.Data[variable].CategoryID,
-                                    CategoryName: res.data.Data[variable].CategoryName
+                                    CategoryID   : res.data.Data[variable].CategoryID,
+                                    CategoryName : res.data.Data[variable].CategoryName
                                 });
                                 //console.log(res.data.Data[variable].CategoryName);
                             }
@@ -76,11 +76,11 @@ angular.module('LoyalBonus', '')
                             /**for restaurant page**/
                             for (i in heading_data) {
                                 //console.log(i);
-                                restaurantData[heading_data[i].CategoryID] = [];
+                                restaurantData[heading_data[i].CategoryID]  = [];
                                 /**for indexing of each page**/
-                                pageIndex[heading_data[i].CategoryID] = 0;
+                                pageIndex[heading_data[i].CategoryID]       = 0;
                                 searchPageIndex[heading_data[i].CategoryID] = 0;
-                                searchData[heading_data[i].CategoryID] = [];
+                                searchData[heading_data[i].CategoryID]      = [];
                             }
 
                             $state.go("home.restaurants", { vertical: heading_data[0].CategoryID });
