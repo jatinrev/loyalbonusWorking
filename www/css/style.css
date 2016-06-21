@@ -1590,7 +1590,8 @@ a.control_next
 
         visibility: visible;
         width:429px;
-        height:158px;
+        /* height:158px; */
+        height: 283px;
 
 
 }
