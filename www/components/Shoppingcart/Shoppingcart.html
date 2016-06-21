@@ -61,12 +61,14 @@
                     <div class="bordertop">
                         <div class="row">
                             <div class="col-50 col-offset-10">
+                                <input class="subtotal col pull-left center margintop20" type="text" ng-model="cart.promo">
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
                                 <span class="subtotal col pull-left  margintop center"> ₦ 586923.75</label>
                             </div>
                             <div class="col-50">
-                            <button class="button checkoutbutton margintop15">Checkout</button>
-                            <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
+                                <button class="button checkoutbutton margintop15" ng-click="cart.apply_promo()">Apply Promo</button>
+                                <button class="button checkoutbutton margintop15">Checkout</button>
+                                <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
                             </div>
                         </div>
                     </div>

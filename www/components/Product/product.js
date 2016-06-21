@@ -14,7 +14,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, saveData) {
+    .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, saveData, cart_functions) {
 
         $scope.datadeal = {};
         
@@ -37,7 +37,6 @@ angular.module('LoyalBonus')
             $scope.businessData = res.data.Data[0];
         });
 
-
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
@@ -48,7 +47,7 @@ angular.module('LoyalBonus')
         /* ------------started functionality productFactory-----------*/
         $scope.invitelistnew = function () {
             productFactory
-                .printProduct($scope.state_on(), $scope.pageIndex)
+                .printProduct($state.params.BusinessId, $scope.pageIndex)
                 .then(function (result) {
                     console.log(result);
                     $scope.datadeal = result;
@@ -68,6 +67,13 @@ angular.module('LoyalBonus')
 
         saveData
         .set('business_id_for_shoppingcart', $state.params.BusinessId);
+
+        /*
+        Getting number of items in the cart.
+        THIS WILL AUTOMATICALLY UPDATE CART.
+         */
+        cart_functions
+        .GetUserCartByBusinessId($state.params.BusinessId);
 
     });
 

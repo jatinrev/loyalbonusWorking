@@ -1,5 +1,5 @@
 angular.module('LoyalBonus')
-    .factory('productDetailFactory', function (ajaxCall, $rootScope, loading, $state) {
+    .factory('productDetailFactory', function (ajaxCall, $rootScope, loading, $state, cart_functions) {
         function printProductDetail(BusinessId, Productid) {
             //console.log(BusinessId);
             return ajaxCall
@@ -23,6 +23,12 @@ angular.module('LoyalBonus')
 
                 }).then(function (cartResult) {                    //console.log(JSON.parse(cartResult.data.Data));
                     loading.stop();
+                    /*
+                    Getting number of items in the cart.
+                    THIS WILL AUTOMATICALLY UPDATE CART.
+                     */
+                    cart_functions
+                    .GetUserCartByBusinessId($state.params.BusinessId);
                     return cartResult.data.Data;
                 });
         }
