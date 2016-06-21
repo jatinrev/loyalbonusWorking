@@ -2,131 +2,35 @@
     <ion-view>
         <form ua-login name="frmmember" novalidate>
             <ion-content>
-                <ion-refresher
-                    pulling-text="Pull to refresh..."
-                    on-refresh="Test()">
+
+                <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
                 </ion-refresher>
-                <div class="row padding">
+                <div class="row padding padding-bottom">
                     <div class="col50">
                         <p class="h4 title">Membership Type: </p>
                     </div>
                     <div class="col50">
-                        <a class="color-reviewblue">FREE TRIAL</a>
-                        <span class="color-reviewb">(Upgrade Now)</span>
+                        <a class="color-reviewblue">Monthly</a>
+                        <!-- <span class="color-reviewb">(Upgrade Now)</span> -->
                     </div>
                 </div>
-                <div class="col padding">
+                <div class="col padding margin-bottom">
                     <label class="color-txt">Your membership will end:</label>
                     <label class="black-color">03/17/2016</label>
                 </div>
-                <div class="padding">
+                <!-- <div class="padding">
                     <p class="h1 title">Billing Details</p>
-                </div>
-                <div class="list list-inset">
-                    <div class="padding">
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">First Name <i class="ion-ios-star"></i></span>
-                            <input type="text" name="firstname" class="firstname" ng-model="bill.firstname" ng-required="true" ng-minlength="3" ng-maxlength="10" placeholder="First Name">
-                        </label>
-                        <div role="alert">
-                            <span class="error" ng-show="frmmember.firstname.$dirty && frmmember.firstname.$error.required">Firstname Is Required!</span>
-                            <span class="error" ng-show="frmmember.firstname.$dirty && frmmember.firstname.$error.minlength">Firstname Is Too Short!</span>
-                            <span class="error" ng-show="frmmember.firstname.$dirty && frmmember.firstname.$error.maxlength">Firstname Is Too Long!</span>
-                        </div>
+                </div> -->
+                <div ng-repeat="group in groups">
 
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Last Name <i class="ion-ios-star"></i></span>
-                            <input type="text" class="lastname" name="lastname" ng-model="bill.lastname" ng-required="true" ng-minlength="3" ng-maxlength="10"placeholder="Last Name">
-                        </label>
-                        <div role="alert">
-                            <span class="error" ng-show="frmmember.lastname.$dirty && frmmember.lastname.$error.required">Lastname Is Required!</span>
-                            <span class="error" ng-show="frmmember.lastname.$dirty && frmmember.lastname.$error.minlength">Lastname Is Too Short!</span>
-                            <span class="error" ng-show="frmmember.lastname.$dirty && frmmember.lastname.$error.maxlength">Lastname Is Too Long!</span>
-                        </div>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Company Name </span>
-                            <input type="text" class="companyname" placeholder="Company Name">
-                        </label>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Email Address</span>
-                            <input type="email" class="email" name="email"ng-model="bill.email" ng-required="true" pattern="/^[A-Za-z][A-Za-z0-9]*$/" placeholder="Email Address">
-                        </label>
-                        <div role="alert">
-                            <span class="error" ng-show="frmmember.email.$dirty && frmmember.email.$error.required">Email Is Required!</span>
-                            <span class="error" ng-show="frmmember.email.$dirty && frmmember.email.$error.email">Not an Email!</span>
-                        </div>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Phone</span>
-                            <div class="row">
-                                <div class="col-20 marg-right">
-                                    <input type="number" class="phonecode" ng-model="bill.phonecode" name="phonecode" ng-required="true" placeholder="Ph Code" minlength="0" ng-maxlength="1000">
-                                </div>
+                    <ion-item class="item-stable" id="{{ group.id }}" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+                        <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i> {{group.name}}
+                    </ion-item>
 
-                                <div class="col-80">
-                                    <input type="number" class="phone" ng-model="bill.phone" pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/;" name="phone" placeholder="Phone">
-                                </div>
-                            </div>
-                        </label>
-                        <div role="alert">
-                            <span class="error" ng-show="frmmember.phone.$dirty && frmmember.phone.$error.required">Phone Is Required!</span>
-                            <span class="error" ng-show="frmmember.phone.$dirty && frmmember.phone.$error.pattern">Not A Correct Format!</span>
-                        </div> 
-                        <label class="item-input item-floating-label">
-                            <select ng-model="country" name ="new-select" class="new-select row" ng-model="bill.new-select"ng-required="true" >
-                             <option value="">Select Country</option>
-                                <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
-                            </select>
-                        </label>
-                        <div role="alert">
-                            <span class="error" ng-show="frmmember.new-select.$dirty && frmmember.new-select.$error.required">Select Country Is Required!</span>
-                            
-                        </div>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Address <i class="ion-ios-star"></i></span>
-                            <input type="text" class="address" name="address" placeholder="Address">
-                            <input type="text" class="address" name="address" placeholder="">
-                        </label>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Town / City</span>
-                            <input type="text" class="towncity" name="towncity" placeholder="Town / City">
-                        </label>
-                        <label class="item-input item-floating-label">
-                            <span class="input-label">Postcode</span>
-                            <input type="number" class="postcode" name="postcode" placeholder="Postcode">
-                        </label>
-                        <p class="h1 title">Payment Method</p>
-                        <div class="border-nd">
-                            <label>
-                                <input type="radio" class="creditcard" name="creditcard" value="CreditCard">
-                                <span class="creditcard-span">Credit Card</span>
-                                <img class="flot-rightcreditcard" src="img/creditcard.png">
-                            </label>
-                        </div>
-                        <div class="border-nd">
-                            <label>
-                                <input type="radio" class="paypal" name="paypal" value="paypal">
-                                <span class="creditcard-span">Paypal</span>
-                                <img class="flot-right" src="img/paypal.png">
-                            </label>
-                        </div>
-                        <div class="border-nd">
-                            <label>
-                                <input type="radio" class="googlepal" name="googlepal" value="googlepal">
-                                <span class="creditcard-span">Google pay</span>
-                                <img class="flot-right" src="img/googlepay.png">
-                            </label>
-                        </div>
-                        <div class="border-nd">
-                            <label>
-                                <input type="radio" class="promocode" name="promocode" value="promocode">
-                                <span class="creditcard-span">Promo Code</span>
-                            </label>
-                        </div>
-                        <label class="item-input height-bottom">
-                            <button class="button button-positive" ng-disabled="frmmember.$invalid">Save Changes</button>
-                        </label>
-                    </div>
+                    <ion-item class="item-accordion" ng-repeat="item in group.items" ng-show="isGroupShown(group)" ng-bind-html="item.bkgtxt">
+                    </ion-item>
                 </div>
+
             </ion-content>
         </form>
     </ion-view>
