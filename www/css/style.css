@@ -1589,6 +1589,9 @@ a.control_next
 .slider {
 
         visibility: visible;
+        width:429px;
+        height:158px;
+
 
 }
 .ion-ios-telephone

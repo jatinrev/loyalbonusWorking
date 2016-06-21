@@ -744,8 +744,14 @@ label.learn
 #Cart .slider img#imgheight
 {
     display: block;
-    max-width: 100%;
-    min-height: 250px;
+        /* width: 250px;
+        min-height: 100px; */
+         /* height: 150px; */
+        /* max-width: auto !important;
+            height: auto; */
+             /* height:140px;
+                        clear: both; */
+                            height: auto !important;
 }
 
 input[type="radio"] {
