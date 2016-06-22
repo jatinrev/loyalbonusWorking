@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-    .factory('businessVisit', function (ajaxCall, loading) {
+    .factory('businessVisit', function (ajaxCall, loading, $rootScope) {
 
         /**
          *  businessUid is qrCode
@@ -34,11 +34,24 @@ angular.module('LoyalBonus')
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {});
         }
 
+        function ProductBusinessPage(businessId,pageIndex) {
+            return ajaxCall
+                .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+businessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
+                .then(function (responseResult) {
+                    //console.log(responseResult);
+                    //console.log(JSON.parse(responseResult.data.Data));
+                    return JSON.parse(responseResult.data.Data);
+                });
+        }
+        
+
         return {
-            give_visit     : give_visit,
-            giveLove       : giveLove,
-            businessDetail : businessDetail
+            give_visit            : give_visit,
+            giveLove              : giveLove,
+            businessDetail        : businessDetail,
+            ProductBusinessPage   : ProductBusinessPage
         };
+
 
     })
     .controller('KaseyDinerController', function ($scope, $state, ajaxCall, $cordovaBarcodeScanner,
@@ -271,7 +284,7 @@ angular.module('LoyalBonus')
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
                 .then(function (res) {
 
-                    //console.log(res);
+                    console.log(res);
                     $scope.datadeal = res.data.Data[0];
                     saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
                     //console.log($scope.datadeal);
@@ -281,7 +294,7 @@ angular.module('LoyalBonus')
                     $scope.newScope.positions = [];
                     $scope.newScope.address = [];
                     for (i in res.businesslocationsList) {
-                        console.log(res.businesslocationsList);
+                        //console.log(res.businesslocationsList);
                         if (centerDefined == 0) {
                             $scope.newScope.center = res.businesslocationsList[i].Lat + ',' + res.businesslocationsList[i].Lng;
                             centerDefined = 1;
@@ -363,6 +376,17 @@ angular.module('LoyalBonus')
             };
         });
         /**** End : scanBarcode ****/
+
+
+        $scope.invitelistnewBusinessproduct = function () {
+            businessVisit
+                .ProductBusinessPage($scope.state_on(), $scope.pageIndex)
+                .then(function (resultNew) {
+                    //console.log(resultNew);
+                    $scope.datadealProd = resultNew;
+                });
+        }
+        $scope.invitelistnewBusinessproduct();
 
        
     });
