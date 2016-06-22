@@ -16,11 +16,12 @@ angular.module('LoyalBonus')
 
     .controller('ProductController', function ($scope, showRating,refreshTest, $state, active_controller, $ionicPlatform, productFactory, businessVisit, $rootScope, saveData, cart_functions) {
 
-        $scope.datadeal = {};
-        
-        $scope.businessData = {};
-
+        $scope.datadeal       = [];
+        $scope.businessData   = {};
         $scope.helperFunction = {};
+        var product_helper = {
+            product_pageIndex : 0
+        }
         
         
         $scope.state_on = function () {
@@ -47,10 +48,16 @@ angular.module('LoyalBonus')
         /* ------------started functionality productFactory-----------*/
         $scope.invitelistnew = function () {
             productFactory
-                .printProduct($state.params.BusinessId, $scope.pageIndex)
+                .printProduct($state.params.BusinessId, product_helper.product_pageIndex)
                 .then(function (result) {
-                    console.log(result);
-                    $scope.datadeal = result;
+                    if(result.length < 1) {
+                        $scope.helperFunction.noMoreProductAvailable = true;
+                    }
+                    product_helper.product_pageIndex = 1;
+                    for (i in result) {
+                        $scope.datadeal.push(result[i]);                        
+                    }
+                    $scope.$broadcast('scroll.infiniteScrollComplete'); // STOP PAGING LOADING
                 });
         }
         $scope.invitelistnew();
@@ -76,5 +83,15 @@ angular.module('LoyalBonus')
         .GetUserCartByBusinessId($state.params.BusinessId);
 
     });
+
+
+
+
+
+
+
+
+
+
 
 

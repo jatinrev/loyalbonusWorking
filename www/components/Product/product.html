@@ -55,6 +55,8 @@
                     </div>
                 </div>
             </div>
+            <div class="loadingButton margin-top-15" ng-show="helperFunction.noMoreProductAvailable">No Record</div>
+            <ion-infinite-scroll on-infinite="invitelistnew();" distance="1%" ng-if="!helperFunction.noMoreProductAvailable"></ion-infinite-scroll>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
             <div class="title center" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
