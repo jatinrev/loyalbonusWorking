@@ -1,7 +1,6 @@
 angular.module('LoyalBonus')
 
     .factory('businessVisit', function (ajaxCall, loading, $rootScope) {
-
         /**
          *  businessUid is qrCode
          */
@@ -27,8 +26,10 @@ angular.module('LoyalBonus')
         }
 
         function businessDetail(businessId, userId) {
+            // if userId is not present
             if( typeof(userId) == 'undefined' || +userId == 0 ) {
-                userId = '';
+                return ajaxCall
+                    .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + businessId, {});
             }
             return ajaxCall
                 .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {});
@@ -149,10 +150,7 @@ angular.module('LoyalBonus')
             });
         };
         $scope.showAlertscanner = function (msg,status) {
-            console.log(status);
-            
             $scope.data = {};
-
             if(status == 1) {
                 var image = '<img src="img/chk.png"> ';
             } else {
@@ -206,16 +204,11 @@ angular.module('LoyalBonus')
             return $scope.shownItem === item;
         };
 
-
-
-
-
         $scope.goToMap = function (businessDetailId) {
             saveData.set('businessDetailId', businessDetailId);
             $state.go("home.map", { businessDetailId: businessDetailId });
         }
 
-        
         function mydummyJson(input) {
 
             var output = [];
@@ -280,8 +273,11 @@ angular.module('LoyalBonus')
                 }
                 return '';
             }
-            ajaxCall
-                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
+            businessVisit
+                .businessDetail($state.params.id, $rootScope.userDetails.userId)
+
+            // ajaxCall
+            //     .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
                 .then(function (res) {
 
                     console.log(res);

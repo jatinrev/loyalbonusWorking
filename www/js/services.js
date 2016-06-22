@@ -26,10 +26,6 @@ angular.module('LoyalBonus.services', [])
 					},
 					data    : data
 				});
-
-				/*return $http.put("http://beta2.loyalbonus.com/" + url, {
-					params: data
-				});*/
 			}
 		}
 	})

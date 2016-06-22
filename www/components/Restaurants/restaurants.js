@@ -13,13 +13,15 @@ angular.module('LoyalBonus', '')
             //loading.start();
             return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + pageIndex[businessId] + '&pageSize=5&CatId=' + businessId + '&SubCatId=&locId=&Keyword=&currlocationlatlong=' + lat + ',' + long, {})
                 .then(function (response) {
-                    //console.log(response);
+                    if(response.data.Data == null) {
+                        response.data.Data = [];
+                    }
 
                     if (response.data.Data.length > 0) { //records are present so add pageIndex.
                         pageIndex[businessId] += 1;
-                    }
-                    for (i in response.data.Data) {
-                        restaurantData[businessId].push(response.data.Data[i]);
+                        for (i in response.data.Data) {
+                            restaurantData[businessId].push(response.data.Data[i]);
+                        }
                     }
 
                     loading.stop();
@@ -37,15 +39,17 @@ angular.module('LoyalBonus', '')
                	return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + searchPageIndex[catId] + '&pageSize=5&CatId=' + catId + '&SubCatId=&locId=&Keyword=' + keyword + '&currlocationlatlong=' + lat + ',' + long, {})
                     .then(function (response) {
                         searchKeyword = keyword;
+                        if(response.data.Data == null) {
+                            response.data.Data = [];
+                        }
                         if (response.data.Data.length > 0) {
                             searchPageIndex[catId] += 1;
-                        }
-                        for (i in response.data.Data) {
-                            searchData[catId].push(response.data.Data[i]);
+                            for (i in response.data.Data) {
+                                searchData[catId].push(response.data.Data[i]);
+                            }
                         }
                         loading.stop();
                         return searchData;
-
                     });
 
             },
@@ -70,6 +74,12 @@ angular.module('LoyalBonus', '')
                                 //console.log(res.data.Data[variable].CategoryName);
                             }
 
+                            //ADDING ANNOMOUS DATA at categrory 0
+                            heading_data_temp.push({
+                                CategoryID   : 0,
+                                CategoryName : 'Anonymous'
+                            });
+
                             heading_data = heading_data_temp;
                             //console.log(restaurantData);
 
@@ -91,14 +101,14 @@ angular.module('LoyalBonus', '')
 
             },
             getBusinessRecord               : getBusinessRecord,
-            getSearchKeyword                : function () { return searchKeyword; },
-            setKewordSearch                 : function(input){ searchKeyword = input; },
-            removeSearchKeyword             : function () {
+            getSearchKeyword                : function ()       { return searchKeyword; },
+            setKewordSearch                 : function(input)   { searchKeyword = input; },
+            removeSearchKeyword             : function ()       {
                 removeSearchKeywordChecker = 1;
                 searchKeyword              = '';
             },
-            stop_removeSearchKeywordChecker : function() { removeSearchKeywordChecker = 0; },
-            get_removeSearchKeywordChecker  : function() { return removeSearchKeywordChecker; }
+            stop_removeSearchKeywordChecker : function()        { removeSearchKeywordChecker = 0; },
+            get_removeSearchKeywordChecker  : function()        { return removeSearchKeywordChecker; }
         };
 
     })
@@ -242,21 +252,20 @@ angular.module('LoyalBonus', '')
                                     return false;
                                 }
                                 function_start = true;
-                                if (get_business_data.getSearchKeyword() != '' && +$state.params.vertical != 0) {
+                                if (get_business_data.getSearchKeyword() != '') { //&& +$state.params.vertical != 0
                                     // search results
                                     return get_business_data
                                         .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
                                         .then(function (response) {
                                             restaurantData = response[+$state.params.vertical];
                                             if( record_length(response[+$state.params.vertical].length) ) {
-                                                console.log('working');
                                                 reachLast = true;
                                             }
                                             function_start = false;
                                             $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
                                             
                                         });
-                                } else if (+$state.params.vertical != 0) {
+                                } else {   //if (+$state.params.vertical != 0)
                                     return get_business_data               //getting records
                                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                         .then(function (result) {
@@ -354,11 +363,6 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
-
-        $scope.showAll = function() {
-            console.log('restaurantData var');
-            console.log(restaurantData);
-        };
 
         $scope.$watch(function(){
            return get_business_data.get_removeSearchKeywordChecker();
