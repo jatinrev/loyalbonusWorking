@@ -27,7 +27,7 @@ angular.module('LoyalBonus')
       
 
       { name: 'Cancel membership', 
-        id: 3, items:[{ bkgtxt: $ionicModal.fromTemplate ('').show()}
+        id: 3, items:[{ bkgtxt: $sce.trustAsHtml('<div class="mainMembership"><h4 class="text-center membershipClass"> We are sad to see you leaving!</h4></div><div class="membershipBody"><div class="text-center ">You will not be able to access our members benefits once cancelled. All Loyality Reward and Bonus will be reset.</div><div class="col-md-10 mgtop30 center-block" style="margin-left: 33px;"><a class="btn btn-info pull-left" href="/MyAccount/ContinueMembership">Continue Membership</a><a class="btn btn-danger pull-right" href="/MyAccount/CancelMembership">Cancel Membership</a></div></div>')}
       ]}
     ];
 
