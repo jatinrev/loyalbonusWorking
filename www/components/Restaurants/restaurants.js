@@ -80,7 +80,6 @@ angular.module('LoyalBonus', '')
                                 CategoryName : 'Anonymous'
                             });
 
-                            console.log(heading_data_temp);
                             heading_data = heading_data_temp;
                             //console.log(restaurantData);
 
@@ -240,7 +239,6 @@ angular.module('LoyalBonus', '')
                             return res;
                         })
                         .then(function () {
-                            console.log('yoyo');
                             // this if else is here when user changes navigation of business.
                             var reachLast, 
                             function_start;
@@ -254,7 +252,6 @@ angular.module('LoyalBonus', '')
                                     return false;
                                 }
                                 function_start = true;
-                                console.log(get_business_data.getSearchKeyword());
                                 if (get_business_data.getSearchKeyword() != '') { //&& +$state.params.vertical != 0
                                     // search results
                                     return get_business_data
@@ -262,7 +259,6 @@ angular.module('LoyalBonus', '')
                                         .then(function (response) {
                                             restaurantData = response[+$state.params.vertical];
                                             if( record_length(response[+$state.params.vertical].length) ) {
-                                                console.log('working');
                                                 reachLast = true;
                                             }
                                             function_start = false;
@@ -270,7 +266,6 @@ angular.module('LoyalBonus', '')
                                             
                                         });
                                 } else {   //if (+$state.params.vertical != 0)
-                                    console.log('data');
                                     return get_business_data               //getting records
                                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                         .then(function (result) {
@@ -368,11 +363,6 @@ angular.module('LoyalBonus', '')
         $scope.tab_name = function () {
             return $state.params.vertical;
         }
-
-        $scope.showAll = function() {
-            console.log('restaurantData var');
-            console.log(restaurantData);
-        };
 
         $scope.$watch(function(){
            return get_business_data.get_removeSearchKeywordChecker();
