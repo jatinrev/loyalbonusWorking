@@ -16,19 +16,14 @@
                         <i class="famap"></i> {{ businessData.Address1 }}
                     </div>
                     <!-- /.detail-banner-address -->
-                    
-                        <div class="row reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews)></div>
+                    <div class="row reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews)></div>
                         <!-- /.detail-banner-rating -->
-                    
                 </div>
             </div>
             <div ><!-- ng-repeat-once="(key, productDetail) in datadeal " -->
-
                 <div class="slider image col center" >
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
-
-                    <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-                        ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}" id="imgheight">
+                    <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}" id="imgheight">
                     <a class="arrow prev" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
                     <a class="arrow next" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
                 </div>

@@ -9,7 +9,6 @@ angular.module('LoyalBonus')
                 .post('webapi/BusinessMaster/CreateBusinessQR',
                 { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
                 );
-                
         }
         function giveLove(businessId, userId, isLove) {
             loading.start();
@@ -26,40 +25,44 @@ angular.module('LoyalBonus')
         }
 
         function businessDetail(businessId, userId) {
+            loading.start();
             // if userId is not present
             if( typeof(userId) == 'undefined' || +userId == 0 ) {
                 return ajaxCall
-                    .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + businessId, {});
+                    .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + businessId, {})
+                    .then(function(res) {
+                        loading.stop();
+                        return res;
+                    }, function(error) {
+                        loading.stop();
+                        return error;
+                    });
             }
             return ajaxCall
-                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {});
-        }
-
-        function ProductBusinessPage(businessId,pageIndex) {
-            return ajaxCall
-                .get('webapi/businessproduct/getProductsList?userId=' +$rootScope.userDetails.userId +'&businessid='+businessId+'&pageIndex=' +pageIndex+ '&pageSize=12', {})
-                .then(function (responseResult) {
-                    //console.log(responseResult);
-                    //console.log(JSON.parse(responseResult.data.Data));
-                    return JSON.parse(responseResult.data.Data);
+                .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=' + userId, {})
+                .then(function(res) {
+                    loading.stop();
+                    return res;
+                }, function(error) {
+                    loading.stop();
+                    return error;
                 });
         }
         
-
         return {
             give_visit            : give_visit,
             giveLove              : giveLove,
-            businessDetail        : businessDetail,
-            ProductBusinessPage   : ProductBusinessPage
+            businessDetail        : businessDetail
         };
 
 
     })
     .controller('KaseyDinerController', function ($scope, $state, ajaxCall, $cordovaBarcodeScanner,
-        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data, loading) {
+        active_controller, $ionicPlatform, businessVisit, $ionicHistory, showRating, saveData, $ionicPopup, $timeout, $rootScope, watchUser, refreshTest,get_business_data, loading, productFactory) {
 
         $rootScope.showMe = false;
         get_business_data.removeSearchKeyword();
+        var kasey_data = {};  // FOR ANONYMOUS DATA.
 
         $scope.state_on = function () {
             return $state.params.id;
@@ -275,9 +278,6 @@ angular.module('LoyalBonus')
             }
             businessVisit
                 .businessDetail($state.params.id, $rootScope.userDetails.userId)
-
-            // ajaxCall
-            //     .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + $scope.state_on() + '&UserId=' + userIdInTestFunction(), {})
                 .then(function (res) {
 
                     console.log(res);
@@ -373,13 +373,21 @@ angular.module('LoyalBonus')
         });
         /**** End : scanBarcode ****/
 
-
+        kasey_data.product_pageIndex = 0;
+        $scope.myloyalbonus.datadealProd = [];
         $scope.invitelistnewBusinessproduct = function () {
-            businessVisit
-                .ProductBusinessPage($scope.state_on(), $scope.pageIndex)
+            productFactory
+                .printProduct($scope.state_on(), kasey_data.product_pageIndex)
                 .then(function (resultNew) {
-                    //console.log(resultNew);
-                    $scope.datadealProd = resultNew;
+                    if( resultNew.length < 1 ) {
+                       $scope.myloyalbonus.noMoreProductAvailable = true;
+                    } else {
+                        kasey_data.product_pageIndex++;                 // INCREASE PAGE INDEX. 
+                        for (key in resultNew) {
+                            $scope.myloyalbonus.datadealProd.push(resultNew[key]);
+                        }
+                    }
+                    $scope.$broadcast('scroll.infiniteScrollComplete'); // STOP PAGING LOADING
                 });
         }
         $scope.invitelistnewBusinessproduct();
