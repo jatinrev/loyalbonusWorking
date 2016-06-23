@@ -26,10 +26,10 @@ var app = angular.module('LoyalBonus')
         }
 
         function sort(multi_array) {
-            var sorted_array      = []
-            , temp_multi_array    = multi_array
-            , go                  = 1
-            , sorting_array_index = 0;
+            var sorted_array = []
+                , temp_multi_array = multi_array
+                , go = 1
+                , sorting_array_index = 0;
             for (i in multi_array) {
                 for (j in temp_multi_array) {
                     if (multi_array[i] == temp_multi_array[j]) {
@@ -90,10 +90,9 @@ var app = angular.module('LoyalBonus')
         businessMapPosition        = '';
         
         bc.positions               = [];
+        // bc.center                  = null;
         $scope.datadeal            = [];
-        $scope.helperFunction      = {
-            pageIndex : 1
-        };
+        $scope.helperFunction      = {};
         $scope.loadmoreNgShow      = false;
         $scope.gotoCurrentLocation = {};
 
@@ -139,8 +138,8 @@ var app = angular.module('LoyalBonus')
                     } else {
                         this.setAnimation(google.maps.Animation.BOUNCE);
                     }
-                    // console.log(event);
-                    // this is for click fujnctionality for marker click
+                    //console.log(event);
+                    //this is for click fujnctionality for marker click
                     /*map.customMarkers.foo.setVisible(true);
                     map.customMarkers.foo.setPosition(this.getPosition());*/
                 };
@@ -150,40 +149,35 @@ var app = angular.module('LoyalBonus')
                 };
 
                 bc.test = function () {
+                    stopCenterStorage = true;  // this is to stop storing center location in the factory.
                     loading.start();
-                    stopCenterStorage     = true;  // this is to stop storing center location in the factory.
                     $scope.loadmoreNgShow = true;
 
                     get_user_location
                     .get
                     .then(function (position) {
-                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=' + position.coords.latitude +','+ position.coords.longitude + '&pageIndex='+$scope.helperFunction.pageIndex+'&pageSize=10&keyword=', {})
+                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
-                            console.log(fetch);
                             var positions = []
                             , test        = [];
-                            $scope.helperFunction.pageIndex++;
 
                             for (i in fetch.data.Data) {
-                                test.push({ businessId: fetch.data.Data[i].BusinessID, positions: fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng })
+                                test.push({ businessId: fetch.data.Data[i].BusinessId, positions: fetch.data.Data[i].Lat + ',' + fetch.data.Data[i].Lng })
                             }
-                            console.log(test);
-                            var sortedArray = test;
+                            var sortedArray = get_business_data_map
+                                              .sort_multi_array(test);
 
                             var businessMapPosition = saveData.get('businessMapPosition');
                             if( typeof(businessMapPosition) == 'undefined' || businessMapPosition == '') {
                                 bc.center = sortedArray[0].positions;
+                                console.log(sortedArray[0].positions);
                                 saveData.remove('businessMapPosition');
                             } else {
                                 console.log('center');
                                 console.log(businessMapPosition);
                             }
-                            for (i in sortedArray) {
-                                bc.positions.push(sortedArray[i]);
-                            }
-                            bc.positions =  get_business_data_map
-                                            .sort_multi_array(bc.positions);
-                            console.log(bc.positions);
+                            // console.log(bc.center);
+                            bc.positions      = sortedArray;
                             loading.stop();
                             stopCenterStorage = false; // this is to again start storing center location in the factory.
                         });
@@ -236,14 +230,6 @@ var app = angular.module('LoyalBonus')
         };
 
         $scope.testing = function () {
-            bc.test();
-        }
-
-        $scope.zoomChanged = function() {
-            console.log('zoom chnaged');
-        }
-
-        $scope.placeChanged = function() {
-            console.log('place chnaged');
+            return saveData.get('businessMapPosition');
         }
     });
