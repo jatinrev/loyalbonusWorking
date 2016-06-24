@@ -386,6 +386,7 @@ angular.module('LoyalBonus')
                         for (key in resultNew) {
                             $scope.myloyalbonus.datadealProd.push(resultNew[key]);
                         }
+                        console.log($scope.myloyalbonus.datadealProd);
                     }
                     $scope.$broadcast('scroll.infiniteScrollComplete'); // STOP PAGING LOADING
                 });

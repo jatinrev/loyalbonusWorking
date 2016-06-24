@@ -84,7 +84,7 @@
             </ion-list>
             <div ng-repeat="(key, prod) in myloyalbonus.datadealProd">
                 <div id="logo">
-                    <img ng-src="{{ prod.ProductImageUrl == null ? 'img/placeholder.jpg' : prod.ProductImageUrl}}">
+                    <img ng-src="{{ prod.ProductImageUrl == null ? 'img/placeholder.jpg' : prod.ProductImageUrl}}" ui-sref="home.productDetail({BusinessId: state_on(), Productid: prod.ProductId})">
                 </div>
                 <div class="row">
                     <div class="col-50">
