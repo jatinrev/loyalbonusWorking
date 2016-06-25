@@ -25,11 +25,9 @@
                                 {{ d.Name }}
                             </p>
                         </div>
-
                         <div class="col-50">
                            <!-- <img class="{{starArr.class}}" ng-repeat="starArr in restaurants.print_image(d.Reviews)" ng-src="{{ starArr.src }}" > -->
                             <div class="rat-star" ng-bind-html="restaurants.print_image(d.Reviews)"></div>
-                           
                         </div>
                     </div>
                     <div class="row">
@@ -54,10 +52,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="loadingButton margin-top-15" ng-show="noMoreItemsAvailable">No Record</div>
                 <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="listData();" distance="1%"></ion-infinite-scroll>
-
             </ion-content>
         </ion-view>
     </div>

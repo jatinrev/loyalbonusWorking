@@ -156,7 +156,7 @@ var app = angular.module('LoyalBonus')
                     get_user_location
                     .get
                     .then(function (position) {
-                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong=' + position.coords.latitude +','+ position.coords.longitude + '&pageIndex=1&pageSize=10&keyword=', {})
+                        ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
                             var positions = []
                             , test        = [];

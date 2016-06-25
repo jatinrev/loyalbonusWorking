@@ -109,6 +109,24 @@ angular.module('LoyalBonus')
             });
         }
 
+        // getShaCode(Post): Parameters – [HasCode]
+        // HasCode : [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
+        function getShaCode() {
+
+            var hashkey = 'D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F'
+            , gtpay_mert_id = '4994'
+            , gtpay_tranx_id = ''
+            , gtpay_cust_id  = $rootScope.userDetails.userId;
+            var HasCode = '';
+            return  ajaxCall
+                    .post('webapi/UserCartAPI/getShaCode', {
+                        HasCode : HasCode
+                    })
+                    .then(function(res) {
+
+                    });
+        }
+
         return {
             list_cart               : list_cart,
             GetUserCartByBusinessId : GetUserCartByBusinessId,
