@@ -1,10 +1,130 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
+    var data_ctr = {};
 
+    $scope.datadeal = {};
+
+    $scope.membership = {
+      /*
+        Method - Get : GetMembershipTypeByUserId
+        [Parameters : userId]
+      */
+      GetMembershipTypeByUserId : function () {
+        return ajaxCall
+        .get('webapi/MyAccountAPI/GetMembershipTypeByUserId?userId='+$rootScope.userDetails.userId, {})
+        .then(function(res) {
+          console.log(res);
+          return res;
+        });
+      },
+
+      /*
+        Method - Post : SavePayStackResponseInPaymentHistory 
+        [Parameters : membershipTypeId, PaystackAuthCode, transactionReferenceNo, userId, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, promoFreeMonth]
+      */
+      SavePayStackResponseInPaymentHistory : function () {
+        return ajaxCall
+        .Post('webapi/MyAccountAPI/SavePayStackResponseInPaymentHistory', {})
+        .then(function (res) {
+          console.log(res);
+          return res.data.Data;
+        });
+      },
+
+      /*
+        Method - Post : ApplyPromoCode 
+        [Parameters : userId, promoCode, amount, membershipTypeId]
+      */
+      ApplyPromoCode : function () {
+        return ajaxCall
+        .Post('webapi/MyAccountAPI/ApplyPromoCode', {})
+        .then(function (res) {
+          console.log(res);
+          return res;
+        });
+      },
+
+      /*
+        Method - Post : RemoveUserPromoByUserPromoId
+        [Parameters : userId, userPromoId]
+      */
+      RemoveUserPromoByUserPromoId : function (userPromoId) {
+        return ajaxCall
+        .Post('webapi/MyAccountAPI/RemoveUserPromoByUserPromoId', {
+          userId      : $rootScope.userDetails.userId,
+          userPromoId : userPromoId
+        })
+        .then(function (res) {
+          console.log(res);
+          return res;
+        });
+      },
+
+      /*
+        Method - Get : CancelMembership
+        [Parameters : userId]
+      */
+      CancelMembership : function () {
+        return ajaxCall
+        .Get('webapi/MyAccountAPI/CancelMembership?userId='+$rootScope.userDetails.userId, {})
+        .then(function (res) {
+          console.log(res);
+          return res;
+        });
+      },
+
+      /*
+        Method - Get : ContinueMembership
+        [Parameters : userId]
+      */
+      ContinueMembership : function () {
+        return ajaxCall
+        .Get('webapi/MyAccountAPI/ContinueMembership?userId='+$rootScope.userDetails.userId, {})
+        .then(function (res) {
+          console.log(res);
+          return res;
+        });
+      }
+    }
+
+    $scope.membership
+    .GetMembershipTypeByUserId()
+    .then(function (res) {
+      $scope.datadeal.membershipType = res.MembershipTypes;
+      data_ctr.updatepayment     =  '<div class="row">';
+      data_ctr.updatepayment     +=  '<label class="title col-50">Select Membership Type</label>';
+      data_ctr.updatepayment     +=  '<label class="title col-50 padding-left-10">Premium</label>';
+      data_ctr.updatepayment     += '</div>';
+      data_ctr.updatepayment     += '<div class="row">';
+      data_ctr.updatepayment     +=    '<div class="col-50">';
+      data_ctr.updatepayment     +=      '<div class="row">';
+      data_ctr.updatepayment     +=        '<input class="input_left" ng-model="datadeal.test" type="radio" name="membershipType" value="" id="membershipTypeId_2">';
+      data_ctr.updatepayment     +=        '<span class="Monthly">Monthly</span>';
+      data_ctr.updatepayment     +=      '</div>';
+      data_ctr.updatepayment     +=    '</div>';
+      data_ctr.updatepayment     +=    '<div class="col-50">';
+      data_ctr.updatepayment     +=      '<div class="row">';
+      data_ctr.updatepayment     +=        '<span class="price">₦ 250.00</span>';
+      data_ctr.updatepayment     +=      '</div>';
+      data_ctr.updatepayment     +=    '</div>';
+      data_ctr.updatepayment     += '</div>';
+      data_ctr.updatepayment     += '<div id="promoCodeDiv" class="padding">';
+      data_ctr.updatepayment     +=    '<p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p>';
+      data_ctr.updatepayment     +=    '<input class="form-control" id="promoCode" type="text" style="width:183px;float:left">';
+      data_ctr.updatepayment     +=    '<div class="mgtop20">';
+      data_ctr.updatepayment     +=      '<a style="cursor:pointer">Apply</a>';
+      data_ctr.updatepayment     +=    '</div>';
+      data_ctr.updatepayment     += '</div>';
+      data_ctr.updatepayment     += '<div class="row padding"><input class="mdtb10_30 mauto btn btn-success wd172" type="button" value="Proceed to Payment"></div>';
+    });
+
+    $scope.testingyo = function() {
+      console.log($scope.datadeal.test);
+    }
 
     $scope.Test = function () {
       return refreshTest.showrefreshtest($state.current.name, $state.params);
@@ -12,11 +132,9 @@ angular.module('LoyalBonus')
 
     active_controller.set('MemberController');
 
-    $scope.groups = [];
-
     $scope.groups = [
       { name: 'Update/change payment method', 
-        id: 1, items : [{ bkgtxt:  $sce.trustAsHtml('<div class="row"><label class="title col-50">Select Membership Type</label><label class="title col-50 padding-left-10">Premium</label></div><div class="row"><div class="col-50"><div class="row"><input class="input_left" type="radio" name="membershipType" value="" id="membershipTypeId_2"><span class="Monthly">Monthly</span></div><div class="row"><input class="input_left" type="radio" name="membershipType" value="3" id="membershipTypeId_3"><span class="Monthly">Yearly</span></div></div><div class="col-50"><div class="row"><span class="price">₦ 250.00</span></div><div class="row"><span class="price">₦ 2600.00</span></div></div></div><div id="promoCodeDiv" class="padding"><p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p><input class="form-control" id="promoCode" type="text" style="width:183px;float:left"><div class="mgtop20"><a style="cursor:pointer">Apply</a></div></div><div class="row padding"><input class="mdtb10_30 mauto btn btn-success wd172" type="button" value="Proceed to Payment"></div>') }
+        id: 1, items : [{ bkgtxt:  $sce.trustAsHtml('<div class="row"><label class="title col-50">Select Membership Type</label><label class="title col-50 padding-left-10">Premium</label></div><div class="row"><div class="col-50"><div class="row"><input class="input_left" ng-model="datadeal.test" type="radio" name="membershipType" value="" id="membershipTypeId_2"><span class="Monthly">Monthly</span></div><div class="row"><input class="input_left" type="radio" name="membershipType" value="3" id="membershipTypeId_3"><span class="Monthly">Yearly</span></div></div><div class="col-50"><div class="row"><span class="price">₦ 250.00</span></div><div class="row"><span class="price">₦ 2600.00</span></div></div></div><div id="promoCodeDiv" class="padding"><p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p><input class="form-control" id="promoCode" type="text" style="width:183px;float:left"><div class="mgtop20"><a style="cursor:pointer">Apply</a></div></div><div class="row padding"><input class="mdtb10_30 mauto btn btn-success wd172" type="button" value="Proceed to Payment"></div>') }
         ]},
 
       { name: 'Payment History', 
@@ -30,9 +148,6 @@ angular.module('LoyalBonus')
         id: 3, items:[{ bkgtxt: $sce.trustAsHtml('<div class="mainMembership"><h4 class="text-center membershipClass"> We are sad to see you leaving!</h4></div><div class="membershipBody"><div class="text-center ">You will not be able to access our members benefits once cancelled. All Loyality Reward and Bonus will be reset.</div><div class="col-md-10 mgtop30 center-block" style="margin-left: 33px;"><a class="btn btn-info pull-left" href="/MyAccount/ContinueMembership">Continue Membership</a><a class="btn btn-danger pull-right" href="/MyAccount/CancelMembership">Cancel Membership</a></div></div>')}
       ]}
     ];
-
-  
-    
 
     $scope.toggleGroup = function (group) {
       if ($scope.isGroupShown(group)) {
