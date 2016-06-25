@@ -124,6 +124,8 @@ angular.module('LoyalBonus')
       $scope.groups[0].items = $sce.trustAsHtml(data_ctr.updatepayment);
     });
 
+    $scope.datadeal.texttest = 'yoyoo';
+
     $scope.testingyo = function() {
       console.log($scope.datadeal.test);
     }
