@@ -20,13 +20,22 @@
                     <label class="black-color">03/17/2016</label>
                 </div>
                 
-                <div ng-repeat="group in groups">
+                <!-- <div ng-repeat="group in groups">
 
                     <ion-item class="item-stable" id="{{ group.id }}" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
                         <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i> {{group.name}}
                     </ion-item>
 
                     <ion-item class="item-accordion" ng-show="isGroupShown(group)" ng-bind-html="group.items">
+                    </ion-item>
+                </div> -->
+
+                <div>
+                    <ion-item class="item-stable" id="1" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(1)}">
+                        <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i> Update/change payment method
+                    </ion-item>
+                    <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+                        
                     </ion-item>
                 </div>
 
