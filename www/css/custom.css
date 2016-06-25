@@ -17,6 +17,7 @@
 
 .margin-bottom {margin-bottom: 50px;}
 
+.mgtop30{margin-top: 30px;}
 .fontsize
 {
 	font-size: 20px;
@@ -925,5 +926,32 @@ h4.membershipClass
 }
 .membershipBody
 {
-        padding: 15px 20px 30px;
+        padding:15px 20px 30px 0;
 }
+
+.btn-info {
+   color: #fff;
+    background-color: #5bc0de;
+    position: relative;
+    left: -15px;
+        text-decoration: none;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    display: inline-block;
+    padding: 9px 15px;
+    transition: background-color 0.15s linear;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    text-decoration: none;
+    right: 6px;
+    }    
+
+ .center-block
+ {
+        position: relative;
+    left: 10px;
+}
+ }   
