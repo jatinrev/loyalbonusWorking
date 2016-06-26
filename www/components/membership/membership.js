@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
@@ -47,8 +47,6 @@ angular.module('LoyalBonus')
             }
           }
         }
-        console.log( get_payment_amount(formData.membershipType.$modelValue));
-
         if( $scope.datadeal.membershipTypeId_selected == undefined ) {
           $scope.datadeal.error = 'Please select the membership type.';
         } else {
@@ -88,11 +86,16 @@ angular.module('LoyalBonus')
         [Parameters : userId]
       */
       CancelMembership : function () {
-        return ajaxCall
-        .Get('webapi/MyAccountAPI/CancelMembership?userId='+$rootScope.userDetails.userId, {})
-        .then(function (res) {
-          console.log(res);
-          return res;
+        return popUp.confirm("Are you sure you want to cancel membership?")
+        .then(function(res) {
+          if(res) { // if true then cancel membership.
+            return ajaxCall
+            .Get('webapi/MyAccountAPI/CancelMembership?userId='+$rootScope.userDetails.userId, {})
+            .then(function (res) {
+              console.log(res);
+              return res;
+            });
+          }
         });
       },
 

@@ -19,6 +19,7 @@
                     <label class="black-color">03/17/2016</label>
                 </div>
                 <div class="error_msg" ng-show="datadeal.error == '' || datadeal.error == undefined ? false : true" ng-bind="datadeal.error"></div>
+                <div class="success_msg" ng-show="datadeal.success == '' || datadeal.success == undefined ? false : true" ng-bind="datadeal.success"></div>
 
                 <!-- Start : Update/change payment method -->
                 <div>
@@ -104,8 +105,8 @@
                             </div>
                         </div>
                         <div class="center-block">
-                            <a class="btn btn-info pull-left" href="/MyAccount/ContinueMembership">Continue Membership</a>
-                            <a class="btn btn-danger pull-right" href="/MyAccount/CancelMembership">Cancel Membership</a>
+                            <a class="btn btn-info pull-left" >Continue Membership</a>
+                            <a class="btn btn-danger pull-right" ng-click="membership.CancelMembership()">Cancel Membership</a>
                         </div>
                     </ion-item>
                 </div>
