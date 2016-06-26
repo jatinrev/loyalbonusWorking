@@ -492,9 +492,18 @@ angular.module('LoyalBonus.services', [])
 			return $ionicPopup.confirm(options);
 		}
 
+		/*
+			status = {
+				1 : ok,
+				2 : normal,
+				null or 0 : cancel
+			}
+		*/
 		function msgPopUp(msg, status) {
             if(status == 1) {
                 var image = '<img src="img/chk.png"> ';
+            } else if(status == 2) {
+            	var image = '';
             } else {
                 var image = '<img src="img/cancel.png">';
             }

@@ -139,12 +139,16 @@ angular.module('LoyalBonus')
         [Parameters : userId]
       */
       CancelMembership : function () {
-        return popUp.confirm("Are you sure you want to cancel membership?")
+        return popUp
+        .confirm("Are you sure you want to cancel membership?")
         .then(function(res) {
           if(res) { // if true then cancel membership.
             return ajaxCall
             .get('webapi/MyAccountAPI/CancelMembership?userId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
+              if(res.data.Data.status == true) {
+                popUp.msgPopUp("You membership was canceled.", 2);
+              }
               console.log(res);
               return res;
             });
@@ -191,50 +195,6 @@ angular.module('LoyalBonus')
           return data;
           return 0;
         });
-          /*
-          var url = "https://api.paystack.co/transaction/verify/" + response.trxref;
-          $.ajax({
-              url: url,
-              beforeSend: function (xhr) {
-                  xhr.setRequestHeader("Authorization", "Bearer sk_test_967b105665b7a27a9796e576bdb3a088944b8cff");
-              },
-              success: function (data) {
-                
-                  console.log(data);
-                  var callBackdata = data;
-                  amount = data.data.amount;
-                  var paystack_authorization_code = callBackdata.data.authorization.authorization_code;
-                  var paystack_bank = callBackdata.data.authorization.bank;
-                  var paystack_card_type = callBackdata.data.authorization.card_type;
-                  var paystack_channel = callBackdata.data.authorization.channel;
-                  var paystack_last4 = callBackdata.data.authorization.last4;
-                  var paystack_message = callBackdata.message;
-
-                  //Save PaymentHistory Into the database
-                  var data = { "transactionReferenceNo": response.trxref, "payAmount": amount, "membershipTypeId": membershipTypeId, "PaystackAuthCode": paystack_authorization_code, "PaystackCardType": paystack_card_type, "PaystackChannel": paystack_channel, "PaystackCCLastFour": paystack_last4, "PaystackMessage": paystack_message, "promoFreeMonth": promoFreeMonth };
-                  $.ajax({
-                      type: "POST",
-                      contentType: "application/json; charset=utf-8",
-                      url: "MyAccount/SavePayStackResponseInPaymentHistory", //?transactionReferenceNo=" + response.trxref + "&payAmount=" + amount + "&membershipTypeId=" + membershipTypeId,
-                      data: JSON.stringify(data),
-                      dataType: "json",
-                      success: function (result) {
-                          //alert(result);
-                          if (result) {
-                              //$("#resultSuccess").html("Payment Successful");
-                              alert("Payment Successful");
-                              location.reload(true);
-                          }
-                          else
-                              $("#resultError").html("Something Went Wrong");
-                      },
-                      error: function (xhr, err) {
-                          alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-                          alert("responseText: " + xhr.responseText);
-                      }
-                  });
-              }
-          });*/
       }
     }
 
