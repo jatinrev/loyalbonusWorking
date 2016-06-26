@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q, $http) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
@@ -48,22 +48,35 @@ angular.module('LoyalBonus')
             ref      : referenceId,
             callback : function(response) {
               // response = Object {trxref: "1466954710"}
-              ajaxCall
-              .post('webapi/MyAccountAPI/SavePayStackResponseInPaymentHistory', {
-                membershipTypeId       : $scope.datadeal.membershipTypeId_selected,
-                PaystackAuthCode       : '', //?
-                transactionReferenceNo : referenceId,
-                userId                 : $rootScope.userDetails.userId,
-                PaystackCardType       : '',
-                PaystackCCLastFour     : '',
-                PaystackChannel        : '',
-                PaystackMessage        : '',
-                promoFreeMonth         : ''
-              })
-              .then(function (res) {
-                console.log(res);
-                return res;
+              
+              $scope.membership
+              .get_payment_data_from_paystack(response.trxref)
+              .then(function(callBackdata) {
+                var paystack_authorization_code = callBackdata.data.authorization.authorization_code;
+                var paystack_bank               = callBackdata.data.authorization.bank;
+                var paystack_card_type          = callBackdata.data.authorization.card_type;
+                var paystack_channel            = callBackdata.data.authorization.channel;
+                var paystack_last4              = callBackdata.data.authorization.last4;
+                var paystack_message            = callBackdata.message;
+
+                ajaxCall
+                .post('webapi/MyAccountAPI/SavePayStackResponseInPaymentHistory', {
+                  membershipTypeId       : $scope.datadeal.membershipTypeId_selected,
+                  PaystackAuthCode       : paystack_authorization_code, //?
+                  transactionReferenceNo : referenceId,
+                  userId                 : $rootScope.userDetails.userId,
+                  PaystackCardType       : paystack_card_type,
+                  PaystackCCLastFour     : paystack_last4,
+                  PaystackChannel        : paystack_channel,
+                  PaystackMessage        : paystack_message,
+                  promoFreeMonth         : ''
+                })
+                .then(function (res) {
+                  console.log(res);
+                  return res;
+                });
               });
+
               // alert('success. transaction ref is ' + response.trxref);
             },
             onClose  : function(){
@@ -167,62 +180,61 @@ angular.module('LoyalBonus')
         return promise.promise;
       },
       //Get Payment Data From Paystack
-      get_payment_data_from_paystack : function() {
-        $http({
-          method: 'GET',
-          url: 'www.google.com/someapi',
-          headers: {
+      get_payment_data_from_paystack : function(transactionRef) {
+        return $http({
+          method  : 'GET',
+          url     : 'https://api.paystack.co/transaction/verify/' + transactionRef,
+          headers : {
             'Authorization': 'Bearer sk_test'
           }
         }).then(function(data) {
-
+          return data;
+          return 0;
         });
+          /*
+          var url = "https://api.paystack.co/transaction/verify/" + response.trxref;
+          $.ajax({
+              url: url,
+              beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", "Bearer sk_test_967b105665b7a27a9796e576bdb3a088944b8cff");
+              },
+              success: function (data) {
+                
+                  console.log(data);
+                  var callBackdata = data;
+                  amount = data.data.amount;
+                  var paystack_authorization_code = callBackdata.data.authorization.authorization_code;
+                  var paystack_bank = callBackdata.data.authorization.bank;
+                  var paystack_card_type = callBackdata.data.authorization.card_type;
+                  var paystack_channel = callBackdata.data.authorization.channel;
+                  var paystack_last4 = callBackdata.data.authorization.last4;
+                  var paystack_message = callBackdata.message;
 
-        return 0;
-        var url = "https://api.paystack.co/transaction/verify/" + response.trxref;
-        $.ajax({
-            url: url,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Bearer sk_test_967b105665b7a27a9796e576bdb3a088944b8cff");
-            },
-            success: function (data) {
-              /*
-                console.log(data);
-                var callBackdata = data;
-                amount = data.data.amount;
-                var paystack_authorization_code = callBackdata.data.authorization.authorization_code;
-                var paystack_bank = callBackdata.data.authorization.bank;
-                var paystack_card_type = callBackdata.data.authorization.card_type;
-                var paystack_channel = callBackdata.data.authorization.channel;
-                var paystack_last4 = callBackdata.data.authorization.last4;
-                var paystack_message = callBackdata.message;
-
-                //Save PaymentHistory Into the database
-                var data = { "transactionReferenceNo": response.trxref, "payAmount": amount, "membershipTypeId": membershipTypeId, "PaystackAuthCode": paystack_authorization_code, "PaystackCardType": paystack_card_type, "PaystackChannel": paystack_channel, "PaystackCCLastFour": paystack_last4, "PaystackMessage": paystack_message, "promoFreeMonth": promoFreeMonth };
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    url: "MyAccount/SavePayStackResponseInPaymentHistory", //?transactionReferenceNo=" + response.trxref + "&payAmount=" + amount + "&membershipTypeId=" + membershipTypeId,
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    success: function (result) {
-                        //alert(result);
-                        if (result) {
-                            //$("#resultSuccess").html("Payment Successful");
-                            alert("Payment Successful");
-                            location.reload(true);
-                        }
-                        else
-                            $("#resultError").html("Something Went Wrong");
-                    },
-                    error: function (xhr, err) {
-                        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-                        alert("responseText: " + xhr.responseText);
-                    }
-                });
-              */
-            }
-        });
+                  //Save PaymentHistory Into the database
+                  var data = { "transactionReferenceNo": response.trxref, "payAmount": amount, "membershipTypeId": membershipTypeId, "PaystackAuthCode": paystack_authorization_code, "PaystackCardType": paystack_card_type, "PaystackChannel": paystack_channel, "PaystackCCLastFour": paystack_last4, "PaystackMessage": paystack_message, "promoFreeMonth": promoFreeMonth };
+                  $.ajax({
+                      type: "POST",
+                      contentType: "application/json; charset=utf-8",
+                      url: "MyAccount/SavePayStackResponseInPaymentHistory", //?transactionReferenceNo=" + response.trxref + "&payAmount=" + amount + "&membershipTypeId=" + membershipTypeId,
+                      data: JSON.stringify(data),
+                      dataType: "json",
+                      success: function (result) {
+                          //alert(result);
+                          if (result) {
+                              //$("#resultSuccess").html("Payment Successful");
+                              alert("Payment Successful");
+                              location.reload(true);
+                          }
+                          else
+                              $("#resultError").html("Something Went Wrong");
+                      },
+                      error: function (xhr, err) {
+                          alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+                          alert("responseText: " + xhr.responseText);
+                      }
+                  });
+              }
+          });*/
       }
     }
 
