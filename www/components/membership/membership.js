@@ -49,7 +49,6 @@ angular.module('LoyalBonus')
         } else {
           $scope.datadeal.error = undefined;
           return 0;
-          return 0;
           return ajaxCall
           .Post('webapi/MyAccountAPI/ApplyPromoCode', {
             userId : $rootScope.userDetails.userId,
