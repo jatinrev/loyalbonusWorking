@@ -1,10 +1,18 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
     var data_ctr = {};
+
+    function get_payment_amount(MembershipTypeID) {
+      for(i in $scope.datadeal.UpdatePaymentMethod.MembershipTypes) {
+        if( $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i].MembershipTypeID == MembershipTypeID ) {
+          return $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i];
+        }
+      }
+    }
 
     $scope.datadeal = {};
 
@@ -26,7 +34,30 @@ angular.module('LoyalBonus')
         Method - Post : SavePayStackResponseInPaymentHistory 
         [Parameters : membershipTypeId, PaystackAuthCode, transactionReferenceNo, userId, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, promoFreeMonth]
       */
-      SavePayStackResponseInPaymentHistory : function () {
+      SavePayStackResponseInPaymentHistory : function (formData) {
+        // getting selected data response.
+        data_ctr.selectedMembershipObj = get_payment_amount($scope.datadeal.membershipTypeId_selected);
+        
+        $scope.membership
+        .get_paystack_reference()
+        .then(function(res) {
+          var handler = PaystackPop.setup({
+            key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
+            email    : $rootScope.userDetails.Email,
+            amount   : data_ctr.selectedMembershipObj.MemberShipFee,
+            ref      : res,
+            callback : function(response) {
+              // response = Object {trxref: "1466954710"}
+              // alert('success. transaction ref is ' + response.trxref);
+            },
+            onClose  : function(){
+                alert('window closed');
+            }
+          });
+          handler.openIframe();
+        });
+
+        return 0;
         return ajaxCall
         .Post('webapi/MyAccountAPI/SavePayStackResponseInPaymentHistory', {})
         .then(function (res) {
@@ -40,13 +71,6 @@ angular.module('LoyalBonus')
         [Parameters : userId, promoCode, amount, membershipTypeId]
       */
       ApplyPromoCode : function (formData) {
-        function get_payment_amount(MembershipTypeID) {
-          for(i in $scope.datadeal.UpdatePaymentMethod.MembershipTypes) {
-            if( $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i].MembershipTypeID == MembershipTypeID ) {
-              return $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i];
-            }
-          }
-        }
         if( $scope.datadeal.membershipTypeId_selected == undefined ) {
           $scope.datadeal.error = 'Please select the membership type.';
         } else {
@@ -110,6 +134,14 @@ angular.module('LoyalBonus')
           console.log(res);
           return res;
         });
+      },
+
+      //PAYSTACK REFERENCE
+      get_paystack_reference : function() {
+        var promise = $q.defer();
+        var timeStamp = Math.floor(Date.now() / 1000);
+        promise.resolve(timeStamp);
+        return promise.promise;
       }
     }
 
