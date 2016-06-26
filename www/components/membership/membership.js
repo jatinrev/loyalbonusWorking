@@ -154,6 +154,13 @@ angular.module('LoyalBonus')
 
       //getting PAYSTACK REFERENCE
       get_paystack_reference : function() {
+        //NEW HERE
+        var referenceId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+        console.log(referenceId);
+        //OLD HERE
         var promise = $q.defer();
         var timeStamp = Math.floor(Date.now() / 1000);
         promise.resolve(timeStamp);
@@ -165,7 +172,7 @@ angular.module('LoyalBonus')
           method: 'GET',
           url: 'www.google.com/someapi',
           headers: {
-            'Authorization': 'Bearer '
+            'Authorization': 'Bearer sk_test'
           }
         }).then(function(data) {
 
