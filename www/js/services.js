@@ -52,9 +52,9 @@ angular.module('LoyalBonus.services', [])
 						})
 						.then(function (response) {
 							if (response.data.StatusMessage == 'Success') {
-								$rootScope.userDetails.userId = userID;
-								$rootScope.userDetails.Email = response.data.Data.Email;
-								$rootScope.userDetails.FullName = response.data.Data.FullName;
+								$rootScope.userDetails.userId    = userID;
+								$rootScope.userDetails.Email     = response.data.Data.Email;
+								$rootScope.userDetails.FullName  = response.data.Data.FullName;
 								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 								$rootScope.userDetails.CreatedOn = response.data.Data.CreatedOn;
 								$cordovaPreferences.store('userId', userID, 'dict');
