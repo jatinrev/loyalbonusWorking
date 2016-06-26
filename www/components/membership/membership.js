@@ -40,21 +40,25 @@ angular.module('LoyalBonus')
         [Parameters : userId, promoCode, amount, membershipTypeId]
       */
       ApplyPromoCode : function (formData) {
-        console.log(formData);
-        console.log($scope.datadeal.membershipTypeId_selected);
-        console.log(formData.promoCode);
+        function get_payment_amount(MembershipTypeID) {
+          for(i in $scope.datadeal.UpdatePaymentMethod.MembershipTypes) {
+            if( $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i].MembershipTypeID == MembershipTypeID ) {
+              return $scope.datadeal.UpdatePaymentMethod.MembershipTypes[i];
+            }
+          }
+        }
+        console.log( get_payment_amount(formData.membershipType.$modelValue));
+
         if( $scope.datadeal.membershipTypeId_selected == undefined ) {
-          console.log('insiede');
           $scope.datadeal.error = 'Please select the membership type.';
         } else {
           $scope.datadeal.error = undefined;
-          return 0;
           return ajaxCall
-          .Post('webapi/MyAccountAPI/ApplyPromoCode', {
-            userId : $rootScope.userDetails.userId,
-            promoCode : promoCode,
-            amount : '',
-            membershipTypeId : ''
+          .post('webapi/MyAccountAPI/ApplyPromoCode', {
+            userId           : $rootScope.userDetails.userId,
+            promoCode        : formData.promoCode.$modelValue, // promo code
+            amount           : get_payment_amount(formData.membershipType.$modelValue).MemberShipFee,
+            membershipTypeId : get_payment_amount(formData.membershipType.$modelValue).MembershipTypeID
           })
           .then(function (res) {
             console.log(res);
