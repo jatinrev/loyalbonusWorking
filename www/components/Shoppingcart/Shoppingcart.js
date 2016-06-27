@@ -187,8 +187,8 @@ angular.module('LoyalBonus')
             , after_payment_checkout : function() {
                 ajaxCall
                 .post('webapi/UserCartAPI/UserCheckOut', {
-                    BusinessId             : '',
-                    ProductId              : '',
+                    BusinessId             : $state.params.businessId,
+                    ProductId              : $scope.cart.data.UserCartDetails[0].ProductId,
                     CartId                 : '',
                     BusinessStoreId        : '',
                     Paymentmethod          : '',
