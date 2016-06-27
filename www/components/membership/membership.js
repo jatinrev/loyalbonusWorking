@@ -41,18 +41,25 @@ angular.module('LoyalBonus')
       */
       ApplyPromoCode : function (formData) {
         console.log(formData);
-        return 0;
-        return ajaxCall
-        .Post('webapi/MyAccountAPI/ApplyPromoCode', {
-          userId : $rootScope.userDetails.userId,
-          promoCode : promoCode,
-          amount : '',
-          membershipTypeId : ''
-        })
-        .then(function (res) {
-          console.log(res);
-          return res;
-        });
+        console.log($scope.datadeal.membershipTypeId_selected);
+        console.log(formData.promoCode);
+        if( $scope.datadeal.membershipTypeId_selected == undefined ) {
+          console.log('insiede');
+          $scope.datadeal.error = 'Please select the membership type.';
+        } else {
+          $scope.datadeal.error = undefined;
+          return ajaxCall
+          .Post('webapi/MyAccountAPI/ApplyPromoCode', {
+            userId : $rootScope.userDetails.userId,
+            promoCode : promoCode,
+            amount : 250,
+            membershipTypeId : 2
+          })
+          .then(function (res) {
+            console.log(res);
+            return res;
+          });
+        }
       },
 
       /*

@@ -18,6 +18,7 @@
                     <label class="color-txt">Your membership will end:</label>
                     <label class="black-color">03/17/2016</label>
                 </div>
+                <div class="error_msg" ng-show="datadeal.error == '' || datadeal.error == undefined ? false : true" ng-bind="datadeal.error"></div>
 
                 <!-- Start : Update/change payment method -->
                 <div>
@@ -29,32 +30,29 @@
                             <label class="title col-50">Select Membership Type</label>
                             <label class="title col-50 padding-left-10">Premium</label>
                         </div>
-                        <form name="form" class="css-form" novalidate>
-                            --{{ form.membershipType }}--
-                            <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes">
-                                <div class="col-50">
-                                    <div class="row">
-                                        <input class="input_left" type="radio" name="membershipType" value="{{ output.MembershipTypeID }}" id="membershipTypeId_2">
-                                        <span class="Monthly">{{ output.MembershipType1 }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-50">
-                                    <div class="row">
-                                        <span class="price">₦ {{ output.MemberShipFee }}</span>
-                                    </div>
+                        <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes">
+                            <div class="col-50">
+                                <div class="row">
+                                    <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}">
+                                    <span class="Monthly">{{ output.MembershipType1 }}</span>
                                 </div>
                             </div>
-                            <div id="promoCodeDiv" class="padding">
-                                <p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p>
-                                <input class="form-control" name="promoCode" id="promoCode" ng-model="datadeal.promo" type="text" style="width:183px;float:left">
-                                <div class="mgtop20">
-                                    <a ng-click="membership.ApplyPromoCode(membershipForm)" style="cursor:pointer">Apply</a>
+                            <div class="col-50">
+                                <div class="row">
+                                    <span class="price">₦ {{ output.MemberShipFee }}</span>
                                 </div>
                             </div>
-                            <div class="row padding">
-                                <input class="mdtb10_30 mauto btn btn-success wd172" type="button" value="Proceed to Payment">
+                        </div>
+                        <div id="promoCodeDiv" class="padding">
+                            <p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p>
+                            <input class="form-control" name="promoCode" id="promoCode" ng-model="datadeal.promo" type="text" style="width:183px;float:left">
+                            <div class="mgtop20">
+                                <a ng-click="membership.ApplyPromoCode(frmmember)" style="cursor:pointer">Apply</a>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row padding">
+                            <input class="mdtb10_30 mauto btn btn-success wd172" type="button" value="Proceed to Payment">
+                        </div>
                     </ion-item>
                 </div>
                 <!-- End : Update/change payment method -->
