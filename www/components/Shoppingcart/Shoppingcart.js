@@ -136,7 +136,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -182,8 +182,30 @@ angular.module('LoyalBonus')
                     $scope.cart.checkout_data = res;
                     console.log($scope.cart.checkout_data);
                 });
-            },
-            ChangeAddress : function() {
+            }
+            // UserCheckOut(Post): Parameters – [BusinessId, ProductId, CartId, BusinessStoreId, Paymentmethod, TransactionReferenceNo, PayAmount, PaystackAuthCode, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, userId]
+            , after_payment_checkout : function() {
+                ajaxCall
+                .post('webapi/UserCartAPI/UserCheckOut', {
+                    BusinessId             : '',
+                    ProductId              : '',
+                    CartId                 : '',
+                    BusinessStoreId        : '',
+                    Paymentmethod          : '',
+                    TransactionReferenceNo : '',
+                    PayAmount              : '',
+                    PaystackAuthCode       : '',
+                    PaystackCardType       : '',
+                    PaystackCCLastFour     : '',
+                    PaystackChannel        : '',
+                    PaystackMessage        : '',
+                    userId                 : ''
+                })
+                .then(function(res) {
+                    console.log(res);
+                });
+            }
+            , ChangeAddress : function() {
                 return 0;
             }
         };
