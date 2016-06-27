@@ -113,6 +113,11 @@ angular.module('LoyalBonus')
                 membershipTypeId : get_payment_amount(formData.membershipType.$modelValue).MembershipTypeID
               })
               .then(function (res) {
+                if(true) {
+                  popUp.msgPopUp(res.data.StatusMessage+', discount : '+res.data.Data.data.discount, 1);
+                } else {
+                  popUp.msgPopUp(res.data.StatusMessage, 2);
+                }
                 console.log(res);
                 return res;
               });

@@ -101,11 +101,10 @@ angular.module('LoyalBonus')
         function checkout(cartId, businessStoreId, BusinessID, ProductID) {
             loading.start();
             return ajaxCall
-            .get('webapi/UserCartAPI/CheckOut?cartId='+cartId+',businessStoreId='+businessStoreId+',BusinessID='+BusinessID+',ProductID='+ProductID+',userId='+$rootScope.userDetails.userId, {})
+            .get('webapi/UserCartAPI/CheckOut?cartId='+cartId+'&businessStoreId='+businessStoreId+'&BusinessID='+BusinessID+'&ProductID='+ProductID+'&userId='+$rootScope.userDetails.userId, {})
             .then(function(res) {
                 loading.stop();
-                console.log(res);
-                return res;
+                return res.data.Data;
             });
         }
 
@@ -178,10 +177,14 @@ angular.module('LoyalBonus')
             }
             , check_out : function() {
                 cart_functions
-                .checkout($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $state.params.businessId, ProductID)
+                .checkout($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $state.params.businessId, $scope.cart.data.UserCartDetails[0].ProductId)
                 .then(function (res) {
-
+                    $scope.cart.checkout_data = res;
+                    console.log($scope.cart.checkout_data);
                 });
+            },
+            ChangeAddress : function() {
+                return 0;
             }
         };
 
@@ -201,6 +204,8 @@ angular.module('LoyalBonus')
         .GetUserCartByBusinessId($state.params.businessId)
         .then(function (res) {
             $scope.cart.data = res;
+            $scope.cart.check_out();
+            console.log($scope.cart.data);
         });
 
 

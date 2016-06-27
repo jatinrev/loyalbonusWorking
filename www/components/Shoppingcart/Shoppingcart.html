@@ -24,6 +24,43 @@
             <div class="row">
                 <p class="row fontsize">Shopping Cart</p>
             </div>
+            <!-- Start : After checkout data -->
+            <div ng-show="cart.checkout_data"><!--  -->
+                <div class="row">
+                    <div class="col col-33">
+                        <b>1. Shipping address</b>
+                    </div>
+                    <div class="col"></div>
+                    <!-- <div class="col">
+                        <button id="btnaddress" class="btn btn-default" ng-click="cart.ChangeAddress()">Change</button>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col col-33">
+                        <p style="font-weight: bold; margin-top: 25px;">2. Payment method</p>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col col-10">
+                                <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="1">
+                            </div>
+                            <div class="col">
+                                <label for="rdPayStack"><img src="img/paystack.PNG" class="paymentimage"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-10">
+                                <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="2" style="margin-top: 4px;">
+                            </div>
+                            <div class="col">
+                                <label for="rdGtPay"><img src="img/gtpay.PNG"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--- End : After checkout data -->
+
             <div class="padding">
                 <div class="brder" >
                     <div class="row position_relative_item" ng-show="cart.data.UserCartDetails.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetails">
@@ -67,7 +104,7 @@
                             </div>
                             <div class="col-50">
                                 <button class="button applypromo margintop15" ng-click="cart.apply_promo()">Apply Promo</button>
-                                <button class="button checkoutbutton margintop15">Checkout</button>
+                                <button class="button checkoutbutton margintop15" ng-click="cart.check_out()">Checkout</button>
                                 <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
                             </div>
                         </div>

@@ -7,10 +7,10 @@ angular.module('LoyalBonus')
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();
         Init();
         // Initialize and display a google map
-         /*function displayMap() {
+        /*function displayMap() {
                     $window.location.reload();;
                 }
-*/
+        */
 
         $scope.Test = function () {
             return refreshTest.showrefreshtest($state.current.name, $state.params);
