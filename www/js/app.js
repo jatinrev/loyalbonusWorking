@@ -7,9 +7,9 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $cordovaNetwork, showRating, popUp) {
   /*Temp Data*/
     $rootScope.userDetails = {
-      userId       : 236,//jatin = 263, karan = 236, dvijesh = 282
-      Email        : 'karan.xpress@gmail.com', //'dvijesh@revinfotech.com',
-      FullName     : 'Karan',           //'dvijesh',
+      userId       : 263,// jatin = 263, karan = 236, dvijesh = 282
+      Email        : 'jatin@revinfotech.com', // 'karan.xpress@gmail.com', 'dvijesh@revinfotech.com',
+      FullName     : 'Jatin Verma', // 'Karan', dvijesh',
       userLocation : '6.461573,3.479404',
       CreatedOn    : '2016-05-31T11:24:34.607'
     }
@@ -112,7 +112,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       .state("signup", {
         url   : "/signup/",
         views : {
-        ""    : {
+          "" : {
             templateUrl  : "components/SignUp/signup.html",
             controller   : "SignUpController",
             controllerAs : "suc"

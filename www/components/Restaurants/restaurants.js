@@ -56,9 +56,7 @@ angular.module('LoyalBonus', '')
             getheading: function () {
                 if (heading_data.length > 0) {
                     var promise = $q.defer();
-                    // var p2 = new Promise(function(resolve, reject) {
                     promise.resolve(heading_data);
-                    // });
                     return promise.promise;
                 } else {
                     return ajaxCall.get('webapi/BusinessMaster/GetBusinessCategory', {})

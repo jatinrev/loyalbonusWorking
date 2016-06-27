@@ -52,9 +52,9 @@ angular.module('LoyalBonus.services', [])
 						})
 						.then(function (response) {
 							if (response.data.StatusMessage == 'Success') {
-								$rootScope.userDetails.userId = userID;
-								$rootScope.userDetails.Email = response.data.Data.Email;
-								$rootScope.userDetails.FullName = response.data.Data.FullName;
+								$rootScope.userDetails.userId    = userID;
+								$rootScope.userDetails.Email     = response.data.Data.Email;
+								$rootScope.userDetails.FullName  = response.data.Data.FullName;
 								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 								$rootScope.userDetails.CreatedOn = response.data.Data.CreatedOn;
 								$cordovaPreferences.store('userId', userID, 'dict');
@@ -492,9 +492,18 @@ angular.module('LoyalBonus.services', [])
 			return $ionicPopup.confirm(options);
 		}
 
+		/*
+			status = {
+				1 : ok,
+				2 : normal,
+				null or 0 : cancel
+			}
+		*/
 		function msgPopUp(msg, status) {
             if(status == 1) {
                 var image = '<img src="img/chk.png"> ';
+            } else if(status == 2) {
+            	var image = '';
             } else {
                 var image = '<img src="img/cancel.png">';
             }
