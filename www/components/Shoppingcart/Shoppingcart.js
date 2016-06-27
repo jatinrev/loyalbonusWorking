@@ -186,15 +186,6 @@ angular.module('LoyalBonus')
         };
 
         /*
-        Listing cart
-         *
-        cart_functions
-        .list_cart($state.params.businessId)
-        .then(function(res) {
-            console.log(res);
-        });
-
-        /*
         THIS IS TO GET BUSINESS DATA.
          */
         businessVisit

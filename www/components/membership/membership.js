@@ -93,14 +93,7 @@ angular.module('LoyalBonus')
                 });
                 handler.openIframe();
             });
-
             return 0;
-            return ajaxCall
-            .post('webapi/MyAccountAPI/SavePayStackResponseInPaymentHistory', {})
-            .then(function (res) {
-                console.log(res);
-                return res;
-            });
         },
 
         /*
@@ -179,7 +172,7 @@ angular.module('LoyalBonus')
 
         //getting PAYSTACK REFERENCE
         get_paystack_reference : function() {
-            //NEW HERE
+            //guid
             var referenceId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
