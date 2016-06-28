@@ -136,7 +136,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -183,26 +183,80 @@ angular.module('LoyalBonus')
                     console.log($scope.cart.checkout_data);
                 });
             }
+            , payment : function(paymentMethod) {
+                /*
+                paymentMethod : 1 = paystack, 2 = gtbank
+                 */
+                paymentMethod = 1
+
+                if(paymentMethod == 1) {
+                    payment
+                    .get_paystack_reference()
+                    .then(function(referenceId) {
+
+                        var handler = PaystackPop.setup({
+                            key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
+                            email    : $rootScope.userDetails.Email,
+                            amount   : $scope.cart.checkout_data.SubTotal,
+                            ref      : referenceId,
+                            callback : function(response) {
+                                // response = Object {trxref: "1466954710"}
+                                loading.start();
+                                payment
+                                .get_paystack_response(response.trxref)
+                                .then(function(callBackdata) {
+                                    console.log(callBackdata);
+                                    var paystack_authorization_code = callBackdata.data.authorization.authorization_code
+                                    , paystack_bank                 = callBackdata.data.authorization.bank
+                                    , paystack_card_type            = callBackdata.data.authorization.card_type
+                                    , paystack_channel              = callBackdata.data.authorization.channel
+                                    , paystack_last4                = callBackdata.data.authorization.last4
+                                    , paystack_message              = callBackdata.message
+                                    , input                         = {
+                                        BusinessId               : $state.params.businessId
+                                        , ProductId              : $scope.cart.data.UserCartDetails[0].ProductId
+                                        , CartId                 : $scope.cart.data.CartId
+                                        , BusinessStoreId        : $scope.cart.data.BusinessStoreId
+                                        , Paymentmethod          : '' // ?
+                                        , TransactionReferenceNo : referenceId
+                                        , PayAmount              : $scope.cart.checkout_data.SubTotal
+                                        , PaystackAuthCode       : paystack_authorization_code
+                                        , PaystackCardType       : paystack_card_type
+                                        , PaystackCCLastFour     : paystack_last4
+                                        , PaystackChannel        : paystack_channel
+                                        , PaystackMessage        : paystack_message
+                                        , userId                 : $rootScope.userDetails.Email
+                                    };
+
+                                    // INSERT PAYMENT.
+                                    $scope.cart
+                                    .after_payment_checkout(input)
+                                    .then(function(payment_res) {
+                                        console.log(payment_res);
+                                    });
+
+
+                                    /*popUp
+                                    .msgPopUp('Paystack verification successful.', 1);*/
+                                });
+                                loading.stop();
+                                // alert('success. transaction ref is ' + response.trxref);
+                            },
+                            onClose  : function(){
+                                console.log('window closed');
+                            }
+                        });
+                        handler.openIframe();
+                    });
+
+                }
+            }
             // UserCheckOut(Post): Parameters – [BusinessId, ProductId, CartId, BusinessStoreId, Paymentmethod, TransactionReferenceNo, PayAmount, PaystackAuthCode, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, userId]
-            , after_payment_checkout : function() {
-                ajaxCall
-                .post('webapi/UserCartAPI/UserCheckOut', {
-                    BusinessId             : $state.params.businessId,
-                    ProductId              : $scope.cart.data.UserCartDetails[0].ProductId,
-                    CartId                 : '',
-                    BusinessStoreId        : '',
-                    Paymentmethod          : '',
-                    TransactionReferenceNo : '',
-                    PayAmount              : '',
-                    PaystackAuthCode       : '',
-                    PaystackCardType       : '',
-                    PaystackCCLastFour     : '',
-                    PaystackChannel        : '',
-                    PaystackMessage        : '',
-                    userId                 : ''
-                })
+            , after_payment_checkout : function(input) {
+                return ajaxCall
+                .post('webapi/UserCartAPI/UserCheckOut', input)
                 .then(function(res) {
-                    console.log(res);
+                    return res;
                 });
             }
             , ChangeAddress : function() {

@@ -522,6 +522,33 @@ angular.module('LoyalBonus.services', [])
 			confirm  : confirm,
 			msgPopUp : msgPopUp
 		};
+	})
+	.factory('payment', function ($http, $q) {
+		function get_paystack_response(transactionRef) {
+			return $http({
+	            method  : 'GET',
+	            url     : 'https://api.paystack.co/transaction/verify/' + transactionRef,
+	            headers : {
+	            	'Authorization': 'Bearer sk_test_6b95965be2cf9679606d8103548f5847ce019175'
+	            }
+            })
+		}
+
+		function get_paystack_reference() {
+			//guid
+            var referenceId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            var promise = $q.defer();
+            promise.resolve(referenceId);
+            return promise.promise;
+		}
+	
+		return {
+			get_paystack_response : get_paystack_response,
+			get_paystack_reference : get_paystack_reference
+		};
 	});
 
 

@@ -24,6 +24,7 @@
             <div class="row">
                 <p class="row fontsize">Shopping Cart</p>
             </div>
+            
             <!-- Start : After checkout data -->
             <div ng-show="cart.checkout_data"><!--  -->
                 <div class="row">
@@ -76,7 +77,7 @@
                                     <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
-                                    <button class="button offersshopping">2 Offers</button>
+                                    <!-- <button class="button offersshopping">2 Offers</button> -->
                                 </div>
                             </div>
                         </div>
@@ -106,7 +107,7 @@
                             </div>
                             <div class="col-50">
                                 <button class="button applypromo margintop15" ng-click="cart.apply_promo()">Apply Promo</button>
-                                <button class="button checkoutbutton margintop15" ng-click="cart.check_out()">Checkout</button>
+                                <button class="button checkoutbutton margintop15" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
                                 <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
                             </div>
                         </div>

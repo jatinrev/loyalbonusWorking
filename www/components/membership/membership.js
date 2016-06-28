@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q, $http, loading) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q, loading, payment) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
@@ -178,23 +178,14 @@ angular.module('LoyalBonus')
         //getting PAYSTACK REFERENCE
         get_paystack_reference : function() {
             //guid
-            var referenceId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-            var promise = $q.defer();
-            promise.resolve(referenceId);
-            return promise.promise;
+            return payment
+            .get_paystack_reference();
         },
         //Get Payment Data From Paystack
         get_payment_data_from_paystack : function(transactionRef) {
-            return $http({
-              method  : 'GET',
-              url     : 'https://api.paystack.co/transaction/verify/' + transactionRef,
-              headers : {
-                'Authorization': 'Bearer sk_test_6b95965be2cf9679606d8103548f5847ce019175'
-              }
-            }).then(function(data) {
+            return payment
+            .get_paystack_response(transactionRef)
+            .then(function(data) {
                 if(data.status == '200') {
                     console.log(data.data);
                     return data.data;

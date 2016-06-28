@@ -29,7 +29,7 @@ angular.module('LoyalBonus')
             // if userId is not present
             if( typeof(userId) == 'undefined' || +userId == 0 ) {
                 return ajaxCall
-                    .get('webapi/BusinessMaster/GetBusinessbyID?BusinessId=' + businessId, {})
+                    .get('webapi/BusinessMaster/GetBusinessbyIDUserId?BusinessId=' + businessId + '&UserId=', {})
                     .then(function(res) {
                         loading.stop();
                         return res;
