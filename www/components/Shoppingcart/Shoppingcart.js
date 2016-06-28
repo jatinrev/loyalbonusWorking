@@ -238,6 +238,7 @@ angular.module('LoyalBonus')
                     $window
                     .gtBank_custom
                     .output(function (res) {
+                        // res.url = http://localhost:8100/gtOauth.html?gtpay_tranx_id=2851de60-c3f7-439e-b953-7f12770825fa&gtpay_tranx_status_code=00&gtpay_tranx_curr=NGN&gtpay_tranx_status_msg=Approved%20by%20Financial%20Institution&gtpay_tranx_amt=40.00&gtpay_cust_id=263&gtpay_echo_data={%20redirectUrl%20:%20%22http://localhost:8100/gtOauth.html%22,%20other_data%20:%20%22%22%20}&site_redirect_url=http://localhost/ionic/gtPay.php&gtpay_gway_name=webpay&gtpay_tranx_hash=03AFDB1C62167A2ECEBDE1D2B419CDD1F8D6D3C5F8ED4E8BD00C47203E327B2AC81D34AFD2CD22672825FE0B1BDFCE489CF83D1D3D66A57DE2B66CDA0CB29580&gtpay_verification_hash=62F917F24E2724E591B7D6F9E4B2128093B1C12C6372F785287A1487A265752B7762B379EA4EE1CF29B6C2CDAF1649335FD7BB19A0D4E8C3135F83A3E380F1EE&gtpay_full_verification_hash=47D6FBD786D854E2DCD5C022ECDF9CA16E0D3622CD4467A308EE434C821526AE0C7A4EDDAA964311CF170D1C8479A762AC53DE3A2FB48EF7AA8FDB737C62600E&gtpay_tranx_amt_small_denom=4000
                         console.log(res.url);
                     });
                 }
@@ -276,7 +277,6 @@ angular.module('LoyalBonus')
         HashCode             = gtpay_mert_id + gtpay_tranx_id + gtpay_tranx_amt + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
         
         $scope.gtbank = {
-            HashCode             : HashCode,
             oauthUrl             : gtpay_tranx_noti_url,
             gtpay_mert_id        : gtpay_mert_id,
             gtpay_tranx_id       : gtpay_tranx_id,
@@ -309,10 +309,10 @@ angular.module('LoyalBonus')
             , getShaCode : function(hash_code) {
                 return ajaxCall
                 .get('webapi/UserCartAPI/getShaCode', {
-                    HasCode : hash_code
+                    HashCode : hash_code
                 })
-                .then(function(hasCode) {
-                    console.log(hasCode);
+                .then(function(hash_code_res) {
+                    $scope.gtbank.HashCode = hash_code_res.data.Data;
                 });
             }
         }
