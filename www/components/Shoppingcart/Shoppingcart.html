@@ -24,7 +24,7 @@
             <div class="row">
                 <p class="row fontsize">Shopping Cart</p>
             </div>
-            
+
             <!-- Start : After checkout data -->
             <div ng-show="cart.checkout_data"><!--  -->
                 <div class="row">
@@ -60,6 +60,21 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Start : gtPayment -->
+                    <form id="TheForm" name="submit2gtpay_form" action="https://ibank.gtbank.com/GTPay/Tranx.aspx" target="TheWindow" method="post">
+                        <input type="hidden" name="gtpay_mert_id"        value="{{ gtbank.gtpay_mert_id }}" />
+                        <input type="hidden" name="gtpay_tranx_id"       value="{{ gtbank.gtpay_tranx_id }}" />
+                        <input type="hidden" name="gtpay_tranx_amt"      value="{{ gtbank.gtpay_tranx_amt }}" />
+                        <input type="hidden" name="gtpay_tranx_curr"     value="{{ gtbank.gtpay_tranx_curr }}" />
+                        <input type="hidden" name="gtpay_cust_id"        value="{{ gtbank.gtpay_cust_id }}" />
+                        <input type="hidden" name="gtpay_cust_name"      value="{{ gtbank.gtpay_cust_name }}" />
+                        <input type="hidden" name="gtpay_echo_data"      value='{ redirectUrl : "http://localhost:8100/gtOauth.html", other_data : "" }' />
+                        <input type="hidden" name="gtpay_gway_name"      value="" />
+                        <input type="hidden" name="gtpay_hash"           value="{{ gtbank.HashCode }}" />
+                        <input type="hidden" name="gtpay_tranx_noti_url" value="{{ gtbank.oauthUrl }}" />
+                        <input type="submit" value="Pay Via GTPay"       name ="btnSubmit" style="display: none;" />
+                    </form>
+                    <!-- End : gtPayment -->
                 </div>
             </div>
             <!--- End : After checkout data -->
@@ -107,7 +122,7 @@
                             </div>
                             <div class="col-50">
                                 <button class="button applypromo margintop15" ng-click="cart.apply_promo()">Apply Promo</button>
-                                <button class="button checkoutbutton margintop15" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
+                                <button class="button checkoutbutton" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
                                 <button class="button button-balanced continueshoppingbutton">Continue Shopping</button>
                             </div>
                         </div>

@@ -108,24 +108,6 @@ angular.module('LoyalBonus')
             });
         }
 
-        // getShaCode(Post): Parameters – [HasCode]
-        // HasCode : [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
-        function getShaCode() {
-
-            var hashkey = 'D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F'
-            , gtpay_mert_id = '4994'
-            , gtpay_tranx_id = ''
-            , gtpay_cust_id  = $rootScope.userDetails.userId;
-            var HasCode = '';
-            return  ajaxCall
-                    .post('webapi/UserCartAPI/getShaCode', {
-                        HasCode : HasCode
-                    })
-                    .then(function(res) {
-
-                    });
-        }
-
         return {
             list_cart               : list_cart,
             GetUserCartByBusinessId : GetUserCartByBusinessId,
@@ -136,7 +118,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -187,7 +169,6 @@ angular.module('LoyalBonus')
                 /*
                 paymentMethod : 1 = paystack, 2 = gtbank
                  */
-                paymentMethod = 1
 
                 if(paymentMethod == 1) {
                     // PAYSTACK
@@ -226,7 +207,7 @@ angular.module('LoyalBonus')
                                         , PaystackCCLastFour     : paystack_last4
                                         , PaystackChannel        : paystack_channel
                                         , PaystackMessage        : paystack_message
-                                        , userId                 : $rootScope.userDetails.Email
+                                        , userId                 : $rootScope.userDetails.userId
                                     };
 
                                     // INSERT PAYMENT.
@@ -251,6 +232,14 @@ angular.module('LoyalBonus')
                     });
                 } else {
                     // GTBANK
+                    gtBank.post_request();
+
+                    // GETTING CALLBACK 
+                    $window
+                    .gtBank_custom
+                    .output(function (res) {
+                        console.log(res.url);
+                    });
                 }
             }
             // UserCheckOut(Post): Parameters – [BusinessId, ProductId, CartId, BusinessStoreId, Paymentmethod, TransactionReferenceNo, PayAmount, PaystackAuthCode, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, userId]
@@ -265,6 +254,70 @@ angular.module('LoyalBonus')
                 return 0;
             }
         };
+
+
+        /*
+        Start : gtBank methods
+         */
+        var context       = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"))
+        , baseUrl         = baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context
+        , oauthUrl        = baseUrl + '/gtOauth.html';
+
+        // HashCode
+        var getSha512Hash    = "",
+        gtpay_mert_id        = "4994",
+        gtpay_tranx_id       = payment.get_paystack_reference_no_promise(),
+        gtpay_tranx_amt      = "4000", // amt in kodo
+        gtpay_tranx_curr     = "566",
+        gtpay_cust_id        = $rootScope.userDetails.userId,
+        gtpay_tranx_noti_url = "http://localhost/ionic/gtPay.php",
+        hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
+        // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
+        HashCode             = gtpay_mert_id + gtpay_tranx_id + gtpay_tranx_amt + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
+        
+        $scope.gtbank = {
+            HashCode             : HashCode,
+            oauthUrl             : gtpay_tranx_noti_url,
+            gtpay_mert_id        : gtpay_mert_id,
+            gtpay_tranx_id       : gtpay_tranx_id,
+            gtpay_tranx_amt      : gtpay_tranx_amt,
+            gtpay_tranx_curr     : gtpay_tranx_curr,
+            gtpay_cust_id        : gtpay_cust_id,
+            gtpay_tranx_noti_url : gtpay_tranx_noti_url
+        };
+        function loginWindow_loadStartHandler(event) {
+            console.log(event.url);
+        }
+        // Inappbrowser exit handler: Used when running in Cordova only
+        function loginWindow_exitHandler() {
+            console.log('exit and remove listeners');
+            // Handle the situation where the user closes the login window manually before completing the login process
+            if (loginCallback && !loginProcessed) loginCallback({status: 'user_cancelled'});
+            loginWindow.removeEventListener('loadstop', loginWindow_loadStopHandler);
+            loginWindow.removeEventListener('exit', loginWindow_exitHandler);
+            loginWindow = null;
+            console.log('done removing listeners');
+        }
+        var gtBank = {
+            post_request : function() {
+                loginWindow = window.open('', 'TheWindow');
+                document.getElementById('TheForm').submit();
+                loginWindow.addEventListener('loadstart', loginWindow_loadStartHandler);
+                loginWindow.addEventListener('exit', loginWindow_exitHandler);
+            }
+            // getShaCode(Post): Parameters – [HasCode]
+            , getShaCode : function(hash_code) {
+                return ajaxCall
+                .get('webapi/UserCartAPI/getShaCode', {
+                    HasCode : hash_code
+                })
+                .then(function(hasCode) {
+                    console.log(hasCode);
+                });
+            }
+        }
+        gtBank.getShaCode(HashCode);
+
 
         /*
         THIS IS TO GET BUSINESS DATA.

@@ -544,10 +544,18 @@ angular.module('LoyalBonus.services', [])
             promise.resolve(referenceId);
             return promise.promise;
 		}
+
+		function get_paystack_reference_no_promise() {
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+		}
 	
 		return {
-			get_paystack_response : get_paystack_response,
-			get_paystack_reference : get_paystack_reference
+			get_paystack_response             : get_paystack_response,
+			get_paystack_reference            : get_paystack_reference,
+			get_paystack_reference_no_promise : get_paystack_reference_no_promise
 		};
 	});
 

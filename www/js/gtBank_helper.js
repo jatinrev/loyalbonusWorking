@@ -1,0 +1,18 @@
+var gtBank_custom = (function () {
+	var loginCallback;
+
+	function output(callback) {
+		loginCallback = callback;
+	}
+
+	function oauth_helper(url) {
+		loginCallback({ url : url });
+		console.log(url);
+	}
+
+	return {
+		oauth_helper : oauth_helper,
+		output       : output
+	}
+
+}());
