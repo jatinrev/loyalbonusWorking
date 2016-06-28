@@ -190,6 +190,7 @@ angular.module('LoyalBonus')
                 paymentMethod = 1
 
                 if(paymentMethod == 1) {
+                    // PAYSTACK
                     payment
                     .get_paystack_reference()
                     .then(function(referenceId) {
@@ -248,7 +249,8 @@ angular.module('LoyalBonus')
                         });
                         handler.openIframe();
                     });
-
+                } else {
+                    // GTBANK
                 }
             }
             // UserCheckOut(Post): Parameters – [BusinessId, ProductId, CartId, BusinessStoreId, Paymentmethod, TransactionReferenceNo, PayAmount, PaystackAuthCode, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, userId]
