@@ -30,7 +30,9 @@
                     <div class="col col-33">
                         <b>1. Shipping address</b>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                        {{ cart.checkout_data.UserDefaultAddress.StreetAddress+' '+cart.checkout_data.UserDefaultAddress.StreetAddress }}
+                    </div>
                     <!-- <div class="col">
                         <button id="btnaddress" class="btn btn-default" ng-click="cart.ChangeAddress()">Change</button>
                     </div> -->
