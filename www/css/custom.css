@@ -27,11 +27,12 @@
 /**
  * all margins come here
  */
-.margin-top-minus1 { margin-top: -1px !important; }
-.margin-bottom-0 { margin-bottom: 0px !important; }
-.margin-right-5 { margin-right: 5px; }
-.margin-top-10 { margin-top:15px; }
-.margin-top-15 { margin-top: 15px; }
+.margin-top-minus1  { margin-top    : -1px !important; }
+.margin-top-0       { margin-top    : 0px !important; }
+.margin-bottom-0    { margin-bottom : 0px !important; }
+.margin-right-5     { margin-right  : 5px; }
+.margin-top-10      { margin-top    : 15px; }
+.margin-top-15      { margin-top    : 15px; }
 
 .margin-left-15{margin-left:15}
 .mgtop20 {margin-top: 20px;}
@@ -954,4 +955,4 @@ h4.membershipClass
         position: relative;
     left: 10px;
 }
- }   
+   

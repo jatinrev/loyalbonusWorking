@@ -32,7 +32,7 @@
                         <b>1. Shipping address</b>
                     </div>
                     <div class="col">
-                        {{ cart.checkout_data.UserDefaultAddress.StreetAddress+' '+cart.checkout_data.UserDefaultAddress.StreetAddress }}
+                        {{ cart.checkout_data.UserDefaultAddress.StreetAddress+', '+cart.checkout_data.UserDefaultAddress.City }}
                     </div>
                     <!-- <div class="col">
                         <button id="btnaddress" class="btn btn-default" ng-click="cart.ChangeAddress()">Change</button>
@@ -116,12 +116,12 @@
                     <div class="bordertop">
                         <div class="row">
                             <div class="col-50">
-                                <input class="promoCart pull-left center margin-top-15" type="text" ng-model="cart.promo">
+                                <input class="promoCart pull-left center margin-top-15" ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo">
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
                                 <span class="subtotal col pull-left  margintop center"> ₦ 586923.75</label>
                             </div>
                             <div class="col-50">
-                                <button class="button applypromo margintop15 button-block" ng-click="cart.apply_promo()">Apply Promo</button>
+                                <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">Apply Promo</button>
                                 <button class="button checkoutbutton button-block" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
                                 <button class="button button-balanced continueshoppingbutton button-block">Continue Shopping</button>
                             </div>
