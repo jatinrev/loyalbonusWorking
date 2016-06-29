@@ -282,6 +282,12 @@ angular.module('LoyalBonus')
             , ChangeAddress : function() {
                 return 0;
             }
+            /**
+             * This function is here because in "UserCartAPI/GetUserCartByBusinessId" some of the data is comming in 'UserCartDetailPromos' and some in 'UserCartDetails'.
+             */
+            , UserCartDetails_data : function(key) {
+                return $scope.cart.data.UserCartDetailPromos[key]
+            }
         };
 
         /*

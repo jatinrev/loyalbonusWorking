@@ -84,9 +84,9 @@
                     <div class="row position_relative_item" ng-show="cart.data.UserCartDetails.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetails">
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
-                            <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }}</span>
-                            <label class="shoppingsmall">One (1) headboard, one</label>
-                            <div class="row">
+                            <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }} <i class="color33cd5f">₦{{ cart.UserCartDetails_data(key).PriceAfterBusinessDiscount }}</i></span>
+                            <label class="shoppingsmall">{{ cart.UserCartDetails_data(key).LoyaltyDiscount }}% Loyalty discount <i style="    text-decoration: line-through; color: red;">₦{{ cart.UserCartDetails_data(key).Price }}</i></label>
+                            <div class="row paddingLeftRight-0">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
                                     <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
