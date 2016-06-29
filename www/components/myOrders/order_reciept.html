@@ -10,41 +10,35 @@
                 <!-- Start : design reciept -->    
 
                 <h3 class="padding-right-5 padding-left-5">Order Receipt</h3>
-                <div class="row paddingLeftRight-0">
-                    <div class="col">
-                        <p style="margin:0;">Ordered on 6/23/2016&nbsp;</p>
-                    </div>
-                    <div class="col">
-                        Order# 131111559953395318
-                    </div>
-                    <div class="col">
-                    </div>
+                <div class="row paddingLeftRight-0 responsive-sm">
+                    <p class="col margin-bottom-0" style="margin:0;">Ordered on {{ order_reciept.datadeal.OrderDate | date:'yyyy-MM-dd' }}</p>
+                    <p class="col margin-bottom-0">Order# {{ order_reciept.datadeal.OrderNo }}</p>
                 </div>
                
-                <div>
+                <div style="border-top: 1px solid #ccc;">
                     <div class="row paddingLeftRight-0">
                         <p class="col margin-bottom-0"><b>Delivery Method: Ship via DHL</b></p>
                         <p class="col margin-bottom-0"><b>Payment Method</b></p>
                         <p class="col margin-bottom-0"><b>Order Summary</b></p>
                     </div>
                     <div class="row paddingLeftRight-0">
-                        <p class="col margin-bottom-0">Karan</p>
-                        <p class="col margin-bottom-0"><img src="img/gtpay.png" width="50px"></p>
-                        <p class="col margin-bottom-0">Item Subtotal: &nbsp;&nbsp;        N 256099.50</p>
+                        <p class="col margin-bottom-0">{{ order_reciept.datadeal.FullName }}</p>
+                        <p class="col margin-bottom-0"><img ng-src="{{ order_reciept.datadeal.CustomerOrderPaymentInfo.PaymentMethodId == 2 ? 'img/gtpay.png' : 'img/paystack.png' }}" width="{{ order_reciept.datadeal.CustomerOrderPaymentInfo.PaymentMethodId == 2 ? '50px' : '80px' }}"></p>
+                        <p class="col margin-bottom-0">Item Subtotal: N {{ order_reciept.datadeal.OrderSubTotal }}</p>
                     </div>
                     <div class="row paddingLeftRight-0">
-                        <p class="col margin-bottom-0">Testing</p>
+                        <p class="col margin-bottom-0">{{ order_reciept.datadeal.CustomerAddress }}</p>
                         <p class="col margin-bottom-0"></p>
-                        <p class="col margin-bottom-0">Shipping Cost:&nbsp;&nbsp;         N 0.00</p>
+                        <p class="col margin-bottom-0">Shipping Cost: N {{ order_reciept.datadeal.ShippingAmount }}</p>
                     </div>
                     <div class="row paddingLeftRight-0">
-                        <p class="col margin-bottom-0">Adamawa Gireri</p>
+                        <p class="col margin-bottom-0">{{ order_reciept.datadeal.CustomerArea }}</p>
                         <p class="col margin-bottom-0"></p>
-                        <p class="col margin-bottom-0">Grand Total:  &nbsp;&nbsp;         N 256099.50</p>
+                        <p class="col margin-bottom-0">Grand Total: N {{ order_reciept.datadeal.OrderAmount }}</p>
                     </div>
                 </div>
                 
-                <div class="row paddingLeftRight-0 responsive-sm">
+                <div style="border-top: 1px solid #ccc;" class="row paddingLeftRight-0 responsive-sm">
                     <p class="col margin-bottom-0 padding-bottom"><b>Seller Information</b> </p>
                     <p class="col margin-bottom-0 padding-bottom" style="color:#07c8f3;">Cell phones &amp; Accessories</p>
                     <p class="col margin-bottom-0 padding-bottom">Plot 10, Acme Road, Ogba</p>
@@ -54,24 +48,20 @@
 
                 <!-- </div> -->
                     <!-- <h3>Shipped on 18/05/2016</h3> -->
-                <div class="row paddingLeftRight-0 responsive-sm">
+                <div style="border-top: 1px solid #ccc;" class="row paddingLeftRight-0 responsive-sm">
                     <h4 class="col" style="font-weight:bold;">Shipped on 18/05/2016</h4>
                     <div class="col">
-                        <img src="https://pzportalvhdsl86lr30375p3.blob.core.windows.net/vhds/s-l1600(1).jpg" alt="">
+                        <img ng-src="{{ order_reciept.datadeal.CustomerOrderDetails[0].BusinessStoreProduct.ProductImageUrl }}" alt="">
                     </div>
                     <div class="col">
-                        <p><b>Apple iPhone 6 16GB Factory Unlocked Smartphone Silver</b></p>
-                        <p>Condition:  
-                        New: A brand-new, unused, unopened, undamaged item in its original packaging (where packaging is applicable). Packaging should be the same as what is found in a retail store, unless the item is handmade or was packaged by the manufacturer in non-retail packaging, such as an un-printed box or plastic bag. See the seller's listing for full details. See all condition definitions
-                        Brand:  iPhone
-                        Operating System:   iOS Lock Status:    Network Unlocked
-                        Storage Capacity:   16GB    MPN:    Does Not Apply
-                        UPC:     Does Not Apply</p>
+                        <p><b>{{ order_reciept.datadeal.CustomerOrderDetails[0].ProductName }}</b></p>
+                        <p>{{ order_reciept.datadeal.CustomerOrderDetails[0].ProductDescription }}</p>
                     </div>
                     <div class="col">
-                        <b>Price</b><span> N: 256099.50 </span>
-                        <p><b>Quantity</b> : 1</p>
-                        <button type="button" class="col btn btn-default1">Buy it Again</button>
+                        <b>Price</b><span> N: {{ order_reciept.datadeal.CustomerOrderDetails[0].PriceAfterDiscount }} </span>
+                        <p><b>Quantity</b> : {{ order_reciept.datadeal.CustomerOrderDetails[0].Qty }}</p>
+                        <a type="button" ui-sref="home.productDetail({BusinessId: order_reciept.datadeal.CustomerOrderDetails[0].BusinessStoreProduct.BusinessId, Productid : order_reciept.datadeal.CustomerOrderDetails[0].ProductId })">Buy it Again</button>
+                        <!-- $state.go("home.productDetail", { BusinessId: businessId, Productid: productid}); -->
                     </div>
                 </div>
 
@@ -83,8 +73,6 @@
 
             
             </div>
-
-
             <!-- End : design reciept -->
 
         </ion-content>

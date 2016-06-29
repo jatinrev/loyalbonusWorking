@@ -7,7 +7,7 @@ angular.module('LoyalBonus')
         return refreshTest.showrefreshtest($state.current.name, $state.params);
     }
 
-    
+    $scope.order_reciept = {};
 
     // OrderInvoice(Get): Parameters – [orderId, userId]
 	ajaxCall
@@ -16,6 +16,7 @@ angular.module('LoyalBonus')
 		orderId : $state.params.order_id
     })
     .then(function(res) {
+        $scope.order_reciept.datadeal = res.data.Data;
     	console.log(res);
     });
 });
