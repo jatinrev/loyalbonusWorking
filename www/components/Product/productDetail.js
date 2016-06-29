@@ -28,7 +28,7 @@ angular.module('LoyalBonus')
                     THIS WILL AUTOMATICALLY UPDATE CART.
                      */
                     cart_functions
-                    .GetUserCartByBusinessId($state.params.BusinessId);
+                    .GetUserCartByBusinessId(BusinessStoreId);
                     return cartResult.data.Data;
                 });
         }
@@ -38,7 +38,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp, $cordovaSocialSharing, loading, saveData) {
+    .controller('CartController', function ($scope, showRating,refreshTest, $state, ajaxCall, active_controller, $ionicPlatform, productDetailFactory, businessVisit, $rootScope, watchUser, popUp, $cordovaSocialSharing, loading, saveData, cart_functions) {
         
         $scope.helperFunction = {};
         $scope.businessData   = {};
@@ -200,6 +200,9 @@ angular.module('LoyalBonus')
         $scope.helperFunction.reviews = function (newNumber) {
            return showRating.showRatingImages(newNumber);
         }
+
+        cart_functions
+        .GetUserCartByBusinessId($state.params.BusinessId);
 
         saveData
         .set('business_id_for_shoppingcart', $state.params.BusinessId);

@@ -375,7 +375,7 @@ angular.module('LoyalBonus')
         .GetUserCartByBusinessId($state.params.businessId)
         .then(function (res) {
             $scope.cart.data = res;
-            $scope.cart.check_out();
+            // $scope.cart.check_out();
             console.log($scope.cart.data);
         });
 
