@@ -40,40 +40,40 @@ angular.module('LoyalBonus')
        
 	});
 
-	function mydummyJson(input) {
+   function mydummyJson(input) {
 
-            var output = [];
-            //console.log(input);
-            for (var i = 0; i < input; i++) {
-                output.push(i)
-                //console.log(output.push(i));
-            }
-            return output;
+        var output = [];
+        //console.log(input);
+        for (var i = 0; i < input; i++) {
+            output.push(i)
+            //console.log(output.push(i));
         }
-        $scope.myloyalbonus = {};
+        return output;
+    }
+    $scope.myloyalbonus = {};
 
 
-        $scope.myloyalbonus.printTick    = function ( uservisits, BonusDiscountToCust ) {
-            // var answer =  uservisits,BonusDiscountToCust;
-            return mydummyJson(+uservisits);
+    $scope.myloyalbonus.printTick    = function ( uservisits, BonusDiscountToCust ) {
+        // var answer =  uservisits,BonusDiscountToCust;
+        return mydummyJson(+uservisits);
+    }
+        
+    $scope.myloyalbonus.printNonTick = function ( uservisits, BonusDiscountToCust ) {
+        var answerNontick =  +BonusDiscountToCust - +uservisits ;
+        if( answerNontick - 1 <= 0 ) {
+            return mydummyJson(0);
+        } else {
+            return mydummyJson(answerNontick - 1);
         }
-            
-        $scope.myloyalbonus.printNonTick = function ( uservisits, BonusDiscountToCust ) {
-            var answerNontick =  +BonusDiscountToCust - +uservisits ;
-            if( answerNontick - 1 <= 0 ) {
-                return mydummyJson(0);
-            } else {
-                return mydummyJson(answerNontick - 1);
-            }
+    }
+        
+    $scope.myloyalbonus.printGift    = function ( uservisits, BonusDiscountToCust ) {
+        if (+BonusDiscountToCust == uservisits) {
+            return mydummyJson(0);
+        } else {
+            return mydummyJson(1);
         }
-            
-        $scope.myloyalbonus.printGift    = function ( uservisits, BonusDiscountToCust ) {
-            if (+BonusDiscountToCust == uservisits) {
-                return mydummyJson(0);
-            } else {
-                return mydummyJson(1);
-            }
-        }
+    }
          
         
 

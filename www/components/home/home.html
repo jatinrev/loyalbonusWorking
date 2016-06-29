@@ -25,6 +25,10 @@
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>
             <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
+                <ion-item menu-toggle ng-click="redirect_urls.myorders()"><i class="ion-bag margin-right-5"></i>My Orders</ion-item>
+                <!-- ui-sref="home.restaurants" -->
+            </ion-list>
+            <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
                 <ion-item menu-toggle ng-click="redirect_urls.my_membership()"><i class="ion-person-add margin-right-5"></i>My Membership</ion-item>
                 <!-- ui-sref="home.membership" -->
             </ion-list>

@@ -200,6 +200,10 @@ angular.module('LoyalBonus')
     },
     myloyalbonus : function () {
       $state.go("home.milestones");
+    },
+    myorders : function () {
+      console.log('myorderz');
+      $state.go("home.myorders");
     }
   };
 

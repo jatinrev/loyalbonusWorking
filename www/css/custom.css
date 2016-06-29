@@ -28,7 +28,7 @@
  * all margins come here
  */
 .margin-top-minus1 { margin-top: -1px !important; }
-.margin-bottom-0 { margin-bottom: 0; }
+.margin-bottom-0 { margin-bottom: 0px !important; }
 .margin-right-5 { margin-right: 5px; }
 .margin-top-10 { margin-top:15px; }
 .margin-top-15 { margin-top: 15px; }

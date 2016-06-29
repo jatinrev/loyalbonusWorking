@@ -7,7 +7,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $cordovaNetwork, showRating, popUp) {
   /*Temp Data*/
     $rootScope.userDetails = {
-      userId       : 263,// jatin = 263, karan = 236, dvijesh = 282
+      userId       : 236,// jatin = 263, karan = 236, dvijesh = 282
       Email        : 'jatin@revinfotech.com', // 'karan.xpress@gmail.com', 'dvijesh@revinfotech.com',
       FullName     : 'Jatin Verma', // 'Karan', dvijesh',
       userLocation : '6.461573,3.479404',
@@ -182,6 +182,28 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
             templateUrl  : "components/Milestones/milestones.html",
             controller   : "MileStoneController",
             controllerAs : "msc"
+          }
+        }
+      })
+      .state("home.myorders", {
+        url   : "myorders/",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/myOrders/myOrders.html",
+            controller   : "myOrdersController",
+            controllerAs : "myOr"
+          }
+        }
+      })
+      .state("home.orderReciept", {
+        url   : "orderReciept/:order_id",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/myOrders/order_reciept.html",
+            controller   : "orderRecieptController",
+            controllerAs : "orRe"
           }
         }
       })

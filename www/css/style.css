@@ -793,6 +793,14 @@ width: 100%;
     top: 58px;
     z-index: 99;
 }
+#order_reciept .scroll-content {
+    top: 58px;
+    z-index: 99;
+}
+#myOrders .scroll-content {
+    top: 58px;
+    z-index: 99;
+}
 /* #Milestones img{
     width:94%;
 } */

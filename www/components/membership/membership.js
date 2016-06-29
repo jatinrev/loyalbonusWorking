@@ -196,6 +196,7 @@ angular.module('LoyalBonus')
                 }
             });
         }
+
     }
 
     $scope.membership.GetMembershipTypeByUserId();

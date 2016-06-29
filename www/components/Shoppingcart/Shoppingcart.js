@@ -199,7 +199,7 @@ angular.module('LoyalBonus')
                                         , ProductId              : $scope.cart.data.UserCartDetails[0].ProductId
                                         , CartId                 : $scope.cart.data.CartId
                                         , BusinessStoreId        : $scope.cart.data.BusinessStoreId
-                                        , Paymentmethod          : '' // ?
+                                        , Paymentmethod          : 1 // ?
                                         , TransactionReferenceNo : referenceId
                                         , PayAmount              : $scope.cart.checkout_data.SubTotal
                                         , PaystackAuthCode       : paystack_authorization_code
@@ -240,6 +240,34 @@ angular.module('LoyalBonus')
                     .output(function (res) {
                         // res.url = http://localhost:8100/gtOauth.html?gtpay_tranx_id=2851de60-c3f7-439e-b953-7f12770825fa&gtpay_tranx_status_code=00&gtpay_tranx_curr=NGN&gtpay_tranx_status_msg=Approved%20by%20Financial%20Institution&gtpay_tranx_amt=40.00&gtpay_cust_id=263&gtpay_echo_data={%20redirectUrl%20:%20%22http://localhost:8100/gtOauth.html%22,%20other_data%20:%20%22%22%20}&site_redirect_url=http://localhost/ionic/gtPay.php&gtpay_gway_name=webpay&gtpay_tranx_hash=03AFDB1C62167A2ECEBDE1D2B419CDD1F8D6D3C5F8ED4E8BD00C47203E327B2AC81D34AFD2CD22672825FE0B1BDFCE489CF83D1D3D66A57DE2B66CDA0CB29580&gtpay_verification_hash=62F917F24E2724E591B7D6F9E4B2128093B1C12C6372F785287A1487A265752B7762B379EA4EE1CF29B6C2CDAF1649335FD7BB19A0D4E8C3135F83A3E380F1EE&gtpay_full_verification_hash=47D6FBD786D854E2DCD5C022ECDF9CA16E0D3622CD4467A308EE434C821526AE0C7A4EDDAA964311CF170D1C8479A762AC53DE3A2FB48EF7AA8FDB737C62600E&gtpay_tranx_amt_small_denom=4000
                         console.log(res.url);
+                        var obj = gtBank.parseQueryString(res.url)
+                        , input = {
+                            BusinessId                  : $state.params.businessId
+                            , ProductId                 : $scope.cart.data.UserCartDetails[0].ProductId
+                            , CartId                    : $scope.cart.data.CartId
+                            , BusinessStoreId           : $scope.cart.data.BusinessStoreId
+                            , Paymentmethod             : 2 // ?
+                            , TransactionReferenceNo    : obj.gtpay_tranx_id
+                            , PayAmount                 : obj.gtpay_tranx_amt
+                            , PaystackAuthCode          : null
+                            , PaystackCardType          : null
+                            , PaystackCCLastFour        : null
+                            , PaystackChannel           : null
+                            , PaystackMessage           : null
+                            , userId                    : $rootScope.userDetails.userId
+                            , GTPaygwayname             : obj.gtpay_gway_name
+                            , GTPaytranshash            : obj.gtpay_tranx_hash
+                            , GTPayverificationhash     : gtpay_verification_hash
+                            , GtPayfullverificationhash : obj.gtpay_full_verification_hash
+                        };
+                        console.log(obj);
+                        return 0;
+                        // INSERT PAYMENT.
+                        $scope.cart
+                        .after_payment_checkout(input)
+                        .then(function(payment_res) {
+                            console.log(payment_res);
+                        });
                     });
                 }
             }
@@ -256,7 +284,6 @@ angular.module('LoyalBonus')
             }
         };
 
-
         /*
         Start : gtBank methods
          */
@@ -272,7 +299,7 @@ angular.module('LoyalBonus')
         gtpay_tranx_curr     = "566",
         gtpay_cust_id        = $rootScope.userDetails.userId,
         gtpay_tranx_noti_url = "http://localhost/ionic/gtPay.php",
-        hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
+        hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F",
         // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
         HashCode             = gtpay_mert_id + gtpay_tranx_id + gtpay_tranx_amt + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
         
@@ -315,8 +342,21 @@ angular.module('LoyalBonus')
                     $scope.gtbank.HashCode = hash_code_res.data.Data;
                 });
             }
+            , parseQueryString : function(queryString) {
+                queryString = queryString.substring(35); // removing url from starting of the string.
+                var qs = decodeURIComponent(queryString),
+                    obj = {},
+                    params = qs.split('&');
+                params.forEach(function (param) {
+                    var splitter = param.split('=');
+                    obj[splitter[0]] = splitter[1];
+                });
+                return obj;
+            }
         }
         gtBank.getShaCode(HashCode);
+
+        // console.log(gtBank.parseQueryString('http://localhost:8100/gtOauth.html?gtpay_tranx_id=2851de60-c3f7-439e-b953-7f12770825fa&gtpay_tranx_status_code=00&gtpay_tranx_curr=NGN&gtpay_tranx_status_msg=Approved%20by%20Financial%20Institution&gtpay_tranx_amt=40.00&gtpay_cust_id=263&gtpay_echo_data={%20redirectUrl%20:%20%22http://localhost:8100/gtOauth.html%22,%20other_data%20:%20%22%22%20}&site_redirect_url=http://localhost/ionic/gtPay.php&gtpay_gway_name=webpay&gtpay_tranx_hash=03AFDB1C62167A2ECEBDE1D2B419CDD1F8D6D3C5F8ED4E8BD00C47203E327B2AC81D34AFD2CD22672825FE0B1BDFCE489CF83D1D3D66A57DE2B66CDA0CB29580&gtpay_verification_hash=62F917F24E2724E591B7D6F9E4B2128093B1C12C6372F785287A1487A265752B7762B379EA4EE1CF29B6C2CDAF1649335FD7BB19A0D4E8C3135F83A3E380F1EE&gtpay_full_verification_hash=47D6FBD786D854E2DCD5C022ECDF9CA16E0D3622CD4467A308EE434C821526AE0C7A4EDDAA964311CF170D1C8479A762AC53DE3A2FB48EF7AA8FDB737C62600E&gtpay_tranx_amt_small_denom=4000'));
 
 
         /*
@@ -348,12 +388,11 @@ angular.module('LoyalBonus')
             return refreshTest.showrefreshtest($state.current.name, $state.params);
         }
 
-      
         $scope.isAndroid = ionic.Platform.isAndroid();
-       
+
         active_controller.set('ShoppingCartController');
 
-      
+
 
     });
 
