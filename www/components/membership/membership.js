@@ -37,14 +37,18 @@ angular.module('LoyalBonus')
         SavePayStackResponseInPaymentHistory : function (formData) {
             // getting selected data response.
             data_ctr.selectedMembershipObj = get_payment_amount($scope.datadeal.membershipTypeId_selected);
-            
+            if($scope.membership.getPromoApplied()) {
+              var membershipFee = $scope.datadeal.UpdatePaymentMethod.AfterDiscountAmount;
+            } else {
+              var membershipFee = data_ctr.selectedMembershipObj.MemberShipFee;
+            }
             $scope.membership
             .get_paystack_reference()
             .then(function(referenceId) {
                 var handler = PaystackPop.setup({
                   key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
                   email    : $rootScope.userDetails.Email,
-                  amount   : data_ctr.selectedMembershipObj.MemberShipFee,
+                  amount   : +membershipFee*100, // amount in kodo
                   ref      : referenceId,
                   callback : function(response) {
                     // response = Object {trxref: "1466954710"}
@@ -80,7 +84,6 @@ angular.module('LoyalBonus')
                                 .msgPopUp('Paystack verification unsuccessful.');
                             }
                             loading.stop();
-                            console.log(res);
                             return res.data.Data;
                         });
                     });
@@ -93,7 +96,6 @@ angular.module('LoyalBonus')
                 });
                 handler.openIframe();
             });
-            return 0;
         },
 
         /*
@@ -114,7 +116,10 @@ angular.module('LoyalBonus')
               })
               .then(function (res) {
                 if(true) {
-                  popUp.msgPopUp(res.data.StatusMessage+', discount : '+res.data.Data.data.discount, 1);
+                  popUp.msgPopUp(res.data.StatusMessage+', discount : '+res.data.Data.data.discount, 1)
+                  .then(function(res) {
+                    $scope.Test();
+                  });
                 } else {
                   popUp.msgPopUp(res.data.StatusMessage, 2);
                 }
@@ -129,14 +134,20 @@ angular.module('LoyalBonus')
           [Parameters : userId, userPromoId]
         */
         RemoveUserPromoByUserPromoId : function (userPromoId) {
+          console.log(userPromoId);
             return ajaxCall
             .post('webapi/MyAccountAPI/RemoveUserPromoByUserPromoId', {
               userId      : $rootScope.userDetails.userId,
               userPromoId : userPromoId
             })
             .then(function (res) {
+              if(res.data.Data.status) {
+                popUp.msgPopUp('Promo have been removed.', 1)
+                .then(function(res) {
+                  $scope.Test();
+                });
+              }
               console.log(res);
-              return res;
             });
         },
 
@@ -195,11 +206,32 @@ angular.module('LoyalBonus')
                     return data.data;
                 }
             });
+        },
+        //return true if promo applied.
+        getPromoApplied : function() {
+          if($scope.datadeal.UpdatePaymentMethod) {
+            if($scope.datadeal.UpdatePaymentMethod.PromoDiscountAmount > 0) {
+              $scope.datadeal.membershipTypeId_selected = $scope.datadeal.UpdatePaymentMethod.MembershipTypeID;
+              return true;
+            }
+          }
+        },
+        // Method  (Get)  : GetPaymentHistoryByUserId [Parameter : userId]
+        GetPaymentHistoryByUserId : function() {
+            return ajaxCall
+            .get('webapi/MyAccountAPI/GetPaymentHistoryByUserId', {
+                userId : $rootScope.userDetails.userId
+            })
+            .then(function(res) {
+                $scope.datadeal.paymentHistory = res.data.Data;
+                console.log(res);
+            });
         }
 
     }
 
     $scope.membership.GetMembershipTypeByUserId();
+    $scope.membership.GetPaymentHistoryByUserId();
 
     $scope.Test = function () {
       return refreshTest.showrefreshtest($state.current.name, $state.params);

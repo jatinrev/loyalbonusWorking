@@ -31,7 +31,9 @@
                             <label class="title col-50">Select Membership Type</label>
                             <label class="title col-50 padding-left-10">Premium</label>
                         </div>
-                        <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes">
+                        <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes"
+                             ng-show="membership.getPromoApplied() ? (datadeal.UpdatePaymentMethod.MembershipTypeID == output.MembershipTypeID ? true : false) : true"
+                        >
                             <div class="col-50">
                                 <div class="row">
                                     <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}">
@@ -44,11 +46,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" ng-show="membership.getPromoApplied()">
+                            <div class="col-50">
+
+                            </div>
+                            <div class="col-50">
+                                <div class="row">
+                                    <span style="color: red;">(promo: ₦ - {{ datadeal.UpdatePaymentMethod.PromoDiscountAmount }})</span>
+                                </div>
+                            </div>
+                        </div>
                         <div id="promoCodeDiv" class="padding">
-                            <p style="color:#808080" class="mgtop20">Do you have a Promo Code?</p>
-                            <input class="form-control" name="promoCode" id="promoCode" ng-model="datadeal.promo" type="text" style="width:183px;float:left">
+                            <p style="color:#808080" class="mgtop20" ng-hide="membership.getPromoApplied()">Do you have a Promo Code?</p>
+                            <input ng-hide="membership.getPromoApplied()" class="form-control" name="promoCode" id="promoCode" ng-model="datadeal.promo" type="text" style="width:183px;float:left"> <!--hide if promo applied-->
                             <div class="mgtop20">
-                                <a ng-click="membership.ApplyPromoCode(frmmember)" style="cursor:pointer">Apply</a>
+                                <a ng-click="
+                                    membership.getPromoApplied() ? membership.RemoveUserPromoByUserPromoId(datadeal.UpdatePaymentMethod.UserPromoId) : membership.ApplyPromoCode(frmmember)
+                                    " 
+                                   style="cursor:pointer">{{ membership.getPromoApplied() ? 'Remove Promo' : 'Apply' }}</a>
                             </div>
                         </div>
                         <div class="row padding">
@@ -76,12 +91,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>3451e546-739b-43df-82e1-96ffa99da22d</td>
-                                        <td>17/06/2016 12:14:28 PM</td>
-                                        <td class="text-right"><b>₦</b> 250.00</td>
-                                        <td class="text-center">Regular</td>
-                                        <td class="text-center">Monthly</td>
+                                    <tr ng-repeat="value in datadeal.paymentHistory">
+                                        <td>{{ value.TransRefNo }}</td>
+                                        <td>{{ value.CreatedDate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                        <td class="text-right"><b>₦</b> {{ value.TransAmt }}</td>
+                                        <td class="text-center">{{ value.TransactionType == 1 ? 'Regular' : 'Not Regular' }}</td>
+                                        <td class="text-center">{{ value.PlanType == 3 ? 'Yearly' : 'Monthly' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
