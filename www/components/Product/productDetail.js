@@ -10,7 +10,7 @@ angular.module('LoyalBonus')
                 });
         }
 
-        function addCart(Productid, Price, PriceAfterDiscount, BusinessStoreId) {
+        function addCart(Productid, Price, PriceAfterDiscount, BusinessStoreId, businessid) {
             loading.start();
             return ajaxCall
                 .post('webapi/UserCartAPI/AddItemtoCart?userId='+$rootScope.userDetails.userId,
@@ -28,7 +28,7 @@ angular.module('LoyalBonus')
                     THIS WILL AUTOMATICALLY UPDATE CART.
                      */
                     cart_functions
-                    .GetUserCartByBusinessId(BusinessStoreId);
+                    .GetUserCartByBusinessId(businessid);
                     return cartResult.data.Data;
                 });
         }
@@ -163,7 +163,7 @@ angular.module('LoyalBonus')
                     $scope.addtoCart = function () {
                         if( watchUser.userPresent() == 1 ) {
                             productDetailFactory
-                            .addCart(+$state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId)
+                            .addCart(+$state.params.Productid, Price, PriceAfterDiscount, BusinessStoreId, $state.params.BusinessId)
                             .then(function (res) {
                                 if( +res.$id > 0 ) {
                                     popUp
