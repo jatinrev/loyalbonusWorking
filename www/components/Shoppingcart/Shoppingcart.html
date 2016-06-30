@@ -68,9 +68,10 @@
                         <input type="hidden" name="gtpay_tranx_curr"     value="{{ gtbank.gtpay_tranx_curr }}" />
                         <input type="hidden" name="gtpay_cust_id"        value="{{ gtbank.gtpay_cust_id }}" />
                         <input type="hidden" name="gtpay_cust_name"      value="{{ gtbank.gtpay_cust_name }}" />
-                        <input type="hidden" name="gtpay_echo_data"      value='{ redirectUrl : "http://localhost:8100/gtOauth.html", other_data : "" }' />
+                        <input type="hidden" name="gtpay_echo_data"      value='{{ gtbank.local_oauth_url }}' />
                         <input type="hidden" name="gtpay_gway_name"      value="" />
                         <input type="hidden" name="gtpay_hash"           value="{{ gtbank.HashCode }}" />
+                        <!-- <input type="hidden" name="gtpay_hash"           value="4994123456785245214000566236http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobileD3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F" /> -->
                         <input type="hidden" name="gtpay_tranx_noti_url" value="{{ gtbank.oauthUrl }}" />
                         <input type="submit" value="Pay Via GTPay"       name ="btnSubmit" style="display: none;" />
                     </form>

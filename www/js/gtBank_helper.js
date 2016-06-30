@@ -7,7 +7,6 @@ var gtBank_custom = (function () {
 
 	function oauth_helper(url) {
 		loginCallback({ url : url });
-		console.log(url);
 	}
 
 	return {

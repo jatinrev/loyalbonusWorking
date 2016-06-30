@@ -276,7 +276,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         cache : false,
         views : {
           "body": {
-            templateUrl  : "components/Shoppingcart/shoppingcart.html",
+            templateUrl  : "components/Shoppingcart/Shoppingcart.html",
             controller   : "ShoppingCartController",
             controllerAs : "scc"
           }

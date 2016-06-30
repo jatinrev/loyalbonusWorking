@@ -238,10 +238,9 @@ angular.module('LoyalBonus')
                     $window
                     .gtBank_custom
                     .output(function (res) {
-                        // res.url = http://localhost:8100/gtOauth.html?gtpay_tranx_id=2851de60-c3f7-439e-b953-7f12770825fa&gtpay_tranx_status_code=00&gtpay_tranx_curr=NGN&gtpay_tranx_status_msg=Approved%20by%20Financial%20Institution&gtpay_tranx_amt=40.00&gtpay_cust_id=263&gtpay_echo_data={%20redirectUrl%20:%20%22http://localhost:8100/gtOauth.html%22,%20other_data%20:%20%22%22%20}&site_redirect_url=http://localhost/ionic/gtPay.php&gtpay_gway_name=webpay&gtpay_tranx_hash=03AFDB1C62167A2ECEBDE1D2B419CDD1F8D6D3C5F8ED4E8BD00C47203E327B2AC81D34AFD2CD22672825FE0B1BDFCE489CF83D1D3D66A57DE2B66CDA0CB29580&gtpay_verification_hash=62F917F24E2724E591B7D6F9E4B2128093B1C12C6372F785287A1487A265752B7762B379EA4EE1CF29B6C2CDAF1649335FD7BB19A0D4E8C3135F83A3E380F1EE&gtpay_full_verification_hash=47D6FBD786D854E2DCD5C022ECDF9CA16E0D3622CD4467A308EE434C821526AE0C7A4EDDAA964311CF170D1C8479A762AC53DE3A2FB48EF7AA8FDB737C62600E&gtpay_tranx_amt_small_denom=4000
-                        console.log(res.url);
-                        var obj = gtBank.parseQueryString(res.url)
-                        , input = {
+                        var obj = gtBank.parseQueryString(res.url);
+                        console.log(obj);
+                        var input = {
                             BusinessId                  : $state.params.businessId
                             , ProductId                 : $scope.cart.data.UserCartDetails[0].ProductId
                             , CartId                    : $scope.cart.data.CartId
@@ -257,17 +256,35 @@ angular.module('LoyalBonus')
                             , userId                    : $rootScope.userDetails.userId
                             , GTPaygwayname             : obj.gtpay_gway_name
                             , GTPaytranshash            : obj.gtpay_tranx_hash
-                            , GTPayverificationhash     : gtpay_verification_hash
+                            , GTPayverificationhash     : obj.gtpay_verification_hash
                             , GtPayfullverificationhash : obj.gtpay_full_verification_hash
                         };
-                        console.log(obj);
-                        return 0;
                         // INSERT PAYMENT.
-                        $scope.cart
-                        .after_payment_checkout(input)
-                        .then(function(payment_res) {
-                            console.log(payment_res);
-                        });
+                        /*  GTBANK PAYMENT RESPONSE.
+                            gtpay_cust_id                : "236"
+                            gtpay_echo_data              : "http://localhost:8100/gtOauth.html"
+                            gtpay_full_verification_hash : "8920275691FD82BB53353366A7994C902D91E9E8C796164BF5695687A69024F2EDC69AB737F87A824BBC15C717843FE0C450CBF940B47CE300CC6A0F4D9AE4C9"
+                            gtpay_gway_name              : "webpay"
+                            gtpay_tranx_amt              : "40.00"
+                            gtpay_tranx_amt_small_denom  : "4000"
+                            gtpay_tranx_curr             : "NGN"
+                            gtpay_tranx_hash             : "12B6EBBEF3E9DA0218C71948ABC904031AC712EB6C22D360CC83A45226B32BB4927A707ABBE0BF99A9DF30BA5FACC11B82765798217BCDD6A76DCA3D661A99A6"
+                            gtpay_tranx_id               : "0ba7cfbb-cac2-4123-898d-ba4f8d6fb217"
+                            gtpay_tranx_status_code      : "00"
+                            gtpay_tranx_status_msg       : "Approved+by+Financial+Institution"
+                            gtpay_verification_hash      : "9CD36A01CF96B126A48789417D88C3B609DE35DCEA9F392E5C1A254318B9A058930F80F3E8AC3C37F703D5D3F039311C1C858AB8B4F7C1FE2B175C3706D650EF"
+                            site_redirect_url            : "http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobile"
+                        */
+                        if(obj.gtpay_tranx_status_code == "00") {
+                            $scope.cart
+                            .after_payment_checkout(input)
+                            .then(function(payment_res) {
+                                console.log(payment_res);
+                            });
+                        } else {
+                            popUp
+                            .msgPopUp('GtBank Payment failed.');
+                        }
                     });
                 }
             }
@@ -304,12 +321,13 @@ angular.module('LoyalBonus')
         gtpay_tranx_amt      = "4000", // amt in kodo
         gtpay_tranx_curr     = "566",
         gtpay_cust_id        = $rootScope.userDetails.userId,
-        gtpay_tranx_noti_url = "http://localhost/ionic/gtPay.php",
+        gtpay_tranx_noti_url = "http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobile",  //"http://localhost/ionic/gtPay.php",
         hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F",
         // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
         HashCode             = gtpay_mert_id + gtpay_tranx_id + gtpay_tranx_amt + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
         
         $scope.gtbank = {
+            local_oauth_url      : oauthUrl,
             oauthUrl             : gtpay_tranx_noti_url,
             gtpay_mert_id        : gtpay_mert_id,
             gtpay_tranx_id       : gtpay_tranx_id,
@@ -345,24 +363,39 @@ angular.module('LoyalBonus')
                     HashCode : hash_code
                 })
                 .then(function(hash_code_res) {
-                    $scope.gtbank.HashCode = hash_code_res.data.Data;
+                    $scope.gtbank.HashCode = hash_code_res.data.Data;  // This is correct
                 });
             }
             , parseQueryString : function(queryString) {
+                /* TRUE : GETTING QUERY STRING. */
                 queryString = queryString.substring(35); // removing url from starting of the string.
-                var qs = decodeURIComponent(queryString),
-                    obj = {},
-                    params = qs.split('&');
+                var qs      = decodeURIComponent(queryString),
+                obj         = {},
+                params      = qs.split('&');
                 params.forEach(function (param) {
                     var splitter = param.split('=');
                     obj[splitter[0]] = splitter[1];
                 });
                 return obj;
             }
+            , getQueryVariable : function(input_url, variable) {
+                /*OLD*/
+                /*GETTING QUERY STRING*/
+                var parser = document.createElement('a');
+                parser.href = input_url;
+
+                var query = parser.search.substring(1);
+                var vars = query.split('&');
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split('=');
+                    if (decodeURIComponent(pair[0]) == variable) {
+                        return decodeURIComponent(pair[1]);
+                    }
+                }
+                console.log('Query variable %s not found', variable);
+            }
         }
         gtBank.getShaCode(HashCode);
-
-        // console.log(gtBank.parseQueryString('http://localhost:8100/gtOauth.html?gtpay_tranx_id=2851de60-c3f7-439e-b953-7f12770825fa&gtpay_tranx_status_code=00&gtpay_tranx_curr=NGN&gtpay_tranx_status_msg=Approved%20by%20Financial%20Institution&gtpay_tranx_amt=40.00&gtpay_cust_id=263&gtpay_echo_data={%20redirectUrl%20:%20%22http://localhost:8100/gtOauth.html%22,%20other_data%20:%20%22%22%20}&site_redirect_url=http://localhost/ionic/gtPay.php&gtpay_gway_name=webpay&gtpay_tranx_hash=03AFDB1C62167A2ECEBDE1D2B419CDD1F8D6D3C5F8ED4E8BD00C47203E327B2AC81D34AFD2CD22672825FE0B1BDFCE489CF83D1D3D66A57DE2B66CDA0CB29580&gtpay_verification_hash=62F917F24E2724E591B7D6F9E4B2128093B1C12C6372F785287A1487A265752B7762B379EA4EE1CF29B6C2CDAF1649335FD7BB19A0D4E8C3135F83A3E380F1EE&gtpay_full_verification_hash=47D6FBD786D854E2DCD5C022ECDF9CA16E0D3622CD4467A308EE434C821526AE0C7A4EDDAA964311CF170D1C8479A762AC53DE3A2FB48EF7AA8FDB737C62600E&gtpay_tranx_amt_small_denom=4000'));
 
 
         /*
