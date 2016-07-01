@@ -130,7 +130,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window, saveData) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window, saveData, loading) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -162,16 +162,43 @@ angular.module('LoyalBonus')
             , apply_promo : function () {
                 if($scope.cart.data.PromoId > 0) {
                     // REMOVE PROMO
-                    popUp
-                    .msgPopUp( '', 0);
+                    /*  RemovePromoCode
+                        UserID,BusinessStoreId,CartId
+                        Method = Post
+                    */
+                    ajaxCall
+                    .post('webapi/UserCartAPI/RemovePromoCode', {
+                        UserID          : $rootScope.userDetails.userId,
+                        BusinessStoreId : $scope.cart.data.BusinessStoreId,
+                        CartId          : $scope.cart.data.CartId
+                    })
+                    .then(function(res) {
+                        console.log(res);
+                        if(res.data.Data.success) {
+                            popUp
+                            .msgPopUp( res.data.Data.result, 2);
+                        } else {
+                            popUp
+                            .msgPopUp( res.data.Data.result, 0);
+                        }
+                    });
                 } else {
                     // APPLY PROMO
                     cart_functions
                     .apply_promo($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $scope.cart.promo)
                     .then(function(res) {
-                        if(res.data.Data.success == false) {
+                        if(res.data.Data.success == true) {
                             popUp
-                            .msgPopUp( res.data.Data.result, 0);
+                            .msgPopUp( res.data.Data.result, 1)
+                            .then(function() {
+                                $scope.Test();
+                            });
+                        } else {
+                            popUp
+                            .msgPopUp( res.data.Data.result, 0)
+                            .then(function() {
+                                $scope.Test();
+                            });
                         }
                     });
                 }
@@ -206,6 +233,7 @@ angular.module('LoyalBonus')
                                 payment
                                 .get_paystack_response(response.trxref)
                                 .then(function(callBackdata) {
+                                    callBackdata = callBackdata.data;
                                     var paystack_authorization_code = callBackdata.data.authorization.authorization_code
                                     , paystack_bank                 = callBackdata.data.authorization.bank
                                     , paystack_card_type            = callBackdata.data.authorization.card_type
@@ -240,13 +268,16 @@ angular.module('LoyalBonus')
                                             .msgPopUp('Paystack Payment failed. Error : '+payment_res.data.Message);
                                         }
                                         console.log(payment_res);
+                                        loading.stop();
+                                    }, function(payment_fail) {
+                                        popUp
+                                        .msgPopUp(payment_fail);
                                     });
 
 
                                     /*popUp
                                     .msgPopUp('Paystack verification successful.', 1);*/
                                 });
-                                loading.stop();
                                 // alert('success. transaction ref is ' + response.trxref);
                             },
                             onClose  : function(){
@@ -467,10 +498,10 @@ angular.module('LoyalBonus')
             console.log($scope.cart.data);
 
             // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
-            var gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
+            var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
             $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
             // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
-            var HashCode        = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
+            var HashCode                  = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
             gtBank.getShaCode(HashCode);
         });
 
