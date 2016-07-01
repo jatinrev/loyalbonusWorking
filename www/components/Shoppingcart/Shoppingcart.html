@@ -81,7 +81,7 @@
             <!--- End : After checkout data -->
 
             <div class="padding">
-                <div class="brder" >
+                <div class="brder" ng-hide="cart.hide_everything">
                     <div class="row position_relative_item" ng-show="cart.data.UserCartDetailPromos.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetailPromos">
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
@@ -102,7 +102,7 @@
 
                     <div class="bordertop">
                         <div class="center">
-                            <ion-item class="wth-border item ng-binding color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount }}</ion-item>
+                            <ion-item class="wth-border item ng-binding color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</ion-item>
                         </div>
                         <div class="row">
                             <div class="col-50 col-offset-10">
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-50 text-right" style="color: red; padding-right: 30px;">
                                 <!-- <ion-item class="redcolor"></ion-item> -->
-                                ₦{{ cart.totalPrice().total_price }}
+                                ₦{{ cart.totalPrice().total_price_full }}
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             <div class="col-50">
                                 <input class="promoCart pull-left center margin-top-15" ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-disabled="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
-                                <span class="subtotal col pull-left  margintop center"> ₦ {{ cart.totalPrice().price_after_discount }}</label>
+                                <span class="subtotal col pull-left  margintop center"> ₦ {{ cart.totalPrice().price_after_discount_full }}</label>
                             </div>
                             <div class="col-50">
                                 <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button><!--apply_promo has functionality to remove promo-->
@@ -128,6 +128,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div ng-show="cart.hide_everything">
+                    Please add items to cart.
                 </div>
             </div>
         </ion-content>

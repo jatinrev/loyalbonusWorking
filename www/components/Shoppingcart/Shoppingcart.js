@@ -41,6 +41,9 @@ angular.module('LoyalBonus')
                     if( res.data.Data != null ) {
                         saveData
                         .set('business_cart_size', res.data.Data.UserCartDetails.length);
+                    } else {
+                        //CART EMPTY.
+                        return 0;
                     }
 
                     //GETTING TOTAL PRICE
@@ -195,7 +198,7 @@ angular.module('LoyalBonus')
                         var handler = PaystackPop.setup({
                             key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
                             email    : $rootScope.userDetails.Email,
-                            amount   : +$scope.cart.checkout_data.SubTotal*100,
+                            amount   : $scope.cart.totalPrice().price_after_discount, //*100,
                             ref      : referenceId,
                             callback : function(response) {
                                 // response = Object {trxref: "1466954710"}
@@ -216,7 +219,7 @@ angular.module('LoyalBonus')
                                         , BusinessStoreId        : $scope.cart.data.BusinessStoreId
                                         , Paymentmethod          : 1 // ?
                                         , TransactionReferenceNo : referenceId
-                                        , PayAmount              : +$scope.cart.checkout_data.SubTotal*100
+                                        , PayAmount              : $scope.cart.totalPrice().price_after_discount //*100
                                         , PaystackAuthCode       : paystack_authorization_code
                                         , PaystackCardType       : paystack_card_type
                                         , PaystackCCLastFour     : paystack_last4
@@ -229,6 +232,13 @@ angular.module('LoyalBonus')
                                     $scope.cart
                                     .after_payment_checkout(input)
                                     .then(function(payment_res) {
+                                        if(payment_res.data.Message == null) {
+                                            popUp
+                                            .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
+                                        } else {
+                                            popUp
+                                            .msgPopUp('Paystack Payment failed. Error : '+payment_res.data.Message);
+                                        }
                                         console.log(payment_res);
                                     });
 
@@ -294,6 +304,13 @@ angular.module('LoyalBonus')
                             $scope.cart
                             .after_payment_checkout(input)
                             .then(function(payment_res) {
+                                if(payment_res.data.Message == null) {
+                                    popUp
+                                    .msgPopUp('GtBank Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
+                                } else {
+                                    popUp
+                                    .msgPopUp('GtBank Payment failed. Error : '+payment_res.data.Message);
+                                }
                                 console.log(payment_res);
                             });
                         } else {
@@ -328,11 +345,14 @@ angular.module('LoyalBonus')
             }
             , totalPrice : function() {
                 return {
-                    total_price          : saveData.get('business_cart_totalPrice'),
-                    price_after_discount : saveData.get('business_cart_priceAfterDiscount')
+                    total_price               : +saveData.get('business_cart_totalPrice')*100, // amount in kobo
+                    price_after_discount      : +saveData.get('business_cart_priceAfterDiscount')*100, // amount in kobo
+                    total_price_full          : saveData.get('business_cart_totalPrice'), // amount in nigerian currency
+                    price_after_discount_full : saveData.get('business_cart_priceAfterDiscount') // amount in nigerian currency
                 }
             }
         };
+
 
         /*
         Start : gtBank methods
@@ -345,20 +365,17 @@ angular.module('LoyalBonus')
         var getSha512Hash    = "",
         gtpay_mert_id        = "4994",
         gtpay_tranx_id       = payment.get_paystack_reference_no_promise(),
-        gtpay_tranx_amt      = ( $scope.cart.checkout_data ? +$scope.cart.checkout_data.SubTotal*100 : ''), // amt in kodo
         gtpay_tranx_curr     = "566",
+        gtpay_tranx_amt, //*100, // amt in kodo
         gtpay_cust_id        = $rootScope.userDetails.userId,
         gtpay_tranx_noti_url = "http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobile",  //"http://localhost/ionic/gtPay.php",
-        hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F",
-        // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
-        HashCode             = gtpay_mert_id + gtpay_tranx_id + gtpay_tranx_amt + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
+        hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
         
         $scope.gtbank = {
             local_oauth_url      : oauthUrl,
             oauthUrl             : gtpay_tranx_noti_url,
             gtpay_mert_id        : gtpay_mert_id,
             gtpay_tranx_id       : gtpay_tranx_id,
-            gtpay_tranx_amt      : gtpay_tranx_amt,
             gtpay_tranx_curr     : gtpay_tranx_curr,
             gtpay_cust_id        : gtpay_cust_id,
             gtpay_tranx_noti_url : gtpay_tranx_noti_url
@@ -385,6 +402,7 @@ angular.module('LoyalBonus')
             }
             // getShaCode(Post): Parameters – [HasCode]
             , getShaCode : function(hash_code) {
+                console.log($scope.gtbank.gtpay_tranx_amt);
                 return ajaxCall
                 .get('webapi/UserCartAPI/getShaCode', {
                     HashCode : hash_code
@@ -422,7 +440,6 @@ angular.module('LoyalBonus')
                 console.log('Query variable %s not found', variable);
             }
         }
-        gtBank.getShaCode(HashCode);
 
 
         /*
@@ -440,9 +457,21 @@ angular.module('LoyalBonus')
         cart_functions
         .GetUserCartByBusinessId($state.params.businessId)
         .then(function (res) {
+            if(res == 0) {
+                // Hide everything.
+                $scope.cart.hide_everything = true;
+                return 0;
+            }
             $scope.cart.data = res;
             // $scope.cart.check_out();
             console.log($scope.cart.data);
+
+            // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
+            var gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
+            $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
+            // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
+            var HashCode        = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
+            gtBank.getShaCode(HashCode);
         });
 
 
