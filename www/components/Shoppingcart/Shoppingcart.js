@@ -179,7 +179,7 @@ angular.module('LoyalBonus')
                         var handler = PaystackPop.setup({
                             key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
                             email    : $rootScope.userDetails.Email,
-                            amount   : $scope.cart.checkout_data.SubTotal,
+                            amount   : +$scope.cart.checkout_data.SubTotal*100,
                             ref      : referenceId,
                             callback : function(response) {
                                 // response = Object {trxref: "1466954710"}
@@ -187,7 +187,6 @@ angular.module('LoyalBonus')
                                 payment
                                 .get_paystack_response(response.trxref)
                                 .then(function(callBackdata) {
-                                    console.log(callBackdata);
                                     var paystack_authorization_code = callBackdata.data.authorization.authorization_code
                                     , paystack_bank                 = callBackdata.data.authorization.bank
                                     , paystack_card_type            = callBackdata.data.authorization.card_type
@@ -201,7 +200,7 @@ angular.module('LoyalBonus')
                                         , BusinessStoreId        : $scope.cart.data.BusinessStoreId
                                         , Paymentmethod          : 1 // ?
                                         , TransactionReferenceNo : referenceId
-                                        , PayAmount              : $scope.cart.checkout_data.SubTotal
+                                        , PayAmount              : +$scope.cart.checkout_data.SubTotal*100
                                         , PaystackAuthCode       : paystack_authorization_code
                                         , PaystackCardType       : paystack_card_type
                                         , PaystackCCLastFour     : paystack_last4
@@ -318,7 +317,7 @@ angular.module('LoyalBonus')
         var getSha512Hash    = "",
         gtpay_mert_id        = "4994",
         gtpay_tranx_id       = payment.get_paystack_reference_no_promise(),
-        gtpay_tranx_amt      = "4000", // amt in kodo
+        gtpay_tranx_amt      = ( $scope.cart.checkout_data ? +$scope.cart.checkout_data.SubTotal*100 : ''), // amt in kodo
         gtpay_tranx_curr     = "566",
         gtpay_cust_id        = $rootScope.userDetails.userId,
         gtpay_tranx_noti_url = "http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobile",  //"http://localhost/ionic/gtPay.php",
