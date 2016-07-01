@@ -10,8 +10,6 @@ angular.module('LoyalBonus')
             return GetUserCartByBusinessId(businessId)
                    .then(function (res) {
                         console.log('Cart By Business Data');
-                        res.BusinessStoreId;
-                        res.CartId;
                         console.log(res);
                         return  ajaxCall
                         .post('webapi/UserCartAPI/ShoppingCart', {
@@ -44,6 +42,17 @@ angular.module('LoyalBonus')
                         saveData
                         .set('business_cart_size', res.data.Data.UserCartDetails.length);
                     }
+
+                    //GETTING TOTAL PRICE
+                    var totalPrice     = 0,
+                    priceAfterDiscount = 0;
+                    for (value in res.data.Data.UserCartDetailPromos) {
+                        totalPrice         = totalPrice + +res.data.Data.UserCartDetailPromos[value].Price;
+                        priceAfterDiscount = priceAfterDiscount + +res.data.Data.UserCartDetailPromos[value].PriceAfterDiscount;
+                    }
+                    saveData.set('business_cart_totalPrice', totalPrice);
+                    saveData.set('business_cart_priceAfterDiscount', priceAfterDiscount);
+
                     loading.stop();
                     return res.data.Data;
                 }, function (error) {
@@ -118,7 +127,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window, saveData) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -148,14 +157,21 @@ angular.module('LoyalBonus')
                 });
             }
             , apply_promo : function () {
-                cart_functions
-                .apply_promo($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $scope.cart.promo)
-                .then(function(res) {
-                    if(res.data.Data.success == false) {
-                        popUp
-                        .msgPopUp( res.data.Data.result, 0);
-                    }
-                });
+                if($scope.cart.data.PromoId > 0) {
+                    // REMOVE PROMO
+                    popUp
+                    .msgPopUp( '', 0);
+                } else {
+                    // APPLY PROMO
+                    cart_functions
+                    .apply_promo($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $scope.cart.promo)
+                    .then(function(res) {
+                        if(res.data.Data.success == false) {
+                            popUp
+                            .msgPopUp( res.data.Data.result, 0);
+                        }
+                    });
+                }
             }
             , check_out : function() {
                 cart_functions
@@ -302,7 +318,19 @@ angular.module('LoyalBonus')
              * This function is here because in "UserCartAPI/GetUserCartByBusinessId" some of the data is comming in 'UserCartDetailPromos' and some in 'UserCartDetails'.
              */
             , UserCartDetails_data : function(key) {
-                return $scope.cart.data.UserCartDetailPromos[key]
+                // FUNCTION EH KHRAB HAI..
+                for (variable in $scope.cart.data.UserCartDetailPromos) {
+                    if($scope.cart.data.UserCartDetails[key].ProductId == $scope.cart.data.UserCartDetails[variable].ProductId) {
+                        return $scope.cart.data.UserCartDetailPromos[variable];
+                    }
+                }
+                // return $scope.cart.data.UserCartDetailPromos[key]
+            }
+            , totalPrice : function() {
+                return {
+                    total_price          : saveData.get('business_cart_totalPrice'),
+                    price_after_discount : saveData.get('business_cart_priceAfterDiscount')
+                }
             }
         };
 
