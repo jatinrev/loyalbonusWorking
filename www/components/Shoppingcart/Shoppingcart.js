@@ -52,8 +52,8 @@ angular.module('LoyalBonus')
 
                     // This is also done in checkout page as to give promo discount
                     for (value in res.data.Data.UserCartDetailPromos) {
-                        totalPrice         = totalPrice + +res.data.Data.UserCartDetailPromos[value].Price;
-                        priceAfterDiscount = priceAfterDiscount + +res.data.Data.UserCartDetailPromos[value].PriceAfterDiscount;
+                        totalPrice         = totalPrice + (+res.data.Data.UserCartDetailPromos[value].Price * +res.data.Data.UserCartDetailPromos[value].Qty);
+                        priceAfterDiscount = priceAfterDiscount + (+res.data.Data.UserCartDetailPromos[value].PriceAfterDiscount * +res.data.Data.UserCartDetailPromos[value].Qty);
                     }
                     saveData.set('business_cart_totalPrice', totalPrice);
                     saveData.set('business_cart_priceAfterDiscount', priceAfterDiscount);
@@ -182,10 +182,16 @@ angular.module('LoyalBonus')
                         console.log(res);
                         if(res.data.Data.success) {
                             popUp
-                            .msgPopUp( res.data.Data.result, 2);
+                            .msgPopUp( res.data.Data.result, 2)
+                            .then(function() {
+                                $scope.Test();
+                            });
                         } else {
                             popUp
-                            .msgPopUp( res.data.Data.result, 0);
+                            .msgPopUp( res.data.Data.result, 0)
+                            .then(function() {
+                                $scope.Test();
+                            });
                         }
                     });
                 } else {
@@ -391,6 +397,9 @@ angular.module('LoyalBonus')
                     total_price_full          : saveData.get('business_cart_totalPrice'), // amount in nigerian currency
                     price_after_discount_full : saveData.get('business_cart_priceAfterDiscount') // amount in nigerian currency
                 }
+            }
+            , state_on : function(){
+                return $state.params.businessId;
             }
         };
 

@@ -126,7 +126,7 @@
                             <div class="col-50">
                                 <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button><!--apply_promo has functionality to remove promo-->
                                 <button class="button checkoutbutton button-block" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
-                                <button class="button button-balanced continueshoppingbutton button-block">Continue Shopping</button>
+                                <button class="button button-balanced continueshoppingbutton button-block" ui-sref="home.product({ BusinessId : cart.state_on() })">Continue Shopping</button>
                             </div>
                         </div>
                     </div>
