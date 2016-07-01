@@ -81,16 +81,16 @@
             <!--- End : After checkout data -->
 
             <div class="padding">
-                <div class="brder" >
-                    <div class="row position_relative_item" ng-show="cart.data.UserCartDetails.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetails">
+                <div class="brder" ng-hide="cart.hide_everything">
+                    <div class="row position_relative_item" ng-show="cart.data.UserCartDetailPromos.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetailPromos">
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
-                            <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }} <i class="color33cd5f">₦{{ cart.UserCartDetails_data(key).PriceAfterBusinessDiscount }}</i></span>
-                            <label class="shoppingsmall">{{ cart.UserCartDetails_data(key).LoyaltyDiscount }}% Loyalty discount <i style="    text-decoration: line-through; color: red;">₦{{ cart.UserCartDetails_data(key).Price }}</i></label>
+                            <span class="shoppingdesciption" style="width: 100%">{{ product.ProductName }} <i class="color33cd5f">₦{{ product.PriceAfterBusinessDiscount }}</i></span>
+                            <label class="shoppingsmall">{{ product.LoyaltyDiscount }}% Loyalty discount <i style="    text-decoration: line-through; color: red;">₦{{ product.Price }}</i></label>
                             <div class="row paddingLeftRight-0">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetails[key].Qty" placeholder="1">
+                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1">
                                 </div>
                                 <div class="col-50">
                                     <!-- <button class="button offersshopping">2 Offers</button> -->
@@ -102,32 +102,37 @@
 
                     <div class="bordertop">
                         <div class="center">
-                            <ion-item class="wth-border item ng-binding color33cd5f"> ₦ 586923.75</ion-item>
+                            <ion-item class="wth-border item ng-binding color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</ion-item>
                         </div>
                         <div class="row">
                             <div class="col-50 col-offset-10">
                                 <span class="shoppingloyality"> 25% Loyality Discount</span>
                             </div>
-                            <div class="col-50">
-                                <ion-item class="redcolor">₦</ion-item>
-                                <ion-item class="redcolornumber">782565.00</ion-item>
+                            <div class="col-50 text-right" style="color: red; padding-right: 30px;">
+                                <!-- <ion-item class="redcolor"></ion-item> -->
+                                ₦{{ cart.totalPrice().total_price_full }}
                             </div>
                         </div>
                     </div>
                     <div class="bordertop">
                         <div class="row">
-                            <div class="col-50 padding">
-                                <input class="promoCart col pull-left center" ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo">
+
+                            <div class="col-50">
+                                <input class="promoCart pull-left center margin-top-15" ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-disabled="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
+
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
-                                <span class="subtotal col pull-left  margintop center"> ₦ 586923.75</label>
+                                <span class="subtotal col pull-left  margintop center"> ₦ {{ cart.totalPrice().price_after_discount_full }}</label>
                             </div>
                             <div class="col-50">
-                                <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">Apply Promo</button>
+                                <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button><!--apply_promo has functionality to remove promo-->
                                 <button class="button checkoutbutton button-block" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Order' : 'Checkout' }}</button>
                                 <button class="button button-balanced continueshoppingbutton button-block">Continue Shopping</button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div ng-show="cart.hide_everything">
+                    Please add items to cart.
                 </div>
             </div>
         </ion-content>

@@ -954,9 +954,11 @@ h4.membershipClass
     right: 6px;
     }    
 
- .center-block
- {
+.center-block {
         position: relative;
     left: 10px;
 }
-   
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
