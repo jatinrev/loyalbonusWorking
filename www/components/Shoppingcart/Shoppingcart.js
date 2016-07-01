@@ -49,6 +49,8 @@ angular.module('LoyalBonus')
                     //GETTING TOTAL PRICE
                     var totalPrice     = 0,
                     priceAfterDiscount = 0;
+
+                    // This is also done in checkout page as to give promo discount
                     for (value in res.data.Data.UserCartDetailPromos) {
                         totalPrice         = totalPrice + +res.data.Data.UserCartDetailPromos[value].Price;
                         priceAfterDiscount = priceAfterDiscount + +res.data.Data.UserCartDetailPromos[value].PriceAfterDiscount;
@@ -116,6 +118,10 @@ angular.module('LoyalBonus')
             .get('webapi/UserCartAPI/CheckOut?cartId='+cartId+'&businessStoreId='+businessStoreId+'&BusinessID='+BusinessID+'&ProductID='+ProductID+'&userId='+$rootScope.userDetails.userId, {})
             .then(function(res) {
                 loading.stop();
+
+                console.log(res.data.Data.SubTotal)
+                //UPDATE TOTAL AND SUBTOTAL, BECAUSE CHECKOUT GIVES DIFFERENT RESULT.
+                saveData.set('business_cart_priceAfterDiscount', res.data.Data.SubTotal)
                 return res.data.Data;
             });
         }
@@ -208,7 +214,11 @@ angular.module('LoyalBonus')
                 .checkout($scope.cart.data.CartId, $scope.cart.data.BusinessStoreId, $state.params.businessId, $scope.cart.data.UserCartDetails[0].ProductId)
                 .then(function (res) {
                     $scope.cart.checkout_data = res;
-                    console.log($scope.cart.checkout_data);
+
+                    // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
+                    var HashCode                  = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
+                    console.log($scope.cart.totalPrice().price_after_discount);
+                    gtBank.getShaCode(HashCode);
                 });
             }
             , payment : function(paymentMethod) {
@@ -500,9 +510,6 @@ angular.module('LoyalBonus')
             // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
             var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
             $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
-            // [gtpay_mert_id,gtpay_tranx_id,gtpay_tranx_amt,gtpay_tranx_curr,gtpay_cust_id,gtpay_tranx_noti_url,hashkey]
-            var HashCode                  = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
-            gtBank.getShaCode(HashCode);
         });
 
 
