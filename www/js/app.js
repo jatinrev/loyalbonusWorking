@@ -5,12 +5,12 @@ var globaldata = {
 angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','LoyalBonus.services', 'ngCordova', 'angular-carousel', 'ngOpenFB', 'ngMap','ngAnimate','ngTouch', 'ionic-zoom-view'])
 
 .run(function ($ionicPlatform, ngFB, $rootScope, $cordovaPreferences, update_user_details, $cordovaNetwork, showRating, popUp) {
-  /*Temp Data*/
+  /*Temp Data*
     $rootScope.userDetails = {
       userId       : 236,// jatin = 263, karan = 236, dvijesh = 282
       Email        : 'jatin@revinfotech.com', // 'karan.xpress@gmail.com', 'dvijesh@revinfotech.com',
       FullName     : 'Jatin Verma', // 'Karan', dvijesh',
-      userLocation : '6.461573,3.479404',
+      userLocation : '6.461573,3.479404', //Karan_pass = test123
       CreatedOn    : '2016-05-31T11:24:34.607'
     }
   /*Temp Data*/
@@ -19,7 +19,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       print_stars : function (newNumber) {
         return showRating.showRatingImages(newNumber);
       }
-      , popUp       : function(msg, status) {
+      , popUp     : function(msg, status) {
           popUp
           .msgPopUp(msg, status);
       }
@@ -67,7 +67,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 })
  
 
-.run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser) {
+.run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser, scan_now, $state, refreshTest, $cordovaPreferences) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
       StatusBar.styleDefault();
@@ -76,6 +76,20 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 
   $rootScope.userPresent = function () {
     return watchUser.userPresent();
+  }
+  $rootScope.scanBarcode = function(businessId) {
+    scan_now.scan(businessId)
+    .then(function(res) {
+      console.log(res);
+      if( res != 0 ) {
+        refreshTest.showrefreshtest($state.current.name, $state.params);
+      } else {
+        $cordovaPreferences.remove('userId', 'dict');
+        $rootScope.userDeatils = {};
+        /***End : removing from preference***/
+        $state.go("signin");
+      }
+    });
   }
 
 })

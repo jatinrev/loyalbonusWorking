@@ -17,7 +17,6 @@ angular.module('LoyalBonus.services', [])
 				});
 			},
 			put : function (url, data) {
-				console.log(data);
 				return $http({
 					method  : 'PUT',
 					url     : 'http://beta2.loyalbonus.com/' + url,
@@ -415,11 +414,9 @@ angular.module('LoyalBonus.services', [])
 			var emptyStars = 5 - +number;
 			for (var j = 1; j <= emptyStars; j++) {
 				str += '<img class="emptyStart" src="img/stars/emptyStart.png"/>';
-
-
 			}
 			//console.log("string");
-			//console.log(str);
+		//console.log(str);
 			return str;
 		}
 
@@ -556,6 +553,49 @@ angular.module('LoyalBonus.services', [])
 			get_paystack_response             : get_paystack_response,
 			get_paystack_reference            : get_paystack_reference,
 			get_paystack_reference_no_promise : get_paystack_reference_no_promise
+		};
+	})
+	.factory('scan_now', function ($cordovaBarcodeScanner, loading, businessVisit, $rootScope, watchUser, popUp, $q) {
+		function scan(businessId) {
+			if(watchUser.userPresent() == 1) {
+				return $cordovaBarcodeScanner
+		            .scan()
+		            .then(function (imageData) {
+		                return imageData.text;
+		                console.log("Barcode Format -> " + imageData.format);
+		                console.log("Cancelled -> " + imageData.cancelled);
+		            }, function (error) {
+		                console.log("An error happened -> " + error);
+		            })
+		            .then(function (qrCode) {
+		                loading.start();
+		                return businessVisit.give_visit($rootScope.userDetails.userId, qrCode, businessId)
+			                .then(function (response) {
+			                    loading.stop();
+			                    if (response.data.Data == "QrCode submitted") {
+			                        return popUp.msgPopUp('<p class="text-align-center margin-bottom-0">Success!</p><p class="text-align-center margin-bottom-0">Thank you for visiting us.</p>', 1);
+			                        /*<p class="text-align-center margin-bottom-0">You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.</p>*/
+			                    } else if(response.data.StatusMessage == "Failed") {
+			                        // $scope.showAlertscanner(response.data.Data, 0);
+			                        console.log('Failed.');
+			                        var promise = $q.defer();
+					                promise.resolve(0);
+					                return promise.promise;
+			                    }
+			                },function(error) {
+			                    $scope.showAlertscanner('Your Scan Cant be completed');
+			                });
+		            });
+	        } else {
+	        	var promise = $q.defer();
+                promise.resolve(0);
+	        	console.log('User not present.');
+                return promise.promise;
+	        }
+		}
+	
+		return {
+			scan : scan
 		};
 	});
 
