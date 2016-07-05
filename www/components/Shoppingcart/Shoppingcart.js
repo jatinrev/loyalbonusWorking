@@ -37,6 +37,7 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/UserCartAPI/GetUserCartByBusinessId?businessId='+businessId+'&userId='+$rootScope.userDetails.userId, {})
                 .then(function (res) {
+                    console.log(res);
                     //UPDATING CART DATA.
                     if( res.data.Data != null ) {
                         saveData
