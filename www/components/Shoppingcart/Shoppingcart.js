@@ -127,13 +127,22 @@ angular.module('LoyalBonus')
             });
         }
 
+        // http://beta2.loyalbonus.com/webapi/UserCartAPI/GetSavedCreditCards?userId=236
+        function GetSavedCreditCards() {
+            return ajaxCall
+            .get('webapi/UserCartAPI/GetSavedCreditCards', {
+                userId : $rootScope.userDetails.userId
+            });
+        }
+
         return {
             list_cart               : list_cart,
             GetUserCartByBusinessId : GetUserCartByBusinessId,
             update_cart             : update_cart,
             remove_product          : remove_product,
             apply_promo             : apply_promo,
-            checkout                : checkout
+            checkout                : checkout,
+            GetSavedCreditCards     : GetSavedCreditCards
         };
     })
 
@@ -226,14 +235,22 @@ angular.module('LoyalBonus')
                     var HashCode                  = gtpay_mert_id + gtpay_tranx_id + $scope.cart.totalPrice().price_after_discount + gtpay_tranx_curr + gtpay_cust_id + gtpay_tranx_noti_url + hashkey;
                     console.log($scope.cart.totalPrice().price_after_discount);
                     gtBank.getShaCode(HashCode);
+
+                    //---------GET SAVED CREDIT CARDS
+                    cart_functions.GetSavedCreditCards()
+                    .then(function(res) {
+                        $scope.cart.paystack_auth_code = res.data.Data;
+                        // console.log(res);
+                    });
                 });
             }
             , payment : function(paymentMethod) {
                 /*
                 paymentMethod : 1 = paystack, 2 = gtbank
                  */
-
-                if(paymentMethod == 1) {
+                if(true) {
+                    
+                } else if(paymentMethod == 1) {
                     // PAYSTACK
                     payment
                     .get_paystack_reference()

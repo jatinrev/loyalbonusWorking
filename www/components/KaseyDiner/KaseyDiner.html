@@ -93,7 +93,6 @@
                                 <ion-item class="wth-border item ng-binding colorblack"> ₦ {{ prod.Price }}</ion-item>
                             </div>
                         </ion-list>
-                
                     </div>
                     <div class="col-50">
                         <ion-list class="disable-user-behavior">
@@ -102,7 +101,6 @@
                                 <ion-item class="wth-border item ng-binding color33cd5f"> {{ prod.LoyalDiscount }}</ion-item>
                             </div>
                         </ion-list>
-                
                     </div>
                 </div> 
                 <div class="col-100">
@@ -114,7 +112,7 @@
             <ion-infinite-scroll on-infinite="invitelistnewBusinessproduct();" distance="1%" ng-if="!myloyalbonus.noMoreProductAvailable"></ion-infinite-scroll>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title" on-tap="userPresent() == 1 ? scanBarcode() : helperFunction.go_to_login()">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+            <div class="title" on-tap="scanBarcode(datadeal)">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
             <!-- ng-show="userPresent() == 1 ? true : false" -->
             <!-- <div ng-hide="userPresent() == 1 ? true : false" class="title" ui-sref="signin">Login</div> -->
         </ion-footer-bar>

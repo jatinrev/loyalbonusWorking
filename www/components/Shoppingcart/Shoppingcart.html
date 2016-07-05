@@ -43,6 +43,14 @@
                         <p style="font-weight: bold; margin-top: 20px;">2. Payment method</p>
                     </div>
                     <div class="col">
+                        <div class="row" ng-repeat="(key, value) in cart.paystack_auth_code">
+                            <div class="col col-10">
+                                <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="{{ key+3 }}" id="rdPayStack">
+                            </div>
+                            <div class="col">
+                                <label for="rdPayStack">Last Digit : {{ value.PaystackCCLastFour }}, Card Type : {{ value.PaystackCardType }}</label>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col col-10">
                                 <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="1" id="rdPayStack">

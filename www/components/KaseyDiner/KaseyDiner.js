@@ -6,9 +6,11 @@ angular.module('LoyalBonus')
          */
         function give_visit(userId, businessUid, businessId) {
             return ajaxCall
-                .post('webapi/BusinessMaster/CreateBusinessQR',
-                { BusinessId: businessId, BusinessUID: businessUid, UserId: userId }
-                );
+                .post('webapi/BusinessMaster/CreateBusinessQR', {
+                    BusinessId: businessId,
+                    BusinessUID: businessUid,
+                    UserId: userId
+                });
         }
         function giveLove(businessId, userId, isLove) {
             loading.start();
@@ -279,7 +281,6 @@ angular.module('LoyalBonus')
             businessVisit
                 .businessDetail($state.params.id, $rootScope.userDetails.userId)
                 .then(function (res) {
-
                     console.log(res);
                     $scope.datadeal = res.data.Data[0];
                     saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
@@ -335,43 +336,6 @@ angular.module('LoyalBonus')
                 }
             });
         };*/
-
-
-        /*** Start : scanBarcode ***/
-        $ionicPlatform.ready(function () {
-            $scope.scanBarcode = function () {
-                $cordovaBarcodeScanner
-                    .scan()
-                    .then(function (imageData) {
-                        return imageData.text;
-                        console.log("Barcode Format -> " + imageData.format);
-                        console.log("Cancelled -> " + imageData.cancelled);
-                    }, function (error) {
-                        console.log("An error happened -> " + error);
-                    })
-                    .then(function (qrCode) {
-                        loading.start();
-                        businessVisit.give_visit($rootScope.userDetails.userId, qrCode, $scope.datadeal.BusinessID)
-                        .then(function (response) {
-                            
-                            if (response.data.Data == "QrCode submitted")
-                            {
-                                 
-                                $scope.showAlertscanner('<p class="text-align-center margin-bottom-0">Success!</p><p class="text-align-center margin-bottom-0">Thank you for visiting us.</p><p class="text-align-center margin-bottom-0">You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.</p>', 1);
-                                test();
-                            } else if(response.data.StatusMessage == "Failed") {
-                                $scope.showAlertscanner(response.data.Data, 0);
-                            }
-                            loading.stop();
-                        },function(error)
-                        {
-                                $scope.showAlertscanner('Your Scan Cant be completed');
-                        });
-                        return 0;
-                    });
-            };
-        });
-        /**** End : scanBarcode ****/
 
         kasey_data.product_pageIndex = 0;
         $scope.myloyalbonus.datadealProd = [];

@@ -556,7 +556,9 @@ angular.module('LoyalBonus.services', [])
 		};
 	})
 	.factory('scan_now', function ($cordovaBarcodeScanner, loading, businessVisit, $rootScope, watchUser, popUp, $q) {
-		function scan(businessId) {
+		function scan(businessObj) {
+			console.log(businessObj);
+
 			if(watchUser.userPresent() == 1) {
 				return $cordovaBarcodeScanner
 		            .scan()
@@ -569,18 +571,16 @@ angular.module('LoyalBonus.services', [])
 		            })
 		            .then(function (qrCode) {
 		                loading.start();
-		                return businessVisit.give_visit($rootScope.userDetails.userId, qrCode, businessId)
+		                return businessVisit.give_visit($rootScope.userDetails.userId, qrCode, businessObj.BusinessID)
 			                .then(function (response) {
 			                    loading.stop();
-			                    if (response.data.Data == "QrCode submitted") {
+			                    if( +businessObj.TotalVisits == +businessObj.BonusDiscountToCust-1 ) {
+			                    	return popUp.msgPopUp('<p class="text-align-center margin-bottom-0">Success!</p><p class="text-align-center margin-bottom-0">Congratulations for reaching your Bonus: '+businessObj.BonusDiscount+'</p>', 1);
+			                    } else if (response.data.Data == "QrCode submitted") {
 			                        return popUp.msgPopUp('<p class="text-align-center margin-bottom-0">Success!</p><p class="text-align-center margin-bottom-0">Thank you for visiting us.</p>', 1);
-			                        /*<p class="text-align-center margin-bottom-0">You will receive '+$scope.datadeal.LoyalDiscount +' %  OFF for this visit.</p>*/
 			                    } else if(response.data.StatusMessage == "Failed") {
 			                        // $scope.showAlertscanner(response.data.Data, 0);
-			                        console.log('Failed.');
-			                        var promise = $q.defer();
-					                promise.resolve(0);
-					                return promise.promise;
+			                        return 1;
 			                    }
 			                },function(error) {
 			                    $scope.showAlertscanner('Your Scan Cant be completed');

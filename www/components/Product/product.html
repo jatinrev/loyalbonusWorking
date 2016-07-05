@@ -58,7 +58,7 @@
             <ion-infinite-scroll on-infinite="invitelistnew();" distance="1%" ng-if="!helperFunction.noMoreProductAvailable"></ion-infinite-scroll>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title center" on-tap="scanBarcode(businessData.BusinessID)">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+            <div class="title center" on-tap="scanBarcode(businessData)">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
         </ion-footer-bar>
     </ion-view>
 </div>
