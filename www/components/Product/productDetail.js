@@ -167,7 +167,10 @@ angular.module('LoyalBonus')
                             .then(function (res) {
                                 if( +res.$id > 0 ) {
                                     popUp
-                                    .msgPopUp('Item Added to Cart.', 1);
+                                    .msgPopUp('Item Added to Cart.', 1)
+                                    .then(function(res) {
+                                        $state.go( "home.shoppingcart", {businessId : $state.params.BusinessId} );
+                                    });
                                 } else {
                                     popUp
                                     .msgPopUp('Item was not added to Cart.');

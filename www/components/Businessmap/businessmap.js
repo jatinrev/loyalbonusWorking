@@ -156,6 +156,7 @@ var app = angular.module('LoyalBonus')
                     get_user_location
                     .get
                     .then(function (position) {
+                        console.log(position);
                         ajaxCall.get('webapi/BusinessMaster/GetAllBusinessLocations?currlocationlatlong' + position.coords.latitude +','+ position.coords.longitude + '=&pageIndex=0&pageSize=10&keyword=', {})
                         .then(function (fetch) {
                             var positions = []
@@ -169,8 +170,8 @@ var app = angular.module('LoyalBonus')
 
                             var businessMapPosition = saveData.get('businessMapPosition');
                             if( typeof(businessMapPosition) == 'undefined' || businessMapPosition == '') {
-                                bc.center = sortedArray[0].positions;
-                                console.log(sortedArray[0].positions);
+                                bc.center = position.coords.latitude +','+ position.coords.longitude; // USER LOCATION CENTER.
+                                // console.log(sortedArray[0].positions);
                                 saveData.remove('businessMapPosition');
                             } else {
                                 console.log('center');

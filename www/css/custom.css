@@ -480,26 +480,27 @@ border:none;
     position: absolute;
     z-index: 1002;
     display: block;
-    top: 45%;
+    top: 50%;
     margin-top: -35px;
     width: 36px;
     height: 71px;
     outline: none;
     cursor: pointer;
-    background: url(../img/blank.gif) no-repeat;
+    font-size: 45px;
+    /*background: url(../img/blank.gif) no-repeat;*/
 }
 
 #Cart .arrow.prev {
     /* opacity: 0.2; */
     left: 25px;
-    background-image: url(../img/paddle_previous_999.png);
+    /*background-image: url(../img/paddle_previous_999.png);*/
     transition: 0.2s linear all;
 }
 
 #Cart .arrow.next {
     /* opacity: 0.2; */
        right: 25px;
-    background-image: url(../img/paddle_next_999.png);
+    /*background-image: url(../img/paddle_next_999.png);*/
     transition: 0.2s linear all;
 }
 

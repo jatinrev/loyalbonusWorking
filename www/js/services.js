@@ -135,6 +135,8 @@ angular.module('LoyalBonus.services', [])
 			var output = $cordovaGeolocation
 						 .getCurrentPosition(posOptions)
 						 .then(function (result) {
+						 	console.log('from gps');
+						 	console.log(result);
 						 	return result;
 						 }, function (error) {
 						 	return getIpGeoLocation();

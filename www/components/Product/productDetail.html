@@ -24,8 +24,8 @@
                 <div class="slider image col center" >
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}" id="imgheight">
-                    <a class="arrow prev" ng-click="nextSlide()"><!-- <i class="ion-chevron-left"></i> --></a>
-                    <a class="arrow next" ng-click="prevSlide()"><!-- <i class="ion-chevron-right"></i> --></a>
+                    <a class="arrow prev" ng-click="nextSlide()" ng-hide="heading_image.length == 1"><i class="ion-chevron-left"></i></a>
+                    <a class="arrow next" ng-click="prevSlide()" ng-hide="heading_image.length == 1"><i class="ion-chevron-right"></i></a>
                 </div>
                 <div class="col center">
                     <span zoom-src="{{ datadeal.ProductImages[currentIndex].ImageName }}" zoom-view class="Enlarge"><i class="ion-android-add-circle" aria-hidden="true"></i >Enlarge </span>
@@ -60,6 +60,7 @@
                 </div>
                 <div class="row padding">
                     <span class="titlecart row">Store Policy</span>
+                    <p class="textcart col">testtet setsetset setset</p>
                 </div>
                 <div class="padding">
                     <!-- <img src="img/shipping_detail.PNG"> -->
