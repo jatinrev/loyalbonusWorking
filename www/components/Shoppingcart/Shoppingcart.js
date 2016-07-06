@@ -236,7 +236,7 @@ angular.module('LoyalBonus')
                     console.log($scope.cart.totalPrice().price_after_discount);
                     gtBank.getShaCode(HashCode);
 
-                    //---------GET SAVED CREDIT CARDS
+                    //---------GET SAVED CREDIT CARDS---------
                     cart_functions.GetSavedCreditCards()
                     .then(function(res) {
                         $scope.cart.paystack_auth_code = res.data.Data;
@@ -253,12 +253,60 @@ angular.module('LoyalBonus')
                     $scope.cart.checkout_error = 'Please select the payment you want to proceed with.';
                 } else if( paymentMethod > 2 ) {
                     paymentMethod = paymentMethod-3;
+                    loading.start();
+                    
+                    // MAKING PAYMENT TO PAYSTACK
                     payment
                     .chargingReturningCustomers($scope.cart.paystack_auth_code[paymentMethod].PaystackAuthCode, $scope.cart.totalPrice().price_after_discount)
                     .then(function(res) {
-                        /*popUp
-                        .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);*/
-                        console.log(res);
+                        var referenceId = res.data.data.reference;
+
+                        // PAYSTACK RESPONSE FROM REFERENCE ID
+                        payment
+                        .get_paystack_response(referenceId)
+                        .then(function(callBackdata) {
+                            callBackdata = callBackdata.data;
+                            var paystack_authorization_code = callBackdata.data.authorization.authorization_code
+                            , paystack_bank                 = callBackdata.data.authorization.bank
+                            , paystack_card_type            = callBackdata.data.authorization.card_type
+                            , paystack_channel              = callBackdata.data.authorization.channel
+                            , paystack_last4                = callBackdata.data.authorization.last4
+                            , paystack_message              = callBackdata.message
+                            , input                         = {
+                                BusinessId               : $state.params.businessId
+                                , ProductId              : $scope.cart.data.UserCartDetails[0].ProductId
+                                , CartId                 : $scope.cart.data.CartId
+                                , BusinessStoreId        : $scope.cart.data.BusinessStoreId
+                                , Paymentmethod          : 1 // ?
+                                , TransactionReferenceNo : referenceId
+                                , PayAmount              : $scope.cart.totalPrice().price_after_discount //*100
+                                , PaystackAuthCode       : paystack_authorization_code
+                                , PaystackCardType       : paystack_card_type
+                                , PaystackCCLastFour     : paystack_last4
+                                , PaystackChannel        : paystack_channel
+                                , PaystackMessage        : paystack_message
+                                , userId                 : $rootScope.userDetails.userId
+                            };
+
+                            // INSERT PAYMENT.
+                            $scope.cart
+                            .after_payment_checkout(input)
+                            .then(function(payment_res) {
+                                loading.stop();
+                                if(payment_res.data.Message == null) {
+                                    popUp
+                                    .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
+                                } else {
+                                    popUp
+                                    .msgPopUp('Paystack Payment failed. Error : '+payment_res.data.Message);
+                                }
+                                console.log(payment_res);
+                            }, function(payment_fail) {
+                                loading.stop();
+                                popUp
+                                .msgPopUp(payment_fail);
+                            });
+                        });
                     }, function(error) {
                         console.log(error);
                     });
