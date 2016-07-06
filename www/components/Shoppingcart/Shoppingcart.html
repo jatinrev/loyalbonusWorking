@@ -43,12 +43,12 @@
                         <p style="font-weight: bold; margin-top: 20px;">2. Payment method</p>
                     </div>
                     <div class="col">
-                        <div class="row" ng-repeat="(key, value) in cart.paystack_auth_code">
+                        <div class="row" ng-repeat="(key, value) in cart.paystack_auth_code" style="margin-top: 0px;">
                             <div class="col col-10">
-                                <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="{{ key+3 }}" id="rdPayStack">
+                                <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="{{ key+3 }}" id="rdPayStack{{ key+3 }}" style="margin-top: 4px;">
                             </div>
                             <div class="col">
-                                <label for="rdPayStack">Last Digit : {{ value.PaystackCCLastFour }}, Card Type : {{ value.PaystackCardType }}</label>
+                                <label for="rdPayStack{{ key+3 }}">Last Digit : {{ value.PaystackCCLastFour }}, Card Type : {{ value.PaystackCardType }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -88,6 +88,10 @@
             </div>
             <!--- End : After checkout data -->
 
+            <div class="">
+                {{ cart.checkout_error }}
+            </div>
+
             <div class="padding">
                 <div class="brder" ng-hide="cart.hide_everything">
                     <div class="row position_relative_item" ng-show="cart.data.UserCartDetailPromos.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetailPromos">
@@ -124,12 +128,11 @@
                     </div>
                     <div class="bordertop">
                         <div class="row">
-
                             <div class="col-50">
                                 <input class="promoCart pull-left center margin-top-15" ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-disabled="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
 
                                 <span class="subtotal col pull-left center margintop20"> Sub-Total</span>
-                                <span class="subtotal col pull-left  margintop center"> ₦ {{ cart.totalPrice().price_after_discount_full }}</label>
+                                <span class="subtotal col pull-left  margintop center"> ₦ {{ cart.totalPrice().price_after_discount_full }}</span>
                             </div>
                             <div class="col-50">
                                 <button class="button applypromo margintop15 button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button><!--apply_promo has functionality to remove promo-->

@@ -520,15 +520,35 @@ angular.module('LoyalBonus.services', [])
 			msgPopUp : msgPopUp
 		};
 	})
-	.factory('payment', function ($http, $q) {
+	.factory('payment', function ($http, $q, $rootScope) {
 		function get_paystack_response(transactionRef) {
 			return $http({
 	            method  : 'GET',
 	            url     : 'https://api.paystack.co/transaction/verify/' + transactionRef,
 	            headers : {
-	            	'Authorization': 'Bearer sk_test_6b95965be2cf9679606d8103548f5847ce019175'
+	            	'Authorization': 'Bearer sk_test_967b105665b7a27a9796e576bdb3a088944b8cff'
 	            }
-            })
+            });
+		}
+
+		//----- post Charging returning customers
+		/**
+		 * curl https://api.paystack.co/transaction/charge_authorization \
+		 * -H "Authorization: Bearer SECRET_KEY" \
+		 * -H "Content-Type: application/json" \
+		 * -d '{"authorization_code": "AUTH_72btv547", "email": "customer@email.com", "amount": 500000}' \
+		 * -X POST
+		 */
+		function chargingReturningCustomers(authCode, amt) {
+			return $http({
+	            method  : 'POST',
+	            url     : 'https://api.paystack.co/transaction/charge_authorization',
+	            headers : {
+	            	'Authorization': 'Bearer sk_test_967b105665b7a27a9796e576bdb3a088944b8cff',
+	            	'Content-Type' : 'application/json'
+	            },
+	            data: { "authorization_code": authCode, "email": $rootScope.userDetails.Email, "amount": amt }
+            });
 		}
 
 		function get_paystack_reference() {
@@ -551,6 +571,7 @@ angular.module('LoyalBonus.services', [])
 	
 		return {
 			get_paystack_response             : get_paystack_response,
+			chargingReturningCustomers        : chargingReturningCustomers,
 			get_paystack_reference            : get_paystack_reference,
 			get_paystack_reference_no_promise : get_paystack_reference_no_promise
 		};

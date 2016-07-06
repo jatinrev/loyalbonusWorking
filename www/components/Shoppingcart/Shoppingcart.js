@@ -248,8 +248,20 @@ angular.module('LoyalBonus')
                 /*
                 paymentMethod : 1 = paystack, 2 = gtbank
                  */
-                if(true) {
-                    
+                $scope.cart.checkout_error = '';
+                if( paymentMethod == undefined ) {
+                    $scope.cart.checkout_error = 'Please select the payment you want to proceed with.';
+                } else if( paymentMethod > 2 ) {
+                    paymentMethod = paymentMethod-3;
+                    payment
+                    .chargingReturningCustomers($scope.cart.paystack_auth_code[paymentMethod].PaystackAuthCode, $scope.cart.totalPrice().price_after_discount)
+                    .then(function(res) {
+                        /*popUp
+                        .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);*/
+                        console.log(res);
+                    }, function(error) {
+                        console.log(error);
+                    });
                 } else if(paymentMethod == 1) {
                     // PAYSTACK
                     payment
@@ -257,7 +269,7 @@ angular.module('LoyalBonus')
                     .then(function(referenceId) {
 
                         var handler = PaystackPop.setup({
-                            key      : 'pk_test_08bb2ccce7b8084d4d3f1daee5b849771ce5ce53',
+                            key      : 'pk_test_9a83db45e3af2848c334742b3ffceadc45442a4f',
                             email    : $rootScope.userDetails.Email,
                             amount   : $scope.cart.totalPrice().price_after_discount, //*100,
                             ref      : referenceId,
