@@ -78,7 +78,13 @@ angular.module('LoyalBonus')
                             .then(function (res) {
                                 if( res.data.Data == true ) {
                                     popUp
-                                    .msgPopUp('Paystack verification successful.', 1);
+                                    .msgPopUp('Paystack verification successful.', 1)
+                                    .then(function() {
+                                        $scope.membership.GetPaymentHistoryByUserId()
+                                        .then(function() {
+                                            $scope.toggleGroup(2);
+                                        });
+                                    });
                                 } else {
                                     popUp
                                     .msgPopUp('Paystack verification unsuccessful.');
