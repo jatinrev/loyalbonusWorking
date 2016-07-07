@@ -63,6 +63,9 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       StatusBar.styleDefault();
     }
     ngFB.init({appId: '1151061421612372'});
+
+    $rootScope.isAndroid_global = ionic.Platform.isAndroid();
+
   });
 })
  
@@ -182,7 +185,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.review", {
         url   : "review/:businessId/:businessImg/:businessRating",
-        cache : false,
         views : {
           "body": {
             templateUrl  : "components/Review/review.html",
@@ -193,7 +195,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.milestones", {
         url   : "milestones/",
-        cache : false,
         views : {
           "body": {
             templateUrl  : "components/Milestones/milestones.html",
@@ -204,7 +205,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.myorders", {
         url   : "myorders/",
-        cache : false,
         views : {
           "body": {
             templateUrl  : "components/myOrders/myOrders.html",
@@ -215,7 +215,6 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       })
       .state("home.orderReciept", {
         url   : "orderReciept/:order_id",
-        cache : false,
         views : {
           "body": {
             templateUrl  : "components/myOrders/order_reciept.html",

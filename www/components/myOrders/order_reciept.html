@@ -1,7 +1,7 @@
 <!-- My loyalbonus -->
 <div id="order_reciept">
     <ion-view>
-        <ion-content>
+        <ion-content ng-class="isAndroid_global ? '' : 'ios_without_heading'">
 
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>

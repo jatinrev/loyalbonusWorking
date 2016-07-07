@@ -1,12 +1,13 @@
 <!-- My loyalbonus -->
 <div id="myOrders">
     <ion-view>
-        <ion-content>
+        <ion-content ng-class="isAndroid_global ? '' : 'ios_without_heading'">
 
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
             
-            <div class="padding-left-5 padding-right-5">
+            <div style="" class="padding-left-5 padding-right-5">
+                <!-- <button ng-click="call_ajax()">call ajax</button> -->
                 <ion-scroll direction="x, y" class="wide-as-needed">
                     <table id="tbl" class="table table-bordered">
                         <thead>
@@ -31,5 +32,4 @@
 
         </ion-content>
     </ion-view>
-
 </div>

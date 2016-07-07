@@ -208,7 +208,7 @@ border:none;
 #home .addclassios
 {
 	    /* top: 18px; */
-        top:1px;
+    top:20px;
 }
 #Businessmap .addclassiostext
 {
@@ -218,14 +218,14 @@ border:none;
 
 #kaseydiner .addclassiosisloved
 {
-	top:22px;
+	top:40px;
 }
-
+.ios_without_heading { top: 70px !important; }  /* For ios style */
 #kaseydiner .button.button-balanced
 {
-	    line-height: 35px;
-	    min-height: 27px;
-	    margin-left: 45px;
+    line-height: 35px;
+    min-height: 27px;
+    margin-left: 45px;
 }
 .margin-bottom-30{
 	margin-bottom: 30px;
@@ -246,7 +246,7 @@ border:none;
 	color:#42ae9d;
 	font-size: 19px;
 }
-#Shoppingcart img#shoppingimg 
+#Shoppingcart img#shoppingimg
 {
 	/* width:95%; */
 	/* margin-left:6%; */
@@ -259,7 +259,7 @@ border:none;
     color: #000;
     font-weight: 500;
     float: left;
-	
+
 }
 #Shoppingcart .shoppingsmall
 {
@@ -358,7 +358,7 @@ border:none;
     position: relative;
     top: -25px;
     right: -83px;
-    
+
 }
 .subtotal
 {
@@ -370,7 +370,7 @@ border:none;
     border:1px solid #000!important;
     padding:5px 6px 0 5px;
     min-width: 184px;
-    
+
 }
 .subtotalamount
 {
@@ -432,7 +432,7 @@ border:none;
 #Product #productimages
 {
 	 width:100%;
-         height: 100%;  
+         height: 100%;
         /*  display: block;
             max-width: 100%;
             min-height: 200px; */
@@ -539,7 +539,7 @@ border:none;
     border-bottom: 1px solid #eee;
     width: 70%;
     text-align: center;
-   
+
 }
 
 span.Cartloyality
@@ -586,7 +586,7 @@ span.titlecart
 h4.titlecart
 {
     color:#47c0e6;
-   
+
     float: left;
     margin-top: 15px;
 }
@@ -607,12 +607,12 @@ p.textcart
 }
 .Enlarge
 {
-    color: #009f8b; 
-    
-   
+    color: #009f8b;
+
+
 }
 .Enlarge i{
-  padding:2px;  
+  padding:2px;
 }
 
 
@@ -634,7 +634,7 @@ label.shippingWeight
     font-size: 15px;
     float: left;
     padding: 0 10px 0px 2px;
-    
+
 }
 label.storePickup
 {
@@ -642,7 +642,7 @@ label.storePickup
     font-size: 15px;
     float: left;
     padding: 0 10px 0px 2px;
-    
+
 }
 span.freedays
 {
@@ -672,7 +672,7 @@ label.learn
    padding: 0px 4px 0 0px;
     color:#0761b7;
     text-decoration: none;
-    float: left; 
+    float: left;
 }
 
 #Invitefriend .emailaddresses
@@ -701,7 +701,7 @@ label.learn
 .detail-banner-left h2 {
     color: #fff;
     font-size: 26px;
-   
+
     margin-bottom: 10px;
     font-weight: normal;
 }
@@ -717,7 +717,7 @@ label.learn
 }
 #Cart .detail-banner-address
 {
-        
+
        /*  float: left; */
            text-align: left;
 }
@@ -768,18 +768,18 @@ label.learn
 
 input[type="radio"] {
     margin: 14px 0 0;
-    
+
     line-height: normal;
 }
 span.Monthly
 {
     margin: 10px 3px 0;
-}  
+}
 span.price
 {
     margin: 10px 3px 0;
     float: left;
-}  
+}
 
 
 
@@ -958,7 +958,7 @@ h4.membershipClass
     position: relative;
     text-decoration: none;
     right: 6px;
-    }    
+    }
 
 .center-block {
         position: relative;
