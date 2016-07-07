@@ -204,11 +204,24 @@ angular.module('LoyalBonus')
            return showRating.showRatingImages(newNumber);
         }
 
+
         cart_functions
         .GetUserCartByBusinessId($state.params.BusinessId);
 
         saveData
         .set('business_id_for_shoppingcart', $state.params.BusinessId);
+
+        $scope.shownItem = [];
+        $scope.toggleItem = function (item) {
+            if ($scope.isItemShown(item)) {
+                $scope.shownItem[item] = null;
+            } else {
+                $scope.shownItem[item] = item;
+            }
+        };
+        $scope.isItemShown = function (item) {
+            return $scope.shownItem[item] === item;
+        };
 
     });
 

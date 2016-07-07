@@ -31,15 +31,18 @@
 .margin-top-0       { margin-top    : 0px !important; }
 .margin-bottom-0    { margin-bottom : 0px !important; }
 .margin-right-5     { margin-right  : 5px; }
-.margin-top-10      { margin-top    : 15px; }
+.margin-bottom-10   { margin-bottom : 10px; }
 .margin-top-15      { margin-top    : 15px; }
+
+
+/*This method is wrong*/  .margin-top-10      { margin-top    : 15px; }
 
 .margin-left-15{margin-left:15}
 .mgtop20 {margin-top: 20px;}
 #restaurants .margin-top-10 { margin-top:15px; }
 
 /**COLOR**/
-.color33cd5f { color: #33cd5f }
+.color33cd5f { color: #33cd5f } /* green */
 
 /**Border**/
 .border-TB-1 {
@@ -89,6 +92,8 @@ background-color: unset;
 .highlightThis.activated {
 	font-weight: bold;
 }
+.click_update.activated { color: green; }
+
 
 
 /**restaurants.html**/
@@ -932,7 +937,7 @@ h4.membershipClass
 }
 .membershipBody
 {
-        padding:15px 20px 30px 0;
+        padding:15px 0px 30px 0px;
 }
 
 .btn-info {

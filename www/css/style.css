@@ -1613,7 +1613,7 @@ a.control_next
 .item-expand {
   position: relative;
   width: 100%;
-  max-height: 60px;
+  max-height: 145px;
   transition: max-height 0.1s ease-out;
   overflow: hidden;
 }

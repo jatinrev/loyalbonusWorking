@@ -37,7 +37,6 @@ angular.module('LoyalBonus')
             return ajaxCall
                 .get('webapi/UserCartAPI/GetUserCartByBusinessId?businessId='+businessId+'&userId='+$rootScope.userDetails.userId, {})
                 .then(function (res) {
-                    console.log(res);
                     //UPDATING CART DATA.
                     if( res.data.Data != null ) {
                         saveData
@@ -151,16 +150,22 @@ angular.module('LoyalBonus')
         business Lising starts : this is comming from kaseyDinner.js
          */
         $scope.businessData = {};
+        var shoppingCart    = {}
         $scope.cart         = {
             /**
              * To change quantity of the product.
              */
             quantity_change : function (cartDetailId, productId, qty) {
-                cart_functions
-                .update_cart(cartDetailId, productId, qty)
-                .then(function (res) {
-
-                });
+                console.log(qty);
+                if( qty != undefined && +qty != 0 ) {
+                    loading.start();
+                    cart_functions
+                    .update_cart(cartDetailId, productId, qty)
+                    .then(function (res) {
+                        shoppingCart.get_cart_data();
+                        loading.stop();
+                    });
+                }
             }
                                         //      1        2            3             4
             , remove_product : function (cartDetailId, cartId, businessStoreId, productId, ArrayKey) {
@@ -582,23 +587,24 @@ angular.module('LoyalBonus')
         /*
         Listing cart products
          */
-        cart_functions
-        .GetUserCartByBusinessId($state.params.businessId)
-        .then(function (res) {
-            if(res == 0) {
-                // Hide everything.
-                $scope.cart.hide_everything = true;
-                return 0;
-            }
-            $scope.cart.data = res;
-            // $scope.cart.check_out();
-            console.log($scope.cart.data);
+        shoppingCart.get_cart_data = function() {
+            cart_functions
+            .GetUserCartByBusinessId($state.params.businessId)
+            .then(function (res) {
+                if(res == 0) {
+                    // Hide everything.
+                    $scope.cart.hide_everything = true;
+                    return 0;
+                }
+                $scope.cart.data = res;
+                // $scope.cart.check_out();
 
-            // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
-            var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
-            $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
-        });
-
+                // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
+                var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
+                $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
+            });
+        }
+        shoppingCart.get_cart_data();
 
         $scope.state_on = function () {
             return $state.params.id;

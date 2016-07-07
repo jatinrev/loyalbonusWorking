@@ -101,15 +101,16 @@
                             <label class="shoppingsmall">{{ product.LoyaltyDiscount }}% Loyalty discount <i style="    text-decoration: line-through; color: red;">₦{{ product.Price }}</i></label>
                             <div class="row paddingLeftRight-0">
                                 <div class="col-50">
-                                    <span class="shoppingqty"> QTY: </span>
-                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1">
+                                    <span class="shoppingqty"> QTY: {{ cart.checkout_data ? cart.checkout_data.QtyTotal : '' }}</span>
+                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1" ng-hide="cart.checkout_data">
                                 </div>
                                 <div class="col-50">
+                                    <!-- <span on-tap="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" class="color33cd5f click_update">Update</span> -->
                                     <!-- <button class="button offersshopping">2 Offers</button> -->
                                 </div>
                             </div>
                         </div>
-                        <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(product.CartDetailId, product.CartId, cart.data.BusinessStoreId, product.ProductId, key)"></i>
+                        <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(product.CartDetailId, product.CartId, cart.data.BusinessStoreId, product.ProductId, key)" ng-hide="cart.checkout_data"></i>
                     </div>
 
                     <div class="bordertop">

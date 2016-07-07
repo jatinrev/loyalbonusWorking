@@ -4,7 +4,7 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
             <div id="logo">
-                <a ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.IsLoved == true ? 'Remove Heart':'Give Heart'}}
+                <a ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.IsLoved == true ? 'Remove Heart':'I love it'}}
                 </a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.Reviews)></div>
@@ -49,11 +49,11 @@
             <div class="row loyal-btdinner">
                 <h2 class="loyal-kaseydiner">{{ datadeal.Name }}</h2>
             </div>
-            <div class="row" ng-class="isItemShown(item) ? 'item-expand active' : 'item-expand inactive'">
+            <div class="row" ng-class="isItemShown(1) ? 'item-expand active' : 'item-expand inactive'">
                 <p class="loyal-kaseydinerpara">{{ datadeal.Description }}</p>
             </div>
-            <div ng-click="toggleItem(item)" class="item-expand-footer">
-                <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(item) ? 'Less' : 'More' }}
+            <div ng-click="toggleItem(1)" class="item-expand-footer">
+                <i ng-class="isItemShown(1) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(1) ? 'Less' : 'More' }}
             </div>
 
             <div ng-show="userPresent() == 1 ? true : false" class="row paddingLeftRight-0">
@@ -77,9 +77,8 @@
             </div>
 
             <ion-list class=center>
-                <p class="row margin-top-10">See Store to purchase item(s)</p>
-
-                <button class="button button-balanced margin-bottom-30" ui-sref="home.product({ BusinessId : state_on() })">Enter Store</button>
+                <p class="row margin-top-10" ng-hide="myloyalbonus.noMoreProductAvailable">See Store to purchase item(s)</p>
+                <button class="button button-balanced margin-bottom-30" ng-hide="myloyalbonus.noMoreProductAvailable" ui-sref="home.product({ BusinessId : state_on() })">Enter Store</button>
  
             </ion-list>
             <div ng-repeat="(key, prod) in myloyalbonus.datadealProd">
@@ -108,7 +107,7 @@
                     </ion-item>
                 </div>
             </div>
-            <div class="loadingButton margin-top-15" ng-show="myloyalbonus.noMoreProductAvailable">No Record</div>
+            <div class="loadingButton margin-top-15" ng-show="myloyalbonus.noMoreProductAvailable">No Product Record</div>
             <ion-infinite-scroll on-infinite="invitelistnewBusinessproduct();" distance="1%" ng-if="!myloyalbonus.noMoreProductAvailable"></ion-infinite-scroll>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">

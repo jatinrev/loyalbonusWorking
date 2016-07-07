@@ -199,7 +199,6 @@ angular.module('LoyalBonus')
         };
 
         $scope.toggleItem = function (item) {
-
             if ($scope.isItemShown(item)) {
                 $scope.shownItem = null;
             } else {
@@ -207,7 +206,6 @@ angular.module('LoyalBonus')
             }
         };
         $scope.isItemShown = function (item) {
-            console.log(item);
             return $scope.shownItem === item;
         };
 

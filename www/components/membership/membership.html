@@ -116,12 +116,14 @@
                         </div>
                         <div class="membershipBody">
                             <div class="row">
-                                <span class="title">You will not be able to access our members benefits <br/> once cancelled. All Loyality Reward and Bonus will <br/>be reset.</span>
+                                <span class="title col text-center" style="white-space : initial;">You will not be able to access our members benefits once cancelled. All Loyality Reward and Bonus will be reset.</span>
                             </div>
-                        </div>
-                        <div class="center-block">
-                            <a class="btn btn-info pull-left" ng-click="toggleGroup(3)">Continue Membership</a>
-                            <a class="btn btn-danger pull-right" ng-click="membership.CancelMembership()">Cancel Membership</a>
+                            <div class="row text-center">
+                                <button ng-click="toggleGroup(3)" class="button button-calm margin-right-5">Continue Membership</button>
+                                <button ng-click="membership.CancelMembership()" class="button button-assertive">Cancel Membership</button>
+                                <!-- <a class="btn btn-info pull-left" ng-click="toggleGroup(3)">Continue Membership</a>
+                                <a class="btn btn-danger pull-right" ng-click="membership.CancelMembership()">Cancel Membership</a> -->
+                            </div>
                         </div>
                     </ion-item>
                 </div>
