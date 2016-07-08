@@ -968,3 +968,4 @@ h4.membershipClass
   overflow: scroll;
   white-space: nowrap;
 }
+.align_btns_center{ float: none;margin: 0 auto;width: 100%;max-width: 370px; }
