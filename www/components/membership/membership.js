@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 
-  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q, loading, payment) {
+  .controller('MemberController', function ($scope, $state, active_controller, $ionicModal,refreshTest,$sce, $rootScope, ajaxCall, popUp, $q, loading, payment, membership_api) {
     $scope.tabName = $state.params.id;
     //$state.params.id == 'Membership'
 
@@ -171,6 +171,7 @@ angular.module('LoyalBonus')
                     .then(function (res) {
                         if(res.data.Data.status == true) {
                             popUp.msgPopUp("You membership was canceled.", 2);
+                            membership_api.check_membership();
                         }
                         console.log(res);
                         return res;

@@ -631,6 +631,28 @@ angular.module('LoyalBonus.services', [])
 		return {
 			scan : scan
 		};
+	})
+	.factory('membership_api', function ($rootScope, ajaxCall) {
+		/*
+		 * webapi/UserMemberShipApi/MembershipExpireByUserId?userId=236
+		 * If "MembershipExire" == true, then membership expired.
+		 */ 
+		function check_membership() {
+			if($rootScope.userPresent) {
+				return ajaxCall
+				.get('webapi/UserMemberShipApi/MembershipExpireByUserId', {
+					userId : $rootScope.userDetails.userId
+				})
+				.then(function(res) {
+					$rootScope.membership_data = res.data.Data;
+					console.log(res);
+				});
+			}
+		}
+	
+		return {
+			check_membership : check_membership
+		};
 	});
 
 
