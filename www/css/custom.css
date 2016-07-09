@@ -4,7 +4,7 @@
  */
 .paddingLR10 { padding-left: 10px; padding-right: 10px; }
 .padding-top-8 { padding-top: 8px; }
-.padding-top-10 { padding-top: 10px; }
+.padding-top-10 { padding-top: 10px !important; }
 .padding-bottom-10 { padding-bottom: 10px; }
 .padding-TB-5 { padding-top: 5px; padding-bottom: 5px; }
 .paddingLeftRight-0 { padding-left: 0; padding-right: 0; }
@@ -12,9 +12,9 @@
 .padding-right-5 { padding-right: 5px; }
 .padding-left-5 { padding-left: 5px; }
 .padding-left-10 { padding-left: 10px; }
-
-.padding-bottom {padding-bottom:0px;}
-
+.padding-all-zero{ padding: 0 !important}
+.padding-bottom {padding-bottom:0px !important;}
+.padding-top-zero {padding-top:0px !important;}
 .margin-bottom {margin-bottom: 50px;}
 
 .mgtop30{margin-top: 30px;}
@@ -33,6 +33,7 @@
 .margin-right-5     { margin-right  : 5px; }
 .margin-bottom-10   { margin-bottom : 10px; }
 .margin-top-15      { margin-top    : 15px; }
+.margin-btm-15      { margin-bottom    : 15px; }
 
 
 /*This method is wrong*/  .margin-top-10      { margin-top    : 15px; }
@@ -75,6 +76,7 @@ background-color: unset;
  *	bacic
  */
 .text-align-center 	{ text-align: center; }
+.text-align-right  { text-align: right; }
 
 .font-size-10 		{ font-size: 10px; }
 
@@ -267,7 +269,7 @@ border:none;
 	margin-top: 10px;
 	color:#63615a;
 	font-size: 10px;
-	margin-bottom: 3px;
+	margin-bottom: 3px; margin-top: 0
 
 }
 #Shoppingcart .shoppingqty
@@ -390,12 +392,11 @@ border:none;
 }
 .applypromo
 {
-    background-color: #009f8b;
+    background-color: #fff;
         padding:0 35px;
-        color:#fff;
-        line-height: 40px;
-        min-height: 25px;
-        margin-bottom: 10px;
+        color:#61B2C7;
+        min-height:12px;
+        margin:0px !important; line-height: normal;
 }
 .margintop
 {
@@ -425,13 +426,14 @@ border:none;
 {
 		padding:0 12px;
 	    color:#fff;
-	    line-height: 40px;
+	    line-height:33px;
 	    min-height: 25px;
 	    margin-bottom: 10px;
+        background: #317EEA !important;
 }
 #Product #productimages
 {
-	 width:100%;
+	
          height: 100%;
         /*  display: block;
             max-width: 100%;
@@ -458,7 +460,7 @@ border:none;
     font-size: 15px;
     background-color: unset;
     border:0px;
-    padding: 5px 16px 16px 16px;
+    padding: 5px 16px 5px 16px;
 }
 #Product .brdertop
 {
@@ -531,15 +533,15 @@ border:none;
 {
 
     color: #33cd5f;
-    font-size: 15px;
+    font-size:22px;
     font-weight: 600;
     background-color: unset;
     /* border: 0px; */
     padding: 5px 16px 16px 16px;
     border-bottom: 1px solid #eee;
     width: 70%;
-    text-align: center;
-
+    text-align: center; 
+    text-decoration: line-through;
 }
 
 span.Cartloyality
@@ -699,7 +701,7 @@ label.learn
     text-align: center;
 }
 .detail-banner-left h2 {
-    color: #fff;
+    color: #000;
     font-size: 26px;
 
     margin-bottom: 10px;
@@ -711,9 +713,9 @@ label.learn
             display: inline-block; */
 }
 .detail-banner-address {
-    color: #fff;
+    color: #000;
     font-weight: 300;
-    text-shadow: 0px 0px 20px #000;
+    margin-left: 5px;
 }
 #Cart .detail-banner-address
 {
@@ -727,18 +729,20 @@ label.learn
         text-align: left;
 }
 .detail-banner-left {
-    position: absolute;
-               bottom: 7%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    z-index: 1;
+    // position: absolute;
+    //            bottom: 7%;
+    // transform: translateY(-50%);
+    // -webkit-transform: translateY(-50%);
+    // z-index: 1;
+    float: left;margin-left: 10px;margin-bottom: 25px;
 }
 .detail-banner-left {
         left: 15px;
 }
 #Product #logo
 {
-    position: relative;
+    position: relative;float: left;
+    width: 100%;
 }
 .famap {
     background: url(../img/mapion.png);
@@ -969,3 +973,41 @@ h4.membershipClass
   white-space: nowrap;
 }
 .align_btns_center{ float: none;margin: 0 auto;width: 100%;max-width: 370px; }
+
+/*---------------8-7-2016------------------*/
+.main_prd_heading{ float: none; width:80%; margin: 0 auto; text-align: center; margin-top: 25px;padding: 0; font-size: 18px;border-bottom: 1px solid #999;padding-bottom: 5px;}
+ .single_prd {float: left;width: 100%;padding: 5px;border: 8px solid #eee;padding-bottom: 0;border-bottom: 2px solid #999;}   
+ .no_record{ float: left; width: 100%}
+ .logo {
+    float: left;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    text-align: center;
+}
+.old_price{ float: left; width: 100%;text-decoration: line-through;}
+.org_price{ float: left; padding-top: 0 !important; width: 100%}
+.main_cart_prdct_img {border-top: 1px solid #999 !important;}
+.add_cart_btn{ background: #35CD61 !important;font-size: 19px !important;}
+.border_top_eee{ border-top:1px solid #999 !important }
+.cart_prdt_name{ float: left; width: 100%; margin: 0; padding: 0;margin-bottom: 22px;}
+.small_red_price.ng-binding {color: red;font-size: 12px;}
+.shoppingdesciption{ position: absolute; right: 0}
+.pdng_btm_zero{ padding-bottom:0 !important }
+.mrgn_top_zero{ margin-top:0 !important }
+.mrgn_top_10px{ margin-top:10px !important }
+.mrgn_btm_10px{ margin-bottom:10px !important }
+.mrgn_top_15px{ margin-top:15px !important }
+.mrgn_btm_15px{ margin-bottom:15px !important }
+.total_cart_price{ text-align: right;}
+.total_cart_price .item{ background: #fff; border: 0; border-top:1px solid #eee }
+.total_cart_price em{ font-size: 20px}
+.sub_total{ font-size: 16px;}
+.green_btns{ background:#35CD61 }
+.font_size_19p{ font-size: 19px !important;}
+#Shoppingcart #logo{ float: left; background: #fff;}
+.grey_bg { background: #f7f7f7; float: left; width: 100%; }
+.white_bg{ background: #fff}
+.green_text{ color: #34CE60}
+.blue_text{color: #86D8ED}
+#restaurants .border-bottom{ border-bottom:1px solid #666 }

@@ -2,9 +2,7 @@
     <ion-view>
         <ion-content overflow-scroll="true">
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
-            <div id="logo">
-                <!-- ProductImageUrl , ProductImages-->
-                <img id="productimages" ng-src="{{ businessData.Image == null || businessData.Image == '' ? 'img/placeholder.jpg' : businessData.Image }}">
+            <div id="logo">                
                 <div class="detail-banner-left">
                     <div class="detail-banner-info">
                         <!-- <div class="detail-label">Restaurant</div> -->
@@ -13,15 +11,15 @@
                     <!-- /.detail-banner-info -->
                     <h2 class="margin-top-0 detail-title text-left">{{ businessData.Name }}</h2>
                     <div class="detail-banner-address">
-                        <i class="famap"></i> {{ businessData.Address1 }}
+                         {{ businessData.Address1 }}
                     </div>
                     <!-- /.detail-banner-address -->
-                    <div class="row reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews)></div>
+                    <div class="row reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews) style="padding-left:0"></div>
                         <!-- /.detail-banner-rating -->
                 </div>
             </div>
             <div ><!-- ng-repeat-once="(key, productDetail) in datadeal " -->
-                <div class="slider image col center" >
+                <div class="slider image col center main_cart_prdct_img" >
                     <!-- <div ng-repeat="d in heading_image">{{d.ImageName}}</div> -->
                     <img ng-repeat="d in heading_image" class="slide slide-animation nonDraggableImage" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="{{d.ImageName}}" id="imgheight">
                     <a class="arrow prev" ng-click="nextSlide()" ng-hide="heading_image.length == 1"><i class="ion-chevron-left"></i></a>
@@ -38,15 +36,13 @@
                 </div>
                 <div class="col center">
                     <div class="col-50 center">
-                        <span class="Cartloyality"> {{ datadeal.LoyalDiscount}} % Loyality Discount</span>
+                        <span class="Cartloyality"> {{ datadeal.LoyalDiscount}} % Loyalty Discount</span>
                     </div>
                     <div class="col-50 center">
                         <span class="cartredcolornumber">₦ {{ datadeal.Price }}</span>
                     </div>
                 </div>
-                <div class="col center">
-                    <button class="button btninfo" ng-click="addtoCart()"> Add To Cart</button>
-                </div>
+                
                 <div class="col center">
                     <i class="ion-social-facebook social_icon_style background_facebook_blue" ng-click="product_detail.share_facebook()"></i>
                     <i class="ion-social-twitter social_icon_style background_twitter_blue" ng-click="product_detail.share_twitter()"></i>
@@ -95,8 +91,11 @@
 
             </div>
         </ion-content>
-        <ion-footer-bar class="footer-bar-custom bar-positive">
-            <div class="title center" on-tap="scanBarcode(businessData)">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div>
+        <ion-footer-bar class="footer-bar-custom bar-positive add_cart_btn">
+            <div class="col center">
+                    <button class="button btninfo add_cart_btn" ng-click="addtoCart()"> Add To Cart</button>
+            </div>
+            <!-- <div class="title center" on-tap="scanBarcode(businessData)">{{ userPresent() == 1 ? 'SCAN NOW' : 'LOGIN' }}</div> -->
         </ion-footer-bar>
     </ion-view>
 </div>
