@@ -22,9 +22,8 @@
             </div>
 
         <div ng-class="cart.checkout_data ? 'grey_bg' : ''">
-            <div class="row border_top_eee">
+            <div class="row border_top_eee" ng-show="cart.checkout_data">
                 <p class="row fontsize">Place Your Order</p>
-                
             </div>
 
             <!-- Start : After checkout data -->
@@ -50,7 +49,7 @@
                                 <input type="radio" ng-model="cart.payment_method" name="Paymentmethod" value="{{ key+3 }}" id="rdPayStack{{ key+3 }}" style="margin-top: 4px;">
                             </div>
                             <div class="col">
-                                <label for="rdPayStack{{ key+3 }}">Last Digit : {{ value.PaystackCCLastFour }}, Card Type : {{ value.PaystackCardType }}</label>
+                                <label for="rdPayStack{{ key+3 }}">{{ value.PaystackCardType }} ending in {{ value.PaystackCCLastFour }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -105,15 +104,15 @@
                     <!-- End : gtPayment -->        
                 </div>
             </div>
-            <div class="row responsive-sm mrgn_top_15px mrgn_btm_15px padding-all-zero">
-                    <b class="col margin-bottom-0 " style="text-indent:5px">Order Summary</b>
+            <div ng-show="cart.checkout_data" class="row responsive-sm mrgn_top_15px mrgn_btm_15px padding-all-zero">
+                    <b class="row margin-bottom-0 padding-top-zero " style="text-indent:5px">Order Summary</b>
                     <div class="row white_bg">
-                        <div class="col margin-bottom-0 "><b>Items (3):</b></div>
-                        <div class="col margin-bottom-0 ">71689</div>
+                        <div class="col margin-bottom-0 "><b>Items ({{ cart.business_cart_size() }}):</b></div>
+                        <div class="col margin-bottom-0 ">₦ 71689</div>
                     </div>
                     <div class="row white_bg">
                         <div class="col margin-bottom-0 "><b>Shipping & handling:</b></div>
-                        <div class="col margin-bottom-0 ">71689</div>
+                        <div class="col margin-bottom-0 ">₦ 71689</div>
                     </div>
                      <div class="row white_bg">
                         <div class="col margin-bottom-0 "><b>Order Total:</b></div>
@@ -122,17 +121,26 @@
             </div> 
             <!--- End : After checkout data -->
         </div>
-            <div class="">
+            <div class="" ng-hide="cart.checkout_data"><!-- -->
                 {{ cart.checkout_error }}
             </div>
 
-            <div class="padding">
+            <div class="padding white_bg" ng-hide="cart.checkout_data">
+                <div class="row white_bg">
+                    <div class="col margin-top-5" style="font-size: 22px;">Shopping Cart</div>
+                    <div class="col text-right">
+                        <button class="button button-positive" style="line-height: 30px; min-height: 35px;" ui-sref="home.product({ BusinessId : cart.state_on() })">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="padding" ng-hide="cart.checkout_data"><!-- -->
                 <div class="brder" ng-hide="cart.hide_everything">
                     <div class="row position_relative_item pdng_btm_zero" ng-show="cart.data.UserCartDetailPromos.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetailPromos">
                         <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
                         <div class="col-60">
                             <div class="row" style="padding:0">
-                                <p class="cart_prdt_name">Product Name{{ product.ProductName }} </p>
+                                <p class="cart_prdt_name">{{ cart.UserCartDetails_data(product.ProductId).ProductName }} </p>
                             </div>
                             
                             <div class="row paddingLeftRight-0 pdng_btm_zero">
@@ -171,13 +179,13 @@
                     <div class="bordertop">
                         <div class="row mrgn_btm_10px mrgn_top_10px">
                             <div class="col-50">
-                                Do you have a promo code?
-                                <input class="promoCart pull-left center " ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-disabled="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
-                                <button class="button applypromo button-block" ng-show="cart.checkout_data ? false : true" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button>
+                                <span ng-hide="cart.data.PromoId > 0">Do you have a promo code?</span>
+                                <input class="promoCart pull-left center " ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
+                                <button class="button applypromo button-block" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button>
                                 
                             </div>
                             <div class="col-50">    
-                                Add promod code here
+                                
                                 <!--apply_promo has functionality to remove promo-->
                             </div>
                         </div>

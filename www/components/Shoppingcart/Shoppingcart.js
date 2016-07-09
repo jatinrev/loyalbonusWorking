@@ -464,11 +464,11 @@ angular.module('LoyalBonus')
             /**
              * This function is here because in "UserCartAPI/GetUserCartByBusinessId" some of the data is comming in 'UserCartDetailPromos' and some in 'UserCartDetails'.
              */
-            , UserCartDetails_data : function(key) {
+            , UserCartDetails_data : function(productId) {
                 // FUNCTION EH KHRAB HAI..
-                for (variable in $scope.cart.data.UserCartDetailPromos) {
-                    if($scope.cart.data.UserCartDetails[key].ProductId == $scope.cart.data.UserCartDetails[variable].ProductId) {
-                        return $scope.cart.data.UserCartDetailPromos[variable];
+                for (key in $scope.cart.data.UserCartDetails) {
+                    if($scope.cart.data.UserCartDetails[key].ProductId == productId) {
+                        return $scope.cart.data.UserCartDetails[key];
                     }
                 }
                 // return $scope.cart.data.UserCartDetailPromos[key]
@@ -481,8 +481,16 @@ angular.module('LoyalBonus')
                     price_after_discount_full : saveData.get('business_cart_priceAfterDiscount') // amount in nigerian currency
                 }
             }
-            , state_on : function(){
+            , state_on : function() {
                 return $state.params.businessId;
+            }
+            , business_cart_size : function() {
+              var business_cart_size = saveData.get('business_cart_size');
+              if( typeof(business_cart_size) == 'undefined' ) {
+                return 0;
+              } else {
+                return saveData.get('business_cart_size');
+              }
             }
         };
 
@@ -597,7 +605,7 @@ angular.module('LoyalBonus')
                     return 0;
                 }
                 $scope.cart.data = res;
-                // $scope.cart.check_out();
+                console.log($scope.cart.data);
 
                 // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
                 var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo

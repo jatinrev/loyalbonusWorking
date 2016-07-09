@@ -4,7 +4,7 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()"></ion-refresher>
             <div id="logo">                
                 <div class="detail-banner-left">
-                   <!--  <div class="detail-banner-info">                        
+                    <!--  <div class="detail-banner-info">                        
                         <div class="detail-verified {{ businessData.StatusName == 'Live' ? '' : 'redBack' }}">{{ businessData.StatusName == "Live" ? "Verified" : "Not Verified" }}</div>
                     </div> -->
                     <!-- /.detail-banner-info -->
@@ -14,7 +14,7 @@
                     </div>
                     <!-- /.detail-banner-address -->
                     <div class="row reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews) style="padding-left:0"></div>
-                        <!-- /.detail-banner-rating -->
+                    <!-- /.detail-banner-rating -->
                 </div>
             </div>
             <div ><!-- ng-repeat-once="(key, productDetail) in datadeal " -->
@@ -52,7 +52,7 @@
                         <h4 class="titlecart col">Description</h4>
                         <p class="textcart col">{{ datadeal.Description }}</p>
                     </div>
-                    <div ng-show="datadeal.Description > 300" ng-click="toggleItem(2)" class="item-expand-footer padding">
+                    <div ng-show="datadeal.Description.length > 350" ng-click="toggleItem(2)" class="item-expand-footer padding">
                         <i ng-class="isItemShown(2) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(2) ? 'Less' : 'More' }}
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <h4 class="titlecart col">Store Policy</h4>
                         <p class="textcart col">{{ datadeal.StorePolicy }}</p>
                     </div>
-                    <div ng-show="datadeal.StorePolicy > 300" ng-click="toggleItem(1)" class="item-expand-footer padding">
+                    <div ng-show="datadeal.StorePolicy.length > 300" ng-click="toggleItem(1)" class="item-expand-footer padding">
                         <i ng-class="isItemShown(1) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(1) ? 'Less' : 'More' }}
                     </div>
                 </div>

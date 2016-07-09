@@ -21,17 +21,14 @@ img{
 {
     width:100%;
     text-align: center;
-        margin-top: 15px;
-        margin-bottom: 5px;
-
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 #Cart #logo
 {
     width:100%;
     text-align: center;
-        
-        margin-bottom: 5px;
-
+    margin-bottom: 5px;
 }
 #Cart img#productimages
 {
@@ -1643,7 +1640,7 @@ a.control_next
 }
 
 .item-expand.active {
-  max-height: 200px;
+  max-height: 227px;
   transition: max-height 0.3s ease-out;
 }
 
@@ -1955,8 +1952,7 @@ span.text-vertical
     position: relative;
 }
 #Shoppingcart .scroll-content {
-    top: 44px;
-
+    top: 70px;
 }
 #Product .scroll-content {
     top: 44px;
