@@ -16,7 +16,7 @@
                 </div>
                 <div class="col padding margin-bottom">
                     <label class="color-txt">Your membership will end:</label>
-                    <label class="black-color">03/17/2016</label>
+                    <label class="black-color">{{ membership_data.ExpirationDate | date:'yyyy-MM-dd' }}</label>
                 </div>
                 <div class="error_msg" ng-show="datadeal.error == '' || datadeal.error == undefined ? false : true" ng-bind="datadeal.error"></div>
                 <div class="success_msg" ng-show="datadeal.success == '' || datadeal.success == undefined ? false : true" ng-bind="datadeal.success"></div>

@@ -70,13 +70,14 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
 })
  
 
-.run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser, scan_now, $state, refreshTest, $cordovaPreferences, popUp) {
+.run(function ($ionicPlatform, $rootScope, backFunctionality, watchUser, scan_now, $state, refreshTest, $cordovaPreferences, popUp, membership_api) {
   $ionicPlatform.ready(function () {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
 
+  // CUSTOM FUNCTIONS
   $rootScope.userPresent = function () {
     return watchUser.userPresent();
   }
@@ -97,6 +98,7 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
         }
     });
   }
+  membership_api.check_membership();
 
 })
 
