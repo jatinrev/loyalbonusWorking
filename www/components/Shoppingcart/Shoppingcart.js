@@ -300,7 +300,7 @@ angular.module('LoyalBonus')
                                 loading.stop();
                                 if(payment_res.data.Message == null) {
                                     popUp
-                                    .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
+                                    .msgPopUp('Your payment was successful. Your order id "'+payment_res.data.Data+'"', 1);
                                 } else {
                                     popUp
                                     .msgPopUp('Paystack Payment failed. Error : '+payment_res.data.Message);

@@ -294,6 +294,7 @@ map {
 
 #restaurants #logo > img{
     width:100%;
+    border-bottom: 1px solid #eee;
    /*  position: relative;
    top: -35px; */
 
@@ -314,9 +315,9 @@ p.stake-house
     white-space: nowrap; */
     float: left;
     position: absolute;
-    top: -30px;
+    top: -35px;
     color: #fff;
-    font-size: 16px;
+    font-size: 17px;
     left: 8px;
     padding: 0px;
     margin: 0px;
@@ -324,6 +325,7 @@ p.stake-house
     max-width: 156px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-weight: bold;
 }
 #Businessmap p.stake-house
 {
