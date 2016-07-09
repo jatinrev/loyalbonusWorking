@@ -66,6 +66,10 @@ angular.module('LoyalBonus')
         get_business_data.removeSearchKeyword();
         var kasey_data = {};  // FOR ANONYMOUS DATA.
 
+        kasey_data.string = 'Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea Delicious tea';
+        console.log(kasey_data.string.length);
+
+
         $scope.state_on = function () {
             return $state.params.id;
         };
@@ -356,7 +360,6 @@ angular.module('LoyalBonus')
                 });
         }
         $scope.invitelistnewBusinessproduct();
-
        
     });
 

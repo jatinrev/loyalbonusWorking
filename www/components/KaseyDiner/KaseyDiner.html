@@ -52,7 +52,7 @@
             <div class="row" ng-class="isItemShown(1) ? 'item-expand active' : 'item-expand inactive'">
                 <p class="loyal-kaseydinerpara">{{ datadeal.Description }}</p>
             </div>
-            <div ng-click="toggleItem(1)" class="item-expand-footer">
+            <div ng-show="datadeal.Description.length > 300" ng-click="toggleItem(1)" class="item-expand-footer">
                 <i ng-class="isItemShown(1) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i> {{ isItemShown(1) ? 'Less' : 'More' }}
             </div>
 
@@ -63,7 +63,6 @@
             <!-- <div class="newrow" ng-hide="newScope.showMe">{{ newScope.Lat == null ? 'Address not available' : newScope.Lat }}</div> -->
             <!-- </div> -->
             <div class="row paddingLeftRight-0">
-                
                 <ng-map zoom="8" center="{{newScope.center}}" style="width:100%">
                     <marker ng-repeat="value in newScope.positions track by value" position="{{value}}"></marker>
                 </ng-map>
@@ -100,7 +99,7 @@
                             </div>
                         </ion-list>
                     </div>
-                </div> 
+                </div>
                 <div class="col-100">
                     <ion-item class="wth-border item ng-binding color42ae9d"> {{prod.ProductName }}
                     </ion-item>
