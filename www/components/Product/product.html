@@ -3,7 +3,7 @@
         <ion-content>
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
-            
+
             <div id="logo">
                 <div class="detail-banner-left">
                     <!-- <div class="detail-banner-info row">
@@ -17,7 +17,7 @@
                         <div class="reviews-star" ng-bind-html=helperFunction.reviews(businessData.Reviews)></div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="padding main_prd_heading">
                 Products
             </div>
@@ -46,7 +46,7 @@
                     <div class="color42ae9d row"> {{ prod.ProductName }} </div>
                 </div>
             </div>
-            <div class="loadingButton margin-top-15 no_record" ng-show="helperFunction.noMoreProductAvailable">No Record</div>
+            <div style="padding-bottom:35px" class="loadingButton no_record" ng-show="helperFunction.noMoreProductAvailable">No Record</div>
             <ion-infinite-scroll on-infinite="invitelistnew();" distance="1%" ng-if="!helperFunction.noMoreProductAvailable"></ion-infinite-scroll>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom bar-positive">
