@@ -7,10 +7,9 @@
                 <!-- ProductImageUrl , ProductImages-->
                 <!-- <img id="productimages" ng-src="{{ businessData.Image == null || businessData.Image == '' ? 'img/placeholder.jpg' : businessData.Image }}"> -->
                 <div class="detail-banner-left">
-                    <div class="detail-banner-info text-left">
-                        <!-- <div class="detail-label">Restaurant</div> -->
+                   <!--  <div class="detail-banner-info text-left">
                         <div class="detail-verified {{ businessData.StatusName == 'Live' ? '' : 'redBack' }}">{{ businessData.StatusName == "Live" ? "Verified" : "Not Verified" }}</div>
-                    </div>
+                    </div> -->
                     <!-- /.detail-banner-info -->
                     <h2 class="detail-title text-left">{{ businessData.Name }}</h2>
                     <div class="detail-banner-address text-left">
@@ -193,8 +192,7 @@
             </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom green_btns">
-            <button class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Place Your Order' : 'Place Your Order' }}</button>
-
+            <button style="margin-top:0" class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()" s>{{ cart.checkout_data ? 'Place Your Order' : 'Place Your Order' }}</button>
         </ion-footer-bar>
     </ion-view>
 </div>
