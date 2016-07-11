@@ -1612,8 +1612,8 @@ a.control_next
 .item-expand {
   position: relative;
   width: 100%;
-  max-height: 145px;
-  transition: max-height 0.1s ease-out;
+  height: 145px;
+  transition: height 0.1s ease-out;
   overflow: hidden;
 }
 
@@ -1640,8 +1640,10 @@ a.control_next
 }
 
 .item-expand.active {
-  max-height: 227px;
-  transition: max-height 0.3s ease-out;
+  /*max-height: 227px;
+  transition: max-height 0.3s ease-out;*/
+  height: unset;
+  transition: height 0.3s ease-out;
 }
 
 
@@ -1649,7 +1651,7 @@ a.control_next
 .item-expand-footer {
   color: red;
   margin-top: 10px;
-      padding-left: 8px;
+  padding-left: 8px;
 }
 
 .item-expand-footer i {
