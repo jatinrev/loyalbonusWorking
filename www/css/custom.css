@@ -435,7 +435,7 @@ border:none;
 }
 #Product #productimages
 {
-	
+
          height: 100%;
         /*  display: block;
             max-width: 100%;
@@ -484,7 +484,15 @@ border:none;
     top: 0;
     left: 0;
 }
-
+#Shoppingcart .promo_button {
+    background-color: #eee;
+    padding: 10px;
+}
+#Shoppingcart .price_after_discount {
+    padding-top : 10px;
+    font-size   : 18px;
+    color       : red;
+}
 #Cart .arrow {
     position: absolute;
     z-index: 1002;
@@ -542,7 +550,7 @@ border:none;
     padding: 5px 16px 16px 16px;
     border-bottom: 1px solid #eee;
     width: 70%;
-    text-align: center; 
+    text-align: center;
     text-decoration: line-through;
 }
 
@@ -919,9 +927,6 @@ css for accordian in mermbership
 th {
     text-align: left;
 }
-.text-center {
-    text-align: center;
-}
 .table-responsive {
     overflow-x: auto;
     min-height: 0.01%;
@@ -977,7 +982,7 @@ h4.membershipClass
 
 /*---------------8-7-2016------------------*/
 .main_prd_heading{ float: none; width:80%; margin: 0 auto; text-align: center; margin-top: 25px;padding: 0; font-size: 18px;border-bottom: 1px solid #999;padding-bottom: 5px;}
- .single_prd {float: left;width: 100%;padding: 5px;border: 8px solid #eee;padding-bottom: 0;border-bottom: 2px solid #999;}   
+ .single_prd {float: left;width: 100%;padding: 5px;border: 8px solid #eee;padding-bottom: 0;border-bottom: 2px solid #999;}
  .no_record{ float: left; width: 100%}
  .logo {
     float: left;

@@ -306,7 +306,7 @@ angular.module('LoyalBonus', '')
                     /*******  Call To make started functionality******/
                     $scope.dialNumber = function(number) {
                         popUp
-                        .confirm('', '<p class="text-align-center margin-bottom-0">Are you sure you want to call?</p>')
+                        .confirm('', '<p class="text-align-center margin-bottom-0">Are you sure you want to call?</p>', 'Call Now')
                         .then(function (res) {
                             if(res) {
                                 window.open('tel:' + number, '_system');

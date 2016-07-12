@@ -108,7 +108,7 @@
                     <b class="row margin-bottom-0 padding-top-zero " style="text-indent:5px">Order Summary</b>
                     <div class="row white_bg">
                         <div class="col margin-bottom-0 "><b>Items ({{ cart.business_cart_size() }}):</b></div>
-                        <div class="col margin-bottom-0 ">₦ 71689</div>
+                        <div class="col margin-bottom-0 ">₦ {{ cart.totalPrice().price_after_discount_full }}</div>
                     </div>
                     <div class="row white_bg">
                         <div class="col margin-bottom-0 "><b>Shipping & handling:</b></div>
@@ -180,19 +180,18 @@
                         <div class="row mrgn_btm_10px mrgn_top_10px">
                             <div class="col-50">
                                 <span ng-hide="cart.data.PromoId > 0">Do you have a promo code?</span>
-                                <input class="promoCart pull-left center " ng-show="cart.checkout_data ? false : true" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0 ? true : false"><!--enable when promoId is greater than 0-->
+                                <input class="promoCart pull-left center" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0"><!--  - enable when promoId is greater than 0-->
+                                <span class="row promo_button center" ng-show="cart.data.PromoId > 0">{{ cart.data.PromoCode }}</span>
                                 <button class="button applypromo button-block" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button>
-                                
                             </div>
-                            <div class="col-50">    
-                                
-                                <!--apply_promo has functionality to remove promo-->
+                            <div class="col-50 price_after_discount text-right">    
+                                (Promo: -₦{{ promo_discount }})
                             </div>
                         </div>
                     </div>
-                     <div class="total_cart_price bordertop">
-                             <ion-item class="ng-binding">Item Total:<em class="color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</em></ion-item>
-                        </div>                    
+                    <div class="total_cart_price bordertop">
+                        <ion-item class="ng-binding">Subtotal:<em class="color33cd5f"> ₦ {{ cart.data.PriceAfterDiscount }}</em></ion-item>
+                    </div>                    
                 </div>
                 <div ng-show="cart.hide_everything">
                     Please add items to cart.
@@ -200,7 +199,7 @@
             </div>
         </ion-content>
         <ion-footer-bar class="footer-bar-custom green_btns">
-            <button style="margin-top:0" class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()" s>{{ cart.checkout_data ? 'Place Your Order' : 'Place Your Order' }}</button>
+            <button style="margin-top:0" class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()" s>{{ cart.checkout_data ? 'Place Your Order' : 'Proceed To Checkout' }}</button>
         </ion-footer-bar>
     </ion-view>
 </div>

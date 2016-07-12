@@ -607,6 +607,10 @@ angular.module('LoyalBonus')
                 $scope.cart.data = res;
                 console.log($scope.cart.data);
 
+                $scope.promo_discount = +$scope.cart.totalPrice().price_after_discount_full - +$scope.cart.data.PriceAfterDiscount;
+
+                $scope.price_without_promo = $scope.cart.totalPrice().price_after_discount_full;
+
                 // HASH RUN ONLY WHEN SUBTOTAL AMOUNT READY.
                 var gtpay_tranx_amt           = $scope.cart.totalPrice().price_after_discount; //*100, // amt in kodo
                 $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;

@@ -480,13 +480,16 @@ angular.module('LoyalBonus.services', [])
 		};
 	})
 	.factory('popUp', function ($ionicPopup) {
-		function confirm(title, content) {
+		function confirm(title, content, okText) {
 			var options = {};
 			if (title != null && title != '') {
 				options.title = title;
 			}
 			if (content != null && content != '') {
 				options.template = content;
+			}
+			if (okText != null && okText != '') {
+				options.okText   = okText;
 			}
 			return $ionicPopup.confirm(options);
 		}
@@ -516,6 +519,8 @@ angular.module('LoyalBonus.services', [])
                 ]
             });
 		}
+
+
 
 		return {
 			confirm  : confirm,
