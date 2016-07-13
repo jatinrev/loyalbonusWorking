@@ -262,7 +262,6 @@ angular.module('LoyalBonus.services', [])
 			}
 		};
 	})
-
 	.factory('validation', function () {
 
 		/**

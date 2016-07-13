@@ -2,7 +2,6 @@
     <ion-view>
         <form ua-login name="frmmember" novalidate>
             <ion-content>
-
                 <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
                 </ion-refresher>
                 <div class="row padding padding-bottom">
@@ -16,11 +15,10 @@
                 </div>
                 <div class="col padding margin-bottom">
                     <label class="color-txt">Your membership will end:</label>
-                    <label class="black-color">{{ membership_data.ExpirationDate | date:'yyyy-MM-dd' }}</label>
+                    <label class="black-color">{{ membership_data.ExpirationDate | date:'dd/MM/yyyy' }}</label>
                 </div>
                 <div class="error_msg" ng-show="datadeal.error == '' || datadeal.error == undefined ? false : true" ng-bind="datadeal.error"></div>
                 <div class="success_msg" ng-show="datadeal.success == '' || datadeal.success == undefined ? false : true" ng-bind="datadeal.success"></div>
-
                 <!-- Start : Update/change payment method -->
                 <div>
                     <ion-item class="item-stable" id="1" ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}">
@@ -72,7 +70,6 @@
                     </ion-item>
                 </div>
                 <!-- End : Update/change payment method -->
-
                 <!-- Start : Payment History -->
                 <div>
                     <ion-item class="item-stable" id="2" ng-click="toggleGroup(2)" ng-class="{active: isGroupShown(2)}">
@@ -104,7 +101,6 @@
                     </ion-item>
                 </div>
                 <!-- End : Payment History -->
-
                 <!-- Start : Cancel Membership -->
                 <div>
                     <ion-item class="item-stable" id="3" ng-click="toggleGroup(3)" ng-class="{active: isGroupShown(3)}">
@@ -128,7 +124,6 @@
                     </ion-item>
                 </div>
                 <!-- End : Cancel Membership -->
-
             </ion-content>
         </form>
     </ion-view>

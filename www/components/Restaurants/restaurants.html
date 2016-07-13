@@ -33,11 +33,11 @@
                         <div class="col-50">
                             <ion-list>
                                 <ion-item class="wth-border padding-bottom" ng-show="d.Address1 == null ? false : true ">{{ d.Address1 }},{{ d.Address2 }}</ion-item>
-                                <ion-item class="wth-border padding-bottom" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)" >{{ d.ContactPhone }}</ion-item>
+                                <!-- <ion-item class="wth-border padding-bottom" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)" >{{ d.ContactPhone }}</ion-item> -->
                             </ion-list>
                         </div>
-                        <div class="col-50 margin-top-15">
-                            <p class="blue_text">Visit {{ d.BonusDiscountToCust }} times for bonus</p>
+                        <div class="col-50 ">
+                            <p class="" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)">{{ d.ContactPhone }}</p>
                         </div>
                     </div>
                     <div class="row">                        

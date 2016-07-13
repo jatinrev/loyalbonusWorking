@@ -8,8 +8,8 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
   /*Temp Data*/
     $rootScope.userDetails = {
       userId       : 236,// jatin = 263, karan = 236, dvijesh = 282
-      Email        : 'jatin@revinfotech.com', // 'karan.xpress@gmail.com', 'dvijesh@revinfotech.com',
-      FullName     : 'Jatin Verma', // 'Karan', dvijesh',
+      Email        : '', // 'karan.xpress@gmail.com', 'dvijesh@revinfotech.com',
+      FullName     : '', // 'Karan', dvijesh',
       userLocation : '6.461573,3.479404', //Karan_pass = test123
       CreatedOn    : '2016-05-31T11:24:34.607'
     }

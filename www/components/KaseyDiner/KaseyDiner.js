@@ -284,8 +284,8 @@ angular.module('LoyalBonus')
             businessVisit
                 .businessDetail($state.params.id, $rootScope.userDetails.userId)
                 .then(function (res) {
-                    console.log(res);
                     $scope.datadeal = res.data.Data[0];
+                    console.log( $scope.datadeal );
                     saveData.set('kaseyDinnerBusinessName', $scope.datadeal.Name);
                     //console.log($scope.datadeal);
                     return $scope.datadeal;

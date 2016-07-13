@@ -607,7 +607,9 @@ angular.module('LoyalBonus')
                 $scope.cart.data = res;
                 console.log($scope.cart.data);
 
-                $scope.promo_discount = +$scope.cart.totalPrice().price_after_discount_full - +$scope.cart.data.PriceAfterDiscount;
+                $scope.cart.data.PriceAfterDiscount = ( $scope.cart.data.PromoId ? $scope.cart.data.PriceAfterDiscount : $scope.cart.totalPrice().price_after_discount_full );
+
+                $scope.promo_discount = ( $scope.cart.data.PromoId ? +$scope.cart.totalPrice().price_after_discount_full - +$scope.cart.data.PriceAfterDiscount : 0);
 
                 $scope.price_without_promo = $scope.cart.totalPrice().price_after_discount_full;
 

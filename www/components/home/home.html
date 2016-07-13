@@ -64,13 +64,13 @@
                     ">
                 </button>
             </div>
-            <div class="title center">
+            <div class="title center height_37">
                 <form class="item item-input new_margin" ng-show="showMe" ng-submit="home_var.homesearch.setValue(home_var.homesearch.value)">
                     <input type="text" ng-model="home_var.homesearch.value" placeholder="Search for restaurants">
                     <span class="ion-search paddingLR10" on-tap="home_var.homesearch.setValue(home_var.homesearch.value)"></span>
                 </form>
 
-                <span class="search-vertical center" ng-show="home_var.homeheading.Visibility()">
+                <span class="search-vertical height_37 center" ng-show="home_var.homeheading.Visibility()">
                     {{ home_var.homeheading.text() }} <i ng-click="home_var.homeheading.deleteSearch()" class="font-size-10 ion-close-round font-color-white "></i>
                 </span>
                 <span class="text-vertical" ng-show="home_var.kaseyDinnerHeading.text() == '' ? false : true">

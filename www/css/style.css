@@ -1278,7 +1278,8 @@ font-size: 20px;
 {
        /*background: url('../img/giveheatimg.png') no-repeat 4px 8px;*/
     width: 32%;
-        padding-left: 0px;
+    padding-left: 0px;
+    background-color: #f8f8f8;
 }
 #kaseydiner .bar-footer
 {

@@ -4,7 +4,7 @@
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="Test()">
             </ion-refresher>
             <div id="logo">
-                <a ng-click="datadeal.IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.IsLoved == true ? 'Remove Heart':'I love it'}}
+                <a ng-click="datadeal.reviewmaster[0].IsLoved == true ? Lovedpage.loadKaro(false) : Lovedpage.loadKaro(true)" class="already-giveHeart {{ isAndroid == true ? '' : 'addclassiosisloved' }} {{ userPresent() == 1 ? '' : 'display_none_imp' }} button buttonListViewLove {{ datadeal.reviewmaster[0].IsLoved == true ? 'loveU':''}}"><img class="kaseydinnerimages" src="img/giveheatimg.png">{{ datadeal.reviewmaster[0].IsLoved == true ? 'I love it':'Give heart'}}
                 </a>
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.Reviews)></div>
@@ -15,7 +15,7 @@
                         <img src="img/tick.png">
                     </label>
                     <label class="round" ng-repeat="(key, value) in myloyalbonus.printNonTick(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
-                        <span class="round-span">{{datadeal.LoyalDiscount}}%<!-- 10% --></span>
+                        <span class="round-span">{{datadeal.LoyalDiscount}}%</span>
                         <p>off</p>
                     </label>
                     <label class="checkbox" ng-click="showPopupMy(datadeal.BonusDiscount)" ng-repeat="(key, value) in myloyalbonus.printGift(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
