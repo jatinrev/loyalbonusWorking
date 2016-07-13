@@ -545,15 +545,15 @@ p.stake-house
 #Milestones .checkbox
 {
     border-radius: 50%;
-    float: left;
-    height: 34px;
-    margin: 10px 1px 10px 5px;
+     
+    margin:5px 1px 0px 5px;
     position: relative;
-    width: 34px;
+     
     padding: 0px;
 }
 #Milestones .checkbox > img {
     width: 34px;
+
 }
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
     background: #33CD5F;
@@ -588,11 +588,13 @@ p.stake-house
 {
     border: 1px solid #999999;
     border-radius: 50%;
-    float: left;
+    display: inline-block;
     height: 34px;
-    margin: 10px 1px 10px 5px;
+    margin: 5px 1px 0px 5px;
     position: relative;
     width: 34px;
+    float: none;
+    padding: 0px;
 }
 #Milestones .round-span {
         color: #333333;

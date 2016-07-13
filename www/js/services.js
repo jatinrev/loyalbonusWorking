@@ -100,13 +100,22 @@ angular.module('LoyalBonus.services', [])
 			return uniqueNames;
 		};
 	})
-	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http, $cordovaNetwork) {
+	.factory('get_user_location', function ($cordovaGeolocation, $rootScope, loading, ajaxCall, $http, $cordovaNetwork, $q) {
 		/**
 		 * url : http://stackoverflow.com/questions/21306088/getting-geolocation-from-ip-address
 		 */
 		function getIpGeoLocation() {
+			var promise = $q.defer();
+			// Lagos Nigeria
+            promise.resolve({
+				coords: {
+					latitude  : '6.524379',
+					longitude : '3.379206'
+				}
+			});
+            return promise.promise;
 
-			var output = $http.get("http://ipv4.myexternalip.com/json", {
+			/*var output = $http.get("http://ipv4.myexternalip.com/json", {
 				params: {}
 			})
 				.then(function (result) {
@@ -125,9 +134,9 @@ angular.module('LoyalBonus.services', [])
 								}
 							}
 						});
-				});
+				}); 
 
-			return output;
+			return output;*/
 		}
 
 		function getLocation() {
@@ -135,8 +144,8 @@ angular.module('LoyalBonus.services', [])
 			var output = $cordovaGeolocation
 						 .getCurrentPosition(posOptions)
 						 .then(function (result) {
-						 	console.log('from gps');
-						 	console.log(result);
+						 	/*console.log('from gps');
+						 	console.log(result);*/
 						 	return result;
 						 }, function (error) {
 						 	return getIpGeoLocation();
