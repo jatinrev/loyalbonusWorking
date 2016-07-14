@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.testfairy.cordova-plugin" version="2.0.5">
+    <name>TestFairy Plugin</name>
+    <description>TestFairy SDK plugin for Cordova</description>
+    <license>Apache 2.0 License</license>
+    <engines>
+        <engine name="cordova" version=">=2.9.0" />
+    <!--
+        <engine name="cordova-android" version=">=3.1.0" />
+    -->
+    </engines>
+
+    <js-module src="www/testfairy.js" name="TestFairy">
+        <clobbers target="TestFairy" />
+    </js-module>
+
+    <access origin="*.testfairy.com" />
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/widget">
+            <feature name="TestFairy">
+                <param name="ios-package" value="CDVTestFairy" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/TestFairy.h" />
+        <header-file src="src/ios/CDVTestFairy.h" />
+        <source-file src="src/ios/CDVTestFairy.m" />
+        <source-file src="src/ios/libTestFairy.a" framework="true" />
+        <framework src="CoreMedia.framework" />
+        <framework src="CoreMotion.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="OpenGLES.framework" />
+        <framework src="CoreLocation.framework" />
+    </platform>
+    <platform name="android">
+        <source-file src="src/android/CDVTestFairy.java" target-dir="src/com/testfairy" />
+        <source-file src="src/android/testfairy-sdk.jar" target-dir="libs" />
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.GET_TASKS"/>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.testfairy.activities.ProvideFeedbackActivity" android:configChanges="orientation|screenSize" />
+            <activity android:name="com.testfairy.activities.AutoUpdateActivity" android:configChanges="orientation|screenSize" />
+        </config-file>
+        <config-file target="config.xml" parent="/widget">
+            <feature name="TestFairy">
+                <param name="android-package" value="com.testfairy.CDVTestFairy" />
+            </feature>
+        </config-file>
+    </platform>
+</plugin>

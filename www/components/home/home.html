@@ -20,7 +20,7 @@
             <ion-list>
                 <ion-item menu-toggle ng-click="redirect_urls.map()"><i class="ion-map margin-right-5"></i>Map View</ion-item>
             </ion-list>
-            <ion-list ng-show="home_var.userPresent() == 1 ? true : false">
+            <ion-list ng-show="home_var.loyalbonus_show()">
                 <ion-item menu-toggle ng-click="redirect_urls.myloyalbonus()"><img src="img/loyalbonus_blackWhite_icon.png" class="margin-right-5" width="16px" alt="">My Loyal Bonus</ion-item>
                 <!-- ui-sref="home.restaurants" -->
             </ion-list>

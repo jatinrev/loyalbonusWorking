@@ -28,7 +28,7 @@ angular.module('LoyalBonus.services', [])
 			}
 		}
 	})
-	.factory('update_user_details', function ($rootScope, ajaxCall, $state, $cordovaPreferences) {
+	.factory('update_user_details', function ($rootScope, ajaxCall, $state, $cordovaPreferences, membership_api) {
 		// update userDetails array which is global.
 		//console.log('in userdetail factory')
 		$rootScope.userDetails = {};
@@ -57,6 +57,7 @@ angular.module('LoyalBonus.services', [])
 								$rootScope.userDetails.IsDeleted = response.data.Data.IsDeleted;
 								$rootScope.userDetails.CreatedOn = response.data.Data.CreatedOn;
 								$cordovaPreferences.store('userId', userID, 'dict');
+								membership_api.check_membership();
 							} else {
 								$rootScope.userDetails = {};
 								$state.go("signin");
@@ -651,14 +652,14 @@ angular.module('LoyalBonus.services', [])
 		 * If "MembershipExire" == true, then membership expired.
 		 */ 
 		function check_membership() {
-			if($rootScope.userPresent) {
+			if(+$rootScope.userDetails.userId > 0) {
 				return ajaxCall
 				.get('webapi/UserMemberShipApi/MembershipExpireByUserId', {
 					userId : $rootScope.userDetails.userId
 				})
 				.then(function(res) {
 					$rootScope.membership_data = res.data.Data;
-					console.log(res);
+					console.log($rootScope.membership_data);
 				});
 			}
 		}

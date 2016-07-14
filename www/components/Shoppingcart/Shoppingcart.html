@@ -178,7 +178,8 @@
                     </div>
                     <div class="bordertop">
                         <div class="row mrgn_btm_10px mrgn_top_10px">
-                            <div class="col-50">
+                            <div class="col-50" ng-show="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)"></div>
+                            <div class="col-50" ng-hide="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)">
                                 <span ng-hide="cart.data.PromoId > 0">Do you have a promo code?</span>
                                 <input class="promoCart pull-left center" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0"><!--  - enable when promoId is greater than 0-->
                                 <span class="row promo_button center" ng-show="cart.data.PromoId > 0">{{ cart.data.PromoCode }}</span>
@@ -198,8 +199,8 @@
                 </div>
             </div>
         </ion-content>
-        <ion-footer-bar class="footer-bar-custom green_btns">
-            <button style="margin-top:0" class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()" s>{{ cart.checkout_data ? 'Place Your Order' : 'Proceed To Checkout' }}</button>
+        <ion-footer-bar class="footer-bar-custom green_btns" ng-hide="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)">
+            <button style="margin-top:0" class="green_btns button checkoutbutton button-block font_size_19p" ng-click="cart.checkout_data ? cart.payment(cart.payment_method) : cart.check_out()">{{ cart.checkout_data ? 'Place Your Order' : 'Proceed To Checkout' }}</button>
         </ion-footer-bar>
     </ion-view>
 </div>

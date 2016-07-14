@@ -25,6 +25,14 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
       }
     }
 
+    /*document.addEventListener("deviceready", function () {
+      /*app.receivedEvent('deviceready');* TestFairy.begin('74f45751c3c80012a7de77a79b95f81ccf172f5e'); 
+    }, false);*/
+
+    document.addEventListener("deviceready", function () {
+      TestFairy.begin('74f45751c3c80012a7de77a79b95f81ccf172f5e');
+    }, false);
+
   /*
   checking network connection
    */
@@ -243,6 +251,17 @@ angular.module('LoyalBonus', ['ionic','ionic-rating-stars', 'tabSlideBox','Loyal
             templateUrl  : "components/Membership/membership.html",
             controller   : "MemberController",
             controllerAs : "mc"
+          }
+        }
+      })
+      .state("home.membership_detail", {
+        url   : "membership_detail/:tra_ref/:CreatedDate/:Tra_amt/:tra_type/:PlanType",
+        cache : false,
+        views : {
+          "body": {
+            templateUrl  : "components/Membership/membership_detail.html",
+            controller   : "MemberController_detail",
+            controllerAs : "mc_d"
           }
         }
       })

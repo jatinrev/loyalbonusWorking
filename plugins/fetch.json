@@ -96,5 +96,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.testfairy.cordova-plugin": {
+        "source": {
+            "type": "registry",
+            "id": "com.testfairy.cordova-plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

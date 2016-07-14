@@ -9,7 +9,7 @@
                 <img ng-src="{{ datadeal.Image == null ? 'img/placeholder.jpg' : datadeal.Image }}">
                 <div class="reviews-star" ng-bind-html=helperFunction.reviews(datadeal.Reviews)></div>
             </div>
-            <div ng-show="userPresent() == 1 ? true : false" class="bar-balanced newloyalcheckbox">
+            <div ng-show="userPresent() == 1 ? (membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true) ? false : true) : false" class="bar-balanced newloyalcheckbox">
                 <div class="col-90 center col-offset-20">
                     <label class="checkbox" ng-repeat="(key, value) in myloyalbonus.printTick(datadeal.TotalVisits, datadeal.BonusDiscountToCust)">
                         <img src="img/tick.png">

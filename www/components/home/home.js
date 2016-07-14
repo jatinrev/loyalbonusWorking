@@ -25,6 +25,14 @@ angular.module('LoyalBonus')
     popUp : function (msg, status) {
       popUp
       .msgPopUp(msg, status);
+    },
+    loyalbonus_show : function() {
+      if($scope.home_var.userPresent() == 1) {
+        if( $rootScope.membership_data != undefined && ($rootScope.membership_data.IsCancelledMembership == true || $rootScope.membership_data.MembershipExire == true)) {
+          return false;
+        }
+        return true;
+      }
     }
   };
 
