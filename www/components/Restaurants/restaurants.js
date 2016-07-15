@@ -4,7 +4,8 @@ angular.module('LoyalBonus', '')
         , restaurantData  = []
         , pageIndex       = []
         , searchKeyword   = ''
-        , searchPageIndex = []
+        , searchLocation  = ''
+        , searchPageIndex = 0
         , searchData      = []
         , removeSearchKeywordChecker; //data is stored here categorywise
 
@@ -32,23 +33,26 @@ angular.module('LoyalBonus', '')
         }
 
         return {
-            search: function (keyword, lat, long, catId) {
+            search: function (keyword, lat, long, catId, location) {
+                console.log('location');
+                console.log(location);
                 loading.start();
                 var heading = []
-                    , data = {};
-               	return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + searchPageIndex[catId] + '&pageSize=5&CatId=' + catId + '&SubCatId=&locId=&Keyword=' + keyword + '&currlocationlatlong=' + lat + ',' + long, {})
+                , data      = {};
+               	return ajaxCall.get('webapi/BusinessMaster/SearchDataByFilters?pageIndex=' + searchPageIndex + '&pageSize=5&CatId=0&SubCatId=&locId='+location+'&Keyword=' + keyword + '&currlocationlatlong=' + lat + ',' + long, {})
                     .then(function (response) {
                         searchKeyword = keyword;
                         if(response.data.Data == null) {
                             response.data.Data = [];
                         }
                         if (response.data.Data.length > 0) {
-                            searchPageIndex[catId] += 1;
+                            searchPageIndex += 1;
                             for (i in response.data.Data) {
-                                searchData[catId].push(response.data.Data[i]);
+                                searchData.push(response.data.Data[i]);
                             }
                         }
                         loading.stop();
+                        console.log(searchData);
                         return searchData;
                     });
 
@@ -87,8 +91,6 @@ angular.module('LoyalBonus', '')
                                 restaurantData[heading_data[i].CategoryID]  = [];
                                 /**for indexing of each page**/
                                 pageIndex[heading_data[i].CategoryID]       = 0;
-                                searchPageIndex[heading_data[i].CategoryID] = 0;
-                                searchData[heading_data[i].CategoryID]      = [];
                             }
 
                             $state.go("home.restaurants", { vertical: heading_data[0].CategoryID });
@@ -96,11 +98,11 @@ angular.module('LoyalBonus', '')
                             return heading_data;
                         });
                 }
-
             },
             getBusinessRecord               : getBusinessRecord,
             getSearchKeyword                : function ()       { return searchKeyword; },
-            setKewordSearch                 : function(input)   { searchKeyword = input; },
+            getLocationKeyword              : function ()       { return searchLocation; },
+            setKewordSearch                 : function(input)   { searchKeyword = input.value; searchLocation = input.location; },
             removeSearchKeyword             : function ()       {
                 removeSearchKeywordChecker = 1;
                 searchKeyword              = '';
@@ -185,10 +187,10 @@ angular.module('LoyalBonus', '')
         $scope.isAndroid = ionic.Platform.isAndroid();
 
 
-        $scope.print_data = [];
-        $scope.data = {};
-        $scope.positions = {};
-        $scope.heading = [];
+        $scope.print_data     = [];
+        $scope.data           = {};
+        $scope.positions      = {};
+        $scope.heading        = [];
         $scope.loadmoreNgShow = false;
         /**/
 
@@ -250,13 +252,15 @@ angular.module('LoyalBonus', '')
                                     return false;
                                 }
                                 function_start = true;
-                                if (get_business_data.getSearchKeyword() != '') { //&& +$state.params.vertical != 0
+                                if (get_business_data.getSearchKeyword() != '' || get_business_data.getLocationKeyword() != '' ) { //&& +$state.params.vertical != 0
                                     // search results
+                                    jQuery('ion-content').addClass('search_css');
+                                    $scope.hide_category = true;
                                     return get_business_data
-                                        .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical)
+                                        .search(get_business_data.getSearchKeyword(), position.lat, position.long, +$state.params.vertical, get_business_data.getLocationKeyword())
                                         .then(function (response) {
-                                            restaurantData = response[+$state.params.vertical];
-                                            if( record_length(response[+$state.params.vertical].length) ) {
+                                            restaurantData = response;
+                                            if( record_length(response.length) ) {
                                                 reachLast = true;
                                             }
                                             function_start = false;
@@ -264,6 +268,8 @@ angular.module('LoyalBonus', '')
                                             
                                         });
                                 } else {   //if (+$state.params.vertical != 0)
+                                    jQuery('ion-content').removeClass('search_css');
+                                    $scope.hide_category = false;
                                     return get_business_data               //getting records
                                         .getBusinessRecord(+$state.params.vertical, position.lat, position.long)
                                         .then(function (result) {

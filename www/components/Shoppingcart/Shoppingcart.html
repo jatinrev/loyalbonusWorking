@@ -146,13 +146,13 @@
                             <div class="row paddingLeftRight-0 pdng_btm_zero">
                                 <div class="col-50">
                                     <span class="shoppingqty"> QTY: {{ cart.checkout_data ? cart.checkout_data.QtyTotal : '' }}</span>
-                                    <input type="text" class="qty" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1" ng-hide="cart.checkout_data">
+                                    <input type="text" class="qty paddingLeftRight-0" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1" ng-hide="cart.checkout_data">
                                 </div>
                                 <!-- {{ product.LoyaltyDiscount }}% Loyalty discount -->
                                 <div class="col-50 pdng_btm_zero">
                                 <row class="shoppingsmall">
                                     <span class="shoppingdesciption">
-                                    <i class="color33cd5f small_red_price">₦{{ product.Price }}</i>
+                                    <i class="color33cd5f small_red_price line_through">₦{{ product.Price }}</i>
                                     <i class="color33cd5f">₦{{ product.PriceAfterBusinessDiscount}}</i>
                                     </span>                                   
                                 </row>                                    
@@ -183,9 +183,9 @@
                                 <span ng-hide="cart.data.PromoId > 0">Do you have a promo code?</span>
                                 <input class="promoCart pull-left center" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0"><!--  - enable when promoId is greater than 0-->
                                 <span class="row promo_button center" ng-show="cart.data.PromoId > 0">{{ cart.data.PromoCode }}</span>
-                                <button class="button applypromo button-block" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button>
+                                <button class="button applypromo button-block padding-right-5 padding-left-5" ng-click="cart.apply_promo()">{{ cart.data.PromoId > 0 ? 'Remove Promo' : 'Apply Promo' }}</button>
                             </div>
-                            <div class="col-50 price_after_discount text-right">    
+                            <div class="col-50 price_after_discount text-right" ng-show="promo_discount">    
                                 (Promo: -₦{{ promo_discount }})
                             </div>
                         </div>
