@@ -137,34 +137,41 @@
             <div class="padding" ng-hide="cart.checkout_data"><!-- -->
                 <div class="brder" ng-hide="cart.hide_everything">
                     <div class="row position_relative_item pdng_btm_zero" ng-show="cart.data.UserCartDetailPromos.length == 0 ? false : true " ng-repeat="(key, product) in cart.data.UserCartDetailPromos">
-                        <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
-                        <div class="col-60">
-                            <div class="row" style="padding:0">
-                                <p class="cart_prdt_name">{{ cart.UserCartDetails_data(product.ProductId).ProductName }} </p>
+                            <div class="row">
+                                    <div class="col-40"><img id="shoppingimg" ng-src="{{ product.DefaultImage }}"></div>
+                                    <div class="col-60">
+                                        <div class="row" style="padding:0">
+                                            <p class="cart_prdt_name">{{ cart.UserCartDetails_data(product.ProductId).ProductName }} </p>
+                                        </div>
+                                        
+                                        <div class="row paddingLeftRight-0 pdng_btm_zero">
+                                            <div class="col-50">
+                                                <span class="shoppingqty"> QTY: {{ cart.checkout_data ? cart.checkout_data.QtyTotal : '' }}</span>
+                                                <input type="text" class="qty paddingLeftRight-0" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1" ng-hide="cart.checkout_data">
+                                            </div>
+                                            <!-- {{ product.LoyaltyDiscount }}% Loyalty discount -->
+                                            <div class="col-50 pdng_btm_zero">
+                                            <row class="shoppingsmall">
+                                                <span class="shoppingdesciption">
+                                                <i class="color33cd5f small_red_price line_through">₦{{ product.Price }}</i>
+                                                <i class="color33cd5f">₦{{ product.PriceAfterBusinessDiscount}}</i>
+                                                </span>                                   
+                                            </row>                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(product.CartDetailId, product.CartId, cart.data.BusinessStoreId, product.ProductId, key)" ng-hide="cart.checkout_data"></i>
                             </div>
-                            
-                            <div class="row paddingLeftRight-0 pdng_btm_zero">
-                                <div class="col-50">
-                                    <span class="shoppingqty"> QTY: {{ cart.checkout_data ? cart.checkout_data.QtyTotal : '' }}</span>
-                                    <input type="text" class="qty paddingLeftRight-0" name="qty" ng-change="cart.quantity_change(product.CartDetailId, product.ProductId, product.Qty)" ng-model="cart.data.UserCartDetailPromos[key].Qty" placeholder="1" ng-hide="cart.checkout_data">
-                                </div>
-                                <!-- {{ product.LoyaltyDiscount }}% Loyalty discount -->
-                                <div class="col-50 pdng_btm_zero">
-                                <row class="shoppingsmall">
-                                    <span class="shoppingdesciption">
-                                    <i class="color33cd5f small_red_price line_through">₦{{ product.Price }}</i>
-                                    <i class="color33cd5f">₦{{ product.PriceAfterBusinessDiscount}}</i>
-                                    </span>                                   
-                                </row>                                    
-                                </div>
-                            </div>
+                        <div class="cart-single-item-price">
+                             <div class="total_cart_price">
+                                 <ion-item class="ng-binding" style="border-top:0; padding:5px">Item Price:<em class="color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</em></ion-item>
+                              </div>
                         </div>
-                        <i class="ion-close icon_close_position_absolute" ng-click="cart.remove_product(product.CartDetailId, product.CartId, cart.data.BusinessStoreId, product.ProductId, key)" ng-hide="cart.checkout_data"></i>
                     </div>
 
-                    <div class="bordertop">
+                    <div class="bordertop" style="border-top:0">
                         <div class="total_cart_price">
-                             <ion-item class="ng-binding">Item Total:<em class="color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</em></ion-item>
+                             <ion-item class="ng-binding" style="border-top:0">Item Total:<em class="color33cd5f"> ₦ {{ cart.totalPrice().price_after_discount_full }}</em></ion-item>
                         </div>
                         <!-- <div class="row">
                             <div class="col-50 col-offset-10">
@@ -178,7 +185,7 @@
                     </div>
                     <div class="bordertop">
                         <div class="row mrgn_btm_10px mrgn_top_10px">
-                            <div class="col-50" ng-show="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)"></div>
+                            <div class="col-50" style="text-align:center" ng-show="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)"></div>
                             <div class="col-50" ng-hide="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)">
                                 <span ng-hide="cart.data.PromoId > 0">Do you have a promo code?</span>
                                 <input class="promoCart pull-left center" type="text" ng-model="cart.promo" ng-hide="cart.data.PromoId > 0"><!--  - enable when promoId is greater than 0-->

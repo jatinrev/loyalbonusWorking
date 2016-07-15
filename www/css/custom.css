@@ -339,10 +339,14 @@ border:none;
 {
 	margin-left: 2%;
 }
-#Shoppingcart .position_relative_item { position: relative;
-    padding: 9px;
-    /* margin-left: 1%; */
-    width: 97%; }
+#Shoppingcart .position_relative_item { 
+    position: relative;
+    padding: 15px;
+    width: 100%;
+    border-bottom: 1px solid #666;
+    display: inline-block;
+}
+}
 #Shoppingcart .icon_close_position_absolute { position: absolute; right: 10px; }
 .redcolor
 {
@@ -379,7 +383,7 @@ border:none;
 #Shoppingcart .promoCart{
     border:1px solid #000!important;
     padding:5px 6px 0 5px;
-    min-width: 184px;
+    width:100%;
 
 }
 .subtotalamount
@@ -590,6 +594,7 @@ button.btninfo
 	/* padding:15px; */
 	border:1px solid #e2e2e2;
 	float: left;
+    margin-bottom: 10px;
 }
 span.titlecart
 {
@@ -1002,7 +1007,7 @@ h4.membershipClass
 .border_top_eee{ border-top:1px solid #999 !important }
 .cart_prdt_name{ float: left; width: 100%; margin: 0; padding: 0;margin-bottom: 22px;}
 .small_red_price.ng-binding {color: red;font-size: 12px;}
-.shoppingdesciption{ position: absolute; right: 0}
+.shoppingdesciption{ position: absolute; right:8px}
 .pdng_btm_zero{ padding-bottom:0 !important }
 .mrgn_top_zero{ margin-top:0 !important }
 .mrgn_top_10px{ margin-top:10px !important }
@@ -1022,3 +1027,7 @@ h4.membershipClass
 .blue_text{color: #86D8ED}
 #restaurants .border-bottom{ border-bottom:1px solid #666 }
 .grey_background { background-color: #eeeeee; }
+.cart-single-item-price{border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+    margin-bottom: 20px;}
