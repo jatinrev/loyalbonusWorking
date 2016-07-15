@@ -1,6 +1,6 @@
 angular.module('LoyalBonus')
 .controller('HomeController', function ($scope, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, active_controller, $ionicHistory,backFunctionality, get_business_data,$ionicViewService, saveData, watchUser
-  , get_business_data_map,refreshTest, $cordovaPreferences, popUp ) {
+  , get_business_data_map,refreshTest, $cordovaPreferences, popUp, $ionicPopup ) {
 
   $scope.testing = function () {
     cordova.plugins.Keyboard.close();
@@ -45,17 +45,61 @@ angular.module('LoyalBonus')
 
   
 
-  $scope.goBackHandler = function() {
-    backFunctionality.one_step_back();
-    // $state.go(previousState, previousStateParams);
-  };
+    $scope.goBackHandler = function() {
+        backFunctionality.one_step_back();
+        // $state.go(previousState, previousStateParams);
+    };
 
-  $rootScope.goSearchHandler = function() {
-    $rootScope.showMe = !$rootScope.showMe;
-    
-    
-    //$rootScope.doRefresh();
-  }
+    $rootScope.goSearchHandler = function() {
+        // $rootScope.showMe = !$rootScope.showMe;
+        // new
+        var myPopup = $ionicPopup.show({
+            template : '<input type="text" placeholder="Keyword" class="margin-bottom-10" ng-model="home_var.homesearch.value"><input placeholder="location" type="text" ng-model="home_var.homesearch.location">',
+            title    : 'Search',
+            // subTitle : '',
+            scope    : $scope,
+            buttons  : [
+                { text: 'Cancel' },
+                {
+                    text: '<b>Search</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.home_var.homesearch.value && !$scope.home_var.homesearch.location) {
+                            //don't allow the user to close unless he enters wifi password
+                            e.preventDefault();
+                            // $scope.home_var.homesearch.setValue();
+                        } else {
+                            return {
+                                value    : $scope.home_var.homesearch.value,
+                                location : $scope.home_var.homesearch.location
+                            };
+                        }
+                    }
+                }
+            ]
+        });
+        myPopup.then(function(res) {
+            var output = {};
+            console.log(res);
+            if(res == undefined) {
+                return ;
+            }
+            if(res.value == undefined) {
+                output.value = '';
+            } else {
+                output.value = res.value;
+            }
+            if(res.location == undefined) {
+                output.location = '';
+            } else {
+                output.location = res.location;
+            }
+            $scope.home_var.homesearch.setValue(output);
+        }, function(err) {
+            console.log(err);
+        });
+    }
+
   $rootScope.gotextHandler = function() {
     $rootScope.showMe = !$rootScope.showMe; //this is for search textbox.
     //$rootScope.doRefresh();
@@ -117,10 +161,7 @@ angular.module('LoyalBonus')
   $scope.home_var.homesearch = {};
   $scope.home_var.homesearch.setValue = function(input){
     get_business_data.setKewordSearch(input);
-    //console.log(input);
-    get_business_data.setKewordSearch(input);
-    $rootScope.showMe = false;
-    // backFunctionality.set_saveOnRefresh(); // it is applied as we want to save state when user searches at restaurant page.
+    // $rootScope.showMe = false;
     refreshTest.showrefreshtest($state.current.name, $state.params);
   };
 

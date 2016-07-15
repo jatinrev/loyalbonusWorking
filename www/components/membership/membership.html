@@ -10,7 +10,6 @@
                     </div>
                     <div class="col50">
                         <a class="color-reviewblue">Monthly</a>
-                        <!-- <span class="color-reviewb">(Upgrade Now)</span> -->
                     </div>
                 </div>
                 <div class="col padding margin-bottom">
@@ -30,12 +29,11 @@
                             <label class="title col-50">Select Membership Type</label>
                             <label class="title col-50 padding-left-10">Premium</label>
                         </div>
-                        <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes"
-                             ng-show="membership.getPromoApplied() ? (datadeal.UpdatePaymentMethod.MembershipTypeID == output.MembershipTypeID ? true : false) : true"
-                        >
+                        <div class="row" ng-repeat="output in datadeal.UpdatePaymentMethod.MembershipTypes">
+                        <!-- ng-show="membership.getPromoApplied() ? (datadeal.UpdatePaymentMethod.MembershipTypeID == output.MembershipTypeID ? true : false) : true" -->
                             <div class="col-50">
                                 <div class="row">
-                                    <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}">
+                                    <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}" ng-change="membership.change_promo_code(frmmember)">
                                     <span class="Monthly">{{ output.MembershipType1 }}</span>
                                 </div>
                             </div>
@@ -47,11 +45,13 @@
                         </div>
                         <div class="row" ng-show="membership.getPromoApplied()">
                             <div class="col-50">
-
+                                <div class="row">
+                                    <span class="grey_background padding-5">Testing-123</span>
+                                </div>
                             </div>
                             <div class="col-50">
                                 <div class="row">
-                                    <span style="color: red;">(promo: ₦ - {{ datadeal.UpdatePaymentMethod.PromoDiscountAmount }})</span>
+                                    <span style="color: red;">(promo: - ₦{{ datadeal.UpdatePaymentMethod.PromoDiscountAmount }})</span>
                                 </div>
                             </div>
                         </div>
@@ -60,8 +60,7 @@
                             <input ng-hide="membership.getPromoApplied()" class="form-control" name="promoCode" id="promoCode" ng-model="datadeal.promo" type="text" style="width:183px;float:left"> <!--hide if promo applied-->
                             <div class="mgtop20">
                                 <a ng-click="
-                                    membership.getPromoApplied() ? membership.RemoveUserPromoByUserPromoId(datadeal.UpdatePaymentMethod.UserPromoId) : membership.ApplyPromoCode(frmmember)
-                                    " 
+                                    membership.getPromoApplied() ? membership.RemoveUserPromoByUserPromoId(datadeal.UpdatePaymentMethod.UserPromoId) : membership.ApplyPromoCode(frmmember)" 
                                    style="cursor:pointer">{{ membership.getPromoApplied() ? 'Remove Promo' : 'Apply' }}</a>
                             </div>
                         </div>

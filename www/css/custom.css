@@ -2,20 +2,21 @@
 /**
  * all padding come here
  */
-.paddingLR10 { padding-left: 10px; padding-right: 10px; }
-.padding-top-8 { padding-top: 8px; }
-.padding-top-10 { padding-top: 10px !important; }
-.padding-bottom-10 { padding-bottom: 10px; }
-.padding-TB-5 { padding-top: 5px; padding-bottom: 5px; }
-.paddingLeftRight-0 { padding-left: 0; padding-right: 0; }
-.paddingLeftRight-15 { padding-left: 15px; padding-right: 15px; }
-.padding-right-5 { padding-right: 5px; }
-.padding-left-5 { padding-left: 5px; }
-.padding-left-10 { padding-left: 10px; }
-.padding-all-zero{ padding: 0 !important}
-.padding-bottom {padding-bottom:0px !important;}
-.padding-top-zero {padding-top:0px !important;}
-.margin-bottom {margin-bottom: 50px;}
+.paddingLR10            { padding-left   : 10px; padding-right: 10px; }
+.padding-top-8          { padding-top    : 8px; }
+.padding-top-10         { padding-top    : 10px !important; }
+.padding-bottom-10      { padding-bottom : 10px; }
+.padding-TB-5           { padding-top    : 5px; padding-bottom: 5px; }
+.paddingLeftRight-0     { padding-left   : 0 !important; padding-right: 0 !important; }
+.paddingLeftRight-15    { padding-left   : 15px; padding-right: 15px; }
+.padding-right-5        { padding-right  : 5px; }
+.padding-left-5         { padding-left   : 5px; }
+.padding-left-10        { padding-left   : 10px; }
+.padding-all-zero       { padding        : 0 !important}
+.padding-5              { padding-left   : 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; }
+.padding-bottom         { padding-bottom : 0px !important;}
+.padding-top-zero       { padding-top    : 0px !important;}
+.margin-bottom          { margin-bottom  : 50px;}
 
 .mgtop30{margin-top: 30px;}
 .fontsize
@@ -39,26 +40,28 @@
 
 /*This method is wrong*/  .margin-top-10      { margin-top    : 15px; }
 
-.margin-left-15{margin-left:15}
-.mgtop20 {margin-top: 20px;}
+.margin-left-15 { margin-left:15}
+.mgtop20 { margin-top: 20px;}
 #restaurants .margin-top-10 { margin-top:15px; }
+#restaurants .search_css    { top: 50px; }
+
 
 /**COLOR**/
 .color33cd5f { color: #33cd5f } /* green */
 .color_grey  { color: #63615a; }
+.color_red   { color: red; }
 
 /**Border**/
 .border-TB-1 {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+    border-top    : 1px solid #ccc;
+    border-bottom : 1px solid #ccc;
 }
 .border-bottom-1 {
-	border-bottom: 1px solid #ccc !important;
-    background-color: unset;
-        padding: 5px;
+    border-bottom    : 1px solid #ccc !important;
+    background-color : unset;
+    padding          : 5px;
 }
 .border-top-0 { border: 0px; }
-
 
 #Membership .list.list-inset
 {
@@ -81,6 +84,8 @@ background-color: unset;
 .text-align-center 	{ text-align: center; }
 .text-align-right   { text-align: right; }
 .height_37          { height: 37px !important; }
+
+.line_through       { text-decoration: line-through; } /*linethrough*/
 
 .font-size-10 		{ font-size: 10px; }
 .font-color-white 	{
@@ -284,7 +289,7 @@ border:none;
 #Shoppingcart .qty {
     border: 1px solid #aaaaaa;
     padding: 11px;
-    width: 55%;
+    width: 30%;
     float: left;
     height: 20px;
     /* margin-top: 5px; */
@@ -393,10 +398,9 @@ border:none;
 .applypromo
 {
     background-color: #fff;
-        padding:0 35px;
-        color:#61B2C7;
-        min-height:12px;
-        margin:0px !important; line-height: normal;
+    color:#61B2C7;
+    min-height:12px;
+    margin:0px !important; line-height: normal;
 }
 .margintop
 {
@@ -540,7 +544,7 @@ border:none;
 .shoppingdesciptioncolor33cd5f
 {
 
-    color: #33cd5f;
+    color: #33cd5f; /*red*/
     font-size:22px;
     font-weight: 600;
     background-color: unset;
@@ -549,7 +553,6 @@ border:none;
     border-bottom: 1px solid #eee;
     width: 70%;
     text-align: center;
-    text-decoration: line-through;
 }
 
 span.Cartloyality
@@ -1015,3 +1018,4 @@ h4.membershipClass
 .green_text{ color: #34CE60}
 .blue_text{color: #86D8ED}
 #restaurants .border-bottom{ border-bottom:1px solid #666 }
+.grey_background { background-color: #eeeeee; }
