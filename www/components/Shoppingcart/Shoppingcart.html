@@ -21,6 +21,10 @@
                 </div>
             </div>
 
+            <div class="errorr text-center"><!-- -->
+                {{ cart.checkout_error }}
+            </div>
+
         <div ng-class="cart.checkout_data ? 'grey_bg' : ''">
             <div class="row border_top_eee" ng-show="cart.checkout_data">
                 <p class="row fontsize">Place Your Order</p>
@@ -35,7 +39,10 @@
                     <div class="col">
                         {{ cart.checkout_data.UserDefaultAddress.StreetAddress+', '+cart.checkout_data.UserDefaultAddress.City }}
                     </div>
-                    <div class="col text-right"><button class="button button-light button_style_custom" ng-click="cart.show_address_pop()">Change</button></div>
+                    <div class="col text-right">
+                        <span ng-click="cart.show_address_pop()" class="ion-chevron-right"></span>
+                        <!-- <button class="button button-light button_style_custom" ng-click="cart.show_address_pop()">Change</button> -->
+                    </div>
                     <!-- <div class="col">
                         <button id="btnaddress" class="btn btn-default" ng-click="cart.ChangeAddress()">Change</button>
                     </div> -->
@@ -123,9 +130,6 @@
             <!--- End : After checkout data -->
         </div>
             <!-- Start : First Part -->
-            <div class="" ng-hide="cart.checkout_data"><!-- -->
-                {{ cart.checkout_error }}
-            </div>
 
             <div class="padding white_bg" ng-hide="cart.checkout_data">
                 <div class="row white_bg">

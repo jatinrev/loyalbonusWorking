@@ -1,8 +1,4 @@
 angular.module('LoyalBonus')
-
-
-
-
 .controller('MileStoneController', function ($scope, $state, ajaxCall, active_controller,$rootScope,saveData, refreshTest) {
 
 	$scope.open_detail_page = function (BusinessID) {
@@ -17,10 +13,15 @@ angular.module('LoyalBonus')
     $scope.Test = function () {
         return refreshTest.showrefreshtest($state.current.name, $state.params);
     }
-
+    console.log('yoyoyoyo');
 
 	$scope.myloyalbonus = {};
 
+
+    $scope.printTick_html = function(total_visits, bonus_discount_toCust) {
+        console.log(total_visits, bonus_discount_toCust);
+        // return 'ellloo';
+    }
 
 	$scope.myloyalbonus.print = [];
 
@@ -28,16 +29,9 @@ angular.module('LoyalBonus')
 	ajaxCall
 	.get('webapi/BusinessMaster/GetAllBusinessLocationsVisitedByUser?UserId='+$rootScope.userDetails.userId, {})
 	.then(function(res) {
-		console.log(res);
-
 		$scope.myloyalbonus.print = res.data.Data;
-        console.log($scope.myloyalbonus.print);
 		//saveData.set('kaseyDinnerBusinessName', $scope.myloyalbonus.print.Name);
-		
-		
 		return $scope.myloyalbonus.print;
-
-       
 	});
 
    function mydummyJson(input) {
@@ -50,7 +44,6 @@ angular.module('LoyalBonus')
         }
         return output;
     }
-    $scope.myloyalbonus = {};
 
 
     $scope.myloyalbonus.printTick    = function ( uservisits, BonusDiscountToCust ) {

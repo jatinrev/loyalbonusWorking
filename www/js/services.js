@@ -659,7 +659,7 @@ angular.module('LoyalBonus.services', [])
 				})
 				.then(function(res) {
 					$rootScope.membership_data = res.data.Data;
-					console.log($rootScope.membership_data);
+					// console.log($rootScope.membership_data);
 				});
 			}
 		}

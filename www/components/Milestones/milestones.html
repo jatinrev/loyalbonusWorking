@@ -15,6 +15,9 @@
 
                     <div class="col-60">
                         <p class="title" ng-click="open_detail_page(value.BusinessID)">{{ value.Name }}</p>
+                        <div class="temp">
+                            {{ printTick_html(value.TotalVisits, value.BonusDiscountToCust) }}
+                        </div>
                         <div class="bar-balanced">
                             <ul>
                                 <li class="checkbox" ng-repeat="tickRepeat in myloyalbonus.printTick(value.TotalVisits, value.BonusDiscountToCust)">

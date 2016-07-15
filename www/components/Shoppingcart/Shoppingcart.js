@@ -553,6 +553,9 @@ angular.module('LoyalBonus')
                 $scope.cart.check_out();
                 */
                 // save data here.
+            },
+            edit_address : function(frmmember) {
+                console.log(frmmember);
             }
         }
 
