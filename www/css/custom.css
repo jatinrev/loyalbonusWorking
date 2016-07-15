@@ -50,7 +50,7 @@
 
 
 /**COLOR**/
-.color33cd5f { color: #33cd5f } /* green */
+.color33cd5f { color: #33cd5f !important; } /* green */
 .color_grey  { color: #63615a; }
 .color_red   { color: red; }
 
@@ -65,6 +65,7 @@
     padding          : 5px;
 }
 .border-top-0 { border: 0px; }
+.border-color-666 { border-color: #666 !important; }
 
 #Membership .list.list-inset
 {
@@ -262,6 +263,11 @@ border:none;
 	/* margin-left:6%; */
     width: 100px;
     height: 60px;
+}
+.button_style_custom {
+    line-height: 20px;
+    min-height: 20px;
+    border: 1px solid #ccc !important;
 }
 .shoppingdesciption
 {

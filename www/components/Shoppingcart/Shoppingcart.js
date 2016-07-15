@@ -109,7 +109,7 @@ angular.module('LoyalBonus')
                 return res;
             });
         }
-        
+
         // CheckOut(Get): Parameters – [cartId, businessStoreId, BusinessID, ProductID, userId].
         // THIS FUNCTION IS INCOMPLETE
         function checkout(cartId, businessStoreId, BusinessID, ProductID) {
@@ -145,7 +145,7 @@ angular.module('LoyalBonus')
         };
     })
 
-    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window, saveData, loading) {
+    .controller('ShoppingCartController', function ($scope, $state,  active_controller, $ionicPlatform, refreshTest, $rootScope, businessVisit, cart_functions, productDetailFactory, popUp, ajaxCall, payment, $window, saveData, loading, $ionicModal) {
         /*
         business Lising starts : this is comming from kaseyDinner.js
          */
@@ -259,7 +259,7 @@ angular.module('LoyalBonus')
                 } else if( paymentMethod > 2 ) {
                     paymentMethod = paymentMethod-3;
                     loading.start();
-                    
+
                     // MAKING PAYMENT TO PAYSTACK
                     payment
                     .chargingReturningCustomers($scope.cart.paystack_auth_code[paymentMethod].PaystackAuthCode, $scope.cart.totalPrice().price_after_discount)
@@ -389,7 +389,7 @@ angular.module('LoyalBonus')
                     // GTBANK
                     gtBank.post_request();
 
-                    // GETTING CALLBACK 
+                    // GETTING CALLBACK
                     $window
                     .gtBank_custom
                     .output(function (res) {
@@ -492,7 +492,69 @@ angular.module('LoyalBonus')
                 return saveData.get('business_cart_size');
               }
             }
+            /*
+                beta2.loyalbonus.com/webapi/ChangeUserAddressApi/ChangeUserAddress
+                UserAddressId
+                UserID
+                AddressType
+                City
+                CreatedDate
+                FirstName
+                LastName
+                MobileNo
+                OppNxtnearby
+                StateGovAreaId
+                StateId
+                StreetAddress
+             */
+            , change_shipping_address : function() {
+                ajaxCall
+                .post('beta2.loyalbonus.com/webapi/ChangeUserAddressApi/ChangeUserAddress', {
+                    UserAddressId  : 0,
+                    UserID         : $rootScope.userDetails.userId,
+                    AddressType    : '',
+                    City           : '',
+                    CreatedDate    : '',
+                    FirstName      : '',
+                    LastName       : '',
+                    MobileNo       : '',
+                    OppNxtnearby   : '',
+                    StateGovAreaId : '',
+                    StateId        : '',
+                    StreetAddress  : ''
+                })
+                .then(function(res) {
+                    console.log(res);
+                });
+            }
+            , show_address_pop : function() {
+                $scope.temp = "kasdfklasjlksdjflasjf";
+                $ionicModal.fromTemplateUrl('components/Shoppingcart/change_address.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up'
+                }).then(function(modal) {
+                    $scope.modal = modal;
+                }).then(function() {
+                    $scope.modal.show();
+                });
+            }
         };
+
+
+        // Start : Address functions
+        $scope.address = {
+            closeZoomView : function() {
+                $scope.modal.hide();
+            },
+            CreateAddress : function(input) {
+                console.log(input);
+                /*
+                $scope.modal.remove();
+                $scope.cart.check_out();
+                */
+                // save data here.
+            }
+        }
 
 
         /*
@@ -511,7 +573,7 @@ angular.module('LoyalBonus')
         gtpay_cust_id        = $rootScope.userDetails.userId,
         gtpay_tranx_noti_url = "http://beta2.loyalbonus.com/UserCart/OrderConfirmationMobile",  //"http://localhost/ionic/gtPay.php",
         hashkey              = "D3D1D05AFE42AD50818167EAC73C109168A0F108F32645C8B59E897FA930DA44F9230910DAC9E20641823799A107A02068F7BC0F4CC41D2952E249552255710F";
-        
+
         $scope.gtbank = {
             local_oauth_url      : oauthUrl,
             oauthUrl             : gtpay_tranx_noti_url,
@@ -596,7 +658,7 @@ angular.module('LoyalBonus')
         Listing cart products
          */
         shoppingCart.get_cart_data = function() {
-            cart_functions
+            return cart_functions
             .GetUserCartByBusinessId($state.params.businessId)
             .then(function (res) {
                 if(res == 0) {
@@ -618,7 +680,10 @@ angular.module('LoyalBonus')
                 $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
             });
         }
-        shoppingCart.get_cart_data();
+        shoppingCart.get_cart_data()
+        .then(function() {
+            $scope.cart.check_out();
+        });
 
         $scope.state_on = function () {
             return $state.params.id;

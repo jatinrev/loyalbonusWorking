@@ -1,0 +1,62 @@
+<ion-modal-view class="zoom-view">
+	<ion-header-bar>
+		<h1 class="title">Select/Add Address</h1>
+		<button ng-click="address.closeZoomView()" class="button button-clear button-dark color33cd5f">Done</button>
+	</ion-header-bar>
+	<ion-content>
+		<form ua-login name="frmmember" novalidate>
+			<div class="row">
+				<div class="col col-10">
+					<input type="radio">
+					{{ temp }}
+				</div>
+				<div class="col">
+					<div class="list white_bg">
+						<label class="item item-input white_bg border-color-666">
+							<input name="first_name" type="text" placeholder="First Name">
+						</label>
+						<label class="item item-input white_bg border-color-666">
+							<input name="last_name" type="text" placeholder="Last Name">
+						</label>
+						<label class="item item-input white_bg border-color-666">
+							<input name="mobile_number" type="text" placeholder="Mobile Number">
+						</label>
+						<label class="item item-input white_bg border-color-666">
+							<input name="street_address" type="text" placeholder="Street Address">
+						</label>
+						<label class="item item-input white_bg border-color-666">
+							<input name="city" type="text" placeholder="City">
+						</label>
+						<label class="item item-input white_bg border-color-666">
+							<input name="near_by" type="text" placeholder="Opposite, Near to, Near by">
+						</label>
+						<label class="item item-input item-select white_bg border-color-666">
+							<div class="input-label">
+								Select State
+							</div>
+							<select name="state">
+								<option>Blue</option>
+								<option selected>Green</option>
+								<option>Red</option>
+							</select>
+						</label>
+						<label class="item item-input item-select white_bg border-color-666">
+							<div class="input-label">
+								Select Local Government
+							</div>
+							<select name="local">
+								<option>Blue</option>
+								<option selected>Green</option>
+								<option>Red</option>
+							</select>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<button class="button button-block button-positive" ng-click="address.CreateAddress(frmmember)">Create Address</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-modal-view>
