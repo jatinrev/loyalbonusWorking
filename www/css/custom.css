@@ -6,9 +6,11 @@
 .padding-top-8          { padding-top    : 8px; }
 .padding-top-10         { padding-top    : 10px !important; }
 .padding-bottom-10      { padding-bottom : 10px; }
+.padding-TB-0           { padding-top    : 0px !important; padding-bottom: 0px !important; }
 .padding-TB-5           { padding-top    : 5px; padding-bottom: 5px; }
 .paddingLeftRight-0     { padding-left   : 0 !important; padding-right: 0 !important; }
 .paddingLeftRight-15    { padding-left   : 15px; padding-right: 15px; }
+.padding-top-5          { padding-top: 5px; }
 .padding-right-5        { padding-right  : 5px; }
 .padding-left-5         { padding-left   : 5px; }
 .padding-left-10        { padding-left   : 10px; }
@@ -32,6 +34,7 @@
 .margin-top-0       { margin-top    : 0px !important; }
 .margin-bottom-0    { margin-bottom : 0px !important; }
 .margin-top-5       { margin-top    : 5px; }
+.margin_top_10      { margin-top    : 10px; } /* top 10px */
 .margin-right-5     { margin-right  : 5px; }
 .margin-bottom-10   { margin-bottom : 10px; }
 .margin-top-15      { margin-top    : 15px; }
@@ -42,7 +45,7 @@
 
 .margin-left-15 { margin-left:15}
 .mgtop20 { margin-top: 20px;}
-#restaurants .margin-top-10 { margin-top:15px; }
+/* top 15px */ #restaurants .margin-top-10 { margin-top:15px; }
 #restaurants .search_css    { top: 50px; }
 
 

@@ -22,14 +22,14 @@
                         <div class="row stake-house padding-all-zero">
                             <div class="col-50">
                                 <p class="stake-house text_shadow_black">
-                                    {{ d.Name }} 
+                                    {{ d.Name }}
                                 </p>
                             </div>
                             <div class="col-50">
                                 <div class="rat-star" ng-bind-html="restaurants.print_image(d.Reviews)"></div>
                             </div>
                         </div>
-                        <div class="row border-bottom padding-top-zero">
+                        <div class="row padding-TB-0">
                             <div class="col-50">
                                 <ion-list>
                                     <ion-item class="wth-border padding-bottom" ng-show="d.Address1 == null ? false : true "><i class="ion-home"></i>&nbsp&nbsp&nbsp{{ d.Address1 }},{{ d.Address2 }}</ion-item>
@@ -37,24 +37,24 @@
                                 </ion-list>
                             </div>
                             <div class="col-50 ">
-                                <p class="" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)">&nbsp&nbsp<i class="ion-ios-telephone color_grey"></i>&nbsp{{ d.ContactPhone }}</p>
+                                <p class="wth-border padding-top-5 margin-bottom-0" ng-show="d.LoyalDiscount == null ? false : true">
+                                    <i class="ion-load-d"></i> Loyal Discount:{{ d.LoyalDiscount }}%
+                                </p>
                             </div>
                         </div>
-                        <div class="row">                        
-                                <div class="col">
-                                    <p class="wth-border padding-top-10 margin-bottom-0" ng-show="d.LoyalDiscount == null ? false : true">    
-                                        <i class="ion-load-d"></i> Loyal Discount:{{ d.LoyalDiscount }}%
-                                    </p>
-                                </div>
-                                <div class="col">  
-                                    <p class="wth-border padding-top-10 margin-bottom-0" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup(d.BonusDiscount)">
-                                        <img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}
-                                    </p>
-                                </div>                     
+                        <div class="row border-bottom padding-TB-0">
+                            <div class="col">
+                                <p class="margin_top_10" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)">&nbsp&nbsp<i class="ion-ios-telephone color_grey"></i>&nbsp{{ d.ContactPhone }}</p>
+                            </div>
+                            <div class="col">
+                                <p class="wth-border padding-top-10 margin-bottom-0" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup(d.BonusDiscount)">
+                                    <img style="position: relative; right: 3px;" src="img/bonus.png"> Bonus Discount:{{ restaurants.print_BonusDiscount(d.BonusDiscount) }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="loadingButton margin-top-15" ng-show="noMoreItemsAvailable">No Record</div>
+                <div class="loadingButton margin-top-15 row center" ng-show="noMoreItemsAvailable">No Record</div>
                 <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="listData();" distance="1%"></ion-infinite-scroll>
             </ion-content>
         </ion-view>

@@ -16,7 +16,7 @@
                     <label class="color-txt">Your membership will end:</label>
                     <label class="black-color">{{ membership_data.ExpirationDate | date:'dd/MM/yyyy' }}</label>
                 </div>
-                <div class="error_msg" ng-show="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)">Membership have been cancelled by User</div>
+                <div class="error_msg" ng-show="membership_data != undefined && (membership_data.IsCancelledMembership == true || membership_data.MembershipExire == true)">Membership have been cancelled</div>
                 <div class="error_msg" ng-show="datadeal.error == '' || datadeal.error == undefined ? false : true" ng-bind="datadeal.error"></div>
                 <div class="success_msg" ng-show="datadeal.success == '' || datadeal.success == undefined ? false : true" ng-bind="datadeal.success"></div>
                 <!-- Start : Update/change payment method -->
@@ -120,7 +120,7 @@
                                 <span class="title col text-center" style="white-space : initial;">You will not be able to access our members benefits once cancelled. All Loyality Reward and Bonus will be reset.</span>
                             </div>
                             <div class="row align_btns_center">
-                                <button ng-click="toggleGroup(3)" class="button button-calm margin-right-5 padding-right-5 padding-left-5">Continue Membership</button>
+                                <button ng-click="membership.ContinueMembership()" class="button button-calm margin-right-5 padding-right-5 padding-left-5">Continue Membership</button>
                                 <button ng-click="membership.CancelMembership()" class="button button-assertive padding-right-5 padding-left-5">Cancel Membership</button>
                                 <!-- <a class="btn btn-info pull-left" ng-click="toggleGroup(3)">Continue Membership</a>
                                 <a class="btn btn-danger pull-right" ng-click="membership.CancelMembership()">Cancel Membership</a> -->

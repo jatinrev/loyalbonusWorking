@@ -170,8 +170,10 @@ angular.module('LoyalBonus')
                     .get('webapi/MyAccountAPI/CancelMembership?userId='+$rootScope.userDetails.userId, {})
                     .then(function (res) {
                         if(res.data.Data.status == true) {
-                            popUp.msgPopUp("You membership was canceled.", 2);
-                            membership_api.check_membership();
+                            popUp.msgPopUp("You membership was canceled.", 2)
+                            .then(function() {
+                                membership_api.check_membership();
+                            });
                         }
                         console.log(res);
                         return res;
@@ -179,7 +181,6 @@ angular.module('LoyalBonus')
                 }
             });
         },
-
         /*
           Method - Get : ContinueMembership
           [Parameters : userId]
@@ -189,6 +190,17 @@ angular.module('LoyalBonus')
             .get('webapi/MyAccountAPI/ContinueMembership?userId='+$rootScope.userDetails.userId, {})
             .then(function (res) {
                 console.log(res);
+                var msg = '';
+                if( $rootScope.membership_data != undefined && $rootScope.membership_data.IsCancelledMembership) {
+                    msg = 'Welcome back. We missed you.';
+                } else {
+                    msg = 'Membership continued.';
+                }
+                popUp
+                .msgPopUp(msg, 1)
+                .then(function() {
+                    membership_api.check_membership();
+                });
                 return res;
             });
         },
@@ -244,7 +256,7 @@ angular.module('LoyalBonus')
                 ajaxCall
                 .post('webapi/MyAccountAPI/ApplyPromoCode', {
                     userId           : $rootScope.userDetails.userId,
-                    promoCode        : 'Testing-123', // promo code
+                    promoCode        : 'Testing-123', // $scope.datadeal.UpdatePaymentMethod // promo code
                     amount           : get_payment_amount($scope.datadeal.membershipTypeId_selected).MemberShipFee,
                     membershipTypeId : get_payment_amount($scope.datadeal.membershipTypeId_selected).MembershipTypeID
                 })
