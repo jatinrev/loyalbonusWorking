@@ -26,13 +26,13 @@
                                 <td>Amount</td>
                                 <td>₦ {{ tabName.Tra_amt }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Type</td>
                                 <td>{{ tabName.tra_type }}</td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Plan Type</td>
-                                <td>{{ tabName.PlanType }}</td>
+                                <td>{{ tabName.PlanType == 3 ? 'Yearly' : 'Monthly' }}</td>
                             </tr>
                         </tbody>
                     </table>

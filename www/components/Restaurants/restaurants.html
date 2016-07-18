@@ -32,7 +32,7 @@
                         <div class="row padding-TB-0">
                             <div class="col-50">
                                 <ion-list>
-                                    <ion-item class="wth-border padding-bottom" ng-show="d.Address1 == null ? false : true "><i class="ion-home"></i>&nbsp&nbsp&nbsp{{ d.Address1 }},{{ d.Address2 }}</ion-item>
+                                    <ion-item class="wth-border padding-bottom color_black" ng-show="d.Address1 == null ? false : true "><i class="ion-home"></i>&nbsp&nbsp&nbsp{{ d.Address1 }},{{ d.Address2 }}</ion-item>
                                     <!-- <ion-item class="wth-border padding-bottom" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)" >{{ d.ContactPhone }}</ion-item> -->
                                 </ion-list>
                             </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row border-bottom padding-TB-0">
                             <div class="col">
-                                <p class="margin_top_10" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)">&nbsp&nbsp<i class="ion-ios-telephone color_grey"></i>&nbsp{{ d.ContactPhone }}</p>
+                                <p class="margin_top_10 color_black" ng-show="d.ContactPhone == null ? false : true" ng-click="dialNumber(d.ContactPhone)">&nbsp&nbsp<i class="ion-ios-telephone"></i>&nbsp{{ d.ContactPhone }}</p>
                             </div>
                             <div class="col">
                                 <p class="wth-border padding-top-10 margin-bottom-0" ng-show="d.BonusDiscount == null ? false : true" ng-click="showPopup(d.BonusDiscount)">

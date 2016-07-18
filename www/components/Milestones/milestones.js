@@ -18,9 +18,74 @@ angular.module('LoyalBonus')
 	$scope.myloyalbonus = {};
 
 
-    $scope.printTick_html = function(total_visits, bonus_discount_toCust) {
-        console.log(total_visits, bonus_discount_toCust);
+    $scope.printTick_html = function(total_visits, bonus_discount_toCust, loyalDiscount) {
+        // console.log('Start');
+        var printTick         = [];
+        var printNonTick      = [];
+        var printGift         = [];
+        var printGiftDiscount = [];
+        printTick             = $scope.myloyalbonus.printTick(total_visits, bonus_discount_toCust).length;
+        printNonTick          = $scope.myloyalbonus.printNonTick(total_visits, bonus_discount_toCust).length;
+        printGift             = $scope.myloyalbonus.printGift(total_visits, bonus_discount_toCust).length;
+        printGiftDiscount     = $scope.myloyalbonus.printGiftDiscount(total_visits, bonus_discount_toCust).length;
+        var total_length      = +printTick + +printNonTick + +printGift + +printGiftDiscount;
+        /*console.log('total_length');
+        console.log(total_length);
+        console.log( $scope.myloyalbonus.printTick(total_visits, bonus_discount_toCust) );
+        console.log( $scope.myloyalbonus.printNonTick(total_visits, bonus_discount_toCust) );
+        console.log( $scope.myloyalbonus.printGift(total_visits, bonus_discount_toCust) );
+        console.log( $scope.myloyalbonus.printGiftDiscount(total_visits, bonus_discount_toCust) );
+        console.log('End');*/
+
+        var out = '';
+        for(i=0; i<total_length; i++) {
+            var gone = 0;
+            if(i == 0 || i == 5) {
+                out += '<ul>';
+            }
+            if(printTick > 0) {
+                // out += '1';
+                out +=      '<li class="checkbox">';
+                out +=           '<img src="img/tick.png" >';
+                out +=      '</li>';
+                printTick--;
+                gone = 1;
+            }
+            if( printTick == 0 && printNonTick > 0 && gone == 0 ) {
+                // out += '2';
+                out +=      '<li class="round">';
+                out +=           '<span class="round-span">'+loyalDiscount+'%</span><p>off</p>';
+                out +=      '</li>';
+                printNonTick--;
+                gone == 1;
+            }
+            if( printTick == 0 && printNonTick == 0 && printGift > 0 && gone == 0 ) {
+                // out += '3';
+                out +=      '<li class="checkbox">';
+                out +=           '<img src="img/icon.png">';
+                out +=      '</li>';
+                printGift--;
+                gone == 1;
+            }
+            if( printTick == 0 && printNonTick == 0 && printGift == 0 &&  printGiftDiscount > 0 && gone == 0 ) {
+                // out += '4';
+                out +=      '<li class="checkbox">';
+                out +=           '<img src="img/discountwithtick.png">';
+                out +=      '</li>';
+                printGiftDiscount--;
+                gone == 1;
+            }
+            if(i == 4 || i == 9 || i == total_length-1 ) {
+                out += '</ul>';
+            }
+            // out += '('+i+')';
+        }
+        // console.log(total_visits, bonus_discount_toCust);
         // return 'ellloo';
+        return {
+            out          : out,
+            total_length : total_length
+        };
     }
 
 	$scope.myloyalbonus.print = [];
@@ -74,6 +139,7 @@ angular.module('LoyalBonus')
         if( +uservisits == +BonusDiscountToCust ) {
             return mydummyJson(1);
         }
+        return mydummyJson(0);
     }
          
         

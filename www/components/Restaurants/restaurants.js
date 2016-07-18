@@ -106,6 +106,7 @@ angular.module('LoyalBonus', '')
             removeSearchKeyword             : function ()       {
                 removeSearchKeywordChecker = 1;
                 searchKeyword              = '';
+                searchLocation             = '';
             },
             stop_removeSearchKeywordChecker : function()        { removeSearchKeywordChecker = 0; },
             get_removeSearchKeywordChecker  : function()        { return removeSearchKeywordChecker; }
@@ -265,7 +266,6 @@ angular.module('LoyalBonus', '')
                                             }
                                             function_start = false;
                                             $scope.$broadcast('scroll.infiniteScrollComplete'); // this is for infinite scroll.
-                                            
                                         });
                                 } else {   //if (+$state.params.vertical != 0)
                                     jQuery('ion-content').removeClass('search_css');
@@ -334,7 +334,6 @@ angular.module('LoyalBonus', '')
                                 .search(keyword, position.lat, position.long, +$state.params.vertical)
                                 .then(function (response) {
                                     restaurantData = response[+$state.params.vertical];
-
                                 });
                         } else {
                             console.log('keyword empty');

@@ -16,10 +16,13 @@
                     <div class="col-60">
                         <p class="title" ng-click="open_detail_page(value.BusinessID)">{{ value.Name }}</p>
                         <div class="temp">
-                            {{ printTick_html(value.TotalVisits, value.BonusDiscountToCust) }}
+                            <!-- {{ printTick_html(value.TotalVisits, value.BonusDiscountToCust) }} -->
                         </div>
                         <div class="bar-balanced">
-                            <ul>
+                            <div ng-bind-html="printTick_html(value.TotalVisits, value.BonusDiscountToCust, value.LoyalDiscount).out"></div>
+                            <!-- {{ printTick_html(value.TotalVisits, value.BonusDiscountToCust).total_length }} -->
+                            <!-- Start : old -->
+                            <!-- <ul>
                                 <li class="checkbox" ng-repeat="tickRepeat in myloyalbonus.printTick(value.TotalVisits, value.BonusDiscountToCust)">
                                     <img src="img/tick.png" >
                                 </li>
@@ -32,7 +35,8 @@
                                 <li class="checkbox" ng-repeat="(key, value) in myloyalbonus.printGiftDiscount(value.TotalVisits, value.BonusDiscountToCust)">
                                     <img src="img/discountwithtick.png">
                                 </li>
-                            </ul>
+                            </ul> -->
+                            <!-- End : old -->
                             <div class="row">
                                 <span class="text-align" ng-show="value.TotalVisits != 0 ? true : false">Last visited :{{ value.qrscanningmaster[value.qrscanningmaster.length - 1].CreatedOn | date:'yyyy-MM-dd HH:mm:ss' }}
                                 </span>

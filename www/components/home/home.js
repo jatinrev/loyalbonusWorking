@@ -54,7 +54,7 @@ angular.module('LoyalBonus')
         // $rootScope.showMe = !$rootScope.showMe;
         // new
         var myPopup = $ionicPopup.show({
-            template : '<input type="text" placeholder="Keyword" class="margin-bottom-10" ng-model="home_var.homesearch.value"><input placeholder="location" type="text" ng-model="home_var.homesearch.location">',
+            template : '<input type="text" placeholder="Keyword" class="margin-bottom-10 padding-right-5 padding-left-5" ng-model="home_var.homesearch.value"><input placeholder="location" class="padding-right-5 padding-left-5" type="text" ng-model="home_var.homesearch.location">',
             title    : 'Search',
             // subTitle : '',
             scope    : $scope,
@@ -138,15 +138,19 @@ angular.module('LoyalBonus')
   $scope.home_var.homeheading = {};
   $scope.home_var.homeheading.text = function () {
     // remember to string length here
-    
-    if( get_business_data.getSearchKeyword() != '' ) {
-      //console.log(get_business_data.getSearchKeyword);
-      return get_business_data.getSearchKeyword();
+    if( get_business_data.getSearchKeyword() != '' || get_business_data.getLocationKeyword() != '' ) {
+      if( get_business_data.getLocationKeyword() == '' ) {
+        return get_business_data.getSearchKeyword();
+      } else if( get_business_data.getSearchKeyword() == '' ) {
+        return get_business_data.getLocationKeyword();
+      } else {
+        return get_business_data.getSearchKeyword()+' '+get_business_data.getLocationKeyword();        
+      }
     }
     return '';
   };
   $scope.home_var.homeheading.Visibility = function () {
-    if( get_business_data.getSearchKeyword() != '' ) {
+    if( get_business_data.getSearchKeyword() != '' || get_business_data.getLocationKeyword() != '' ) {
       return true;
     } else {
       return false;

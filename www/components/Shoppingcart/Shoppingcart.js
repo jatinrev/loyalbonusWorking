@@ -298,7 +298,10 @@ angular.module('LoyalBonus')
                             .after_payment_checkout(input)
                             .then(function(payment_res) {
                                 loading.stop();
-                                if(payment_res.data.Message == null) {
+                                if( payment_res.data.StatusMessage == 'Failed' ) {
+                                    popUp
+                                    .msgPopUp('Payment Failed', 0);
+                                } else if(payment_res.data.Message == null) {
                                     popUp
                                     .msgPopUp('Your payment was successful. Your order id "'+payment_res.data.Data+'"', 1);
                                 } else {
@@ -359,7 +362,10 @@ angular.module('LoyalBonus')
                                     $scope.cart
                                     .after_payment_checkout(input)
                                     .then(function(payment_res) {
-                                        if(payment_res.data.Message == null) {
+                                        if( payment_res.data.StatusMessage == 'Failed' ) {
+                                            popUp
+                                            .msgPopUp('Payment Failed', 0);
+                                        } else if(payment_res.data.Message == null) {
                                             popUp
                                             .msgPopUp('Paystack Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
                                         } else {
@@ -434,7 +440,10 @@ angular.module('LoyalBonus')
                             $scope.cart
                             .after_payment_checkout(input)
                             .then(function(payment_res) {
-                                if(payment_res.data.Message == null) {
+                                if( payment_res.data.StatusMessage == 'Failed' ) {
+                                    popUp
+                                    .msgPopUp('Payment Failed', 0);
+                                } else if(payment_res.data.Message == null) {
                                     popUp
                                     .msgPopUp('GtBank Payment was successfull. Your order id "'+payment_res.data.Data+'"', 1);
                                 } else {
@@ -683,10 +692,7 @@ angular.module('LoyalBonus')
                 $scope.gtbank.gtpay_tranx_amt = $scope.cart.totalPrice().price_after_discount;
             });
         }
-        shoppingCart.get_cart_data()
-        .then(function() {
-            $scope.cart.check_out();
-        });
+        shoppingCart.get_cart_data();
 
         $scope.state_on = function () {
             return $state.params.id;

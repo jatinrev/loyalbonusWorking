@@ -11,8 +11,8 @@
 .paddingLeftRight-0     { padding-left   : 0 !important; padding-right: 0 !important; }
 .paddingLeftRight-15    { padding-left   : 15px; padding-right: 15px; }
 .padding-top-5          { padding-top: 5px; }
-.padding-right-5        { padding-right  : 5px; }
-.padding-left-5         { padding-left   : 5px; }
+.padding-right-5        { padding-right  : 5px !important; }
+.padding-left-5         { padding-left   : 5px !important; }
 .padding-left-10        { padding-left   : 10px; }
 .padding-all-zero       { padding        : 0 !important}
 .padding-5              { padding-left   : 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; }
@@ -53,6 +53,7 @@
 .color33cd5f { color: #33cd5f !important; } /* green */
 .color_grey  { color: #63615a; }
 .color_red   { color: red; }
+.color_black { color: #000 !important; }
 
 /**Border**/
 .border-TB-1 {
@@ -799,9 +800,10 @@ input[type="radio"] {
 
     line-height: normal;
 }
-span.Monthly
+label.Monthly
 {
-    margin: 10px 3px 0;
+    margin: 10px 6px 0;
+    font-size: 15px;
 }
 span.price
 {

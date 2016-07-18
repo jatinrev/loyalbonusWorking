@@ -33,8 +33,8 @@
                         <!-- ng-show="membership.getPromoApplied() ? (datadeal.UpdatePaymentMethod.MembershipTypeID == output.MembershipTypeID ? true : false) : true" -->
                             <div class="col-50">
                                 <div class="row">
-                                    <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}" ng-change="membership.change_promo_code(frmmember)">
-                                    <span class="Monthly">{{ output.MembershipType1 }}</span>
+                                    <input class="input_left" type="radio" name="membershipType" ng-model="datadeal.membershipTypeId_selected" value="{{ output.MembershipTypeID }}" ng-change="membership.change_promo_code(frmmember)" id="membership_id{{ output.MembershipTypeID }}">
+                                    <label for="membership_id{{ output.MembershipTypeID }}" class="Monthly">{{ output.MembershipType1 }}</label>
                                 </div>
                             </div>
                             <div class="col-50">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="row padding">
-                            <input class="mdtb10_30 mauto btn btn-success wd172" type="button" ng-click="membership.SavePayStackResponseInPaymentHistory(frmmember)" value="Proceed to Payment">
+                            <input class="mdtb10_30 mauto btn btn-success wd172" type="button" on-tap="membership.SavePayStackResponseInPaymentHistory(frmmember)" value="Proceed to Payment">
                         </div>
                     </ion-item>
                 </div>

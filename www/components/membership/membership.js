@@ -35,6 +35,7 @@ angular.module('LoyalBonus')
           [Parameters : membershipTypeId, PaystackAuthCode, transactionReferenceNo, userId, PaystackCardType, PaystackCCLastFour, PaystackChannel, PaystackMessage, promoFreeMonth]
         */
         SavePayStackResponseInPaymentHistory : function (formData) {
+            loading.start();
             // getting selected data response.
             data_ctr.selectedMembershipObj = get_payment_amount($scope.datadeal.membershipTypeId_selected);
             if($scope.membership.getPromoApplied()) {
@@ -82,7 +83,8 @@ angular.module('LoyalBonus')
                                     .then(function() {
                                         $scope.membership.GetPaymentHistoryByUserId()
                                         .then(function() {
-                                            $scope.toggleGroup(2);
+                                            // $scope.toggleGroup(2);
+                                            $scope.Test();
                                         });
                                     });
                                 } else {
@@ -93,11 +95,11 @@ angular.module('LoyalBonus')
                                 return res.data.Data;
                             });
                         });
-    
                         // alert('success. transaction ref is ' + response.trxref);
                     },
                     onClose  : function(){
                         console.log('window closed');
+                        loading.stop();
                     }
                 });
                 handler.openIframe();
@@ -252,6 +254,7 @@ angular.module('LoyalBonus')
         change_promo_code : function(form_data) {
             console.log(form_data.membershipType.$modelValue);
             console.log($scope.datadeal.membershipTypeId_selected);
+            loading.start();
             if( $scope.datadeal.UpdatePaymentMethod.MembershipTypeID != null && $scope.datadeal.UpdatePaymentMethod.MembershipTypeID != $scope.datadeal.membershipTypeId_selected ) {
                 ajaxCall
                 .post('webapi/MyAccountAPI/ApplyPromoCode', {
@@ -262,6 +265,7 @@ angular.module('LoyalBonus')
                 })
                 .then(function (res) {
                     $scope.membership.GetMembershipTypeByUserId();
+                    loading.stop();
                 });
             }
             // $scope.membership.ApplyPromoCode(form_data)
