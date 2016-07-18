@@ -207,6 +207,7 @@ angular.module('LoyalBonus', '')
             get_user_location
                 .get
                 .then(function (positionfulljson) {
+                    console.log(positionfulljson);
                     if( typeof(positionfulljson.coords.latitude) != 'undefined' && positionfulljson.coords.latitude != '' ) {
                         var position = {
                             lat:  positionfulljson.coords.latitude,
