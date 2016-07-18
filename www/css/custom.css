@@ -1039,3 +1039,6 @@ h4.membershipClass
     border-bottom: 1px solid #eee;
     padding: 5px;
     margin-bottom: 20px;}
+.disable-user-behavior{width: 100%}
+.org_price{ border-bottom: 1px solid #ccc !important; border-top:1px solid #ccc !important;padding:5px !important; text-align: center;margin-bottom: 5px;}
+.discount_discounted_price span{ float: letf !important; width: 50%;}

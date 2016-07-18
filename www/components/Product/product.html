@@ -27,20 +27,17 @@
                         ng-click="helperFunction.productdetails(prod.BusinessId , prod.ProductId )">
                 </div>
                 <div class="row">
-                    <div class="col-50">
+                    <div class="row">
                         <div class="disable-user-behavior">
-                            <div class="colorblack old_price" style="color:red"> ₦ {{ prod.Price }}</div>
-                            <div class="colorblack org_price"> ₦ {{ prod.PriceAfterBusinessDiscount }}</div>
-                        </div>
-                    </div>
-                    <div class="col-50">
-                        <div class="disable-user-behavior">
-                            <div class="list">
-                                <div class="colorblack alignright "> Loyalty Discount</div>
-                                <div class="color33cd5f" style="padding-bottom:0">{{ prod.LoyalDiscount }} %</div>
+                            <div class="colorblack color33cd5f org_price"> ₦ {{ prod.PriceAfterBusinessDiscount }}</div>  
+                            <div class="row discount_discounted_price">                          
+                                    <span class="colorblack" style="padding:0">{{ prod.LoyalDiscount }} %
+        Loyalty Discount
+                                    </span>
+                                    <span class="colorblack old_price" style="color:red ;padding:0; text-align:right"> ₦ {{ prod.Price }}</span>
                             </div>
                         </div>
-                    </div>
+                    </div>                
                 </div>
                 <div class="row">
                     <div class="color42ae9d row"> {{ prod.ProductName }} </div>
